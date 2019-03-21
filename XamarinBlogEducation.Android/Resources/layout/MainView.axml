@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:local="http://schemas.android.com/apk/res-auto"
+	android:id="@+id/drawer_layout"
+	android:fitsSystemWindows="true"
+	android:layout_height="match_parent"
+	android:layout_width="match_parent">
+
+	<LinearLayout 
+    android:orientation="horizontal"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+	>
+<TextView
+		android:id="@+id/username"
+		android:background="#6db3ce"	
+		android:paddingLeft="15dp"
+		android:textSize="45dp"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:text="Test Blog"
+		android:textStyle="bold" />
+</LinearLayout>
+	<FrameLayout
+			android:id="@+id/content_frame"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:layout_centerInParent="true" />
+	<FrameLayout
+		android:id="@+id/navigation_frame"
+		android:layout_height="match_parent"
+		android:layout_width="wrap_content"
+		android:layout_gravity="left|start" />
+</android.support.v4.widget.DrawerLayout>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:local="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"	
+	android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+	android:paddingBottom="16dp"
+	android:paddingRight="50dp"
+	android:paddingLeft="50dp"
+	android:background="#e8d2c0">
+	<TextView
+			android:text="Write your post here"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="20dp"
+			android:textSize="22sp"
+			android:textStyle="bold"
+			android:layout_gravity="center_horizontal"
+			android:paddingLeft="16dp"
+			android:paddingRight="16dp"
+			android:paddingTop="20dp"/>
+	
+	<EditText
+		android:layout_marginTop="32dp"
+		android:layout_gravity="center_horizontal"
+		android:ems="10"
+		android:padding="16dp"
+		android:drawablePadding="16dp"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:hint="Title" 
+		android:background="@drawable/background_login"
+	    android:id="@+id/inputTitle"/>
+	<MvxSpinner
+		 android:id="@+id/allCategoriesSpinner"
+		android:layout_marginTop="20dp"
+		android:layout_gravity="center_horizontal"
+        android:ems="10"
+		android:padding="16dp"
+		android:drawablePadding="16dp"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:text="Select a category"
+        local:MvxBind="ItemsSource CategoryItems;SelectedItem SelectedCategoryCommand" />
+	<EditText
+		
+		android:hint="Write your post here"
+		android:layout_marginTop="32dp"
+		android:layout_gravity="center_horizontal"
+		android:ems="10"
+		android:padding="16dp"
+		android:drawablePadding="16dp"
+		android:layout_width="match_parent"
+		android:layout_height="200dp"
+		android:background="@drawable/background_login" 
+		android:id="@+id/inputPostContent" />
+	<Button
+		android:text="Post"	
+		android:layout_width="wrap_content"
+		android:gravity="center"
+		android:layout_gravity="center_vertical"
+		android:layout_height="wrap_content"
+		android:layout_marginBottom="20dp"
+		android:backgroundTint="#6db3ce"
+		android:layout_marginTop="10dp"
+		android:padding="12dp"
+		android:id="@+id/addNewPostButton" />
+</LinearLayout>
