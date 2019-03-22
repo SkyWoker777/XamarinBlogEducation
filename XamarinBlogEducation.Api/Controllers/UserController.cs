@@ -5,12 +5,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using XamarinBlogEducation.Api.Extensions;
 using XamarinBlogEducation.Business.Services.Interfaces;
 using XamarinBlogEducation.ViewModels.Models.Account;
 
 namespace XamarinBlogEducation.Api.Controllers
 {
-    [Authorize(JwtBearerDefaults.AuthenticationScheme)]
+   [Authorize(JwtBearerDefaults.AuthenticationScheme)]
     [Route("api/[controller]")]
     public class UserController : Controller
     {
@@ -22,9 +23,10 @@ namespace XamarinBlogEducation.Api.Controllers
         [HttpPost("update")]
         public async Task<IActionResult> Edit([FromBody]EditAccountViewModel model)
         {
+            var id = User.Identity.GetUserId();
             IActionResult res = BadRequest();
-            await _accountService.UpdateUserProfile(model);
-            if (_accountService.UpdateUserProfile(model).IsCompleted)
+            await _accountService.UpdateUserProfile(model, id);
+            if (_accountService.UpdateUserProfile(model, id).IsCompleted)
             {
                 return Ok();
             }

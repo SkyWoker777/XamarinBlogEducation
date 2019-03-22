@@ -27,10 +27,6 @@ namespace XamarinBlogEducation.Android.Views.Fragments
         private EditText inputUserName;
         private EditText inputLastName;
         private Button signUpButton;
-        private Bitmap bitmapImage=null;
-        private global::Android.Net.Uri filePath;       
-        private const int PICK_IMAGE_REQUEST=71;
-        private CircleImageView profileImage;
         protected override int FragmentId => Resource.Layout.RegisterView;
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
@@ -41,7 +37,6 @@ namespace XamarinBlogEducation.Android.Views.Fragments
             inputUserName = view.FindViewById<EditText>(Resource.Id.inputUserName);
             inputLastName = view.FindViewById<EditText>(Resource.Id.inputLastName);
             signUpButton = view.FindViewById<Button>(Resource.Id.signUpButton);  
-            profileImage = view.FindViewById<CircleImageView>(Resource.Id.profile_image);
 
             var set = this.CreateBindingSet<RegisterView, RegisterViewModel>();
             set.Bind(inputEmail).To(vm => vm.Email);
@@ -51,42 +46,13 @@ namespace XamarinBlogEducation.Android.Views.Fragments
             set.Bind(inputUserName).To(vm => vm.FirstName);
             set.Bind(signUpButton).To(vm => vm.RegistrateCommand);
             set.Apply();
-            signUpButton.Click += signUpButton_OnClickAsync;                  
-            profileImage.Click += profileImage_OnClickAsync; ;
+            signUpButton.Click += signUpButton_OnClickAsync;
             return view;
-        }
-        public override void OnActivityResult(int requestCode, int resultCode, Intent data)
-        {
-         
-            base.OnActivityResult(requestCode, resultCode, data);   
-            if ((requestCode==PICK_IMAGE_REQUEST)&&(resultCode==(int) Result.Ok) && (data != null)&&data.Data!=null)
-            {
-                filePath = data.Data;
-
-                bitmapImage = MediaStore.Images.Media.GetBitmap(Context.ContentResolver, filePath);   
-                profileImage.SetImageBitmap(bitmapImage);
-                ViewModel.UserImage = bitmapToByteArray(bitmapImage);
-            }
-
-        }
-
-        private byte[] bitmapToByteArray(Bitmap bitmapImage)
-        {
-            MemoryStream stream = new MemoryStream();
-            bitmapImage.Compress(Bitmap.CompressFormat.Jpeg, 0, stream);
-            byte[] bitmapData = stream.ToArray();
-            return bitmapData;
-        }
+        }      
         private void signUpButton_OnClickAsync(object sender, EventArgs e)
         {
             
             ViewModel.RegistrateCommand.Execute();
         }
-     
-        private void profileImage_OnClickAsync(object sender, EventArgs e)
-        {
-            Intent intent = new Intent(Intent.ActionPick, MediaStore.Images.Media.ExternalContentUri);
-             StartActivityForResult(Intent.CreateChooser(intent, "select pic"), PICK_IMAGE_REQUEST);
-        }   
     }
 }

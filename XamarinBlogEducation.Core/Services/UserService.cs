@@ -34,23 +34,23 @@ namespace XamarinBlogEducation.Core.Services.Interfaces
             await _httpService.ExecuteQuery(url, HttpOperationMode.POST, httpContent);           
         }
 
-        public Task UpdateUserAsync()
+        public async Task UpdateUserAsync(EditAccountViewModel model)
         {
-            throw new NotImplementedException();
+            var url = "/User/update";
+            var json = JsonConvert.SerializeObject(model);
+            var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
+            await _httpService.ExecuteQuery(url, HttpOperationMode.POST, httpContent);
         }
         
-        public async Task UploadImageAsync(Stream image,RegisterAccountViewModel model)
+        public async Task UploadImageAsync(byte[] image,RegisterAccountViewModel model)
         {
             var url = "/Common/addImage";
-            HttpContent fileStreamContent = new StreamContent(image);
-            fileStreamContent.Headers.ContentDisposition = new System.Net.Http.Headers.ContentDispositionHeaderValue("form-data") { Name = "file", FileName = "NULL"};
-            //fileStreamContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/octet-stream");
+            ByteArrayContent baContent = new ByteArrayContent(image);
             using (var client = new HttpClient())
             using (var formData = new MultipartFormDataContent())
             {
-                formData.Add(fileStreamContent);
-                var response = await client.PostAsync(url, formData);
-               
+                formData.Add(baContent, "file", "userimg.png");
+                var response = await client.PostAsync(url, formData);  
             }
         }
         public async Task AutologinUserAsync(RegisterAccountViewModel model)

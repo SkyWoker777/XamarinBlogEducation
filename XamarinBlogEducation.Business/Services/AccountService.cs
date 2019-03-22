@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using XamarinBlogEducation.ViewModels.Models.Account;
 using XamarinBlogEducation.Business.Services.Interfaces;
 using XamarinBlogEducation.DataAccess.Entities;
+using Microsoft.AspNetCore.Http;
 
 namespace XamarinBlogEducation.Business.Services
 {
@@ -62,6 +63,7 @@ namespace XamarinBlogEducation.Business.Services
             var newUser = new ApplicationUser();
             newUser.Email = model.Email;
             newUser.UserName = model.Email.Substring(0, model.Email.IndexOf("@"));
+            newUser.EmailConfirmed = true;
             newUser.FirstName = model.FirstName;
             newUser.LastName = model.LastName;
             newUser.UserImage = model.UserImage;
@@ -79,15 +81,13 @@ namespace XamarinBlogEducation.Business.Services
             await _userManager.DeleteAsync(user);
         }
 
-        public async Task UpdateUserProfile(EditAccountViewModel model)
+        public async Task UpdateUserProfile(EditAccountViewModel model, string id)
         {
-            // Get the current application user
-            ApplicationUser user = await _userManager.FindByEmailAsync(model.Email);
+            var user = await _userManager.FindByIdAsync(id);
+  
             user.Email = model.Email;
             user.FirstName = model.FirstName;
             user.LastName = model.LastName;
-            //как обновить пароль???
-
             await _userManager.UpdateAsync(user);
 
         }
@@ -98,6 +98,7 @@ namespace XamarinBlogEducation.Business.Services
             var userFullName = $"{user.FirstName ?? string.Empty} {user.LastName ?? string.Empty}";
             var claims = new List<Claim>
             {
+              
                 new Claim(JwtRegisteredClaimNames.Email, user.Email),
                 new Claim(JwtRegisteredClaimNames.UniqueName, user.Email),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),

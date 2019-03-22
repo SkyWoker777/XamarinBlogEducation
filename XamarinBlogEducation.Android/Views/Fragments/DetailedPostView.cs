@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using XamarinBlogEducation.Core.Services.Interfaces;
 using XamarinBlogEducation.Core.ViewModels.Activities;
 using XamarinBlogEducation.Core.ViewModels.Fragments;
-using XamarinBlogEducation.ViewModels.Blog;
 
 namespace XamarinBlogEducation.Android.Views.Fragments
 {

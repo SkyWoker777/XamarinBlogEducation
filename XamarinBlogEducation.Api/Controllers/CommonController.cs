@@ -5,7 +5,9 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
+using XamarinBlogEducation.Business.Services.Interfaces;
 using XamarinBlogEducation.ViewModels.Models.Account;
 
 namespace XamarinBlogEducation.Api.Controllers
@@ -13,17 +15,25 @@ namespace XamarinBlogEducation.Api.Controllers
     [Route("api/[controller]")]
     public class CommonController : Controller
     {
+        private readonly IAccountService _accountService;
         private readonly IHostingEnvironment _environment;
-        public CommonController(IHostingEnvironment environment)
+        public CommonController(IHostingEnvironment environment, IAccountService accountService)
         {
             _environment = environment ?? throw new ArgumentNullException(nameof(environment));
+            _accountService = accountService;
         }
         // POST: api/Image
         [HttpPost]
         [Route("addImage")]
-        public async Task UploadImage(IFormFile file, RegisterAccountViewModel model)
+        public async Task UploadImage(IFormFile file)
         {
-            
+
+            foreach(var item in HttpContext.Request.Form)
+            {
+
+            }
+           
+
         }
     }
 }

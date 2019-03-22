@@ -25,18 +25,10 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
         {
             _userService = userService;
             RegistrateCommand = new MvxAsyncCommand(RegistrateAsync);
-            AddImageCommand = new MvxAsyncCommand(AddImageAsync);
         }
 
         public IMvxCommand RegistrateCommand { get; private set; }
-        
-        public IMvxCommand AddImageCommand { get; private set; }
 
-        public async Task AddImageAsync()
-        {
-           
-           await _userService.UploadImageAsync();
-        }
 
         public string Email
         {
@@ -108,6 +100,7 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
 
             };
             await _userService.AddUserAsync(user);
+            await _userService.AutologinUserAsync(user);
             await _navigationService.Navigate<UserProfileViewModel>();
             //  await _navigationService.Navigate<LoginViewModel>();
             

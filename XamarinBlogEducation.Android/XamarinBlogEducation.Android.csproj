@@ -215,10 +215,6 @@
       <Project>{beab360f-b620-472a-af87-5015bdd088b7}</Project>
       <Name>XamarinBlogEducation.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\XamarinBlogEducation.ViewModels\XamarinBlogEducation.ViewModels.csproj">
-      <Project>{551553CB-2165-4053-B6AE-1858B86848AE}</Project>
-      <Name>XamarinBlogEducation.ViewModels</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

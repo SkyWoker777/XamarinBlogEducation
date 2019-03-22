@@ -27,5 +27,6 @@ namespace XamarinBlogEducation.ViewModels.Models.Account
 
         [StringLength(100, ErrorMessage = "{0} must be at least {2} characters long.", MinimumLength = 2)]
         public string LastName { get; set; }
+        public byte[] UserImage { get; set;}
     }
 }
