@@ -1,8 +1,11 @@
 ﻿
 using Newtonsoft.Json;
+using Plugin.SecureStorage;
 using System;
+using System.IdentityModel.Tokens.Jwt;
 using System.IO;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using XamarinBlogEducation.ViewModels.Models.Account;
@@ -30,16 +33,46 @@ namespace XamarinBlogEducation.Core.Services.Interfaces
         {
             var url = "/Account/login";
             var json = JsonConvert.SerializeObject(model);
-            var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
-            await _httpService.ExecuteQuery(url, HttpOperationMode.POST, httpContent);           
+            var httpContent = new StringContent(json, Encoding.UTF8, "application/json");         
+            var response = await _httpService.ExecuteQuery(url, HttpOperationMode.POST, httpContent);
+            var testToken = await _httpService.ProcessToken(response);
+            try { 
+            CrossSecureStorage.Current.SetValue("securityToken",testToken);
+           }
+            catch(Exception ex)
+            {
+                var exc = ex.Message;
+            }
+            
         }
 
         public async Task UpdateUserAsync(EditAccountViewModel model)
         {
-            var url = "/User/update";
-            var json = JsonConvert.SerializeObject(model);
-            var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
-            await _httpService.ExecuteQuery(url, HttpOperationMode.POST, httpContent);
+
+            using (var client = new HttpClient())
+            {
+                try
+                {
+                    
+                    var json = JsonConvert.SerializeObject(model);
+                    var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
+                    var message = new HttpRequestMessage(HttpMethod.Post, "http://195.26.92.83:6776/api/User/update");
+                    message.Content = httpContent;
+                    message.Headers.Authorization = new AuthenticationHeaderValue("Bearer", CrossSecureStorage.Current.GetValue("securityToken"));
+                    client.DefaultRequestHeaders.Add("Authorization", "Bearer " + CrossSecureStorage.Current.GetValue("securityToken"));
+                    var response = await client.SendAsync(message);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        return;
+                    }
+                }
+                catch (Exception ex)
+                {
+                }
+            }
+                
+           // await _httpService.ExecuteQuery(url, HttpOperationMode.POST, message);
         }
         
         public async Task UploadImageAsync(byte[] image,RegisterAccountViewModel model)

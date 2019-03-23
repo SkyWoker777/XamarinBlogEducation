@@ -2,6 +2,7 @@
 using MvvmCross.Base;
 using Newtonsoft.Json;
 using System;
+using System.IdentityModel.Tokens.Jwt;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -87,12 +88,18 @@ namespace XamarinBlogEducation.Core.Services
 
         public async Task<T> ProcessJson<T>(HttpResponseMessage response)
         {
+            
             var json = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
             var deserializedData = JsonConvert.DeserializeObject<T>(json);
           
             return deserializedData;
         }
-
+        public async Task<string> ProcessToken(HttpResponseMessage responseMessage)
+        {
+            var jwtInput = await responseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+            
+            return jwtInput;
+        }
        
     }
 }
