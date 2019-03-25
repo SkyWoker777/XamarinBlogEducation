@@ -19,15 +19,12 @@ namespace XamarinBlogEducation.Business.Services
     {
 
         private readonly UserManager<ApplicationUser> _userManager;
-        // private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IConfiguration _configuration;
 
         public AccountService(UserManager<ApplicationUser> userManager,
-            //SignInManager<ApplicationUser> signInManager,
             IConfiguration configuration)
         {
             _userManager = userManager;
-            //_signInManager = signInManager;
             _configuration = configuration;
         }
 
@@ -84,24 +81,48 @@ namespace XamarinBlogEducation.Business.Services
         public async Task UpdateUserProfile(EditAccountViewModel model, string id)
         {
             var user = await _userManager.FindByIdAsync(id);
-  
+            if (_userManager.FindByEmailAsync(model.Email)== null)
+            {
             user.Email = model.Email;
+            }
+            user.UserName= model.Email.Substring(0, model.Email.IndexOf("@"));
             user.FirstName = model.FirstName;
             user.LastName = model.LastName;
+            user.UserImage = model.UserImage;
             await _userManager.UpdateAsync(user);
 
         }
-
+        public async Task ChangeUserPassword(ChangePasswordViewModel model,string id)
+        {
+            var user = await _userManager.FindByIdAsync(id);
+            var token = model.Token;
+            if (!await _userManager.CheckPasswordAsync(user, model.OldPassword))
+            {
+                //ex
+            }
+            else
+            {
+                if (model.Password != model.ConfirmPassword)
+                {
+                    //ex
+                }
+                else
+                {
+                    await _userManager.ResetPasswordAsync(user, token, model.Password);
+                    
+                }
+            }
+        }
         private async Task<string> GetToken(ApplicationUser user)
         {
             var userRoles = await _userManager.GetRolesAsync(user);
             var userFullName = $"{user.FirstName ?? string.Empty} {user.LastName ?? string.Empty}";
             var claims = new List<Claim>
             {
-              
                 new Claim(JwtRegisteredClaimNames.Email, user.Email),
                 new Claim(JwtRegisteredClaimNames.UniqueName, user.Email),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                new Claim(ClaimTypes.NameIdentifier, user.Id),
                 new Claim(ClaimTypes.Name, userFullName),
                 new Claim(ClaimTypes.GivenName, user.FirstName ?? string.Empty),
                 new Claim(ClaimTypes.Surname, user.LastName ?? string.Empty)

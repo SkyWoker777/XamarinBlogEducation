@@ -38,7 +38,18 @@ namespace XamarinBlogEducation.Api.Controllers
             await _accountService.RemoveUser(userid);
             return Ok();
         }
-
+        [HttpPost("updatePassword")]
+        public async Task<IActionResult> UpdatePassword([FromBody]ChangePasswordViewModel model)
+        {
+            var id = User.Identity.GetUserId();
+            IActionResult res = BadRequest();
+            await _accountService.ChangeUserPassword(model, id);
+            if (_accountService.ChangeUserPassword(model, id).IsCompleted)
+            {
+                return Ok();
+            }
+            return res;
+        }
 
     }
 }

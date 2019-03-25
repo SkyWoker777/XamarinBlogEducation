@@ -49,12 +49,6 @@ namespace XamarinBlogEducation.Core.Services
             using (var client = new HttpClient())
             {
                 var result = await client.GetAsync(url).ConfigureAwait(false);
-
-                //if (result != null)
-                //{
-                //    var parsedResult = await this.ProcessJson<T>(result);
-                //    return parsedResult;
-                //} 
                 return result;
             }
 
@@ -70,17 +64,11 @@ namespace XamarinBlogEducation.Core.Services
                 {
                    
                     var result =  await client.PostAsync(url, content).ConfigureAwait(false);
-                    //if (result != null &&
-                    //    result.StatusCode != System.Net.HttpStatusCode.InternalServerError &&
-                    //    result.StatusCode != System.Net.HttpStatusCode.BadRequest)
-                    //{
-                    //    parsedResult = await this.ProcessJson(result);
-                    //}
                     return result;
                 }
                 catch(Exception ex)
                 {
-                    return new HttpResponseMessage();// return default(T);
+                    return new HttpResponseMessage();
 
                 }
             }

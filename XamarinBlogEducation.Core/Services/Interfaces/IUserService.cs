@@ -12,7 +12,7 @@ namespace XamarinBlogEducation.Core.Services.Interfaces
         Task GetUserAsync(LoginAccountViewModel model);
         Task AddUserAsync(RegisterAccountViewModel model);
         Task AutologinUserAsync(RegisterAccountViewModel model);
-        Task UploadImageAsync(byte[] image, RegisterAccountViewModel model);
+        Task UploadImageAsync(byte[] image, EditAccountViewModel model);
         Task UpdateUserAsync(EditAccountViewModel model);
     }
 }

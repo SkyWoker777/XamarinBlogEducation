@@ -7,7 +7,6 @@ using Android.Widget;
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.Droid.Support.V7.RecyclerView;
 using MvvmCross.Platforms.Android.Presenters.Attributes;
-using MvvmCross.Platforms.Android.Views;
 using System;
 using XamarinBlogEducation.Android.Extensions;
 using XamarinBlogEducation.Android.Views.Fragments;
@@ -27,13 +26,13 @@ namespace XamarinBlogEducation.Android.Views.Activities
         {
             var view = base.OnCreateView(inflater, container, savedInstanceState);
             var recuclerView = view.FindViewById<MvxRecyclerView>(Resource.Id.posts_recycler_view);
-            //if (recuclerView != null)
-            //{
-            //    recuclerView.HasFixedSize = true;
-            //    var layoutManager = new LinearLayoutManager(Activity);
-            //    recuclerView.SetLayoutManager(layoutManager);
-            //    recuclerView.AddOnScrollFetchItemsListener(layoutManager, () => ViewModel.FetchPostsTask, () => this.ViewModel.FetchPostCommand);
-            //}
+            if (recuclerView != null)
+            {
+                recuclerView.HasFixedSize = true;
+                var layoutManager = new LinearLayoutManager(Activity);
+                recuclerView.SetLayoutManager(layoutManager);
+                recuclerView.AddOnScrollFetchItemsListener(layoutManager, () => ViewModel.FetchPostsTask, () => this.ViewModel.FetchPostCommand);
+            }
 
             addPostButton = view.FindViewById<Button>(Resource.Id.addPostButton);
             var set = this.CreateBindingSet<AllPostsView, AllPostsViewModel>();

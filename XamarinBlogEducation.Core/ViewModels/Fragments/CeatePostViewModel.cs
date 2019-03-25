@@ -23,7 +23,6 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
             CategoryItems = new MvxObservableCollection<GetAllCategoriesblogViewItem>();
             AddNewPostCommand = new MvxAsyncCommand(AddNewPost);
             SelectedCategoryCommand = new MvxAsyncCommand(SelectedCategory);
-
         }
 
         private Task SelectedCategory()

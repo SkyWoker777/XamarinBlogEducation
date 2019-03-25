@@ -34,24 +34,6 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
                 RaisePropertyChanged();
             }
         }
-        //public string Password
-        //{
-        //    get => _password;
-        //    set
-        //    {
-        //        _password = value;
-        //        RaisePropertyChanged();
-        //    }
-        //}
-        //public string ConfirmPassword
-        //{
-        //    get => _confirmPassword;
-        //    set
-        //    {
-        //        _confirmPassword = value;
-        //        RaisePropertyChanged();
-        //    }
-        //}
         public string FirstName
         {
             get => _firstName;
@@ -87,8 +69,6 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
             {
 
                 Email = _email,
-                //Password = _password,
-                //ConfirmPassword = _confirmPassword,
                 FirstName = _firstName,
                 LastName = _lastName,
                 UserImage = _userImage
@@ -96,7 +76,7 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
             };
             await _userService.UpdateUserAsync(user);
             await _navigationService.Navigate<UserProfileViewModel>();
-            //  await _navigationService.Navigate<LoginViewModel>();
+            // await _navigationService.Navigate<AllpostsViewModel>();
 
         }
     }
