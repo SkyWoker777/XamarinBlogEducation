@@ -78,8 +78,7 @@ namespace XamarinBlogEducation.Core.Services
         {
             
             var json = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-            var deserializedData = JsonConvert.DeserializeObject<T>(json);
-          
+            var deserializedData = JsonConvert.DeserializeObject<T>(json);         
             return deserializedData;
         }
         public async Task<string> ProcessToken(HttpResponseMessage responseMessage)

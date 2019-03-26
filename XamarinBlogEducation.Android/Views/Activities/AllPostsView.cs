@@ -26,17 +26,16 @@ namespace XamarinBlogEducation.Android.Views.Activities
         {
             var view = base.OnCreateView(inflater, container, savedInstanceState);
             var recuclerView = view.FindViewById<MvxRecyclerView>(Resource.Id.posts_recycler_view);
-            if (recuclerView != null)
-            {
-                recuclerView.HasFixedSize = true;
-                var layoutManager = new LinearLayoutManager(Activity);
-                recuclerView.SetLayoutManager(layoutManager);
-                recuclerView.AddOnScrollFetchItemsListener(layoutManager, () => ViewModel.FetchPostsTask, () => this.ViewModel.FetchPostCommand);
-            }
+            //if (recuclerView != null)
+            //{
+            //    recuclerView.HasFixedSize = true;
+            //    var layoutManager = new LinearLayoutManager(Activity);
+            //    recuclerView.SetLayoutManager(layoutManager);
+            //    recuclerView.AddOnScrollFetchItemsListener(layoutManager, () => ViewModel.FetchPostsTask, () => this.ViewModel.FetchPostCommand);
+            //}
 
             addPostButton = view.FindViewById<Button>(Resource.Id.addPostButton);
             var set = this.CreateBindingSet<AllPostsView, AllPostsViewModel>();
-            set.Bind(addPostButton).To(vm => vm.AddPostCommand);
             set.Apply();
             addPostButton.Click += addPostButton_OnClickAsync;          
             return view;

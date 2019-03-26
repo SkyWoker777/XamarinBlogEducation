@@ -12,7 +12,6 @@ using MvvmCross.Droid.Support.V7.AppCompat.Widget;
 namespace XamarinBlogEducation.Android.Views.Fragments
 {
     [MvxFragmentPresentation(typeof(MainViewModel), Resource.Id.content_frame, true)]
-    // [Activity(MainLauncher = true)]
     public class CreatePostView : BaseFragment<CreatePostViewModel>
     {
         private EditText inputTitle;
@@ -29,7 +28,6 @@ namespace XamarinBlogEducation.Android.Views.Fragments
             inputPostContent = view.FindViewById<EditText>(Resource.Id.inputPostContent);
 
             var set = this.CreateBindingSet<CreatePostView, CreatePostViewModel>();
-            set.Bind(mvxSpinner.SelectedItem).To(vm => vm.SelectedCategoryCommand);
             set.Bind(inputTitle).To(vm => vm.Title);
             set.Bind(inputPostContent).To(vm => vm.PostContent);
             set.Apply();

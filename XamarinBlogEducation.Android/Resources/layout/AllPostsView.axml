@@ -3,11 +3,13 @@
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:local="http://schemas.android.com/apk/res-auto"
 	android:layout_width="match_parent"
-	android:layout_height="match_parent">
+	android:layout_height="match_parent"
+	android:background="#e8d2c0">
 	<LinearLayout
 			android:layout_height= "match_parent"
 			android:layout_width="match_parent"
-			android:orientation= "vertical">
+			android:orientation= "vertical"
+		    android:background="#e8d2c0">
 		<Button
         android:id="@+id/addPostButton"
 		android:layout_marginTop="@dimen/abc_action_bar_content_inset_material"
@@ -15,15 +17,11 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
 		android:layout_gravity="right"
-        android:background="@drawable/button_circle"
-       />
-	
+        android:background="@drawable/button_circle" />
+      
 		<RelativeLayout
 		android:layout_width="match_parent"
 		android:layout_height="match_parent">
-		
-			
-
 		<MvxSwipeRefreshLayout
 			android:id="@+id/refresher"
 			android:layout_width="match_parent"
@@ -34,7 +32,7 @@
 				android:scrollbars="vertical"
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
-				local:MvxItemTemplate="@layout/item_name"
+				local:MvxItemTemplate="@layout/post_item"
 				local:MvxBind="ItemsSource AllPosts; ItemClick PostSelectedCommand" />
 		</MvxSwipeRefreshLayout>
 	</RelativeLayout>

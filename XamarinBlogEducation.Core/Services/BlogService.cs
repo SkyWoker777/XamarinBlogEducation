@@ -2,8 +2,10 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Net;
 using System.Net.Http;
+using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Threading.Tasks;
 using XamarinBlogEducation.Core.Services.Interfaces;
@@ -52,7 +54,8 @@ namespace XamarinBlogEducation.Core.Services
         {
             var url = $"/Blog/getPostList";
             var result = await _httpService.ExecuteQuery(url, HttpOperationMode.GET);
-            var parsedResult = await _httpService.ProcessJson<List<GetAllPostsBlogViewItem>>(result);
+            var json = await result.Content.ReadAsStringAsync().ConfigureAwait(false);           
+            var parsedResult = JsonConvert.DeserializeObject<List<GetAllPostsBlogViewItem>>(json);         
             return parsedResult;           
         }
 
@@ -65,7 +68,8 @@ namespace XamarinBlogEducation.Core.Services
         {
             var url = $"/Blog/getCategoryList";
             var result = await _httpService.ExecuteQuery(url, HttpOperationMode.GET);
-            var parsedResult = await _httpService.ProcessJson<List<GetAllCategoriesblogViewItem>>(result);
+            var json = await result.Content.ReadAsStringAsync().ConfigureAwait(false);
+            var parsedResult = JsonConvert.DeserializeObject<List<GetAllCategoriesblogViewItem>>(json);
             return parsedResult;
         }
     }

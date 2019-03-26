@@ -219,7 +219,7 @@
     <AndroidResource Include="Resources\menu\navigation_drawer.axml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\item_name.axml">
+    <AndroidResource Include="Resources\layout\item_category.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
@@ -231,6 +231,16 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\password_popup.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\categoryitem_spinnerdropdown.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\post_item.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

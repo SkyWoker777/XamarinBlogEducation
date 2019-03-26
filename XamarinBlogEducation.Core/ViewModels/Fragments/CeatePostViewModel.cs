@@ -2,6 +2,7 @@
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using XamarinBlogEducation.Core.Services.Interfaces;
 using XamarinBlogEducation.Core.ViewModels.Activities;
@@ -21,13 +22,41 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
             _blogService = blogService;
 
             CategoryItems = new MvxObservableCollection<GetAllCategoriesblogViewItem>();
-            AddNewPostCommand = new MvxAsyncCommand(AddNewPost);
-            SelectedCategoryCommand = new MvxAsyncCommand(SelectedCategory);
-        }
 
-        private Task SelectedCategory()
+            AddNewPostCommand = new MvxAsyncCommand(AddNewPost);
+            SelectedCategoryCommand = new MvxAsyncCommand<GetAllCategoriesblogViewItem>(SelectedCategory);
+        }
+        public override Task Initialize()
         {
-            throw new NotImplementedException();
+            LoadCategoriesTask = MvxNotifyTask.Create(LoadCategories);
+            return Task.FromResult(0);
+        }
+     
+        public MvxNotifyTask LoadCategoriesTask { get; private set; }
+
+        private MvxObservableCollection<GetAllCategoriesblogViewItem> _allCategories;
+        public MvxObservableCollection<GetAllCategoriesblogViewItem> CategoryItems
+        {
+            get=> _allCategories;          
+            set
+            {
+                _allCategories = value;
+                RaisePropertyChanged(() => CategoryItems);
+            }
+        }
+        public IMvxCommand AddNewPostCommand { get; private set; } 
+        public IMvxCommand<GetAllCategoriesblogViewItem> SelectedCategoryCommand { get; private set; }
+
+        private async Task LoadCategories()
+        {
+            var result = await _blogService.GetAllCategories();
+            List<GetAllCategoriesblogViewItem> categoriesToAdd = new List<GetAllCategoriesblogViewItem>();
+            categoriesToAdd.AddRange(result);
+            for (int i = 0; i < categoriesToAdd.Count; i++)
+            {
+                CategoryItems.Add(categoriesToAdd[i]);
+            }
+           // CategoryItems.AddRange(result);
         }
         public string Title
         {
@@ -47,13 +76,7 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
                 RaisePropertyChanged();
             }
         }
-        public override Task Initialize()
-        {
-
-            LoadCategoriesTask = MvxNotifyTask.Create(LoadCategories);
-
-            return Task.FromResult(0);
-        }
+        
         public async Task AddNewPost()
         {
             post = new CreatePostBlogViewModel()
@@ -64,29 +87,9 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
             };
             await _blogService.AddNewPost(post);
         }
-        public MvxNotifyTask LoadCategoriesTask { get; private set; }
-        private MvxObservableCollection<GetAllCategoriesblogViewItem> _allCategories;
-        public MvxObservableCollection<GetAllCategoriesblogViewItem> CategoryItems
+        private Task SelectedCategory()
         {
-            get
-            {
-                return _allCategories;
-            }
-            set
-            {
-                _allCategories = value;
-                RaisePropertyChanged(() => CategoryItems);
-            }
-        }
-        public IMvxCommand AddNewPostCommand { get; private set; }
-        
-        public IMvxCommand SelectedCategoryCommand { get; private set; }
-
-        private async Task LoadCategories()
-        {
-
-            var result = await _blogService.GetAllCategories();
-            CategoryItems.AddRange(result);
+            throw new NotImplementedException();
         }
         private async Task SelectedCategory(GetAllCategoriesblogViewItem selectedCategory)
         {
@@ -96,4 +99,6 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
         
 
     }
+
+
 }

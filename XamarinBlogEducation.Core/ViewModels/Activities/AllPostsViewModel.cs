@@ -24,6 +24,7 @@ namespace XamarinBlogEducation.Core.ViewModels.Activities
 
             _blogService = blogService;
             _navigationService = navigationService;
+
             AllPosts = new MvxObservableCollection<GetAllPostsBlogViewItem>();
 
             AddPostCommand = new MvxAsyncCommand(AddPost);
@@ -37,13 +38,6 @@ namespace XamarinBlogEducation.Core.ViewModels.Activities
                    
                 });
             RefreshPostsCommand = new MvxCommand(RefreshPosts);
-        }
-
-       
-
-        public async Task AddPost()
-        {         
-            await _navigationService.Navigate<CreatePostViewModel>();
         }
 
         public override Task Initialize()
@@ -78,12 +72,20 @@ namespace XamarinBlogEducation.Core.ViewModels.Activities
         {
 
             var result = await _blogService.GetAllPosts();
-
-            AllPosts.AddRange(result);
+            List<GetAllPostsBlogViewItem> postsToAdd = new List<GetAllPostsBlogViewItem>();
+            postsToAdd.AddRange(result);   
+            for(int i=0; i < postsToAdd.Count; i++)
+            {
+                AllPosts.Add(postsToAdd[i]);
+            }
+        }
+        public async Task AddPost()
+        {         
+            await _navigationService.Navigate<CreatePostViewModel>();
         }
         private async Task PostSelected(GetDetailsPostBlogView selectedPost)
         {
-            await _navigationService.Navigate<DetailedPostViewModel>(); 
+            //await _navigationService.Navigate<DetailedPostViewModel>(); 
             // await _navigationService.Navigate<DetailedPostViewModel, GetDetailsPostBlogView,System.Threading.CancellationToken>(selectedPost);
         }
         private void RefreshPosts()

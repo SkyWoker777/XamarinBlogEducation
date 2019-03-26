@@ -36,14 +36,17 @@
 	<MvxSpinner
 		 android:id="@+id/allCategoriesSpinner"
 		android:layout_marginTop="20dp"
-		android:layout_gravity="center_horizontal"
-        android:ems="10"
+		android:layout_gravity="center_horizontal"  
+		android:background="@drawable/background_login"
 		android:padding="16dp"
 		android:drawablePadding="16dp"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:text="Select a category"
-        local:MvxBind="ItemsSource CategoryItems;SelectedItem SelectedCategoryCommand" />
+		local:MvxItemTemplate="@layout/item_category"
+        local:MvxDropDownItemTemplate="@layout/categoryitem_spinnerdropdown"
+        local:MvxBind="ItemsSource CategoryItems;SelectedItem SelectedItem" />
+	
 	<EditText
 		
 		android:hint="Write your post here"
