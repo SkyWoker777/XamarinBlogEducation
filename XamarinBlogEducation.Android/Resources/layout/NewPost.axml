@@ -33,20 +33,38 @@
 		android:hint="Title" 
 		android:background="@drawable/background_login"
 	    android:id="@+id/inputTitle"/>
+	<LinearLayout
+	android:orientation="horizontal"	
+	android:focusable="true"
+	android:layout_marginTop="20dp"	
+    android:focusableInTouchMode="true"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">	
+	
 	<MvxSpinner
-		 android:id="@+id/allCategoriesSpinner"
-		android:layout_marginTop="20dp"
-		android:layout_gravity="center_horizontal"  
-		android:background="@drawable/background_login"
-		android:padding="16dp"
+		android:id="@+id/allCategoriesSpinner"
+		android:gravity="left"  
+		android:paddingTop="16dp"
+		android:paddingBottom="16dp"
+		android:paddingLeft="16dp"
+		android:drawableRight="@drawable/drpor_down_icon"
 		android:drawablePadding="16dp"
-		android:layout_width="match_parent"
+		android:layout_width="200dp"
 		android:layout_height="wrap_content"
-		android:text="Select a category"
+		android:text="Select a category"	
 		local:MvxItemTemplate="@layout/item_category"
         local:MvxDropDownItemTemplate="@layout/categoryitem_spinnerdropdown"
         local:MvxBind="ItemsSource CategoryItems;SelectedItem SelectedItem" />
-	
+	<Button
+		android:id="@+id/addCategoryButton"
+		android:backgroundTint="#6db3ce"
+		android:layout_width="30dp"
+        android:layout_height="30dp"
+		android:gravity="center"
+		android:layout_marginLeft="40dp"
+		android:layout_marginTop="7dp"
+        android:background="@drawable/button_circle"/>
+	</LinearLayout>
 	<EditText
 		
 		android:hint="Write your post here"

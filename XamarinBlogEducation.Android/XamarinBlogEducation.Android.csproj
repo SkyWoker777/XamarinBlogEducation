@@ -62,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controls\RecyclerViewOnScrollListener.cs" />
+    <Compile Include="Elements\DialogCategory.cs" />
     <Compile Include="Extensions\MvxRecyclerViewExtensions.cs" />
     <Compile Include="MainAplication.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
@@ -186,7 +187,7 @@
     <AndroidResource Include="Resources\layout\AllPostsView.axml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\blog_header.axml" />
+    <AndroidResource Include="Resources\layout\Blog_Header.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\DetailedPostView.axml" />
@@ -241,6 +242,14 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\post_item.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\drpor_down_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\DialogCategory.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

@@ -17,7 +17,8 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
 		android:layout_gravity="right"
-        android:background="@drawable/button_circle" />
+        android:background="@drawable/button_circle" 
+		android:backgroundTint="#6db3ce"/>
       
 		<RelativeLayout
 		android:layout_width="match_parent"

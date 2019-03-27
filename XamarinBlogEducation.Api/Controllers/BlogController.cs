@@ -56,7 +56,7 @@ namespace XamarinBlogEducation.Api.Controllers
             await _postService.DeletePost(postId);
             return Ok();
         }
-       // [Authorize(JwtBearerDefaults.AuthenticationScheme)]
+        [Authorize(JwtBearerDefaults.AuthenticationScheme)]
         [HttpPost()]
         [Route("add")]
         public async Task<IActionResult> Add([FromBody]CreatePostBlogViewModel newpost)
@@ -78,6 +78,12 @@ namespace XamarinBlogEducation.Api.Controllers
         public async Task<IActionResult> EditPost([FromBody]CreatePostBlogViewModel post, int postid)
         {
             await _postService.EditPostAsync(post, postid);
+            return Ok();
+        }
+        [HttpPost("addCategory")]
+        public async Task<IActionResult> AddCategory([FromBody]GetAllCategoriesblogViewItem newCategory)
+        {
+            await _postService.AddCategory(newCategory);
             return Ok();
         }
 

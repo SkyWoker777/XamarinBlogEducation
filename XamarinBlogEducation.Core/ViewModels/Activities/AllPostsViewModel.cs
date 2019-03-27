@@ -1,9 +1,7 @@
 ﻿using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
-using System;
 using System.Collections.Generic;
-using System.Net.Http;
 using System.Threading.Tasks;
 using XamarinBlogEducation.Core.Services.Interfaces;
 using XamarinBlogEducation.Core.ViewModels.Fragments;

@@ -22,7 +22,7 @@ namespace XamarinBlogEducation.Business.Services.Interfaces
         Task<IEnumerable<Post>> PostsByKey(string key);
         Task<IEnumerable<Post>> PostsByDate(DateTime CreationDate);
         Task<List<GetAllCategoriesblogViewItem>> GetAllCategories();
-
+        Task AddCategory(GetAllCategoriesblogViewItem newCategory);
 
     }
 }
