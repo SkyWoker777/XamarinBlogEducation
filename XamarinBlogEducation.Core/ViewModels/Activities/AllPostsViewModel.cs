@@ -1,6 +1,7 @@
 ﻿using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using XamarinBlogEducation.Core.Services.Interfaces;
@@ -26,7 +27,7 @@ namespace XamarinBlogEducation.Core.ViewModels.Activities
             AllPosts = new MvxObservableCollection<GetAllPostsBlogViewItem>();
 
             AddPostCommand = new MvxAsyncCommand(AddPost);
-            PostSelectedCommand = new MvxAsyncCommand<GetDetailsPostBlogView>(PostSelected);
+            PostSelectedCommand = new MvxAsyncCommand<GetAllPostsBlogViewItem>(PostSelected);
             FetchPostCommand = new MvxCommand(
                 () =>
                 {
@@ -59,16 +60,14 @@ namespace XamarinBlogEducation.Core.ViewModels.Activities
                 RaisePropertyChanged(() => AllPosts);
             }
         }
-        public IMvxCommand AddPostCommand { get; private set; }
-        public IMvxCommand<GetDetailsPostBlogView> PostSelectedCommand { get; private set; }
-        
-        public IMvxCommand FetchPostCommand { get; private set; }
 
+        public IMvxCommand AddPostCommand { get; private set; }
+        public IMvxCommand<GetAllPostsBlogViewItem> PostSelectedCommand { get; private set; }
+        public IMvxCommand FetchPostCommand { get; private set; }
         public IMvxCommand RefreshPostsCommand { get; private set; }
 
         private async Task LoadPosts()
         {
-
             var result = await _blogService.GetAllPosts();
             List<GetAllPostsBlogViewItem> postsToAdd = new List<GetAllPostsBlogViewItem>();
             postsToAdd.AddRange(result);   
@@ -77,14 +76,15 @@ namespace XamarinBlogEducation.Core.ViewModels.Activities
                 AllPosts.Add(postsToAdd[i]);
             }
         }
+
         public async Task AddPost()
         {         
             await _navigationService.Navigate<CreatePostViewModel>();
         }
-        private async Task PostSelected(GetDetailsPostBlogView selectedPost)
+
+        private async Task PostSelected(GetAllPostsBlogViewItem selectedPost)
         {
-            //await _navigationService.Navigate<DetailedPostViewModel>(); 
-            // await _navigationService.Navigate<DetailedPostViewModel, GetDetailsPostBlogView,System.Threading.CancellationToken>(selectedPost);
+            await _navigationService.Navigate<DetailedPostViewModel, GetAllPostsBlogViewItem> (selectedPost);  
         }
         private void RefreshPosts()
         {

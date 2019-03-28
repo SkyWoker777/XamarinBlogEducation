@@ -3,11 +3,12 @@ using MvvmCross.Navigation;
 using System.Threading.Tasks;
 using XamarinBlogEducation.Core.Services.Interfaces;
 using XamarinBlogEducation.Core.ViewModels.Activities;
+using XamarinBlogEducation.Core.ViewModels.Dialogs;
 using XamarinBlogEducation.ViewModels.Models.Account;
 
 namespace XamarinBlogEducation.Core.ViewModels.Fragments
 {
-    public class UserProfileViewModel : BaseViewModel
+    public class UserProfileViewModel : BaseViewModel<LoginAccountViewModel>
     {
         private string _email;
         private string _firstName;
@@ -20,10 +21,15 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
         {
             _userService = userService;
             UpdateCommand = new MvxAsyncCommand(UpdateAsync);
+            GetUserInfoCommand = new MvxAsyncCommand(GetUserInfo);
+            OpenDialogCommand = new MvxAsyncCommand<EditAccountViewModel>(OpenDialogAsync);
+            ChangePasswordCommand = new MvxAsyncCommand(ChangePasswordAsync);
         }
 
         public IMvxCommand UpdateCommand { get; private set; }
-
+        public IMvxCommand ChangePasswordCommand { get; private set; }
+        public IMvxCommand GetUserInfoCommand { get; private set; }
+        public IMvxCommand<EditAccountViewModel> OpenDialogCommand { get; private set; }
 
         public string Email
         {
@@ -62,7 +68,18 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
                 RaisePropertyChanged();
             }
         }
-
+        private async Task OpenDialogAsync(EditAccountViewModel user)
+        {
+            await _navigationService.Navigate<ChangePasswordDialogViewModel,EditAccountViewModel> (user);
+        }
+        private async Task ChangePasswordAsync()
+        {
+             OpenDialogCommand.Execute(user);
+        }
+        private async Task GetUserInfo()
+        {
+            User = await _userService.GetUserInfo(_model);
+        }
         private async Task UpdateAsync()
         {
             user = new EditAccountViewModel()
@@ -76,8 +93,33 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
             };
             await _userService.UpdateUserAsync(user);
             await _navigationService.Navigate<UserProfileViewModel>();
-            // await _navigationService.Navigate<AllpostsViewModel>();
+        }
 
+        private LoginAccountViewModel _model;
+        public LoginAccountViewModel Model
+        {
+            get => _model;
+            set
+            {
+                _model = value;
+                RaisePropertyChanged(() => Model);
+            }
+        }
+
+        private EditAccountViewModel _user;
+        public EditAccountViewModel User
+        {
+            get => _user;
+            set
+            {
+                _user = value;
+                RaisePropertyChanged(() => User);
+            }
+        }
+        public override void Prepare(LoginAccountViewModel model)
+        {
+            Model = model;
+            GetUserInfoCommand.Execute();
         }
     }
 }

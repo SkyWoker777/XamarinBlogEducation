@@ -43,8 +43,8 @@ namespace XamarinBlogEducation.Api.Controllers
         {
             var id = User.Identity.GetUserId();
             IActionResult res = BadRequest();
-            await _accountService.ChangeUserPassword(model, id);
-            if (_accountService.ChangeUserPassword(model, id).IsCompleted)
+            await _accountService.ChangeUserPassword(model);
+            if (_accountService.ChangeUserPassword(model).IsCompleted)
             {
                 return Ok();
             }

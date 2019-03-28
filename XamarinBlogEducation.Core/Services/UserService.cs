@@ -39,7 +39,16 @@ namespace XamarinBlogEducation.Core.Services.Interfaces
             CrossSecureStorage.Current.SetValue("securityToken",testToken);
             
         }
+        public async Task<EditAccountViewModel> GetUserInfo(LoginAccountViewModel model)
+        {
+            var url = "/Account/getInfo";
+            var json = JsonConvert.SerializeObject(model);
+            var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
+            var response = await _httpService.ExecuteQuery(url, HttpOperationMode.POST, httpContent);
+            var parsedResult = await _httpService.ProcessJson<EditAccountViewModel>(response);
+            return parsedResult;
 
+        }
         public async Task UpdateUserAsync(EditAccountViewModel model)
         {
             using (var client = new HttpClient())

@@ -73,8 +73,14 @@ namespace XamarinBlogEducation.Business.Services
 
             var result = (await _postsRepository.GetList()).Select(x => new GetAllPostsBlogViewItem
             {
+                Id= x.Id,
                 Title = x.Title,
-                Description = x.Description
+                Description = x.Description,
+                Content=x.Content,
+                Author=x.Author,
+                CreationDate=x.CreationDate,
+                CategoryId=x.CategoryId
+            
             }).ToList();
 
             return result;

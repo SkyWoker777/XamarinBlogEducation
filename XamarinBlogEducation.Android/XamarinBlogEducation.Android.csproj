@@ -63,6 +63,8 @@
   <ItemGroup>
     <Compile Include="Controls\RecyclerViewOnScrollListener.cs" />
     <Compile Include="Elements\DialogCategory.cs" />
+    <Compile Include="Elements\InfoView.cs" />
+    <Compile Include="Elements\PasswordDialog.cs" />
     <Compile Include="Extensions\MvxRecyclerViewExtensions.cs" />
     <Compile Include="MainAplication.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
@@ -145,7 +147,13 @@
     <PackageReference Include="Xam.Plugin.SecureStorage">
       <Version>1.0.12</Version>
     </PackageReference>
+    <PackageReference Include="Xamarin.Android.Support.Compat">
+      <Version>27.0.2.1</Version>
+    </PackageReference>
     <PackageReference Include="Xamarin.Android.Support.Design" Version="27.0.2.1" />
+    <PackageReference Include="Xamarin.Android.Support.Percent">
+      <Version>27.0.2.1</Version>
+    </PackageReference>
     <PackageReference Include="Xamarin.Android.Support.v7.AppCompat">
       <Version>27.0.2.1</Version>
     </PackageReference>
@@ -250,6 +258,16 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\DialogCategory.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\element_info_view.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\PasswordDialog.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

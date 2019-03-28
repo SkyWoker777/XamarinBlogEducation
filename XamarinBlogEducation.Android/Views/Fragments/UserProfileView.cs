@@ -47,8 +47,8 @@ namespace XamarinBlogEducation.Android.Views.Fragments
             set.Bind(editLastName).To(vm => vm.LastName);
             set.Bind(editUserName).To(vm => vm.FirstName);
             set.Bind(applyButton).To(vm => vm.UpdateCommand);
+            set.Bind(changePasswordButton).To(vm => vm.ChangePasswordCommand);
             set.Apply();
-            changePasswordButton.Click += changePasswordButton_OnClickAsync;
             updateProfileImage.Click += updateProfileImage_OnClickAsync;
             return view;
         }
@@ -71,17 +71,12 @@ namespace XamarinBlogEducation.Android.Views.Fragments
             byte[] bitmapData = stream.ToArray();
             return bitmapData;
         }
-        private void changePasswordButton_OnClickAsync(object sender, EventArgs e)
-        {
-
-            ViewModel.UpdateCommand.Execute();
-        }
 
         private void updateProfileImage_OnClickAsync(object sender, EventArgs e)
         {
             Intent intent = new Intent(Intent.ActionPick, MediaStore.Images.Media.ExternalContentUri);
             StartActivityForResult(Intent.CreateChooser(intent, "select pic"), PICK_IMAGE_REQUEST);
         }
-
+        
     }
 }

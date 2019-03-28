@@ -13,9 +13,8 @@ namespace XamarinBlogEducation.Core.ViewModels.Activities
             }
     }
 
-    public abstract class BaseViewModel<TParameter, TResult> : MvxViewModel<TParameter, TResult>
+    public abstract class BaseViewModel<TParameter> : MvxViewModel<TParameter>
             where TParameter : class
-            where TResult : class
     {
         public IMvxNavigationService _navigationService;
 

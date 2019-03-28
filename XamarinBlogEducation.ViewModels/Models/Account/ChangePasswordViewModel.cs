@@ -22,5 +22,6 @@ namespace XamarinBlogEducation.ViewModels.Models.Account
         [Compare("Password", ErrorMessage = "The passwords do not match.")]
         public string ConfirmPassword { get; set; }
         public string Token { get; set; }
+        public string Email { get; set; }
     }
 }

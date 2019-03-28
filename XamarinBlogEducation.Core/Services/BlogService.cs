@@ -27,7 +27,6 @@ namespace XamarinBlogEducation.Core.Services
         {
             var url = $"/Blog/getPost";
             var result = await _httpService.ExecuteQuery(url, HttpOperationMode.GET);
-            //var result=   await _httpService.MakeApiCallAsync<GetDetailsPostBlogView>(url, HttpMethod.Get);
             var parsedResult = await _httpService.ProcessJson<GetDetailsPostBlogView>(result);
             return  parsedResult;
 

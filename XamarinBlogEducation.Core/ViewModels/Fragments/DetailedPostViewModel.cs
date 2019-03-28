@@ -1,32 +1,48 @@
-﻿using MvvmCross.Navigation;
+﻿using MvvmCross.Commands;
+using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
+using System.Threading.Tasks;
 using XamarinBlogEducation.Core.Services.Interfaces;
 using XamarinBlogEducation.Core.ViewModels.Activities;
 using XamarinBlogEducation.ViewModels.Blog;
+using XamarinBlogEducation.ViewModels.Blog.Items;
 
 namespace XamarinBlogEducation.Core.ViewModels.Fragments
 {
-    public class DetailedPostViewModel : BaseViewModel
+    public class DetailedPostViewModel : BaseViewModel<GetAllPostsBlogViewItem>
     {
         private IBlogService _blogService;
-        public DetailedPostViewModel(IBlogService blogService, IMvxNavigationService _navigationService) : base(_navigationService)
+        public DetailedPostViewModel(IBlogService blogService, IMvxNavigationService navigationService) :base(navigationService)
         {
-            _blogService = blogService;
+           
+           _blogService = blogService;
+            //AddCommentCommand = new MvxAsyncCommand(AddComment);
+        } 
+     
+
+        public override Task Initialize()
+        {
+            return Task.FromResult(0);
         }
-        private MvxObservableCollection<GetDetailsPostBlogView> _detailedPost;
-        public MvxObservableCollection<GetDetailsPostBlogView> DetailedPost
+        private GetAllPostsBlogViewItem _detailedPost;
+        public GetAllPostsBlogViewItem DetailedPost
         {
-            get
-            {
-                return _detailedPost;
-            }
+            get => _detailedPost;
             set
             {
                 _detailedPost = value;
                 RaisePropertyChanged(() => DetailedPost);
             }
         }
+        public override void Prepare(GetAllPostsBlogViewItem parameter)
+        {
+            DetailedPost = parameter;
+            
+        }
+
        
+
         
+
     }
 }

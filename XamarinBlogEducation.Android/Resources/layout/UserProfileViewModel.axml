@@ -31,7 +31,7 @@
 			android:layout_gravity="center_horizontal"
 			android:paddingLeft="16dp"
 			android:paddingRight="16dp"
-			android:paddingTop="20dp"
+			android:paddingTop="20dp"	
 		android:id="@+id/textCongrats" />
 	<refractored.controls.CircleImageView
 		android:id="@+id/updateProfileImage"
@@ -56,7 +56,8 @@
 		android:layout_height="wrap_content"
 		android:id="@+id/editUserName" 
 		android:background="@drawable/background_login"	
-	    android:hint="Your Name"/>
+	    android:hint="Your Name"
+		app:MvxBind="ItemsSource User;Text User.FirstName;" />
 	<EditText
 		android:layout_marginTop="32dp"
 		android:layout_gravity="center_horizontal"
@@ -68,7 +69,8 @@
 		android:layout_height="wrap_content"
 		android:background="@drawable/background_login"				
 		android:id="@+id/editLastName"
-	    android:hint="Your Surname"/>
+	    android:hint="Your Surname"
+		app:MvxBind="ItemsSource User;Text User.LastName;"/>
 	<EditText
 		android:layout_marginTop="32dp"
 		android:layout_gravity="center_horizontal"
@@ -80,7 +82,8 @@
 		android:layout_height="wrap_content"
 		android:background="@drawable/background_login"	
 		android:id="@+id/editEmail"
-	    android:hint="Email"/>
+	    android:hint="Email"
+		app:MvxBind="ItemsSource User;Text User.Email;"/>
 			
 			<LinearLayout
 				android:layout_width="match_parent"

@@ -47,7 +47,21 @@ namespace XamarinBlogEducation.Business.Services
             var token = await GetToken(user);
             return token;
         }
-
+        public async Task<EditAccountViewModel> FindUser(LoginAccountViewModel model)
+        {
+   
+            var user = await _userManager.FindByEmailAsync(model.Email);
+            var editUser = new EditAccountViewModel();
+            editUser.Email = user.Email;
+            editUser.FirstName = user.FirstName;
+            editUser.LastName = user.LastName;
+            editUser.UserImage = user.UserImage;
+            if (user == null)
+            {
+                throw new ApplicationException("User is not found.");
+            }
+            return editUser;
+        }
         public async Task<bool> CreateUser(RegisterAccountViewModel model)
         {
 
@@ -92,9 +106,9 @@ namespace XamarinBlogEducation.Business.Services
             await _userManager.UpdateAsync(user);
 
         }
-        public async Task ChangeUserPassword(ChangePasswordViewModel model,string id)
+        public async Task ChangeUserPassword(ChangePasswordViewModel model)
         {
-            var user = await _userManager.FindByIdAsync(id);
+            var user = await _userManager.FindByEmailAsync(model.Email);
             var token = model.Token;
             if (!await _userManager.CheckPasswordAsync(user, model.OldPassword))
             {

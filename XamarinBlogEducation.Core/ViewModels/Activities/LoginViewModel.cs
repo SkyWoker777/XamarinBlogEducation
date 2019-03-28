@@ -22,12 +22,12 @@ namespace XamarinBlogEducation.Core.ViewModels.Activities
             LoginCommand  = new MvxAsyncCommand(LoginAsync);
             SingUpCommand  = new MvxAsyncCommand(SignUpAsync);
             SkipCommand = new MvxAsyncCommand(SkipAsync);
-            ToProfileCommand = new MvxAsyncCommand(ToProfileAsync);
+            ToProfileCommand = new MvxAsyncCommand<LoginAccountViewModel>(ToProfileAsync);
         }
         public IMvxCommand LoginCommand { get; private set; } 
         public IMvxCommand SingUpCommand { get; private set; }
         public IMvxCommand SkipCommand { get; private set; }
-        public IMvxCommand ToProfileCommand{ get; private set; }
+        public IMvxCommand<LoginAccountViewModel> ToProfileCommand { get; private set; }
         
 
         public string Email
@@ -56,8 +56,7 @@ namespace XamarinBlogEducation.Core.ViewModels.Activities
                 Email = _email,
                 Password = _password };
            await _userService.GetUserAsync(user);
-            ToProfileCommand.Execute();
-         //  await  _navigationService.Navigate<UserProfileViewModel>();
+            ToProfileCommand.Execute(user);
         }
 
         private async Task SignUpAsync()
@@ -69,11 +68,10 @@ namespace XamarinBlogEducation.Core.ViewModels.Activities
         private async Task SkipAsync()
         {
             await _navigationService.Navigate<AllPostsViewModel>();
-            //await _navigationService.Navigate<CreatePostViewModel>();
         }
-        private async Task ToProfileAsync()
+        private async Task ToProfileAsync(LoginAccountViewModel user)
         {
-            await _navigationService.Navigate<UserProfileViewModel>();
+            await _navigationService.Navigate<UserProfileViewModel, LoginAccountViewModel>(user);
         }
 
     }

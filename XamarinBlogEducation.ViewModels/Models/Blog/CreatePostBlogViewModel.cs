@@ -17,7 +17,6 @@ namespace XamarinBlogEducation.ViewModels.Models.Blog
         public string Content { get; set; }
         [Required]
         public long CategoriesId { get; set; }
-        public List<string> Tags { get; set; }
         [StringLength(50, ErrorMessage = "{0} must be at least {2} characters long.", MinimumLength = 5)]
         public string Author { get; set; }
 

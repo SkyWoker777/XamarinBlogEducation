@@ -1,14 +1,11 @@
 ﻿using Android.App;
 using Android.OS;
-using Android.Runtime;
-using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.Droid.Support.V7.RecyclerView;
 using MvvmCross.Platforms.Android.Presenters.Attributes;
 using System;
-using XamarinBlogEducation.Android.Extensions;
 using XamarinBlogEducation.Android.Views.Fragments;
 using XamarinBlogEducation.Core.ViewModels.Activities;
 
@@ -25,9 +22,10 @@ namespace XamarinBlogEducation.Android.Views.Activities
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             var view = base.OnCreateView(inflater, container, savedInstanceState);
-            var recuclerView = view.FindViewById<MvxRecyclerView>(Resource.Id.posts_recycler_view);
+            var recyclerView = view.FindViewById<MvxRecyclerView>(Resource.Id.posts_recycler_view);
             addPostButton = view.FindViewById<Button>(Resource.Id.addPostButton);
             var set = this.CreateBindingSet<AllPostsView, AllPostsViewModel>();
+      
             set.Apply();
             addPostButton.Click += addPostButton_OnClickAsync;          
             return view;

@@ -8,6 +8,8 @@ namespace XamarinBlogEducation.ViewModels.Blog
 {
     public class GetDetailsPostBlogView
     {
+        [JsonProperty("Id")]
+        public long Id { get; set; }
         [JsonProperty("Title")]
         public string Title { get; set; }
         [JsonProperty("Content")]

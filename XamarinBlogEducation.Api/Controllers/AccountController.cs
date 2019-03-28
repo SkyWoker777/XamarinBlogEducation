@@ -30,7 +30,15 @@ namespace XamarinBlogEducation.Api.Controllers
             }
             return res;
         }
-
+        [HttpPost]
+        [Route("getInfo")]
+        public async Task<IActionResult> Find([FromBody]LoginAccountViewModel model)
+        {
+            IActionResult res = Unauthorized();
+            var user = await _accountService.FindUser(model);
+            return Ok(user);
+            
+        }
         [HttpPost]
         [Route("register")]
         public async Task<IActionResult> Register([FromBody]RegisterAccountViewModel model)
