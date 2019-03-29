@@ -20,8 +20,6 @@ namespace XamarinBlogEducation.Android.Views.Fragments
     public class UserProfileView : BaseFragment<UserProfileViewModel>
     {
         private EditText editEmail;
-       // private EditText editPassword;
-        //private EditText confirmPassword;
         private EditText editUserName;
         private EditText editLastName;
         private Button applyButton;
@@ -45,13 +43,15 @@ namespace XamarinBlogEducation.Android.Views.Fragments
             var set = this.CreateBindingSet<UserProfileView, UserProfileViewModel>();
             set.Bind(editEmail).To(vm => vm.Email);
             set.Bind(editLastName).To(vm => vm.LastName);
-            set.Bind(editUserName).To(vm => vm.FirstName);
-            set.Bind(applyButton).To(vm => vm.UpdateCommand);
+            set.Bind(editUserName).To(vm => vm.FirstName);           
             set.Bind(changePasswordButton).To(vm => vm.ChangePasswordCommand);
             set.Apply();
             updateProfileImage.Click += updateProfileImage_OnClickAsync;
+            applyButton.Click += applyButton_OnClick;
             return view;
         }
+
+        
         public override void OnActivityResult(int requestCode, int resultCode, Intent data)
         {
             base.OnActivityResult(requestCode, resultCode, data);
@@ -77,6 +77,13 @@ namespace XamarinBlogEducation.Android.Views.Fragments
             Intent intent = new Intent(Intent.ActionPick, MediaStore.Images.Media.ExternalContentUri);
             StartActivityForResult(Intent.CreateChooser(intent, "select pic"), PICK_IMAGE_REQUEST);
         }
-        
+        private void applyButton_OnClick(object sender, EventArgs e)
+        {
+            ViewModel.UpdateCommand.Execute();
+            string toast = string.Format("All changes was saved");
+            Toast.MakeText(Context, toast, ToastLength.Long).Show();
+            ViewModel.GoToPostsCommand.Execute();
+        }
+
     }
 }

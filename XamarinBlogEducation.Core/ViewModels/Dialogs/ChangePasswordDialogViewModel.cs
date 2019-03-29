@@ -7,16 +7,16 @@ using System.Text;
 using System.Threading.Tasks;
 using XamarinBlogEducation.Core.Services.Interfaces;
 using XamarinBlogEducation.Core.ViewModels.Activities;
+using XamarinBlogEducation.Core.ViewModels.Fragments;
 using XamarinBlogEducation.ViewModels.Models.Account;
 
 namespace XamarinBlogEducation.Core.ViewModels.Dialogs
 {
-   public class ChangePasswordDialogViewModel: BaseViewModel<EditAccountViewModel>
+   public class ChangePasswordDialogViewModel: BaseViewModel<LoginAccountViewModel>
     {
         private string _newPassword;
         private string _oldPassword;
         private string _comfirmPassword;
-        private string _token;
         private string _email;
         private ChangePasswordViewModel passwordModel;
         private readonly IUserService _userService;
@@ -24,17 +24,17 @@ namespace XamarinBlogEducation.Core.ViewModels.Dialogs
         {
             _userService = userService;
             ChangePasswordCommand = new MvxAsyncCommand(ChangePassword);
+            GoBackCommand = new MvxAsyncCommand(GoBackAsync);
 
         }
         public IMvxCommand ChangePasswordCommand { get; private set; }
-
+        public IMvxCommand GoBackCommand { get; private set; }
         public string NewPassword
         {
             get => _newPassword;
             set
             {
                 _newPassword = value;
-                RaisePropertyChanged();
             }
         }
         public string OldPassword
@@ -43,7 +43,6 @@ namespace XamarinBlogEducation.Core.ViewModels.Dialogs
             set
             {
                 _oldPassword = value;
-                RaisePropertyChanged();
             }
         }
         public string ComfirmPassword
@@ -52,7 +51,6 @@ namespace XamarinBlogEducation.Core.ViewModels.Dialogs
             set
             {
                 _comfirmPassword = value;
-                RaisePropertyChanged();
             }
         }
         public string Email
@@ -63,17 +61,7 @@ namespace XamarinBlogEducation.Core.ViewModels.Dialogs
                 _email = value;
                 RaisePropertyChanged();
             }
-        }
-        public string Token
-        {
-            get => _token;
-            set
-            {
-                _token = value;
-                RaisePropertyChanged();
-            }
-        }
-
+        }   
         private async Task ChangePassword()
         {
             passwordModel = new ChangePasswordViewModel()
@@ -81,14 +69,17 @@ namespace XamarinBlogEducation.Core.ViewModels.Dialogs
                 Password = _newPassword,
                 OldPassword = _oldPassword,
                 ConfirmPassword = _comfirmPassword,
-                Token = _token,
+                Token = "",
                 Email = _email
             };
             await _userService.ChangeUserPassword(passwordModel);
 
         }
-
-        public override void Prepare(EditAccountViewModel parameter)
+        private async Task GoBackAsync()
+        {
+            await _navigationService.Navigate<UserProfileViewModel>();
+        }
+        public override void Prepare(LoginAccountViewModel parameter)
         {
             Email = parameter.Email;
         }

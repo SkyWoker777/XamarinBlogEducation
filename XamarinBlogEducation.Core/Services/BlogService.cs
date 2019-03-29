@@ -71,12 +71,13 @@ namespace XamarinBlogEducation.Core.Services
             var parsedResult = JsonConvert.DeserializeObject<List<GetAllCategoriesblogViewItem>>(json);
             return parsedResult;
         }
-        public async Task AddNewCategory(GetAllCategoriesblogViewItem category)
+        public async Task<bool> AddNewCategory(GetAllCategoriesblogViewItem category)
         {
             var url = $"/Blog/addCategory";
             var json = JsonConvert.SerializeObject(category);
             var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
-            await _httpService.ExecuteQuery(url, HttpOperationMode.POST, httpContent);
+            var result = await _httpService.ExecuteQuery(url, HttpOperationMode.POST, httpContent);
+            return result.IsSuccessStatusCode;
         }
     }
 }

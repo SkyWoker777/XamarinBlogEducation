@@ -10,8 +10,8 @@ using XamarinBlogEducation.DataAccess;
 namespace XamarinBlogEducation.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190318133819_init2")]
-    partial class init2
+    [Migration("20190329110712_init4")]
+    partial class init4
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -232,7 +232,11 @@ namespace XamarinBlogEducation.DataAccess.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("ApplicationUserId");
+
                     b.Property<string>("Author");
+
+                    b.Property<string>("AuthorId");
 
                     b.Property<long>("CategoryId");
 
@@ -245,6 +249,8 @@ namespace XamarinBlogEducation.DataAccess.Migrations
                     b.Property<string>("Title");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId");
 
                     b.HasIndex("CategoryId");
 
@@ -310,6 +316,10 @@ namespace XamarinBlogEducation.DataAccess.Migrations
 
             modelBuilder.Entity("XamarinBlogEducation.DataAccess.Entities.Post", b =>
                 {
+                    b.HasOne("XamarinBlogEducation.DataAccess.Entities.ApplicationUser")
+                        .WithMany("Posts")
+                        .HasForeignKey("ApplicationUserId");
+
                     b.HasOne("XamarinBlogEducation.DataAccess.Entities.Category", "Category")
                         .WithMany("Posts")
                         .HasForeignKey("CategoryId")

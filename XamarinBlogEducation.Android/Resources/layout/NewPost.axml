@@ -12,7 +12,6 @@
 	android:background="#e8d2c0">
 
 	<ScrollView
-	android:gravity="center"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent">
 	<LinearLayout
@@ -64,7 +63,7 @@
 		android:text="Select a category"	
 		local:MvxItemTemplate="@layout/item_category"
         local:MvxDropDownItemTemplate="@layout/categoryitem_spinnerdropdown"
-        local:MvxBind="ItemsSource CategoryItems;SelectedItem SelectedItem" />
+        local:MvxBind="ItemsSource CategoryItems;SelectedItem SelectedItem;HandleItemSelected ItemSelectedCommand" />
 	<Button
 		android:id="@+id/addCategoryButton"
 		android:backgroundTint="#6db3ce"
@@ -76,39 +75,38 @@
         android:background="@drawable/button_circle"/>
 	</LinearLayout>
 	<EditText
-		
+		android:id="@+id/inputPostContent" 
 		android:hint="Write your post here"
-		android:layout_marginTop="32dp"
+		android:layout_marginTop="32dp"	
 		android:layout_gravity="center_horizontal"
-		android:ems="10"
-		android:padding="16dp"
-		android:drawablePadding="16dp"
-		android:layout_width="match_parent"
-		android:layout_height="200dp"
-		android:background="@drawable/background_login" 
-		android:id="@+id/inputPostContent" />
-	<EditText
-		android:hint="Main thought of your post"
-		android:layout_marginTop="32dp"
-		android:layout_gravity="center_horizontal"
-		android:ems="10"
 		android:padding="16dp"
 		android:drawablePadding="16dp"
 		android:layout_width="match_parent"
 		android:layout_height="100dp"
+		android:scrollbars="vertical"
+		android:background="@drawable/background_login" />	
+	<EditText
+		android:hint="Main thought of your post"
+		android:layout_marginTop="15dp"
+		android:layout_gravity="center_horizontal"
+		android:padding="16dp"
+		android:drawablePadding="16dp"
+		android:layout_width="match_parent"
+		android:layout_height="50dp"
+		android:scrollbars="vertical"
 		android:background="@drawable/background_login" 
 		android:id="@+id/inputPostDescription" />
 	<EditText
 		android:hint="Your nickname(optional)"
-		android:layout_marginTop="32dp"
+		android:layout_marginTop="15dp"
 		android:layout_gravity="center_horizontal"
 		android:ems="10"
 		android:padding="16dp"
 		android:drawablePadding="16dp"
 		android:layout_width="match_parent"
-		android:layout_height="100dp"
+		android:layout_height="50dp"
 		android:background="@drawable/background_login" 
-		android:id="@+id/inputPostDescription" />
+		android:id="@+id/inputNickName" />
 	<Button
 		android:text="Post"	
 		android:layout_width="wrap_content"

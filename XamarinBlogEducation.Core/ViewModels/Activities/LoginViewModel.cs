@@ -28,8 +28,6 @@ namespace XamarinBlogEducation.Core.ViewModels.Activities
         public IMvxCommand SingUpCommand { get; private set; }
         public IMvxCommand SkipCommand { get; private set; }
         public IMvxCommand<LoginAccountViewModel> ToProfileCommand { get; private set; }
-        
-
         public string Email
         {
             get => _email;
@@ -54,7 +52,8 @@ namespace XamarinBlogEducation.Core.ViewModels.Activities
         {
                user = new LoginAccountViewModel() {
                 Email = _email,
-                Password = _password };
+                Password = _password};
+                
            await _userService.GetUserAsync(user);
             ToProfileCommand.Execute(user);
         }

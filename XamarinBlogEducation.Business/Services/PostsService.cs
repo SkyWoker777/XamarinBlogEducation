@@ -34,6 +34,7 @@ namespace XamarinBlogEducation.Business.Services
             post.Author = postBlog.Author;
             post.Description = postBlog.Description;
             post.CategoryId = postBlog.CategoriesId;
+            post.AuthorId = postBlog.AuthorId;
             await _postsRepository.Add(post);
             await _postsRepository.SaveChanges();
 
@@ -89,6 +90,7 @@ namespace XamarinBlogEducation.Business.Services
         {
             var result = (await _categoriesRepository.GetList()).Select(x => new GetAllCategoriesblogViewItem
             {
+                Id=x.Id,
                 Category = x.CategoryName
             }).ToList();
             return result;

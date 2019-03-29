@@ -51,7 +51,6 @@ namespace XamarinBlogEducation.Android.Views.Fragments
         }      
         private void signUpButton_OnClickAsync(object sender, EventArgs e)
         {
-            
             ViewModel.RegistrateCommand.Execute();
         }
     }

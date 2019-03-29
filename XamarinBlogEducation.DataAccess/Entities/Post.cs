@@ -11,7 +11,6 @@ namespace XamarinBlogEducation.DataAccess.Entities
     {
         public Post()
         {
-            //Tags = new HashSet<Tag>();
             Comments = new HashSet<Comment>();
 
         }
@@ -23,8 +22,8 @@ namespace XamarinBlogEducation.DataAccess.Entities
 
         [ForeignKey("Category")]
         public long CategoryId { get; set; }
-
-        //public virtual ICollection<Tag> Tags { get; set; }
+        [ForeignKey("AuthorId")]
+        public string AuthorId { get; set; }
         public virtual Category Category { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }
 

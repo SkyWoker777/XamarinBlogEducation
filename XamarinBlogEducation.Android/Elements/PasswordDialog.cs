@@ -50,19 +50,22 @@ namespace XamarinBlogEducation.Android.Elements
             applyPaswordChangeButton = view.FindViewById<Button>(Resource.Id.applyPaswordChangeButton);
 
             var set = this.CreateBindingSet<PasswordDialog, ChangePasswordDialogViewModel>();
-            set.Bind(CrossSecureStorage.Current.GetValue("securityToken")).To(vm => vm.Token);
             set.Bind(inputOldPassword).To(vm => vm.OldPassword);
             set.Bind(inputNewPassword).To(vm => vm.NewPassword);
             set.Bind(inputComfirmPassword).To(vm => vm.ComfirmPassword);
             set.Apply();
             cancelPasswordChangeButton.Click += cancelPasswordChangeButton_OnClick;
-            applyPaswordChangeButton.Click += applyPaswordChangeButton_OnClick;
+            applyPaswordChangeButton.Click+= applyPaswordChangeButton_OnClick;
             return view;
         }
 
         private void applyPaswordChangeButton_OnClick(object sender, EventArgs e)
         {
-            ViewModel.ChangePasswordCommand.Execute(null);
+            ViewModel.ChangePasswordCommand.Execute();
+            string toast = string.Format("Your password was changed");
+            Toast.MakeText(Context, toast, ToastLength.Long).Show();
+            Dialog.Cancel();
+            ViewModel.GoBackCommand.Execute();
         }
 
         private void cancelPasswordChangeButton_OnClick(object sender, EventArgs e)

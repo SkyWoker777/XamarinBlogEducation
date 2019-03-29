@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using XamarinBlogEducation.Api.Extensions;
 using XamarinBlogEducation.Business.Services;
 using XamarinBlogEducation.Business.Services.Interfaces;
 using XamarinBlogEducation.ViewModels.Blog;
@@ -56,12 +57,13 @@ namespace XamarinBlogEducation.Api.Controllers
             await _postService.DeletePost(postId);
             return Ok();
         }
-        [Authorize(JwtBearerDefaults.AuthenticationScheme)]
+
         [HttpPost()]
         [Route("add")]
         public async Task<IActionResult> Add([FromBody]CreatePostBlogViewModel newpost)
         {
-
+            var id = User.Identity.GetUserId();
+            newpost.AuthorId = id;
             await _postService.CreatePost(newpost);
             return Ok();
         }

@@ -15,8 +15,10 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
     public class CreatePostViewModel : BaseViewModel
     {
         private string _title;
+        private string _description;
         private long _selectedCategoryId;
         private string _postContent;
+        private string _nickName;
         private readonly IBlogService _blogService;
         private CreatePostBlogViewModel post;
         public CreatePostViewModel(IBlogService blogService, IMvxNavigationService _navigationService) : base(_navigationService)
@@ -26,7 +28,9 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
             CategoryItems = new MvxObservableCollection<GetAllCategoriesblogViewItem>();
 
             AddNewPostCommand = new MvxAsyncCommand(AddNewPost);
+            GoBackCommand = new MvxAsyncCommand(GoBack);
             OpenDialogCommand = new MvxAsyncCommand(OpenDialogAsync);
+            ItemSelectedCommand = new MvxAsyncCommand<GetAllCategoriesblogViewItem>(ItemSelectedAsync);
         }
         public override  Task Initialize()
         {
@@ -36,7 +40,10 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
         }
         public MvxNotifyTask LoadCategoriesTask { get; private set; }
         public IMvxCommand OpenDialogCommand { get; private set; }
-
+        public IMvxCommand AddNewPostCommand { get; private set; }
+        public IMvxCommand AddNewCategoryCommand { get; private set; }
+        public IMvxCommand ItemSelectedCommand { get; private set; }
+        public IMvxCommand GoBackCommand { get; private set; }
         private MvxObservableCollection<GetAllCategoriesblogViewItem> _allCategories;
         public MvxObservableCollection<GetAllCategoriesblogViewItem> CategoryItems
         {
@@ -47,11 +54,6 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
                 RaisePropertyChanged(() => CategoryItems);
             }
         }
-
-        public IMvxCommand AddNewPostCommand { get; private set; }
-        public IMvxCommand AddNewCategoryCommand { get; private set; }
-
-
         private async Task LoadCategories()
         {
           
@@ -73,13 +75,30 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
                 RaisePropertyChanged();
             }
         }
-
         public string Title
         {
             get => _title;
             set
             {
                 _title = value;
+                RaisePropertyChanged();
+            }
+        }
+        public string Description
+        {
+            get => _description;
+            set
+            {
+                _description = value;
+                RaisePropertyChanged();
+            }
+        }
+        public string NickName
+        {
+            get => _nickName;
+            set
+            {
+                _nickName = value;
                 RaisePropertyChanged();
             }
         }
@@ -92,19 +111,25 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
                 RaisePropertyChanged();
             }
         }
-
+        
         public async Task AddNewPost()
         {
             post = new CreatePostBlogViewModel()
             {
                 Title = _title,
                 Content = _postContent,
-                CategoriesId = SelectedCategoryId
-                //ad other attributes
+                CategoriesId = _selectedCategoryId,
+                Author = _nickName,
+                Description=_description
             };
             await _blogService.AddNewPost(post);
+            
         }
+        public async Task GoBack()
+        {
+            await _navigationService.Navigate<AllPostsViewModel>();
 
+        }
         private GetAllCategoriesblogViewItem _selectedItem = new GetAllCategoriesblogViewItem();
 
         public GetAllCategoriesblogViewItem SelectedItem
@@ -119,6 +144,10 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
         private async Task OpenDialogAsync()
         {
             await _navigationService.Navigate<CategoryDialogViewModel>();
+        }
+        private async Task ItemSelectedAsync(GetAllCategoriesblogViewItem category)
+        {
+            _selectedCategoryId = category.Id;
         }
     }
 

@@ -79,7 +79,6 @@ namespace XamarinBlogEducation.Core.Services.Interfaces
             var url = "/Account/updatePassword";
             var json = JsonConvert.SerializeObject(model);
             var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
-            httpContent.Headers.Add("Authorization", "Bearer " + CrossSecureStorage.Current.GetValue("securityToken"));
             var result = await _httpService.ExecuteQuery(url, HttpOperationMode.POST, httpContent);
         }
         public async Task UploadImageAsync(byte[] image,EditAccountViewModel model)
