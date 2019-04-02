@@ -1,5 +1,6 @@
 ﻿using MvvmCross.Commands;
 using MvvmCross.Navigation;
+using Plugin.SecureStorage;
 using System.Threading.Tasks;
 using XamarinBlogEducation.Core.Services.Interfaces;
 using XamarinBlogEducation.Core.ViewModels.Activities;
@@ -8,7 +9,7 @@ using XamarinBlogEducation.ViewModels.Models.Account;
 
 namespace XamarinBlogEducation.Core.ViewModels.Fragments
 {
-    public class UserProfileViewModel : BaseViewModel<LoginAccountViewModel>
+    public class UserProfileViewModel : BaseViewModel<EditAccountViewModel>
     {
         private string _email;
         private string _firstName;
@@ -112,12 +113,12 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
                 RaisePropertyChanged(() => User);
             }
         }
-        public override void Prepare(LoginAccountViewModel model)
+        public override void Prepare(EditAccountViewModel model)
         {
-            Model = model;
-            GetUserInfoCommand.Execute();
-            
-            
+            //User = model;
+            var loginModel = new LoginAccountViewModel() { Email = model.Email };
+            Model = loginModel;
+           GetUserInfoCommand.Execute(); 
         }
         private async Task GoToPostsAsync()
         {

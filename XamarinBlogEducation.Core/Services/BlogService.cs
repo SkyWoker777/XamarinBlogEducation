@@ -1,5 +1,6 @@
 ﻿using MvvmCross.Base;
 using Newtonsoft.Json;
+using Plugin.SecureStorage;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -33,10 +34,31 @@ namespace XamarinBlogEducation.Core.Services
         }
         public async Task AddNewPost(CreatePostBlogViewModel model)
         {
-            var url = "/Blog/add";
-            var json = JsonConvert.SerializeObject(model);
-            var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
-            var result = await _httpService.ExecuteQuery(url, HttpOperationMode.POST, httpContent);
+            //var url = "/Blog/add";
+            //var json = JsonConvert.SerializeObject(model);
+            //var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
+            //httpContent.Headers.Add("Authorization", "Bearer " + CrossSecureStorage.Current.GetValue("securityToken"));
+            //var result = await _httpService.ExecuteQuery(url, HttpOperationMode.POST, httpContent);
+            using (var client = new HttpClient())
+            {
+                try
+                {
+                    var json = JsonConvert.SerializeObject(model);
+                    var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
+                    var message = new HttpRequestMessage(HttpMethod.Post, "http://195.26.92.83:6776/api/Blog/add");
+                    message.Content = httpContent;
+                    client.DefaultRequestHeaders.Add("Authorization", "Bearer " + CrossSecureStorage.Current.GetValue("securityToken"));
+                    var response = await client.SendAsync(message);
+                    //await UploadImageAsync(model.UserImage, model);                 
+                    if (response.IsSuccessStatusCode)
+                    {
+                        return;
+                    }
+                }
+                catch (Exception ex)
+                {
+                }
+            }
         }
 
         public Task NavigatePosts()

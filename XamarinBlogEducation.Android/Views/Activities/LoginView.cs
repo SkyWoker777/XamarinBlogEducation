@@ -1,15 +1,18 @@
 ﻿using System;
 using Android.App;
+using Android.Content;
 using Android.OS;
 using Android.Support.V4.Widget;
 using Android.Widget;
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.Platforms.Android.Views;
+using Plugin.SecureStorage;
+using XamarinBlogEducation.Android.Views.Fragments;
 using XamarinBlogEducation.Core.ViewModels.Activities;
 
 namespace XamarinBlogEducation.Android.Views.Activities
 {
-    [Activity(MainLauncher = true)]
+    [Activity(MainLauncher = true,NoHistory =true)]
     public class LoginView : MvxActivity<LoginViewModel>
     {
        // private readonly IMvxNavigationService _navigationService;
@@ -22,12 +25,12 @@ namespace XamarinBlogEducation.Android.Views.Activities
         {
             
             base.OnCreate(savedInstanceState);
+            CrossSecureStorage.Current.DeleteKey("securityToken");
+            CrossSecureStorage.Current.DeleteKey("UserName");
+            CrossSecureStorage.Current.DeleteKey("UserEmail");
+            CrossSecureStorage.Current.DeleteKey("UserLastName");
             SetContentView(Resource.Layout.LoginView);
-          //  drawerLayout = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
-
             if (savedInstanceState == null)
-               // ViewModel.ShowMenu();
-    
             inputEmail = FindViewById<EditText>(Resource.Id.inputEmail);
             inputPassword = FindViewById<EditText>(Resource.Id.inputPassword);
             loginButton = FindViewById<Button>(Resource.Id.buttonLogin);
@@ -42,6 +45,7 @@ namespace XamarinBlogEducation.Android.Views.Activities
             loginButton.Click += loginButton_OnClickAsync;
             buttonRegister.Click += buttonRegister_OnClickAsync;
             linkSkip.Click += linkSkip_OnClick;
+            
         }
 
         private  void loginButton_OnClickAsync(object sender, EventArgs e)
@@ -50,7 +54,8 @@ namespace XamarinBlogEducation.Android.Views.Activities
         }
         private void linkSkip_OnClick(object sender, EventArgs e)
         {
-           ViewModel.SkipCommand.Execute();
+           
+            ViewModel.SkipCommand.Execute();
         }
         private void buttonRegister_OnClickAsync(object sender, EventArgs e)
         {

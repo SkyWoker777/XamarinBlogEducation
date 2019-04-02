@@ -17,7 +17,7 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
         private byte[] _userImage;
 
         private RegisterAccountViewModel user;
-        private LoginAccountViewModel loginUser;
+        private EditAccountViewModel loginUser;
         private readonly IUserService _userService;
 
         public RegisterViewModel(
@@ -100,14 +100,13 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
                 UserImage=_userImage
 
             };
-            loginUser = new LoginAccountViewModel()
+            loginUser = new EditAccountViewModel()
             {
-                Email=user.Email,
-                Password=user.Password
+                Email=user.Email
             };
             await _userService.AddUserAsync(user);
             await _userService.AutologinUserAsync(user);
-            await _navigationService.Navigate<UserProfileViewModel,LoginAccountViewModel>(loginUser);
+            await _navigationService.Navigate<UserProfileViewModel, EditAccountViewModel>(loginUser);
             
         }
     }

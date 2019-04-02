@@ -9,24 +9,15 @@
 			android:layout_height= "match_parent"
 			android:layout_width="match_parent"
 			android:orientation= "vertical"
-		    android:background="#e8d2c0">
-		<Button
-        android:id="@+id/addPostButton"
-		android:layout_marginTop="@dimen/abc_action_bar_content_inset_material"
-		android:layout_marginRight="@dimen/abc_action_bar_content_inset_material"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-		android:layout_gravity="right"
-        android:background="@drawable/button_circle" 
-		android:backgroundTint="#6db3ce"/>
-      
+			android:background="#e8d2c0">
 		<RelativeLayout
 		android:layout_width="match_parent"
 		android:layout_height="match_parent">
-		<MvxSwipeRefreshLayout
+		<MvxSwipeRefreshLayout	
 			android:id="@+id/refresher"
 			android:layout_width="match_parent"
-			android:layout_height="match_parent"
+			android:layout_height="match_parent"	
+			android:paddingTop="?android:attr/actionBarSize"	
 			local:MvxBind="IsRefreshing LoadPostsTask; RefreshCommand RefreshPostsCommand">
 			<MvxRecyclerView
 				android:id="@+id/posts_recycler_view"

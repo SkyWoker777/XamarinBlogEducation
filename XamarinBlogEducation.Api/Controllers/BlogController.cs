@@ -15,7 +15,7 @@ using XamarinBlogEducation.ViewModels.Models.Blog;
 namespace XamarinBlogEducation.Api.Controllers
 {
     [Route("api/[controller]")]
-    //[Authorize(JwtBearerDefaults.AuthenticationScheme)]
+    [Authorize(JwtBearerDefaults.AuthenticationScheme)]
     public class BlogController : Controller
     {
         private readonly IPostsService _postService;
@@ -35,6 +35,7 @@ namespace XamarinBlogEducation.Api.Controllers
             return Ok(post);
 
         }
+        [AllowAnonymous]
         [HttpGet]
         [Route("getPostList")]
         public async Task<IActionResult> GetPosts()
@@ -42,6 +43,7 @@ namespace XamarinBlogEducation.Api.Controllers
             var list = await _postService.GetAll();
             return Ok(list);
         }
+        [AllowAnonymous]
         [HttpGet]
         [Route("getCategoryList")]
         public async Task<IActionResult> GetCategories()
@@ -57,7 +59,7 @@ namespace XamarinBlogEducation.Api.Controllers
             await _postService.DeletePost(postId);
             return Ok();
         }
-
+        [AllowAnonymous]
         [HttpPost()]
         [Route("add")]
         public async Task<IActionResult> Add([FromBody]CreatePostBlogViewModel newpost)
@@ -82,6 +84,7 @@ namespace XamarinBlogEducation.Api.Controllers
             await _postService.EditPostAsync(post, postid);
             return Ok();
         }
+        [AllowAnonymous]
         [HttpPost("addCategory")]
         public async Task<IActionResult> AddCategory([FromBody]GetAllCategoriesblogViewItem newCategory)
         {

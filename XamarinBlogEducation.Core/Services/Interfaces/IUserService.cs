@@ -9,7 +9,7 @@ namespace XamarinBlogEducation.Core.Services.Interfaces
 {
     public interface IUserService
     {
-        Task GetUserAsync(LoginAccountViewModel model);
+        Task<EditAccountViewModel> GetUserAsync(LoginAccountViewModel model);
         Task AddUserAsync(RegisterAccountViewModel model);
         Task AutologinUserAsync(RegisterAccountViewModel model);
         Task UploadImageAsync(byte[] image, EditAccountViewModel model);

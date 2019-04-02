@@ -13,6 +13,7 @@ namespace XamarinBlogEducation.Android
 
         public MainApplication()
         {
+
         }
 
     }

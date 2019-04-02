@@ -7,10 +7,9 @@
     android:orientation="vertical"	
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-	android:paddingBottom="16dp"
-	android:paddingRight="50dp"
-	android:paddingLeft="50dp"
 	android:background="#e8d2c0">
+	<include
+		layout="@layout/toolbar_actionbar" />
 	<ScrollView
 	android:gravity="center"
 	android:layout_width="match_parent"
@@ -20,7 +19,10 @@
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 			    android:gravity="center"
-				android:orientation="vertical">
+				android:orientation="vertical"
+				android:paddingBottom="16dp"
+		        android:paddingRight="50dp"
+	            android:paddingLeft="50dp">
 	<TextView
 		android:text="Hi! Here you can manage your profile"
 		android:layout_width="wrap_content"
