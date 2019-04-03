@@ -21,7 +21,7 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
         private string _nickName;
         private readonly IBlogService _blogService;
         private CreatePostBlogViewModel post;
-        public CreatePostViewModel(IBlogService blogService, IMvxNavigationService _navigationService) : base(_navigationService)
+        public CreatePostViewModel(IBlogService blogService, IMvxNavigationService navigationService) : base(navigationService)
         {
             _blogService = blogService;
 
@@ -127,7 +127,7 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
         }
         public async Task GoBack()
         {
-            await _navigationService.Navigate<AllPostsViewModel>();
+            await NavigationService.Navigate<AllPostsViewModel>();
 
         }
         private GetAllCategoriesblogViewItem _selectedItem = new GetAllCategoriesblogViewItem();
@@ -143,7 +143,7 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
         }
         private async Task OpenDialogAsync()
         {
-            await _navigationService.Navigate<CategoryDialogViewModel>();
+            await NavigationService.Navigate<CategoryDialogViewModel>();
         }
         private async Task ItemSelectedAsync(GetAllCategoriesblogViewItem category)
         {

@@ -14,6 +14,7 @@ using System.Windows.Input;
 using Android.Text.Method;
 using Android.Support.V4.View;
 using Plugin.SecureStorage;
+using Android.Support.V7.App;
 
 namespace XamarinBlogEducation.Android.Views.Fragments
 {
@@ -31,7 +32,9 @@ namespace XamarinBlogEducation.Android.Views.Fragments
         protected override int FragmentId => Resource.Layout.NewPost;
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            var view= base.OnCreateView(inflater, container, savedInstanceState);;
+            var view= base.OnCreateView(inflater, container, savedInstanceState);
+            //((AppCompatActivity)Activity).SupportActionBar.SetHomeAsUpIndicator(Android.Resource.Mipmap.icons8_back_arrow_64);
+            //((AppCompatActivity)Activity).SupportActionBar.SetTitle(Resource.String.CreatePostTitle);
             addNewPostButton = view.FindViewById<Button>(Resource.Id.addNewPostButton);
             addCategoryButton = view.FindViewById<Button>(Resource.Id.addCategoryButton);
             mvxSpinner = view.FindViewById<MvxAppCompatSpinner>(Resource.Id.allCategoriesSpinner);
@@ -67,5 +70,6 @@ namespace XamarinBlogEducation.Android.Views.Fragments
             Toast.MakeText(Context, toast, ToastLength.Long).Show();
             ViewModel.GoBackCommand.Execute();
         }
+       
     }
 }

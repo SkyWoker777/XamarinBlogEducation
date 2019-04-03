@@ -22,7 +22,7 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
 
         public RegisterViewModel(
             IUserService userService, 
-            IMvxNavigationService _navigationService) : base(_navigationService)
+            IMvxNavigationService navigationService) : base(navigationService)
         {
             _userService = userService;
             RegistrateCommand = new MvxAsyncCommand(RegistrateAsync);
@@ -106,7 +106,9 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
             };
             await _userService.AddUserAsync(user);
             await _userService.AutologinUserAsync(user);
-            await _navigationService.Navigate<UserProfileViewModel, EditAccountViewModel>(loginUser);
+            //await NavigationService.Navigate<UserProfileViewModel, EditAccountViewModel>(loginUser);
+            await DisposeView(this);
+            await NavigationService.Navigate<AllPostsViewModel>();
             
         }
     }

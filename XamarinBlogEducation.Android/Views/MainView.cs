@@ -13,6 +13,7 @@ using MvvmCross.Droid.Support.V7.AppCompat;
 using MvvmCross.Platforms.Android.Binding.BindingContext;
 using MvvmCross.Platforms.Android.Presenters.Attributes;
 using MvvmCross.ViewModels;
+using Plugin.SecureStorage;
 using XamarinBlogEducation.Android.Views.Activities;
 using XamarinBlogEducation.Core.ViewModels.Activities;
 
@@ -24,26 +25,31 @@ namespace XamarinBlogEducation.Android.Views
     {
         private MvxActionBarDrawerToggle _drawerToggle;
         public DrawerLayout DrawerLayout { get; set; }
-        
+        private bool ifUser;
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
             SetContentView(Resource.Layout.MainView);        
-            DrawerLayout = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
+            DrawerLayout = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);          
             var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
+            ifUser = CrossSecureStorage.Current.HasKey("securityToken");
             if (toolbar != null)
             {
                 SetSupportActionBar(toolbar);
                 SupportActionBar.SetDisplayShowTitleEnabled(false);
-                //SupportActionBar.SetHomeAsUpIndicator(Resource.Drawable.menu_button);
-                SupportActionBar.SetDisplayHomeAsUpEnabled(true);
-                SupportActionBar.SetDisplayShowHomeEnabled(true);
-                _drawerToggle = new MvxActionBarDrawerToggle(this, DrawerLayout,toolbar,
-                    Resource.String.drawer_open,
-                    Resource.String.drawer_close
-                );
-                _drawerToggle.DrawerOpened += (object sender, ActionBarDrawerEventArgs e) => (this)?.HideSoftKeyboard();
-                DrawerLayout.AddDrawerListener(_drawerToggle);
+                if (ifUser == true)
+                {
+                    DrawerLayout.Activated = true;
+                    SupportActionBar.SetDisplayHomeAsUpEnabled(true);
+                    SupportActionBar.SetHomeAsUpIndicator(Android.Resource.Mipmap.icons8_menu_48);
+                    SupportActionBar.SetDisplayShowHomeEnabled(true);
+                    _drawerToggle = new MvxActionBarDrawerToggle(this, DrawerLayout, toolbar,
+                        Resource.String.drawer_open,
+                        Resource.String.drawer_close
+                    );
+                    _drawerToggle.DrawerOpened += (object sender, ActionBarDrawerEventArgs e) => (this)?.HideSoftKeyboard();
+                    DrawerLayout.AddDrawerListener(_drawerToggle);   
+                }
             }
             if (bundle == null)
             { 
@@ -58,19 +64,15 @@ namespace XamarinBlogEducation.Android.Views
                 case Resource.Id.nav_posts:
                     ViewModel.ShowHomeCommand.Execute(null);
                     break;
-                case Resource.Id.nav_profile:
-                    ViewModel.ShowProfileCommand.Execute(null);
-                    break;
                 case Resource.Id.nav_exit:
                     ViewModel.ExitCommand.Execute(null);
                     break;
-                case Resource.Id.nav_addpost:
-                    ViewModel.AddPostCommand.Execute(null);
+                case Resource.Id.nav_login:
+                    ViewModel.LoginCommand.Execute(null);
                     break;
-                case Android.Resource.Id.nav_home:
-                    DrawerLayout.OpenDrawer(GravityCompat.Start);
-                    return true;
-
+                    //case Android.Resource.Id.nav_home:
+                    //    DrawerLayout.OpenDrawer(GravityCompat.Start);
+                    //    return true;
             }
             return base.OnOptionsItemSelected(item);
         }
@@ -98,6 +100,11 @@ namespace XamarinBlogEducation.Android.Views
         public override bool OnCreateOptionsMenu(IMenu menu)
         {
             MenuInflater.Inflate(Resource.Menu.navigation_drawer, menu);
+            if (ifUser == true)
+            {   
+                var login = menu.FindItem(Resource.Id.nav_login);
+                login.SetVisible(false);
+            }
             return true;
         }
 

@@ -1,6 +1,7 @@
 ﻿using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using Plugin.SecureStorage;
+using System;
 using System.Threading.Tasks;
 using XamarinBlogEducation.Core.Services.Interfaces;
 using XamarinBlogEducation.Core.ViewModels.Activities;
@@ -15,18 +16,24 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
         private string _firstName;
         private string _lastName;
         private byte[] _userImage;
+        private string _userEmail;
         private readonly IUserService _userService;
         private EditAccountViewModel _user;
         private LoginAccountViewModel _model;
-        public UserProfileViewModel(IUserService userService, IMvxNavigationService _navigationService) : base(_navigationService)
+        public UserProfileViewModel(IUserService userService, IMvxNavigationService navigationService) : base(navigationService)
         {
             _userService = userService;
+            _userEmail = CrossSecureStorage.Current.GetValue("UserEmail");
+            GetUserInfoCommand = new MvxAsyncCommand(GetUserInfoAsync);
+            GetUserInfoCommand.Execute();
+            var loginModel = new LoginAccountViewModel() { Email = _userEmail};
+            Model = loginModel;
             UpdateCommand = new MvxAsyncCommand(UpdateAsync);
-            GetUserInfoCommand = new MvxAsyncCommand(GetUserInfo);
             OpenDialogCommand = new MvxAsyncCommand<LoginAccountViewModel>(OpenDialogAsync);
             ChangePasswordCommand = new MvxAsyncCommand(ChangePasswordAsync);
             GoToPostsCommand = new MvxAsyncCommand(GoToPostsAsync);
         }
+        
         public IMvxCommand GoToPostsCommand { get; private set; }
         public IMvxCommand UpdateCommand { get; private set; }
         public IMvxCommand ChangePasswordCommand { get; private set; }
@@ -72,15 +79,15 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
 
         private async Task OpenDialogAsync(LoginAccountViewModel user)
         {
-            await _navigationService.Navigate<ChangePasswordDialogViewModel, LoginAccountViewModel> (user);
+            await NavigationService.Navigate<ChangePasswordDialogViewModel, LoginAccountViewModel> (user);
         }
         private async Task ChangePasswordAsync()
         {
             OpenDialogCommand.Execute(_model);
         }
-        private async Task GetUserInfo()
+        private async Task GetUserInfoAsync()
         {
-            User = await _userService.GetUserInfo(_model);
+            User= await  _userService.GetUserInfo(_userEmail);
         }
         private async Task UpdateAsync()
         {
@@ -115,14 +122,14 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
         }
         public override void Prepare(EditAccountViewModel model)
         {
-            //User = model;
             var loginModel = new LoginAccountViewModel() { Email = model.Email };
             Model = loginModel;
-           GetUserInfoCommand.Execute(); 
+            //User = model;
+            // GetUserInfoCommand.Execute(); 
         }
         private async Task GoToPostsAsync()
         {
-            await _navigationService.Navigate<AllPostsViewModel>();
+            await NavigationService.Navigate<AllPostsViewModel>();
         }
     }
 }

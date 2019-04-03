@@ -21,14 +21,14 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
             ShowHomeCommand = new MvxAsyncCommand(async () => await _navigationService.Navigate<AllPostsViewModel>());
             AddPostCommand = new MvxAsyncCommand(async () => await _navigationService.Navigate<CreatePostViewModel>());
             ShowProfileCommand = new MvxAsyncCommand(async () => await _navigationService.Navigate<UserProfileViewModel>());
-            LoginCommand = new MvxAsyncCommand(async () => await _navigationService.Navigate<LoginViewModel>());
+            ShowUserPostsCommand= new MvxAsyncCommand(async () => await _navigationService.Navigate<UserPostsViewModel>());
             ExitCommand = new MvxAsyncCommand(ExitAsync);
         }
 
         public IMvxCommand ShowHomeCommand { get; private set; }
+        public IMvxCommand ShowUserPostsCommand { get; private set; }
         public IMvxCommand AddPostCommand { get; private set; }
         public IMvxCommand ShowProfileCommand { get; private set; }
-        public IMvxCommand LoginCommand { get; private set; }
         public IMvxCommand ExitCommand { get; private set; }
         private async Task ExitAsync()
         {

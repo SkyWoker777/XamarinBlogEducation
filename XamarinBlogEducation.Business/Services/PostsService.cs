@@ -9,6 +9,7 @@ using XamarinBlogEducation.ViewModels.Models.Blog;
 using XamarinBlogEducation.Business.Services.Interfaces;
 using XamarinBlogEducation.DataAccess.Entities;
 using XamarinBlogEducation.DataAccess.Repositories.Interfaces;
+using Microsoft.AspNetCore.Identity;
 
 namespace XamarinBlogEducation.Business.Services
 {
@@ -17,12 +18,13 @@ namespace XamarinBlogEducation.Business.Services
         private readonly IPostsRepository _postsRepository;
         private readonly ICommentsRepository _commentsRepository;
         private readonly ICategoriesRepository _categoriesRepository;
-
-        public PostsService(IPostsRepository postsRepository, ICommentsRepository commentsRepository, ICategoriesRepository categoriesRepository)
+        private readonly UserManager<ApplicationUser> _userManager;
+        public PostsService(IPostsRepository postsRepository, ICommentsRepository commentsRepository, ICategoriesRepository categoriesRepository, UserManager<ApplicationUser> userManager)
         {
             _postsRepository = postsRepository;
             _commentsRepository = commentsRepository;
             _categoriesRepository = categoriesRepository;
+            _userManager = userManager;
         }
 
         public async Task CreatePost(CreatePostBlogViewModel postBlog)
@@ -82,6 +84,23 @@ namespace XamarinBlogEducation.Business.Services
                 CreationDate=x.CreationDate,
                 CategoryId=x.CategoryId
             
+            }).ToList();
+
+            return result;
+        }
+        public async Task<List<GetAllPostsBlogViewItem>> GetUserPosts(string userEmail)
+        {
+            var author = await _userManager.FindByEmailAsync(userEmail);
+            var result = (await _postsRepository.GetByAuthor(author.Id)).Select(x => new GetAllPostsBlogViewItem
+            {
+                Id = x.Id,
+                Title = x.Title,
+                Description = x.Description,
+                Content = x.Content,
+                Author = x.Author,
+                CreationDate = x.CreationDate,
+                CategoryId = x.CategoryId
+
             }).ToList();
 
             return result;

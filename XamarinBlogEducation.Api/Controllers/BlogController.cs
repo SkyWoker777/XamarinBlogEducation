@@ -84,6 +84,14 @@ namespace XamarinBlogEducation.Api.Controllers
             await _postService.EditPostAsync(post, postid);
             return Ok();
         }
+        
+        [HttpGet]
+        [Route("getUserPosts")]
+        public async Task<IActionResult> GetUserPosts(string userEmail)
+        {
+            var list = await _postService.GetUserPosts(userEmail);
+            return Ok(list);
+        }
         [AllowAnonymous]
         [HttpPost("addCategory")]
         public async Task<IActionResult> AddCategory([FromBody]GetAllCategoriesblogViewItem newCategory)

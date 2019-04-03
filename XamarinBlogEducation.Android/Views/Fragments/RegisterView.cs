@@ -1,9 +1,6 @@
 ﻿using System;
 using Android.OS;
-using Android.Views;
 using Android.Widget;
-using System.Drawing;
-using Android.Net;
 using Android.App;
 using XamarinBlogEducation.Core.ViewModels.Fragments;
 using MvvmCross.Platforms.Android.Views;

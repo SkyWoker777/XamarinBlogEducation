@@ -78,6 +78,7 @@
     <Compile Include="Views\Fragments\DetailedPostView.cs" />
     <Compile Include="Views\Fragments\MenuView.cs" />
     <Compile Include="Views\Fragments\RegisterView.cs" />
+    <Compile Include="Views\Fragments\UserPostsView.cs" />
     <Compile Include="Views\Fragments\UserProfileView.cs" />
     <Compile Include="Views\MainView.cs" />
   </ItemGroup>
@@ -302,6 +303,30 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\add_ic.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\menu\menu_drawer.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\mipmap\icons8_menu_48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\mipmap\icons8_back_arrow_64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\mipmap-hdpi\icons8_back_arrow_64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\UserPostsView.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\user_post_item.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

@@ -23,6 +23,7 @@ namespace XamarinBlogEducation.Business.Services.Interfaces
         Task<IEnumerable<Post>> PostsByDate(DateTime CreationDate);
         Task<List<GetAllCategoriesblogViewItem>> GetAllCategories();
         Task AddCategory(GetAllCategoriesblogViewItem newCategory);
+        Task<List<GetAllPostsBlogViewItem>> GetUserPosts(string userEmail);
 
     }
 }

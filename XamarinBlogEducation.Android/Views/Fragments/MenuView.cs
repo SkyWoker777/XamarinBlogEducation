@@ -18,30 +18,28 @@ namespace XamarinBlogEducation.Android.Views.Fragments
     {
         private NavigationView _navigationView;
         private IMenuItem _previousMenuItem;
-
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             var ignore = base.OnCreateView(inflater, container, savedInstanceState);
-
-            var view = this.BindingInflate(Resource.Layout.MenuView, null);
-
-            _navigationView = view.FindViewById<NavigationView>(Resource.Id.navigation_view);
-            _navigationView.SetNavigationItemSelectedListener(this);
-            _navigationView.Menu.FindItem(Resource.Id.nav_home).SetChecked(true);
-            if (CrossSecureStorage.Current.GetValue("securityToken") == null)
-            {             
-                _navigationView.Menu.FindItem(Resource.Id.nav_profile).SetVisible(false);
-                _navigationView.Menu.FindItem(Resource.Id.nav_login).SetVisible(true);
-                _navigationView.Menu.FindItem(Resource.Id.nav_exit).SetVisible(false);
-                
-            }
-            if (CrossSecureStorage.Current.GetValue("securityToken") != null)
+            var ifUser = CrossSecureStorage.Current.HasKey("securityToken");
+            var view = this.BindingInflate(Resource.Layout.MenuView, null);           
+            if (ifUser==true)
             {
-                _navigationView.Menu.FindItem(Resource.Id.nav_profile).SetVisible(true);
-                _navigationView.Menu.FindItem(Resource.Id.nav_login).SetVisible(false);
-                _navigationView.Menu.FindItem(Resource.Id.nav_exit).SetVisible(true);
+            _navigationView = view.FindViewById<NavigationView>(Resource.Id.menu_view);
+            _navigationView.SetNavigationItemSelectedListener(this);
+            _navigationView.Menu.FindItem(Resource.Id.menu_home).SetChecked(true);
+            _navigationView.Menu.FindItem(Resource.Id.menu_profile).SetVisible(true);
+            _navigationView.Menu.FindItem(Resource.Id.menu_exit).SetVisible(true);
+             return view;
             }
-            return view;
+            //if (ifUser==false)
+            //{             
+            //    _navigationView.Menu.FindItem(Resource.Id.nav_profile).SetVisible(false);
+            //    _navigationView.Menu.FindItem(Resource.Id.nav_login).SetVisible(true);
+            //    _navigationView.Menu.FindItem(Resource.Id.nav_exit).SetVisible(false);
+
+            //}
+            return null;
         }
 
         public bool OnNavigationItemSelected(IMenuItem item)
@@ -67,23 +65,20 @@ namespace XamarinBlogEducation.Android.Views.Fragments
 
             switch (itemId)
             {
-                case Resource.Id.nav_posts:
+                case Resource.Id.menu_posts:
                     ViewModel.ShowHomeCommand.Execute(null);
                     break;
-                case Resource.Id.nav_home:
-                    ViewModel.ShowHomeCommand.Execute(null);
-                    break;
-                case Resource.Id.nav_profile:
-                    ViewModel.ShowProfileCommand.Execute(null);
-                    break;
-                case Resource.Id.nav_exit:
+                case Resource.Id.menu_exit:
                     ViewModel.ExitCommand.Execute(null);
                     break;
-                case Resource.Id.nav_login:
-                    ViewModel.LoginCommand.Execute(null);
-                    break;
-                case Resource.Id.nav_addpost:
+                case Resource.Id.menu_addpost:
                     ViewModel.AddPostCommand.Execute(null);
+                    break;
+                case Resource.Id.menu_profile:
+                    ViewModel.ShowProfileCommand.Execute(null);
+                    break;
+                case Resource.Id.menu_userPosts:
+                    ViewModel.ShowUserPostsCommand.Execute(null);
                     break;
             }
         }

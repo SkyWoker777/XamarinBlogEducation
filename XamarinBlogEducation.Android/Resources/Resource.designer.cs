@@ -7327,8 +7327,8 @@ namespace XamarinBlogEducation.Android
 			// aapt resource value: 0x7f0a0039
 			public const int SYM = 2131361849;
 			
-			// aapt resource value: 0x7f0a00dc
-			public const int action0 = 2131362012;
+			// aapt resource value: 0x7f0a00dd
+			public const int action0 = 2131362013;
 			
 			// aapt resource value: 0x7f0a007e
 			public const int action_bar = 2131361918;
@@ -7351,17 +7351,17 @@ namespace XamarinBlogEducation.Android
 			// aapt resource value: 0x7f0a005c
 			public const int action_bar_title = 2131361884;
 			
-			// aapt resource value: 0x7f0a00d9
-			public const int action_container = 2131362009;
+			// aapt resource value: 0x7f0a00da
+			public const int action_container = 2131362010;
 			
 			// aapt resource value: 0x7f0a007f
 			public const int action_context_bar = 2131361919;
 			
-			// aapt resource value: 0x7f0a00e0
-			public const int action_divider = 2131362016;
+			// aapt resource value: 0x7f0a00e1
+			public const int action_divider = 2131362017;
 			
-			// aapt resource value: 0x7f0a00da
-			public const int action_image = 2131362010;
+			// aapt resource value: 0x7f0a00db
+			public const int action_image = 2131362011;
 			
 			// aapt resource value: 0x7f0a0003
 			public const int action_menu_divider = 2131361795;
@@ -7378,11 +7378,11 @@ namespace XamarinBlogEducation.Android
 			// aapt resource value: 0x7f0a005e
 			public const int action_mode_close_button = 2131361886;
 			
-			// aapt resource value: 0x7f0a00db
-			public const int action_text = 2131362011;
+			// aapt resource value: 0x7f0a00dc
+			public const int action_text = 2131362012;
 			
-			// aapt resource value: 0x7f0a00e8
-			public const int actions = 2131362024;
+			// aapt resource value: 0x7f0a00e9
+			public const int actions = 2131362025;
 			
 			// aapt resource value: 0x7f0a005f
 			public const int activity_chooser_view_content = 2131361887;
@@ -7390,11 +7390,11 @@ namespace XamarinBlogEducation.Android
 			// aapt resource value: 0x7f0a0029
 			public const int add = 2131361833;
 			
-			// aapt resource value: 0x7f0a00d4
-			public const int addCategoryButton = 2131362004;
+			// aapt resource value: 0x7f0a00d5
+			public const int addCategoryButton = 2131362005;
 			
-			// aapt resource value: 0x7f0a00d8
-			public const int addNewPostButton = 2131362008;
+			// aapt resource value: 0x7f0a00d9
+			public const int addNewPostButton = 2131362009;
 			
 			// aapt resource value: 0x7f0a0072
 			public const int alertTitle = 2131361906;
@@ -7402,29 +7402,29 @@ namespace XamarinBlogEducation.Android
 			// aapt resource value: 0x7f0a0054
 			public const int all = 2131361876;
 			
-			// aapt resource value: 0x7f0a00d3
-			public const int allCategoriesSpinner = 2131362003;
+			// aapt resource value: 0x7f0a00d4
+			public const int allCategoriesSpinner = 2131362004;
 			
 			// aapt resource value: 0x7f0a003a
 			public const int always = 2131361850;
 			
-			// aapt resource value: 0x7f0a00d1
-			public const int anonimPostWarning = 2131362001;
+			// aapt resource value: 0x7f0a00d2
+			public const int anonimPostWarning = 2131362002;
 			
 			// aapt resource value: 0x7f0a00b2
 			public const int appToolBar = 2131361970;
 			
-			// aapt resource value: 0x7f0a00f7
-			public const int appbar = 2131362039;
+			// aapt resource value: 0x7f0a00f8
+			public const int appbar = 2131362040;
 			
-			// aapt resource value: 0x7f0a0100
-			public const int applyButton = 2131362048;
+			// aapt resource value: 0x7f0a0105
+			public const int applyButton = 2131362053;
 			
 			// aapt resource value: 0x7f0a00a0
 			public const int applyCategoryButton = 2131361952;
 			
-			// aapt resource value: 0x7f0a00f0
-			public const int applyPaswordChangeButton = 2131362032;
+			// aapt resource value: 0x7f0a00f1
+			public const int applyPaswordChangeButton = 2131362033;
 			
 			// aapt resource value: 0x7f0a0058
 			public const int async = 2131361880;
@@ -7453,11 +7453,11 @@ namespace XamarinBlogEducation.Android
 			// aapt resource value: 0x7f0a009f
 			public const int cancelCategoryButton = 2131361951;
 			
-			// aapt resource value: 0x7f0a00ef
-			public const int cancelPasswordChangeButton = 2131362031;
+			// aapt resource value: 0x7f0a00f0
+			public const int cancelPasswordChangeButton = 2131362032;
 			
-			// aapt resource value: 0x7f0a00dd
-			public const int cancel_action = 2131362013;
+			// aapt resource value: 0x7f0a00de
+			public const int cancel_action = 2131362014;
 			
 			// aapt resource value: 0x7f0a0047
 			public const int center = 2131361863;
@@ -7468,14 +7468,14 @@ namespace XamarinBlogEducation.Android
 			// aapt resource value: 0x7f0a0049
 			public const int center_vertical = 2131361865;
 			
-			// aapt resource value: 0x7f0a00ff
-			public const int changePasswordButton = 2131362047;
+			// aapt resource value: 0x7f0a0104
+			public const int changePasswordButton = 2131362052;
 			
 			// aapt resource value: 0x7f0a0075
 			public const int checkbox = 2131361909;
 			
-			// aapt resource value: 0x7f0a00e5
-			public const int chronometer = 2131362021;
+			// aapt resource value: 0x7f0a00e6
+			public const int chronometer = 2131362022;
 			
 			// aapt resource value: 0x7f0a0050
 			public const int clip_horizontal = 2131361872;
@@ -7486,8 +7486,8 @@ namespace XamarinBlogEducation.Android
 			// aapt resource value: 0x7f0a003b
 			public const int collapseActionView = 2131361851;
 			
-			// aapt resource value: 0x7f0a00f5
-			public const int confirmPassword = 2131362037;
+			// aapt resource value: 0x7f0a00f6
+			public const int confirmPassword = 2131362038;
 			
 			// aapt resource value: 0x7f0a0091
 			public const int container = 2131361937;
@@ -7534,14 +7534,14 @@ namespace XamarinBlogEducation.Android
 			// aapt resource value: 0x7f0a00b1
 			public const int drawer_layout = 2131361969;
 			
-			// aapt resource value: 0x7f0a00fe
-			public const int editEmail = 2131362046;
+			// aapt resource value: 0x7f0a0103
+			public const int editEmail = 2131362051;
 			
-			// aapt resource value: 0x7f0a00fd
-			public const int editLastName = 2131362045;
+			// aapt resource value: 0x7f0a0102
+			public const int editLastName = 2131362050;
 			
-			// aapt resource value: 0x7f0a00fc
-			public const int editUserName = 2131362044;
+			// aapt resource value: 0x7f0a0101
+			public const int editUserName = 2131362049;
 			
 			// aapt resource value: 0x7f0a0080
 			public const int edit_query = 2131361920;
@@ -7549,8 +7549,8 @@ namespace XamarinBlogEducation.Android
 			// aapt resource value: 0x7f0a0032
 			public const int end = 2131361842;
 			
-			// aapt resource value: 0x7f0a00ea
-			public const int end_padder = 2131362026;
+			// aapt resource value: 0x7f0a00eb
+			public const int end_padder = 2131362027;
 			
 			// aapt resource value: 0x7f0a0041
 			public const int enterAlways = 2131361857;
@@ -7594,8 +7594,8 @@ namespace XamarinBlogEducation.Android
 			// aapt resource value: 0x7f0a0064
 			public const int icon = 2131361892;
 			
-			// aapt resource value: 0x7f0a00e9
-			public const int icon_group = 2131362025;
+			// aapt resource value: 0x7f0a00ea
+			public const int icon_group = 2131362026;
 			
 			// aapt resource value: 0x7f0a003c
 			public const int ifRoom = 2131361852;
@@ -7612,41 +7612,41 @@ namespace XamarinBlogEducation.Android
 			// aapt resource value: 0x7f0a009e
 			public const int inputCategory = 2131361950;
 			
-			// aapt resource value: 0x7f0a00ee
-			public const int inputComfirmPassword = 2131362030;
+			// aapt resource value: 0x7f0a00ef
+			public const int inputComfirmPassword = 2131362031;
 			
-			// aapt resource value: 0x7f0a00ed
-			public const int inputConfPassword = 2131362029;
+			// aapt resource value: 0x7f0a00ee
+			public const int inputConfPassword = 2131362030;
 			
 			// aapt resource value: 0x7f0a00ac
 			public const int inputEmail = 2131361964;
 			
-			// aapt resource value: 0x7f0a00f4
-			public const int inputLastName = 2131362036;
+			// aapt resource value: 0x7f0a00f5
+			public const int inputLastName = 2131362037;
+			
+			// aapt resource value: 0x7f0a00ed
+			public const int inputNewPassword = 2131362029;
+			
+			// aapt resource value: 0x7f0a00d8
+			public const int inputNickName = 2131362008;
 			
 			// aapt resource value: 0x7f0a00ec
-			public const int inputNewPassword = 2131362028;
-			
-			// aapt resource value: 0x7f0a00d7
-			public const int inputNickName = 2131362007;
-			
-			// aapt resource value: 0x7f0a00eb
-			public const int inputOldPassword = 2131362027;
+			public const int inputOldPassword = 2131362028;
 			
 			// aapt resource value: 0x7f0a00ad
 			public const int inputPassword = 2131361965;
 			
-			// aapt resource value: 0x7f0a00d5
-			public const int inputPostContent = 2131362005;
-			
 			// aapt resource value: 0x7f0a00d6
-			public const int inputPostDescription = 2131362006;
+			public const int inputPostContent = 2131362006;
 			
-			// aapt resource value: 0x7f0a00d2
-			public const int inputTitle = 2131362002;
+			// aapt resource value: 0x7f0a00d7
+			public const int inputPostDescription = 2131362007;
 			
-			// aapt resource value: 0x7f0a00f3
-			public const int inputUserName = 2131362035;
+			// aapt resource value: 0x7f0a00d3
+			public const int inputTitle = 2131362003;
+			
+			// aapt resource value: 0x7f0a00f4
+			public const int inputUserName = 2131362036;
 			
 			// aapt resource value: 0x7f0a005b
 			public const int italic = 2131361883;
@@ -7687,17 +7687,41 @@ namespace XamarinBlogEducation.Android
 			// aapt resource value: 0x7f0a00aa
 			public const int loadingProgressWheel = 2131361962;
 			
-			// aapt resource value: 0x7f0a0102
-			public const int masked = 2131362050;
+			// aapt resource value: 0x7f0a0107
+			public const int masked = 2131362055;
 			
-			// aapt resource value: 0x7f0a00df
-			public const int media_actions = 2131362015;
+			// aapt resource value: 0x7f0a00e0
+			public const int media_actions = 2131362016;
 			
-			// aapt resource value: 0x7f0a00cf
-			public const int menuHeader = 2131361999;
+			// aapt resource value: 0x7f0a00d0
+			public const int menuHeader = 2131362000;
 			
-			// aapt resource value: 0x7f0a00f9
-			public const int message = 2131362041;
+			// aapt resource value: 0x7f0a010d
+			public const int menu_addpost = 2131362061;
+			
+			// aapt resource value: 0x7f0a010e
+			public const int menu_exit = 2131362062;
+			
+			// aapt resource value: 0x7f0a0109
+			public const int menu_home = 2131362057;
+			
+			// aapt resource value: 0x7f0a0108
+			public const int menu_items = 2131362056;
+			
+			// aapt resource value: 0x7f0a010a
+			public const int menu_posts = 2131362058;
+			
+			// aapt resource value: 0x7f0a010b
+			public const int menu_profile = 2131362059;
+			
+			// aapt resource value: 0x7f0a010c
+			public const int menu_userPosts = 2131362060;
+			
+			// aapt resource value: 0x7f0a00b5
+			public const int menu_view = 2131361973;
+			
+			// aapt resource value: 0x7f0a00fa
+			public const int message = 2131362042;
 			
 			// aapt resource value: 0x7f0a0033
 			public const int middle = 2131361843;
@@ -7705,104 +7729,95 @@ namespace XamarinBlogEducation.Android
 			// aapt resource value: 0x7f0a0055
 			public const int mini = 2131361877;
 			
-			// aapt resource value: 0x7f0a00c1
-			public const int mr_art = 2131361985;
-			
-			// aapt resource value: 0x7f0a00b6
-			public const int mr_chooser_list = 2131361974;
-			
-			// aapt resource value: 0x7f0a00b9
-			public const int mr_chooser_route_desc = 2131361977;
+			// aapt resource value: 0x7f0a00c2
+			public const int mr_art = 2131361986;
 			
 			// aapt resource value: 0x7f0a00b7
-			public const int mr_chooser_route_icon = 2131361975;
-			
-			// aapt resource value: 0x7f0a00b8
-			public const int mr_chooser_route_name = 2131361976;
-			
-			// aapt resource value: 0x7f0a00b5
-			public const int mr_chooser_title = 2131361973;
-			
-			// aapt resource value: 0x7f0a00be
-			public const int mr_close = 2131361982;
-			
-			// aapt resource value: 0x7f0a00c4
-			public const int mr_control_divider = 2131361988;
-			
-			// aapt resource value: 0x7f0a00ca
-			public const int mr_control_playback_ctrl = 2131361994;
-			
-			// aapt resource value: 0x7f0a00cd
-			public const int mr_control_subtitle = 2131361997;
-			
-			// aapt resource value: 0x7f0a00cc
-			public const int mr_control_title = 2131361996;
-			
-			// aapt resource value: 0x7f0a00cb
-			public const int mr_control_title_container = 2131361995;
-			
-			// aapt resource value: 0x7f0a00bf
-			public const int mr_custom_control = 2131361983;
-			
-			// aapt resource value: 0x7f0a00c0
-			public const int mr_default_control = 2131361984;
-			
-			// aapt resource value: 0x7f0a00bb
-			public const int mr_dialog_area = 2131361979;
+			public const int mr_chooser_list = 2131361975;
 			
 			// aapt resource value: 0x7f0a00ba
-			public const int mr_expandable_area = 2131361978;
+			public const int mr_chooser_route_desc = 2131361978;
 			
-			// aapt resource value: 0x7f0a00ce
-			public const int mr_group_expand_collapse = 2131361998;
+			// aapt resource value: 0x7f0a00b8
+			public const int mr_chooser_route_icon = 2131361976;
 			
-			// aapt resource value: 0x7f0a00c2
-			public const int mr_media_main_control = 2131361986;
+			// aapt resource value: 0x7f0a00b9
+			public const int mr_chooser_route_name = 2131361977;
 			
-			// aapt resource value: 0x7f0a00bd
-			public const int mr_name = 2131361981;
+			// aapt resource value: 0x7f0a00b6
+			public const int mr_chooser_title = 2131361974;
 			
-			// aapt resource value: 0x7f0a00c3
-			public const int mr_playback_control = 2131361987;
-			
-			// aapt resource value: 0x7f0a00bc
-			public const int mr_title_bar = 2131361980;
+			// aapt resource value: 0x7f0a00bf
+			public const int mr_close = 2131361983;
 			
 			// aapt resource value: 0x7f0a00c5
-			public const int mr_volume_control = 2131361989;
+			public const int mr_control_divider = 2131361989;
+			
+			// aapt resource value: 0x7f0a00cb
+			public const int mr_control_playback_ctrl = 2131361995;
+			
+			// aapt resource value: 0x7f0a00ce
+			public const int mr_control_subtitle = 2131361998;
+			
+			// aapt resource value: 0x7f0a00cd
+			public const int mr_control_title = 2131361997;
+			
+			// aapt resource value: 0x7f0a00cc
+			public const int mr_control_title_container = 2131361996;
+			
+			// aapt resource value: 0x7f0a00c0
+			public const int mr_custom_control = 2131361984;
+			
+			// aapt resource value: 0x7f0a00c1
+			public const int mr_default_control = 2131361985;
+			
+			// aapt resource value: 0x7f0a00bc
+			public const int mr_dialog_area = 2131361980;
+			
+			// aapt resource value: 0x7f0a00bb
+			public const int mr_expandable_area = 2131361979;
+			
+			// aapt resource value: 0x7f0a00cf
+			public const int mr_group_expand_collapse = 2131361999;
+			
+			// aapt resource value: 0x7f0a00c3
+			public const int mr_media_main_control = 2131361987;
+			
+			// aapt resource value: 0x7f0a00be
+			public const int mr_name = 2131361982;
+			
+			// aapt resource value: 0x7f0a00c4
+			public const int mr_playback_control = 2131361988;
+			
+			// aapt resource value: 0x7f0a00bd
+			public const int mr_title_bar = 2131361981;
 			
 			// aapt resource value: 0x7f0a00c6
-			public const int mr_volume_group_list = 2131361990;
+			public const int mr_volume_control = 2131361990;
 			
-			// aapt resource value: 0x7f0a00c8
-			public const int mr_volume_item_icon = 2131361992;
+			// aapt resource value: 0x7f0a00c7
+			public const int mr_volume_group_list = 2131361991;
 			
 			// aapt resource value: 0x7f0a00c9
-			public const int mr_volume_slider = 2131361993;
+			public const int mr_volume_item_icon = 2131361993;
+			
+			// aapt resource value: 0x7f0a00ca
+			public const int mr_volume_slider = 2131361994;
 			
 			// aapt resource value: 0x7f0a002a
 			public const int multiply = 2131361834;
 			
-			// aapt resource value: 0x7f0a0108
-			public const int nav_addpost = 2131362056;
+			// aapt resource value: 0x7f0a0112
+			public const int nav_exit = 2131362066;
 			
-			// aapt resource value: 0x7f0a0109
-			public const int nav_exit = 2131362057;
+			// aapt resource value: 0x7f0a010f
+			public const int nav_items = 2131362063;
 			
-			// aapt resource value: 0x7f0a0104
-			public const int nav_home = 2131362052;
+			// aapt resource value: 0x7f0a0111
+			public const int nav_login = 2131362065;
 			
-			// aapt resource value: 0x7f0a0103
-			public const int nav_items = 2131362051;
-			
-			// aapt resource value: 0x7f0a0107
-			public const int nav_login = 2131362055;
-			
-			// aapt resource value: 0x7f0a0105
-			public const int nav_posts = 2131362053;
-			
-			// aapt resource value: 0x7f0a0106
-			public const int nav_profile = 2131362054;
+			// aapt resource value: 0x7f0a0110
+			public const int nav_posts = 2131362064;
 			
 			// aapt resource value: 0x7f0a00b4
 			public const int navigation_frame = 2131361972;
@@ -7822,14 +7837,14 @@ namespace XamarinBlogEducation.Android
 			// aapt resource value: 0x7f0a0020
 			public const int normal = 2131361824;
 			
-			// aapt resource value: 0x7f0a00e7
-			public const int notification_background = 2131362023;
+			// aapt resource value: 0x7f0a00e8
+			public const int notification_background = 2131362024;
+			
+			// aapt resource value: 0x7f0a00e3
+			public const int notification_main_column = 2131362019;
 			
 			// aapt resource value: 0x7f0a00e2
-			public const int notification_main_column = 2131362018;
-			
-			// aapt resource value: 0x7f0a00e1
-			public const int notification_main_column_container = 2131362017;
+			public const int notification_main_column_container = 2131362018;
 			
 			// aapt resource value: 0x7f0a004e
 			public const int parallax = 2131361870;
@@ -7846,8 +7861,8 @@ namespace XamarinBlogEducation.Android
 			// aapt resource value: 0x7f0a008e
 			public const int posts_recycler_view = 2131361934;
 			
-			// aapt resource value: 0x7f0a00d0
-			public const int profile_image2 = 2131362000;
+			// aapt resource value: 0x7f0a00d1
+			public const int profile_image2 = 2131362001;
 			
 			// aapt resource value: 0x7f0a0006
 			public const int progress_circular = 2131361798;
@@ -7864,11 +7879,11 @@ namespace XamarinBlogEducation.Android
 			// aapt resource value: 0x7f0a004c
 			public const int right = 2131361868;
 			
-			// aapt resource value: 0x7f0a00e6
-			public const int right_icon = 2131362022;
+			// aapt resource value: 0x7f0a00e7
+			public const int right_icon = 2131362023;
 			
-			// aapt resource value: 0x7f0a00e3
-			public const int right_side = 2131362019;
+			// aapt resource value: 0x7f0a00e4
+			public const int right_side = 2131362020;
 			
 			// aapt resource value: 0x7f0a000c
 			public const int save_image_matrix = 2131361804;
@@ -7942,8 +7957,8 @@ namespace XamarinBlogEducation.Android
 			// aapt resource value: 0x7f0a0027
 			public const int showTitle = 2131361831;
 			
-			// aapt resource value: 0x7f0a00f6
-			public const int signUpButton = 2131362038;
+			// aapt resource value: 0x7f0a00f7
+			public const int signUpButton = 2131362039;
 			
 			// aapt resource value: 0x7f0a008f
 			public const int smallLabel = 2131361935;
@@ -7975,8 +7990,8 @@ namespace XamarinBlogEducation.Android
 			// aapt resource value: 0x7f0a004d
 			public const int start = 2131361869;
 			
-			// aapt resource value: 0x7f0a00de
-			public const int status_bar_latest_event_content = 2131362014;
+			// aapt resource value: 0x7f0a00df
+			public const int status_bar_latest_event_content = 2131362015;
 			
 			// aapt resource value: 0x7f0a0078
 			public const int submenuarrow = 2131361912;
@@ -7996,8 +8011,8 @@ namespace XamarinBlogEducation.Android
 			// aapt resource value: 0x7f0a001b
 			public const int text2 = 2131361819;
 			
-			// aapt resource value: 0x7f0a00fa
-			public const int textCongrats = 2131362042;
+			// aapt resource value: 0x7f0a00ff
+			public const int textCongrats = 2131362047;
 			
 			// aapt resource value: 0x7f0a006c
 			public const int textSpacerNoButtons = 2131361900;
@@ -8020,8 +8035,8 @@ namespace XamarinBlogEducation.Android
 			// aapt resource value: 0x7f0a0015
 			public const int textinput_error = 2131361813;
 			
-			// aapt resource value: 0x7f0a00e4
-			public const int time = 2131362020;
+			// aapt resource value: 0x7f0a00e5
+			public const int time = 2131362021;
 			
 			// aapt resource value: 0x7f0a001c
 			public const int title = 2131361820;
@@ -8032,8 +8047,8 @@ namespace XamarinBlogEducation.Android
 			// aapt resource value: 0x7f0a0071
 			public const int title_template = 2131361905;
 			
-			// aapt resource value: 0x7f0a00f8
-			public const int toolbar = 2131362040;
+			// aapt resource value: 0x7f0a00f9
+			public const int toolbar = 2131362041;
 			
 			// aapt resource value: 0x7f0a0040
 			public const int top = 2131361856;
@@ -8065,11 +8080,17 @@ namespace XamarinBlogEducation.Android
 			// aapt resource value: 0x7f0a00a6
 			public const int txt_category = 2131361958;
 			
-			// aapt resource value: 0x7f0a00f2
-			public const int txt_description = 2131362034;
+			// aapt resource value: 0x7f0a00f3
+			public const int txt_description = 2131362035;
 			
-			// aapt resource value: 0x7f0a00f1
-			public const int txt_title = 2131362033;
+			// aapt resource value: 0x7f0a00f2
+			public const int txt_title = 2131362034;
+			
+			// aapt resource value: 0x7f0a00fc
+			public const int txt_udescription = 2131362044;
+			
+			// aapt resource value: 0x7f0a00fb
+			public const int txt_utitle = 2131362043;
 			
 			// aapt resource value: 0x7f0a00a2
 			public const int txtlast_modified = 2131361954;
@@ -8080,20 +8101,26 @@ namespace XamarinBlogEducation.Android
 			// aapt resource value: 0x7f0a0009
 			public const int up = 2131361801;
 			
-			// aapt resource value: 0x7f0a00fb
-			public const int updateProfileImage = 2131362043;
+			// aapt resource value: 0x7f0a0100
+			public const int updateProfileImage = 2131362048;
 			
 			// aapt resource value: 0x7f0a0028
 			public const int useLogo = 2131361832;
 			
+			// aapt resource value: 0x7f0a00fe
+			public const int user_posts_recycler_view = 2131362046;
+			
+			// aapt resource value: 0x7f0a00fd
+			public const int user_refresher = 2131362045;
+			
 			// aapt resource value: 0x7f0a0016
 			public const int view_offset_helper = 2131361814;
 			
-			// aapt resource value: 0x7f0a0101
-			public const int visible = 2131362049;
+			// aapt resource value: 0x7f0a0106
+			public const int visible = 2131362054;
 			
-			// aapt resource value: 0x7f0a00c7
-			public const int volume_item_container = 2131361991;
+			// aapt resource value: 0x7f0a00c8
+			public const int volume_item_container = 2131361992;
 			
 			// aapt resource value: 0x7f0a003e
 			public const int withText = 2131361854;
@@ -8447,7 +8474,13 @@ namespace XamarinBlogEducation.Android
 			public const int tooltip = 2130968662;
 			
 			// aapt resource value: 0x7f040057
-			public const int UserProfileViewModel = 2130968663;
+			public const int user_post_item = 2130968663;
+			
+			// aapt resource value: 0x7f040058
+			public const int UserPostsView = 2130968664;
+			
+			// aapt resource value: 0x7f040059
+			public const int UserProfileViewModel = 2130968665;
 			
 			static Layout()
 			{
@@ -8463,7 +8496,10 @@ namespace XamarinBlogEducation.Android
 		{
 			
 			// aapt resource value: 0x7f100000
-			public const int navigation_drawer = 2131755008;
+			public const int menu_drawer = 2131755008;
+			
+			// aapt resource value: 0x7f100001
+			public const int navigation_drawer = 2131755009;
 			
 			static Menu()
 			{
@@ -8488,7 +8524,13 @@ namespace XamarinBlogEducation.Android
 			public const int ic_launcher_round = 2130903042;
 			
 			// aapt resource value: 0x7f030003
-			public const int icons8_menu_24 = 2130903043;
+			public const int icons8_back_arrow_64 = 2130903043;
+			
+			// aapt resource value: 0x7f030004
+			public const int icons8_menu_24 = 2130903044;
+			
+			// aapt resource value: 0x7f030005
+			public const int icons8_menu_48 = 2130903045;
 			
 			static Mipmap()
 			{
@@ -8502,6 +8544,15 @@ namespace XamarinBlogEducation.Android
 		
 		public partial class String
 		{
+			
+			// aapt resource value: 0x7f0b0046
+			public const int AllPostsTitle = 2131427398;
+			
+			// aapt resource value: 0x7f0b0047
+			public const int CreatePostTitle = 2131427399;
+			
+			// aapt resource value: 0x7f0b0048
+			public const int UserPostsTitle = 2131427400;
 			
 			// aapt resource value: 0x7f0b0015
 			public const int abc_action_bar_home_description = 2131427349;

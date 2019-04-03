@@ -12,19 +12,18 @@ namespace XamarinBlogEducation.Core.ViewModels.Activities
         private string _email;
         private string _password;
         private LoginAccountViewModel user;
-        private readonly IUserService _userService;  
+        private readonly IUserService _userService;
 
-       public LoginViewModel(
-            IUserService userService,
-            IMvxNavigationService _navigationService) : base(_navigationService)
+        public LoginViewModel(IUserService userService,
+             IMvxNavigationService navigationService) : base(navigationService)
         {
             _userService = userService;
-            LoginCommand  = new MvxAsyncCommand(LoginAsync);
-            SingUpCommand  = new MvxAsyncCommand(SignUpAsync);
+            LoginCommand = new MvxAsyncCommand(LoginAsync);
+            SingUpCommand = new MvxAsyncCommand(SignUpAsync);
             SkipCommand = new MvxAsyncCommand(SkipAsync);
             ToProfileCommand = new MvxAsyncCommand<EditAccountViewModel>(ToProfileAsync);
         }
-        public IMvxCommand LoginCommand { get; private set; } 
+        public IMvxCommand LoginCommand { get; private set; }
         public IMvxCommand SingUpCommand { get; private set; }
         public IMvxCommand SkipCommand { get; private set; }
         public IMvxCommand<EditAccountViewModel> ToProfileCommand { get; private set; }
@@ -50,28 +49,31 @@ namespace XamarinBlogEducation.Core.ViewModels.Activities
 
         private async Task LoginAsync()
         {
-               user = new LoginAccountViewModel() {
+            user = new LoginAccountViewModel()
+            {
                 Email = _email,
-                Password = _password};
-                
-         var loggedUser= await _userService.GetUserAsync(user);
-            ToProfileCommand.Execute(loggedUser);
+                Password = _password
+            };
+
+            var loggedUser = await _userService.GetUserAsync(user);
+            await NavigationService.Navigate<AllPostsViewModel>();
+            await DisposeView(this);
         }
 
         private async Task SignUpAsync()
         {
-          
-           await _navigationService.Navigate<RegisterViewModel>();
+
+            await NavigationService.Navigate<RegisterViewModel>();
         }
 
         private async Task SkipAsync()
         {
-            await _navigationService.Navigate<AllPostsViewModel>();
+            await NavigationService.Navigate<AllPostsViewModel>();
 
         }
         private async Task ToProfileAsync(EditAccountViewModel user)
         {
-            await _navigationService.Navigate<UserProfileViewModel, EditAccountViewModel>(user);
+            await NavigationService.Navigate<UserProfileViewModel, EditAccountViewModel>(user);
         }
 
     }

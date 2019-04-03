@@ -14,7 +14,7 @@ namespace XamarinBlogEducation.Core.Services.Interfaces
         Task AutologinUserAsync(RegisterAccountViewModel model);
         Task UploadImageAsync(byte[] image, EditAccountViewModel model);
         Task UpdateUserAsync(EditAccountViewModel model);
-        Task<EditAccountViewModel> GetUserInfo(LoginAccountViewModel model);
+        Task<EditAccountViewModel> GetUserInfo(string email);
         Task ChangeUserPassword(ChangePasswordViewModel model);
     }
 }

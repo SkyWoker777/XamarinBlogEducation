@@ -16,6 +16,7 @@ namespace XamarinBlogEducation.Core.Services.Interfaces
         Task<List<GetAllCategoriesblogViewItem>> GetAllCategories();
         Task AddNewPost(CreatePostBlogViewModel model);
         Task<bool> AddNewCategory(GetAllCategoriesblogViewItem category);
+        Task<List<GetAllPostsBlogViewItem>> GetUserPosts(string userEmail);
         Task NavigatePosts();
         Task UpdatePost();
         Task RemovePost();

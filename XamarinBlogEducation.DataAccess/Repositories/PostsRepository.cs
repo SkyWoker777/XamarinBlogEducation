@@ -27,7 +27,10 @@ namespace XamarinBlogEducation.DataAccess.Repositories
         {
             return await _context.Posts.Where(x => x.CategoryId != null && x.CategoryId == categoryId).ToListAsync();
         }
-
+        public async Task<IEnumerable<Post>> GetByAuthor(string userId)
+        {
+            return await _context.Posts.Where(x => x.AuthorId != null && x.AuthorId == userId).ToListAsync();
+        }
         public async Task<IEnumerable<Post>> GetByDate(DateTime creationDate)
         {
             return await _context.Posts

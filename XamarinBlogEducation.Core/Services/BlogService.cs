@@ -16,29 +16,24 @@ using XamarinBlogEducation.ViewModels.Models.Blog;
 
 namespace XamarinBlogEducation.Core.Services
 {
-    public class BlogService: IBlogService
+    public class BlogService : IBlogService
     {
         private readonly IHttpService _httpService;
         public BlogService(IHttpService httpService)
-        {  
+        {
             _httpService = httpService;
-           
+
         }
         public async Task<GetDetailsPostBlogView> ShowDetailedPost()
         {
             var url = $"/Blog/getPost";
             var result = await _httpService.ExecuteQuery(url, HttpOperationMode.GET);
             var parsedResult = await _httpService.ProcessJson<GetDetailsPostBlogView>(result);
-            return  parsedResult;
+            return parsedResult;
 
         }
         public async Task AddNewPost(CreatePostBlogViewModel model)
         {
-            //var url = "/Blog/add";
-            //var json = JsonConvert.SerializeObject(model);
-            //var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
-            //httpContent.Headers.Add("Authorization", "Bearer " + CrossSecureStorage.Current.GetValue("securityToken"));
-            //var result = await _httpService.ExecuteQuery(url, HttpOperationMode.POST, httpContent);
             using (var client = new HttpClient())
             {
                 try
@@ -75,11 +70,28 @@ namespace XamarinBlogEducation.Core.Services
         {
             var url = $"/Blog/getPostList";
             var result = await _httpService.ExecuteQuery(url, HttpOperationMode.GET);
-            var json = await result.Content.ReadAsStringAsync().ConfigureAwait(false);           
-            var parsedResult = JsonConvert.DeserializeObject<List<GetAllPostsBlogViewItem>>(json);         
-            return parsedResult;           
+            var json = await result.Content.ReadAsStringAsync().ConfigureAwait(false);
+            var parsedResult = JsonConvert.DeserializeObject<List<GetAllPostsBlogViewItem>>(json);
+            return parsedResult;
         }
-
+        public async Task<List<GetAllPostsBlogViewItem>> GetUserPosts(string userEmail)
+        {
+            var parsedResult = new List<GetAllPostsBlogViewItem>();
+            using (var client = new HttpClient())
+            {
+                var url = $"{"http://195.26.92.83:6776/api/Blog/getUserPosts?useremail="}{userEmail}";
+                var message = new HttpRequestMessage(HttpMethod.Get, url);
+                client.DefaultRequestHeaders.Add("Authorization", "Bearer " + CrossSecureStorage.Current.GetValue("securityToken"));
+                var response = await client.SendAsync(message);              
+                if (response.IsSuccessStatusCode)
+                {
+                    var json = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+                    parsedResult = JsonConvert.DeserializeObject<List<GetAllPostsBlogViewItem>>(json);
+                    return parsedResult;
+                }
+                return parsedResult;
+            }
+        }
         public Task UpdatePost()
         {
             throw new NotImplementedException();

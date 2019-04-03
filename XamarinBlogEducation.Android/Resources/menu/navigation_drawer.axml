@@ -4,23 +4,14 @@ xmlns:local="http://schemas.android.com/apk/res-auto">
 
   <group android:id="@+id/nav_items">
     <item
-        android:id="@+id/nav_home"
-        android:title="Home" />
-    <item
         android:id="@+id/nav_posts"
-        android:title="All Posts" />
-    <item
-       android:id="@+id/nav_profile"
-       android:title="Profile" />
+        android:title="All Posts" />  
     <item
        android:id="@+id/nav_login"
        android:title="Join Us" />
     <item
-     android:id="@+id/nav_addpost"
-     android:title="Add post" />
-    <item
       android:id="@+id/nav_exit"
-      android:title="Exit" />
+      android:title="Exit app" />
   </group>
 
 </menu>

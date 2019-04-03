@@ -1,26 +1,32 @@
 ﻿
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
+using System.Threading.Tasks;
 
 namespace XamarinBlogEducation.Core.ViewModels.Activities
 {
-   public abstract class BaseViewModel : MvxViewModel
-   {
-        public IMvxNavigationService _navigationService;
+    public abstract class BaseViewModel : MvxViewModel
+    {
+        protected IMvxNavigationService NavigationService;
         protected BaseViewModel(IMvxNavigationService navigationService)
-            {
-            _navigationService = navigationService;
-            }
+        {
+            NavigationService = navigationService;
+        }
+
+        public async Task DisposeView(IMvxViewModel model)
+        {
+           await NavigationService.Close(model);
+        }
     }
 
     public abstract class BaseViewModel<TParameter> : MvxViewModel<TParameter>
             where TParameter : class
     {
-        public IMvxNavigationService _navigationService;
+        protected IMvxNavigationService NavigationService;
 
         protected BaseViewModel(IMvxNavigationService navigationService)
         {
-            _navigationService = navigationService;
+            NavigationService = navigationService;
         }
 
     }

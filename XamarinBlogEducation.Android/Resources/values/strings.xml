@@ -8,4 +8,7 @@
   <string name="hello">Hello World, Click Me!</string>
   <string name="openDrawer">Drawer Open</string>
   <string name="closeDrawer">Drawer Closed</string>
+  <string name="AllPostsTitle">Latest Posts</string>
+  <string name="CreatePostTitle" >Add new post</string>
+  <string name="UserPostsTitle">It`s your posts</string>
 </resources>
