@@ -14,7 +14,7 @@ namespace XamarinBlogEducation.Business.Services.Interfaces
         Task<List<GetAllPostsBlogViewItem>> GetAll();//список всех постов. title+discription
         Task CreatePost(CreatePostBlogViewModel post);//должен собрать пост
         Task DeletePost(int selectedPostId);
-        Task EditPostAsync(CreatePostBlogViewModel post, int postId);
+        Task EditPostAsync(CreatePostBlogViewModel post);
         Task<GetDetailsPostBlogView> GetDetailsPost(int selectedPostId);
         Task<List<GetAllCommentsBlogViewItem>> ShowComments(int selectedPostId);
         Task<Post> GetPost(int postId);

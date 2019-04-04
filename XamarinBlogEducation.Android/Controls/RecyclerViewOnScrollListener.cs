@@ -27,8 +27,8 @@ namespace XamarinBlogEducation.Android.Controls
             var totalItemCount = recyclerView.GetAdapter().ItemCount;
             var pastVisiblesItems = LayoutManager.FindFirstVisibleItemPosition();
 
-            if (totalItemCount != 0
-                //&& pastVisiblesItems > 0
+            if (totalItemCount != 0 && pastVisiblesItems > 0
+                //
                 &&
                 (
                     RemainingItemsToTriggerFetch >= totalItemCount

@@ -13,7 +13,7 @@ using Android.Widget;
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.Droid.Support.V7.RecyclerView;
 using MvvmCross.Platforms.Android.Presenters.Attributes;
-using XamarinBlogEducation.Core.ViewModels.Activities;
+using XamarinBlogEducation.Core.ViewModels;
 using XamarinBlogEducation.Core.ViewModels.Fragments;
 
 namespace XamarinBlogEducation.Android.Views.Fragments

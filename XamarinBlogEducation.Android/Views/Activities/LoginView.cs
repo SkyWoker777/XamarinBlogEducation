@@ -1,14 +1,11 @@
 ﻿using System;
 using Android.App;
-using Android.Content;
 using Android.OS;
-using Android.Support.V4.Widget;
 using Android.Widget;
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.Platforms.Android.Views;
 using Plugin.SecureStorage;
-using XamarinBlogEducation.Android.Views.Fragments;
-using XamarinBlogEducation.Core.ViewModels.Activities;
+using XamarinBlogEducation.Core.ViewModels;
 
 namespace XamarinBlogEducation.Android.Views.Activities
 {

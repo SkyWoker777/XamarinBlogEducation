@@ -15,7 +15,7 @@ using MvvmCross.Platforms.Android.Presenters.Attributes;
 using MvvmCross.ViewModels;
 using Plugin.SecureStorage;
 using XamarinBlogEducation.Android.Views.Activities;
-using XamarinBlogEducation.Core.ViewModels.Activities;
+using XamarinBlogEducation.Core.ViewModels;
 
 namespace XamarinBlogEducation.Android.Views
 {
@@ -70,19 +70,13 @@ namespace XamarinBlogEducation.Android.Views
                 case Resource.Id.nav_login:
                     ViewModel.LoginCommand.Execute(null);
                     break;
-                    //case Android.Resource.Id.nav_home:
-                    //    DrawerLayout.OpenDrawer(GravityCompat.Start);
-                    //    return true;
             }
             return base.OnOptionsItemSelected(item);
         }
-        //public override void OnBackPressed()
-        //{
-        //    if (DrawerLayout != null && DrawerLayout.IsDrawerOpen(GravityCompat.Start))
-        //        DrawerLayout.CloseDrawers();
-        //    else
-        //        base.OnBackPressed();
-        //}    
+        public override void OnBackPressed()
+        {
+          
+        }
         public void HideSoftKeyboard()
         {
             if (CurrentFocus == null)

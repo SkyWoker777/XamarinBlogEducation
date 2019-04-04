@@ -1,12 +1,9 @@
-﻿using MvvmCross.Base;
+﻿
 using Newtonsoft.Json;
 using Plugin.SecureStorage;
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Net;
 using System.Net.Http;
-using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Threading.Tasks;
 using XamarinBlogEducation.Core.Services.Interfaces;
@@ -92,10 +89,28 @@ namespace XamarinBlogEducation.Core.Services
                 return parsedResult;
             }
         }
-        public Task UpdatePost()
+        public async Task UpdatePost(CreatePostBlogViewModel editedPost)
         {
-            throw new NotImplementedException();
-        }
+            using (var client = new HttpClient())
+            {
+                try
+                {
+                    var json = JsonConvert.SerializeObject(editedPost);
+                    var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
+                    var message = new HttpRequestMessage(HttpMethod.Post, "http://195.26.92.83:6776/api/Blog/edit");
+                    message.Content = httpContent;
+                    client.DefaultRequestHeaders.Add("Authorization", "Bearer " + CrossSecureStorage.Current.GetValue("securityToken"));
+                    var response = await client.SendAsync(message);               
+                    if (response.IsSuccessStatusCode)
+                    {
+                        return;
+                    }
+                }
+                catch (Exception ex)
+                {
+                }
+            }
+            }
 
         public async Task<List<GetAllCategoriesblogViewItem>> GetAllCategories()
         {

@@ -1,14 +1,9 @@
 ﻿using Android.OS;
-using Android.Support.V4.View;
 using Android.Text.Method;
 using Android.Views;
 using Android.Widget;
-using MvvmCross.Navigation;
 using MvvmCross.Platforms.Android.Presenters.Attributes;
-using System;
-using System.Threading.Tasks;
-using XamarinBlogEducation.Core.Services.Interfaces;
-using XamarinBlogEducation.Core.ViewModels.Activities;
+using XamarinBlogEducation.Core.ViewModels;
 using XamarinBlogEducation.Core.ViewModels.Fragments;
 
 namespace XamarinBlogEducation.Android.Views.Fragments

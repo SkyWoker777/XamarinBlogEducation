@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:local="http://schemas.android.com/apk/res-auto"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
+	<android.support.design.widget.CoordinatorLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:scrollbars="vertical"
+		android:background="#e8d2c0">
+		
+		<LinearLayout
+				android:paddingTop="?android:attr/actionBarSize"
+			    android:id="@+id/editPostLayout"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:orientation="vertical"
+			    android:paddingLeft="16dp"
+				android:paddingRight="16dp">
+		<EditText
+				android:id="@+id/editTitle"
+				android:layout_gravity="center_horizontal"
+				android:paddingLeft="16dp"
+				android:paddingRight="16dp"
+				android:paddingTop="20dp"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:textSize="20dp"
+				android:textColor="#13567c"
+				android:textStyle="bold|italic"
+				local:MvxBind="ItemsSource PostToEdit;Text PostToEdit.Title;" />
+         <EditText
+				android:id="@+id/editDescription"
+				android:scrollbars="vertical"
+				android:layout_marginTop="10dp"
+				android:layout_width="match_parent"
+				android:layout_height="100dp"
+				android:background="@drawable/background_login"
+				android:paddingLeft="15dp"
+				android:paddingRight="15dp"
+				android:paddingTop="15dp"
+				android:paddingBottom="15dp"
+				local:MvxBind="ItemsSource PostToEdit;Text PostToEdit.Description;" />
+		<EditText
+				android:id="@+id/editContent"
+				android:scrollbars="vertical"
+				android:layout_marginTop="10dp"
+				android:layout_width="match_parent"
+				android:background="@drawable/background_login"
+				android:layout_height="200dp"
+				android:paddingLeft="15dp"
+				android:paddingRight="15dp"
+				android:paddingTop="15dp"
+				android:paddingBottom="15dp"
+				local:MvxBind="ItemsSource PostToEdit;Text PostToEdit.Content;" />
+			<TextView
+				android:gravity="left"
+				android:paddingLeft="16dp"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:textSize="12dp"
+				android:textColor="#537487"
+				android:textStyle="italic" 
+				android:editable="true"
+				local:MvxBind="ItemsSource PostToEdit;Text PostToEdit.CreationDate;"/>
+		<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+			    android:gravity="center"
+				android:orientation="horizontal"
+				android:layout_marginTop="10dp">
+
+	<Button android:id="@+id/canselEditPostButton"
+		android:text="cancel"
+		android:gravity="center"
+		android:layout_gravity="center_horizontal"
+		android:layout_marginBottom="20dp"
+		android:backgroundTint="#6db3ce"
+		android:padding="12dp"
+		android:layout_width="100dp"
+		android:layout_height="60dp"
+		 />
+	<Button android:id="@+id/saveEditPostButton"
+		android:text="save changes"
+		android:gravity="center"
+		android:layout_gravity="center_horizontal"
+		android:layout_marginBottom="20dp"
+		android:backgroundTint="#6db3ce"
+		android:padding="12dp"
+		android:layout_width="100dp"
+		android:layout_height="60dp"
+		 />
+				</LinearLayout>
+		</LinearLayout>
+	
+		</android.support.design.widget.CoordinatorLayout>
+	</RelativeLayout>

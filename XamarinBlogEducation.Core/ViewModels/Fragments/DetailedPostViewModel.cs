@@ -3,7 +3,6 @@ using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using System.Threading.Tasks;
 using XamarinBlogEducation.Core.Services.Interfaces;
-using XamarinBlogEducation.Core.ViewModels.Activities;
 using XamarinBlogEducation.ViewModels.Blog;
 using XamarinBlogEducation.ViewModels.Blog.Items;
 
@@ -14,9 +13,7 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
         private IBlogService _blogService;
         public DetailedPostViewModel(IBlogService blogService, IMvxNavigationService navigationService) :base(navigationService)
         {
-           
            _blogService = blogService;
-            //AddCommentCommand = new MvxAsyncCommand(AddComment);
         } 
      
 

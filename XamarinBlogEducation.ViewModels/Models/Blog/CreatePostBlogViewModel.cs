@@ -7,6 +7,7 @@ namespace XamarinBlogEducation.ViewModels.Models.Blog
 {
     public class CreatePostBlogViewModel
     {
+        public long Id { get; set; }
         [Required]
         [StringLength(100, ErrorMessage = "{0} must be at least {2} characters long.", MinimumLength = 5)]
         public string Title { get; set; }

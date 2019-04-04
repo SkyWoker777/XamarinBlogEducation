@@ -28,22 +28,6 @@ namespace XamarinBlogEducation.Android.Views.Fragments
 
             var view = this.BindingInflate(FragmentId, null);
             _toolbar = view.FindViewById<Toolbar>(Resource.Id.toolbar);
-            //if (_toolbar != null)
-            //{
-            //    ParentActivity.SetSupportActionBar(_toolbar);
-            //    ParentActivity.SupportActionBar.SetDisplayShowTitleEnabled(false);
-            //    ParentActivity.SupportActionBar.SetDisplayHomeAsUpEnabled(true);
-            //    _drawerToggle = new MvxActionBarDrawerToggle(
-            //        Activity,                               
-            //        ((MainView)ParentActivity).DrawerLayout, 
-            //        _toolbar,                             
-            //        Resource.String.drawer_open,         
-            //        Resource.String.drawer_close    
-            //    );
-            //    _drawerToggle.DrawerOpened += (object sender, ActionBarDrawerEventArgs e) => ((MainView)Activity)?.HideSoftKeyboard();
-            //    ((MainView)ParentActivity).DrawerLayout.AddDrawerListener(_drawerToggle);
-
-            //}
             return view;
         }
 

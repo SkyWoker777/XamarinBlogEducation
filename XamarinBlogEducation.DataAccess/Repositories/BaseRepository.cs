@@ -39,6 +39,7 @@ namespace XamarinBlogEducation.DataAccess.Repositories
         public void Edit(TEntity entity)
         {
             _dbContext.Update(entity);
+            _dbContext.SaveChanges();
         }
     }
 }

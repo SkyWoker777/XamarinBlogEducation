@@ -59,13 +59,11 @@ namespace XamarinBlogEducation.Business.Services
             return await _postsRepository.GetPost(postId);
         }
 
-        public async Task EditPostAsync(CreatePostBlogViewModel post, int postId)
+        public async Task EditPostAsync(CreatePostBlogViewModel post)
         {
-            var oldPost = await _postsRepository.GetPost(postId);
-
-            oldPost.Author = post.Author;
+            var oldPost = await _postsRepository.GetPost(post.Id);
+            
             oldPost.Content = post.Content;
-            //oldPost.CategorieId.Id =post.CategoriesId ;
             oldPost.Description = post.Description;
             oldPost.Title = post.Title;
             _postsRepository.Edit(oldPost);
@@ -81,6 +79,7 @@ namespace XamarinBlogEducation.Business.Services
                 Description = x.Description,
                 Content=x.Content,
                 Author=x.Author,
+                AuthorId=x.AuthorId,
                 CreationDate=x.CreationDate,
                 CategoryId=x.CategoryId
             

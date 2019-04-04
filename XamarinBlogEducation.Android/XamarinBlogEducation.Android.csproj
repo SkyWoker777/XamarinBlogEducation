@@ -76,6 +76,7 @@
     <Compile Include="Views\Fragments\BaseFragment.cs" />
     <Compile Include="Views\Fragments\CreatePostView.cs" />
     <Compile Include="Views\Fragments\DetailedPostView.cs" />
+    <Compile Include="Views\Fragments\EditPostView.cs" />
     <Compile Include="Views\Fragments\MenuView.cs" />
     <Compile Include="Views\Fragments\RegisterView.cs" />
     <Compile Include="Views\Fragments\UserPostsView.cs" />
@@ -325,6 +326,11 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\user_post_item.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\EditPostView.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

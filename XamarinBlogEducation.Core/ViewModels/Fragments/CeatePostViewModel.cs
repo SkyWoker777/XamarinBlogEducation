@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using XamarinBlogEducation.Core.Services.Interfaces;
-using XamarinBlogEducation.Core.ViewModels.Activities;
 using XamarinBlogEducation.ViewModels.Blog.Items;
 using XamarinBlogEducation.ViewModels.Models.Blog;
 

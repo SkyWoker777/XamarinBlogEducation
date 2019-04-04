@@ -2,19 +2,13 @@
 using Android.Views;
 using Android.Widget;
 using MvvmCross.Binding.BindingContext;
-using MvvmCross.Platforms.Android.Binding.Views;
 using MvvmCross.Platforms.Android.Presenters.Attributes;
 using System;
-using XamarinBlogEducation.Core.ViewModels.Activities;
+using XamarinBlogEducation.Core.ViewModels;
 using XamarinBlogEducation.Core.ViewModels.Fragments;
 using MvvmCross.Droid.Support.V7.AppCompat.Widget;
-using XamarinBlogEducation.Android.Elements;
-using Android.Support.V4.App;
-using System.Windows.Input;
 using Android.Text.Method;
-using Android.Support.V4.View;
 using Plugin.SecureStorage;
-using Android.Support.V7.App;
 
 namespace XamarinBlogEducation.Android.Views.Fragments
 {

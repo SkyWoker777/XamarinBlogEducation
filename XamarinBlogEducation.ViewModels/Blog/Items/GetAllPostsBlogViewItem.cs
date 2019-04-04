@@ -19,6 +19,8 @@ namespace XamarinBlogEducation.ViewModels.Blog.Items
         public long CategoryId { get; set; }
         [JsonProperty("Author")]
         public string Author { get; set; }
+        [JsonProperty("AuthorId")]
+        public string AuthorId { get; set; }
         [JsonProperty("Comments")]
         public List<GetAllCommentsBlogViewItem> Comments { get; set; }
         [JsonProperty("CreationDate")]

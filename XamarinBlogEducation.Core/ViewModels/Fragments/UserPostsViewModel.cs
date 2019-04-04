@@ -2,9 +2,7 @@
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using Plugin.SecureStorage;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using XamarinBlogEducation.Core.Services.Interfaces;
 using XamarinBlogEducation.ViewModels.Blog.Items;
@@ -81,7 +79,7 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
 
         private async Task PostSelected(GetAllPostsBlogViewItem selectedPost)
         {
-            await _navigationService.Navigate<DetailedPostViewModel, GetAllPostsBlogViewItem>(selectedPost);
+            await _navigationService.Navigate<EditPostViewModel, GetAllPostsBlogViewItem>(selectedPost);
         }
         private void RefreshPosts()
         {

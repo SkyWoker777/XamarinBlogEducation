@@ -70,18 +70,11 @@ namespace XamarinBlogEducation.Api.Controllers
             return Ok();
         }
         [Authorize(JwtBearerDefaults.AuthenticationScheme)]
-        [HttpGet("post/{postid:int}/edit")]
-        public async Task<GetDetailsPostBlogView> EditPost(int postid)
+        [HttpPost()]
+        [Route("edit")]
+        public async Task<IActionResult> EditPost([FromBody]CreatePostBlogViewModel post)
         {
-            return await _postService.GetDetailsPost(postid);
-
-        }
-
-        [Authorize(JwtBearerDefaults.AuthenticationScheme)]
-        [HttpPost("post/edit")]
-        public async Task<IActionResult> EditPost([FromBody]CreatePostBlogViewModel post, int postid)
-        {
-            await _postService.EditPostAsync(post, postid);
+            await _postService.EditPostAsync(post);
             return Ok();
         }
         

@@ -2,7 +2,7 @@
 using MvvmCross.Navigation;
 using XamarinBlogEducation.Core.ViewModels.Fragments;
 
-namespace XamarinBlogEducation.Core.ViewModels.Activities
+namespace XamarinBlogEducation.Core.ViewModels
 {
    public class MainViewModel : BaseViewModel
     {

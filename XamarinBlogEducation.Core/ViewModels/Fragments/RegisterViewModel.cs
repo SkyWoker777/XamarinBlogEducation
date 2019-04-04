@@ -2,7 +2,6 @@
 using MvvmCross.Navigation;
 using System.Threading.Tasks;
 using XamarinBlogEducation.Core.Services.Interfaces;
-using XamarinBlogEducation.Core.ViewModels.Activities;
 using XamarinBlogEducation.ViewModels.Models.Account;
 
 namespace XamarinBlogEducation.Core.ViewModels.Fragments

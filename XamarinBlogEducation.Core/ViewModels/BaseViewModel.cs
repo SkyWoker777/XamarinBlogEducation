@@ -3,7 +3,7 @@ using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using System.Threading.Tasks;
 
-namespace XamarinBlogEducation.Core.ViewModels.Activities
+namespace XamarinBlogEducation.Core.ViewModels
 {
     public abstract class BaseViewModel : MvxViewModel
     {
@@ -28,6 +28,9 @@ namespace XamarinBlogEducation.Core.ViewModels.Activities
         {
             NavigationService = navigationService;
         }
-
+        public async Task DisposeView(IMvxViewModel model)
+        {
+            await NavigationService.Close(model);
+        }
     }
 }

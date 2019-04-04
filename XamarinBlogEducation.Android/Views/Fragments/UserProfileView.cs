@@ -11,7 +11,7 @@ using MvvmCross.Platforms.Android.Presenters.Attributes;
 using Refractored.Controls;
 using System;
 using System.IO;
-using XamarinBlogEducation.Core.ViewModels.Activities;
+using XamarinBlogEducation.Core.ViewModels;
 using XamarinBlogEducation.Core.ViewModels.Fragments;
 
 namespace XamarinBlogEducation.Android.Views.Fragments
@@ -80,7 +80,7 @@ namespace XamarinBlogEducation.Android.Views.Fragments
         private void applyButton_OnClick(object sender, EventArgs e)
         {
             ViewModel.UpdateCommand.Execute();
-            string toast = string.Format("All changes was saved");
+            string toast = string.Format("All changes were saved");
             Toast.MakeText(Context, toast, ToastLength.Long).Show();
             ViewModel.GoToPostsCommand.Execute();
         }

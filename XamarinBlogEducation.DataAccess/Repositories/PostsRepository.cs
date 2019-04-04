@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using XamarinBlogEducation.DataAccess.Entities;
 using XamarinBlogEducation.DataAccess.Repositories.Interfaces;
@@ -46,7 +45,7 @@ namespace XamarinBlogEducation.DataAccess.Repositories
             return result;
         }
 
-        public async Task<Post> GetPost(int id)
+        public async Task<Post> GetPost(long id)
         {
             var res = await _context.Posts.Where(x => x.Id == id).FirstOrDefaultAsync<Post>();
             if (res == null)

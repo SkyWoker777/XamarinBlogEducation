@@ -5,7 +5,7 @@ using XamarinBlogEducation.Core.Services.Interfaces;
 using XamarinBlogEducation.Core.ViewModels.Fragments;
 using XamarinBlogEducation.ViewModels.Models.Account;
 
-namespace XamarinBlogEducation.Core.ViewModels.Activities
+namespace XamarinBlogEducation.Core.ViewModels
 {
     public class LoginViewModel : BaseViewModel
     {

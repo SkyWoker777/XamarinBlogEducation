@@ -2,11 +2,7 @@
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using Plugin.SecureStorage;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
-using XamarinBlogEducation.Core.ViewModels.Activities;
 
 namespace XamarinBlogEducation.Core.ViewModels.Fragments
 {

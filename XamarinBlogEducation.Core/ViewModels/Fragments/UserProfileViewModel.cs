@@ -1,10 +1,8 @@
 ﻿using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using Plugin.SecureStorage;
-using System;
 using System.Threading.Tasks;
 using XamarinBlogEducation.Core.Services.Interfaces;
-using XamarinBlogEducation.Core.ViewModels.Activities;
 using XamarinBlogEducation.Core.ViewModels.Dialogs;
 using XamarinBlogEducation.ViewModels.Models.Account;
 
