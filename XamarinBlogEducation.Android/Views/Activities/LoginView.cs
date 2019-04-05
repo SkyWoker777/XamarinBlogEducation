@@ -18,6 +18,7 @@ namespace XamarinBlogEducation.Android.Views.Activities
         private Button loginButton;
         private Button buttonRegister;
         private TextView linkSkip;
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             
