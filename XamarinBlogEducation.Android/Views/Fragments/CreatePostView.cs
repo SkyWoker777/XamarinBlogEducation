@@ -9,6 +9,7 @@ using XamarinBlogEducation.Core.ViewModels.Fragments;
 using MvvmCross.Droid.Support.V7.AppCompat.Widget;
 using Android.Text.Method;
 using Plugin.SecureStorage;
+using Android.Support.V7.App;
 
 namespace XamarinBlogEducation.Android.Views.Fragments
 {
@@ -27,8 +28,7 @@ namespace XamarinBlogEducation.Android.Views.Fragments
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             var view= base.OnCreateView(inflater, container, savedInstanceState);
-            //((AppCompatActivity)Activity).SupportActionBar.SetHomeAsUpIndicator(Android.Resource.Mipmap.icons8_back_arrow_64);
-            //((AppCompatActivity)Activity).SupportActionBar.SetTitle(Resource.String.CreatePostTitle);
+            ((AppCompatActivity)Activity).SupportActionBar.SetTitle(Resource.String.CreatePostTitle);
             addNewPostButton = view.FindViewById<Button>(Resource.Id.addNewPostButton);
             addCategoryButton = view.FindViewById<Button>(Resource.Id.addCategoryButton);
             mvxSpinner = view.FindViewById<MvxAppCompatSpinner>(Resource.Id.allCategoriesSpinner);

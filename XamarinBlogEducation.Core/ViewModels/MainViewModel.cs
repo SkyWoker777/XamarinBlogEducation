@@ -15,6 +15,7 @@ namespace XamarinBlogEducation.Core.ViewModels
             ShowProfileCommand = new MvxAsyncCommand(async () => await _navigationService.Navigate<UserProfileViewModel>());
             ExitCommand = new MvxAsyncCommand(async() =>  System.Diagnostics.Process.GetCurrentProcess().CloseMainWindow());
             LoginCommand = new MvxAsyncCommand(async () => await _navigationService.Navigate<LoginViewModel>());
+            GoBackCommand = new MvxAsyncCommand(async () => await NavigationService.Close(this));
         }
         public IMvxAsyncCommand ShowMenuViewModelCommand { get; private set; }
         public IMvxCommand ShowHomeCommand { get; private set; }
@@ -22,5 +23,6 @@ namespace XamarinBlogEducation.Core.ViewModels
         public IMvxCommand ShowProfileCommand { get; private set; }
         public IMvxCommand ExitCommand { get; private set; }
         public IMvxCommand LoginCommand { get; private set; }
+        public IMvxCommand GoBackCommand { get; private set; }
     }
 }

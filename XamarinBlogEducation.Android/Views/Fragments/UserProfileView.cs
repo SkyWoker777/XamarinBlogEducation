@@ -3,6 +3,7 @@ using Android.Content;
 using Android.Graphics;
 using Android.OS;
 using Android.Provider;
+using Android.Support.V7.App;
 using Android.Views;
 using Android.Widget;
 using MvvmCross.Binding.BindingContext;
@@ -33,6 +34,10 @@ namespace XamarinBlogEducation.Android.Views.Fragments
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             var view = base.OnCreateView(inflater, container, savedInstanceState);
+            ((AppCompatActivity)Activity).SupportActionBar.SetTitle(Resource.String.UserProfileTitle);
+            ((AppCompatActivity)Activity).SupportActionBar.SetDisplayHomeAsUpEnabled(true);
+            ((AppCompatActivity)Activity).SupportActionBar.SetHomeAsUpIndicator(Android.Resource.Mipmap.icons8_back_arrow_64);
+            ((AppCompatActivity)Activity).SupportActionBar.SetDisplayShowHomeEnabled(true);
             editEmail = view.FindViewById<EditText>(Resource.Id.editEmail);
             editUserName = view.FindViewById<EditText>(Resource.Id.editUserName);
             editLastName = view.FindViewById<EditText>(Resource.Id.editLastName);
@@ -50,7 +55,6 @@ namespace XamarinBlogEducation.Android.Views.Fragments
             applyButton.Click += applyButton_OnClick;
             return view;
         }
-
         
         public override void OnActivityResult(int requestCode, int resultCode, Intent data)
         {
@@ -71,7 +75,6 @@ namespace XamarinBlogEducation.Android.Views.Fragments
             byte[] bitmapData = stream.ToArray();
             return bitmapData;
         }
-
         private void updateProfileImage_OnClickAsync(object sender, EventArgs e)
         {
             Intent intent = new Intent(Intent.ActionPick, MediaStore.Images.Media.ExternalContentUri);

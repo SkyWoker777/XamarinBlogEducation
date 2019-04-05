@@ -20,7 +20,7 @@ xmlns:local="http://schemas.android.com/apk/res-auto">
      android:title="Add post" />
     <item
       android:id="@+id/menu_exit"
-      android:title="Exit" />
+      android:title="Log out" />
   </group>
 
 </menu>

@@ -36,36 +36,30 @@ namespace XamarinBlogEducation.Android.Views
             if (toolbar != null)
             {
                 SetSupportActionBar(toolbar);
-                SupportActionBar.SetDisplayShowTitleEnabled(false);
-                if (ifUser == true)
-                {
-                    DrawerLayout.Activated = true;
-                    SupportActionBar.SetDisplayHomeAsUpEnabled(true);
-                    SupportActionBar.SetHomeAsUpIndicator(Android.Resource.Mipmap.icons8_menu_48);
-                    SupportActionBar.SetDisplayShowHomeEnabled(true);
-                    _drawerToggle = new MvxActionBarDrawerToggle(this, DrawerLayout, toolbar,
-                        Resource.String.drawer_open,
-                        Resource.String.drawer_close
-                    );
-                    _drawerToggle.DrawerOpened += (object sender, ActionBarDrawerEventArgs e) => (this)?.HideSoftKeyboard();
-                    DrawerLayout.AddDrawerListener(_drawerToggle);   
-                }
+                SupportActionBar.SetDisplayShowTitleEnabled(false);         
+                SupportActionBar.SetDisplayHomeAsUpEnabled(true);          
             }
-            if (bundle == null)
-            { 
-                ViewModel.ShowMenuViewModelCommand.Execute(null);         
-            }
-            
+         
+           
+        }
+        public override bool OnSupportNavigateUp()
+        {
+            FragmentManager
+            ViewModel.GoBackCommand.Execute();
+            return base.OnSupportNavigateUp();
         }
         public override bool OnOptionsItemSelected(IMenuItem item)
         {
             switch (item.ItemId)
             {
+                case Resource.Id.home:
+                    ViewModel.GoBackCommand.Execute();
+                    break;
                 case Resource.Id.nav_posts:
                     ViewModel.ShowHomeCommand.Execute(null);
                     break;
-                case Resource.Id.nav_exit:
-                    ViewModel.ExitCommand.Execute(null);
+                case Resource.Id.nav_add:
+                    ViewModel.AddPostCommand.Execute(null);
                     break;
                 case Resource.Id.nav_login:
                     ViewModel.LoginCommand.Execute(null);
@@ -99,8 +93,14 @@ namespace XamarinBlogEducation.Android.Views
                 var login = menu.FindItem(Resource.Id.nav_login);
                 login.SetVisible(false);
             }
+            if (ifUser != true)
+            {
+                var login = menu.FindItem(Resource.Id.nav_add);
+                login.SetVisible(false);
+            }
             return true;
         }
 
+        
     }
 }
