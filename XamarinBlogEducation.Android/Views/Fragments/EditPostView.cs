@@ -7,6 +7,7 @@ using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
+using Android.Support.V7.App;
 using Android.Text.Method;
 using Android.Views;
 using Android.Widget;
@@ -30,6 +31,7 @@ namespace XamarinBlogEducation.Android.Views.Fragments
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             var view = base.OnCreateView(inflater, container, savedInstanceState);
+            ((AppCompatActivity)Activity).SupportActionBar.SetTitle(Resource.String.EditPostTitle);
             content = view.FindViewById<EditText>(Resource.Id.editContent);
             title = view.FindViewById<EditText>(Resource.Id.editTitle);
             description = view.FindViewById<EditText>(Resource.Id.editDescription);

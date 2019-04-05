@@ -1,5 +1,6 @@
 ﻿using System;
 using Android.OS;
+using Android.Support.V7.App;
 using Android.Support.V7.Widget;
 using Android.Views;
 using MvvmCross.Droid.Support.V4;
@@ -27,11 +28,19 @@ namespace XamarinBlogEducation.Android.Views.Fragments
             var ignore = base.OnCreateView(inflater, container, savedInstanceState);
 
             var view = this.BindingInflate(FragmentId, null);
-            _toolbar = view.FindViewById<Toolbar>(Resource.Id.toolbar);
+            _toolbar = ((AppCompatActivity)Activity).FindViewById<Toolbar>(Resource.Id.toolbar);
+            //_toolbar.NavigationClick += NavigationClick;
             return view;
         }
 
+        private void NavigationClick(object sender, Toolbar.NavigationClickEventArgs e)
+        {
+            
+         
+        }
+
         protected abstract int FragmentId { get; }
+
     }
     public abstract class BaseFragment<TViewModel> : BaseFragment where TViewModel : class, IMvxViewModel
     {

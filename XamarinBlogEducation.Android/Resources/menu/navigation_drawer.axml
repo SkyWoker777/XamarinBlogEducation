@@ -10,8 +10,8 @@ xmlns:local="http://schemas.android.com/apk/res-auto">
        android:id="@+id/nav_login"
        android:title="Join Us" />
     <item
-      android:id="@+id/nav_exit"
-      android:title="Exit app" />
+      android:id="@+id/nav_add"
+      android:title="Add post" />
   </group>
 
 </menu>

@@ -31,8 +31,13 @@ namespace XamarinBlogEducation.Business.Services
         {
 
             var post = new Post();
+            var author = await _userManager.FindByIdAsync(postBlog.AuthorId);
             post.Title = postBlog.Title;
             post.Content = postBlog.Content;
+            if (postBlog.Author == null)
+            {
+                post.Author = (author.FirstName + " " + author.LastName);
+            }
             post.Author = postBlog.Author;
             post.Description = postBlog.Description;
             post.CategoryId = postBlog.CategoriesId;

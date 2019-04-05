@@ -1,18 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
+<android.support.v4.widget.DrawerLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:local="http://schemas.android.com/apk/res-auto"
-	android:layout_width="match_parent"
+	android:id="@+id/allpost_drawer"
+	android:fitsSystemWindows="true"	
 	android:layout_height="match_parent"
+	android:layout_width="match_parent"
 	android:background="#e8d2c0">
-	<LinearLayout
-			android:layout_height= "match_parent"
-			android:layout_width="match_parent"
-			android:orientation= "vertical"
-			android:background="#e8d2c0">
-		<RelativeLayout
+<RelativeLayout
 		android:layout_width="match_parent"
-		android:layout_height="match_parent">
+		android:layout_height="match_parent"> 
+			<android.support.design.widget.AppBarLayout
+            android:id="@+id/filterToolBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <include
+                layout="@layout/filters_toolbar" />
+        </android.support.design.widget.AppBarLayout>
 		<MvxSwipeRefreshLayout	
 			android:id="@+id/refresher"
 			android:layout_width="match_parent"
@@ -28,5 +32,10 @@
 				local:MvxBind="ItemsSource AllPosts; ItemClick PostSelectedCommand" />
 		</MvxSwipeRefreshLayout>
 	</RelativeLayout>
-	</LinearLayout>
-</android.support.design.widget.CoordinatorLayout>
+	<FrameLayout
+		android:id="@+id/navigation_frame"
+		android:layout_height="match_parent"
+		android:layout_width="wrap_content"
+		android:layout_gravity="left|start" 
+	/>
+</android.support.v4.widget.DrawerLayout>

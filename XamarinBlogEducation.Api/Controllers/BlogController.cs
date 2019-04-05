@@ -20,11 +20,12 @@ namespace XamarinBlogEducation.Api.Controllers
     {
         private readonly IPostsService _postService;
         private readonly ICommentsService _commentService;
-
-        public BlogController(IPostsService postsService, ICommentsService commentService)
+        private readonly IAccountService _accountService;
+        public BlogController(IPostsService postsService, ICommentsService commentService,IAccountService accountService)
         {
             _postService = postsService;
             _commentService = commentService;
+            _accountService = accountService;
         }
 
         [HttpGet]

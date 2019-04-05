@@ -12,7 +12,7 @@ using XamarinBlogEducation.Core.ViewModels.Fragments;
 
 namespace XamarinBlogEducation.Android.Views.Fragments
 {
-    [MvxFragmentPresentation(typeof(MainViewModel), Resource.Id.navigation_frame)]
+    [MvxFragmentPresentation(typeof(AllPostsViewModel), Resource.Id.navigation_frame)]
 
     public class MenuView : MvxFragment<MenuViewModel>, NavigationView.IOnNavigationItemSelectedListener
     {
@@ -32,13 +32,6 @@ namespace XamarinBlogEducation.Android.Views.Fragments
             _navigationView.Menu.FindItem(Resource.Id.menu_exit).SetVisible(true);
              return view;
             }
-            //if (ifUser==false)
-            //{             
-            //    _navigationView.Menu.FindItem(Resource.Id.nav_profile).SetVisible(false);
-            //    _navigationView.Menu.FindItem(Resource.Id.nav_login).SetVisible(true);
-            //    _navigationView.Menu.FindItem(Resource.Id.nav_exit).SetVisible(false);
-
-            //}
             return null;
         }
 

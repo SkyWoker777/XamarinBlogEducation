@@ -14,9 +14,14 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
         public DetailedPostViewModel(IBlogService blogService, IMvxNavigationService navigationService) :base(navigationService)
         {
            _blogService = blogService;
-        } 
-     
+            GoBackCommand = new MvxAsyncCommand(GoBackAsync);
+        }
 
+        public IMvxCommand GoBackCommand { get; private set; }
+        private async Task GoBackAsync()
+        {
+          await  this.NavigationService.Close(this);
+        }
         public override Task Initialize()
         {
             return Task.FromResult(0);

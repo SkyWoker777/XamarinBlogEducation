@@ -9,22 +9,25 @@ using XamarinBlogEducation.ViewModels.Blog.Items;
 
 namespace XamarinBlogEducation.Core.ViewModels
 {
-    public class AllPostsViewModel : MvxViewModel
+    public class AllPostsViewModel : BaseViewModel
     {
         private readonly IBlogService _blogService;
-        public IMvxNavigationService _navigationService;
 
         public AllPostsViewModel(
             IBlogService blogService, 
-            IMvxNavigationService navigationService)
+            IMvxNavigationService navigationService): base(navigationService)
         {
 
             _blogService = blogService;
-            _navigationService = navigationService;
 
             AllPosts = new MvxObservableCollection<GetAllPostsBlogViewItem>();
-
-            AddPostCommand = new MvxAsyncCommand(AddPost);
+            ShowMenuViewModelCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<MenuViewModel>());
+            ShowHomeCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<AllPostsViewModel>());
+            AddPostCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<CreatePostViewModel>());
+            ShowProfileCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<UserProfileViewModel>());
+            ExitCommand = new MvxAsyncCommand(async () => System.Diagnostics.Process.GetCurrentProcess().CloseMainWindow());
+            LoginCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<LoginViewModel>());
+            GoBackCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<AllPostsViewModel>());
             PostSelectedCommand = new MvxAsyncCommand<GetAllPostsBlogViewItem>(PostSelected);
             FetchPostCommand = new MvxCommand(
                 () =>
@@ -36,7 +39,13 @@ namespace XamarinBlogEducation.Core.ViewModels
                 });
             RefreshPostsCommand = new MvxCommand(RefreshPosts);
         }
-
+        public IMvxAsyncCommand ShowMenuViewModelCommand { get; private set; }
+        public IMvxCommand ShowHomeCommand { get; private set; }
+        public IMvxCommand AddPostCommand { get; private set; }
+        public IMvxCommand ShowProfileCommand { get; private set; }
+        public IMvxCommand ExitCommand { get; private set; }
+        public IMvxCommand LoginCommand { get; private set; }
+        public IMvxCommand GoBackCommand { get; private set; }
         public override Task Initialize()
        {
 
@@ -59,7 +68,7 @@ namespace XamarinBlogEducation.Core.ViewModels
             }
         }
 
-        public IMvxCommand AddPostCommand { get; private set; }
+        
         public IMvxCommand<GetAllPostsBlogViewItem> PostSelectedCommand { get; private set; }
         public IMvxCommand FetchPostCommand { get; private set; }
         public IMvxCommand RefreshPostsCommand { get; private set; }
@@ -75,14 +84,9 @@ namespace XamarinBlogEducation.Core.ViewModels
             }
         }
 
-        public async Task AddPost()
-        {         
-            await _navigationService.Navigate<CreatePostViewModel>();
-        }
-
         private async Task PostSelected(GetAllPostsBlogViewItem selectedPost)
         {
-            await _navigationService.Navigate<DetailedPostViewModel, GetAllPostsBlogViewItem> (selectedPost);  
+            await NavigationService.Navigate<DetailedPostViewModel, GetAllPostsBlogViewItem> (selectedPost);  
         }
         private void RefreshPosts()
         {

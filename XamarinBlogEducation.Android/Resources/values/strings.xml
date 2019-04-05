@@ -11,4 +11,7 @@
   <string name="AllPostsTitle">Latest Posts</string>
   <string name="CreatePostTitle" >Add new post</string>
   <string name="UserPostsTitle">It`s your posts</string>
+  <string name="DetailedPostTitle">More information to read</string>
+  <string name="EditPostTitle">Edit your post</string>
+  <string name="UserProfileTitle">Manage your profile</string>
 </resources>
