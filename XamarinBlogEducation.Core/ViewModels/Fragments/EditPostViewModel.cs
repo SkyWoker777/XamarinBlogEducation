@@ -25,10 +25,16 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
             SaveEditCommand = new MvxAsyncCommand(SaveAsync);
             CancelEditCommand = new MvxAsyncCommand(CancelAsync);
             GoToPostsCommand = new MvxAsyncCommand(GoToPostsAsync);
+            GoBackCommand = new MvxAsyncCommand(GoBackAsync);
         }
         public IMvxCommand SaveEditCommand { get; private set; }
         public IMvxCommand CancelEditCommand { get; private set; }
         public IMvxCommand GoToPostsCommand { get; private set; }
+        public IMvxCommand GoBackCommand { get; private set; }
+        private async Task GoBackAsync()
+        {
+            await this.NavigationService.Close(this);
+        }
         public override Task Initialize()
         {
             return Task.FromResult(0);

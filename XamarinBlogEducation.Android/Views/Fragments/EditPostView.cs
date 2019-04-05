@@ -32,6 +32,22 @@ namespace XamarinBlogEducation.Android.Views.Fragments
         {
             var view = base.OnCreateView(inflater, container, savedInstanceState);
             ((AppCompatActivity)Activity).SupportActionBar.SetTitle(Resource.String.EditPostTitle);
+            if (Activity is MainView mainView)
+            {
+                mainView.BackButtonPressed += (s, e) =>
+                {
+                    var fragmentsCount = Activity.FragmentManager.BackStackEntryCount;
+                    if (fragmentsCount > 1)
+                    {
+                        ViewModel.GoBackCommand?.Execute();
+                    }
+                    else
+                    {
+                        mainView.ViewModel.GoBackCommand?.Execute();
+                    }
+                };
+            }
+
             content = view.FindViewById<EditText>(Resource.Id.editContent);
             title = view.FindViewById<EditText>(Resource.Id.editTitle);
             description = view.FindViewById<EditText>(Resource.Id.editDescription);

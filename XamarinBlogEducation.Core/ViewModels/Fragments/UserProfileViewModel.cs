@@ -30,6 +30,7 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
             OpenDialogCommand = new MvxAsyncCommand<LoginAccountViewModel>(OpenDialogAsync);
             ChangePasswordCommand = new MvxAsyncCommand(ChangePasswordAsync);
             GoToPostsCommand = new MvxAsyncCommand(GoToPostsAsync);
+            GoBackCommand = new MvxAsyncCommand(GoBackAsync);
         }
         
         public IMvxCommand GoToPostsCommand { get; private set; }
@@ -37,7 +38,11 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
         public IMvxCommand ChangePasswordCommand { get; private set; }
         public IMvxCommand GetUserInfoCommand { get; private set; }
         public IMvxCommand<LoginAccountViewModel> OpenDialogCommand { get; private set; }
-
+        public IMvxCommand GoBackCommand { get; private set; }
+        private async Task GoBackAsync()
+        {
+            await this.NavigationService.Close(this);
+        }
         public string Email
         {
             get => _email;

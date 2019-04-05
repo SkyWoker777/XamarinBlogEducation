@@ -9,20 +9,19 @@ using XamarinBlogEducation.ViewModels.Blog.Items;
 
 namespace XamarinBlogEducation.Core.ViewModels.Fragments
 {
-    public class UserPostsViewModel: MvxViewModel
+    public class UserPostsViewModel: BaseViewModel
     {
         private readonly IBlogService _blogService;
-        public IMvxNavigationService _navigationService;
         public UserPostsViewModel(
             IBlogService blogService,
-            IMvxNavigationService navigationService)
+            IMvxNavigationService navigationService):base(navigationService)
         {
 
             _blogService = blogService;
-            _navigationService = navigationService;
 
             UserPosts = new MvxObservableCollection<GetAllPostsBlogViewItem>();
             EditPostCommand = new MvxAsyncCommand(EditPost);
+            GoBackCommand = new MvxAsyncCommand(GoBackAsync);
             PostSelectedCommand = new MvxAsyncCommand<GetAllPostsBlogViewItem>(PostSelected);
             FetchPostCommand = new MvxCommand(
                 () =>
@@ -40,6 +39,11 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
             LoadPostsTask = MvxNotifyTask.Create(LoadPosts);
 
             return Task.FromResult(0);
+        }
+        public IMvxCommand GoBackCommand { get; private set; }
+        private async Task GoBackAsync()
+        {
+            await this.NavigationService.Close(this);
         }
         public MvxNotifyTask LoadPostsTask { get; private set; }
 
@@ -74,12 +78,12 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
 
         public async Task EditPost()
         {
-            await _navigationService.Navigate<CreatePostViewModel>();
+            await NavigationService.Navigate<CreatePostViewModel>();
         }
 
         private async Task PostSelected(GetAllPostsBlogViewItem selectedPost)
         {
-            await _navigationService.Navigate<EditPostViewModel, GetAllPostsBlogViewItem>(selectedPost);
+            await NavigationService.Navigate<EditPostViewModel, GetAllPostsBlogViewItem>(selectedPost);
         }
         private void RefreshPosts()
         {

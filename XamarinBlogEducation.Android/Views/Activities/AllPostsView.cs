@@ -31,6 +31,10 @@ namespace XamarinBlogEducation.Android.Views.Activities
             SetContentView(Resource.Layout.AllPostsView);
             var toolbar = FindViewById<Toolbar>(Resource.Id.filters_toolbar);
             DrawerLayout = FindViewById<DrawerLayout>(Resource.Id.allpost_drawer);
+            if (bundle == null)
+            {
+                ViewModel.ShowMenuViewModelCommand.Execute(null);
+            }
             ifUser = CrossSecureStorage.Current.HasKey("securityToken");
             if (toolbar != null)
             {
@@ -65,10 +69,7 @@ namespace XamarinBlogEducation.Android.Views.Activities
             //}
             var set = this.CreateBindingSet<AllPostsView, AllPostsViewModel>();
             set.Apply();
-            if (bundle == null)
-            {
-                ViewModel.ShowMenuViewModelCommand.Execute(null);
-            }
+            
         }
         public override bool OnOptionsItemSelected(IMenuItem item)
         {
@@ -89,7 +90,10 @@ namespace XamarinBlogEducation.Android.Views.Activities
         }
         public override void OnBackPressed()
         {
-
+            if (DrawerLayout != null && DrawerLayout.IsDrawerOpen(GravityCompat.Start))
+                DrawerLayout.CloseDrawers();
+            else
+                base.OnBackPressed();
         }
         public void HideSoftKeyboard()
         {
@@ -100,10 +104,6 @@ namespace XamarinBlogEducation.Android.Views.Activities
             inputMethodManager.HideSoftInputFromWindow(CurrentFocus.WindowToken, 0);
 
             CurrentFocus.ClearFocus();
-        }
-        private void ShowMenu(object sender, EventArgs e)
-        {
-            DrawerLayout.OpenDrawer(GravityCompat.Start);
         }
         public override bool OnCreateOptionsMenu(IMenu menu)
         {

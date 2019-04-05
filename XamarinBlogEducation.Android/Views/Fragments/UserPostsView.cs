@@ -27,6 +27,21 @@ namespace XamarinBlogEducation.Android.Views.Fragments
             var view = base.OnCreateView(inflater, container, savedInstanceState);
             ((AppCompatActivity)Activity).SupportActionBar.SetDisplayShowTitleEnabled(true);
             ((AppCompatActivity)Activity).SupportActionBar.SetTitle(Resource.String.UserPostsTitle);
+            if (Activity is MainView mainView)
+            {
+                mainView.BackButtonPressed += (s, e) =>
+                {
+                    var fragmentsCount = Activity.FragmentManager.BackStackEntryCount;
+                    if (fragmentsCount > 1)
+                    {
+                        ViewModel.GoBackCommand?.Execute();
+                    }
+                    else
+                    {
+                        mainView.ViewModel.GoBackCommand?.Execute();
+                    }
+                };
+            }
             //TODO:set gravity
             var recyclerView = view.FindViewById<MvxRecyclerView>(Resource.Id.user_posts_recycler_view);
             var set = this.CreateBindingSet<UserPostsView, UserPostsViewModel>();

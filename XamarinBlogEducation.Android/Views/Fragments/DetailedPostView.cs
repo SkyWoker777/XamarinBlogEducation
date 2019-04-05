@@ -21,13 +21,28 @@ namespace XamarinBlogEducation.Android.Views.Fragments
         {
            
             var view= base.OnCreateView(inflater, container, savedInstanceState);
-            
+
+            if(Activity is MainView mainView)
+            {
+                mainView.BackButtonPressed += (s, e) =>
+                {
+                    var fragmentsCount = Activity.FragmentManager.BackStackEntryCount;
+                    if(fragmentsCount > 1)
+                    {
+                        ViewModel.GoBackCommand?.Execute();
+                    }
+                    else
+                    {
+                        mainView.ViewModel.GoBackCommand?.Execute();
+                    }
+                };
+            }
             // ((AppCompatActivity)Activity).SupportActionBar.SetHomeAsUpIndicator(Android.Resource.Mipmap.icons8_back_arrow_64);
             //((AppCompatActivity)Activity).SupportActionBar.SetHomeButtonEnabled(false);
             //((AppCompatActivity)Activity).SupportActionBar.SetDisplayShowHomeEnabled(false);
-           
-          //  _toolbar = view.FindViewById<Toolbar>(Resource.Id.toolbar);
-          // _toolbar.NavigationOnClick += NavigationOnClick;
+
+            //  _toolbar = view.FindViewById<Toolbar>(Resource.Id.toolbar);
+            // _toolbar.NavigationOnClick += NavigationOnClick;
             content = view.FindViewById<TextView>(Resource.Id.textViewContent);
             content.VerticalScrollBarEnabled = true;
             content.MovementMethod = new ScrollingMovementMethod();

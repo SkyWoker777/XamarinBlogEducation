@@ -7,6 +7,7 @@ using MvvmCross.Droid.Support.V4;
 using MvvmCross.Platforms.Android.Binding.BindingContext;
 using MvvmCross.Platforms.Android.Presenters.Attributes;
 using Plugin.SecureStorage;
+using XamarinBlogEducation.Android.Views.Activities;
 using XamarinBlogEducation.Core.ViewModels;
 using XamarinBlogEducation.Core.ViewModels.Fragments;
 
@@ -27,7 +28,7 @@ namespace XamarinBlogEducation.Android.Views.Fragments
             {
             _navigationView = view.FindViewById<NavigationView>(Resource.Id.menu_view);
             _navigationView.SetNavigationItemSelectedListener(this);
-            _navigationView.Menu.FindItem(Resource.Id.menu_home).SetChecked(true);
+          //  _navigationView.Menu.FindItem(Resource.Id.menu_home).SetChecked(true);
             _navigationView.Menu.FindItem(Resource.Id.menu_profile).SetVisible(true);
             _navigationView.Menu.FindItem(Resource.Id.menu_exit).SetVisible(true);
              return view;
@@ -38,22 +39,22 @@ namespace XamarinBlogEducation.Android.Views.Fragments
         public bool OnNavigationItemSelected(IMenuItem item)
         {
             if (_previousMenuItem != null)
-                _previousMenuItem.SetChecked(false);
+            //    _previousMenuItem.SetChecked(false);
 
-            item.SetCheckable(true);
-            item.SetChecked(true);
+            //item.SetCheckable(true);
+            //item.SetChecked(true);
 
             _previousMenuItem = item;
 
-            Navigate(item.ItemId);
+           Navigate(item.ItemId);
 
             return true;
         }
 
         private async Task Navigate(int itemId)
         {
-            
-            ((MainView)Activity).DrawerLayout.CloseDrawers();
+
+            ((AllPostsView)Activity).DrawerLayout.CloseDrawers();
             await Task.Delay(TimeSpan.FromMilliseconds(250));
 
             switch (itemId)

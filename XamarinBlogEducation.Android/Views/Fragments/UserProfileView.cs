@@ -35,9 +35,21 @@ namespace XamarinBlogEducation.Android.Views.Fragments
         {
             var view = base.OnCreateView(inflater, container, savedInstanceState);
             ((AppCompatActivity)Activity).SupportActionBar.SetTitle(Resource.String.UserProfileTitle);
-            ((AppCompatActivity)Activity).SupportActionBar.SetDisplayHomeAsUpEnabled(true);
-            ((AppCompatActivity)Activity).SupportActionBar.SetHomeAsUpIndicator(Android.Resource.Mipmap.icons8_back_arrow_64);
-            ((AppCompatActivity)Activity).SupportActionBar.SetDisplayShowHomeEnabled(true);
+            if (Activity is MainView mainView)
+            {
+                mainView.BackButtonPressed += (s, e) =>
+                {
+                    var fragmentsCount = Activity.FragmentManager.BackStackEntryCount;
+                    if (fragmentsCount > 1)
+                    {
+                        ViewModel.GoBackCommand?.Execute();
+                    }
+                    else
+                    {
+                        mainView.ViewModel.GoBackCommand?.Execute();
+                    }
+                };
+            }
             editEmail = view.FindViewById<EditText>(Resource.Id.editEmail);
             editUserName = view.FindViewById<EditText>(Resource.Id.editUserName);
             editLastName = view.FindViewById<EditText>(Resource.Id.editLastName);
