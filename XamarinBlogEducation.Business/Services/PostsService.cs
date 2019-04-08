@@ -65,15 +65,15 @@ namespace XamarinBlogEducation.Business.Services
             _postsRepository.Edit(oldPost);
         }
 
-        public async Task<List<Post>> GetAll()
+        public async Task<IEnumerable<Post>> GetAll()
         {
-            var result = (await _postsRepository.GetList()).ToList();
+            var result = (await _postsRepository.GetList());
             return result;
         }
-        public async Task<List<Post>> GetUserPosts(string userEmail)
+        public async Task<IEnumerable<Post>> GetUserPosts(string userEmail)
         {
             var author = await _userManager.FindByEmailAsync(userEmail);
-            var result = (await _postsRepository.GetByAuthor(author.Id)).ToList();
+            var result = (await _postsRepository.GetByAuthor(author.Id));
             return result;
         }
         public async Task<List<Category>> GetAllCategories()

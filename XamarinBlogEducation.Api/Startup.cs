@@ -84,15 +84,17 @@ namespace XamarinBlogEducation.Api
             {
                 options.AddPolicy("corsPolicy", corsPolicy);
             });
-            var mappingConfig = new MapperConfiguration(mc =>
-            {
-                mc.AddProfile(new MappingProfile());
-            });
+           services.AddAutoMapper();
 
-            IMapper mapper = mappingConfig.CreateMapper();
-            services.AddSingleton(mapper);
+
             services.AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            //var mappingConfig = new MapperConfiguration(mc =>
+            //{
+            //    mc.AddProfile(new MappingProfile());
+            //});        
+            //var mapper = mappingConfig.CreateMapper();
+            // services.AddSingleton(mapper);
 
         }
 

@@ -11,7 +11,7 @@ namespace XamarinBlogEducation.Business.Services.Interfaces
 {
     public interface IPostsService
     {
-        Task<List<Post>> GetAll();
+        Task<IEnumerable<Post>> GetAll();
         Task CreatePost(CreatePostBlogViewModel post);
         Task DeletePost(int selectedPostId);
         Task EditPostAsync(CreatePostBlogViewModel post);
@@ -23,7 +23,7 @@ namespace XamarinBlogEducation.Business.Services.Interfaces
         Task<IEnumerable<Post>> GetPostsByDate(DateTime CreationDate);
         Task<List<Category>> GetAllCategories();
         Task AddCategory(GetAllCategoriesblogViewItem newCategory);
-        Task<List<Post>> GetUserPosts(string userEmail);
+        Task<IEnumerable<Post>> GetUserPosts(string userEmail);
 
     }
 }
