@@ -10,7 +10,7 @@ namespace XamarinBlogEducation.DataAccess.Entities
     {
         public Category()
         {
-            this.Posts = new HashSet<Post>();
+            Posts = new HashSet<Post>();
         }
 
         public string CategoryName { get; set; }

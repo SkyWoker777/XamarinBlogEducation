@@ -12,9 +12,7 @@ namespace XamarinBlogEducation.DataAccess.Entities
             this.Posts = new HashSet<Post>();
         }
         public string FirstName { get; set; }
-
         public string LastName { get; set; }
-
         public byte[] UserImage { get; set; }
         public virtual ICollection<Post> Posts { get; set; }
     }

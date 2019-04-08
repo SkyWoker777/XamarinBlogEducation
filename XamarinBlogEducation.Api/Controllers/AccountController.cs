@@ -31,7 +31,7 @@ namespace XamarinBlogEducation.Api.Controllers
             return res;
         }
         [HttpPost]
-        [Route("getInfo")]
+        [Route("info")]
         public async Task<IActionResult> Find([FromBody]LoginAccountViewModel model)
         {
             IActionResult res = Unauthorized();

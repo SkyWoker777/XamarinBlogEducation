@@ -12,17 +12,14 @@ namespace XamarinBlogEducation.DataAccess.Entities
         public Post()
         {
             Comments = new HashSet<Comment>();
-
         }
-
         public string Title { get; set; }
         public string Author { get; set; }
         public string Description { get; set; }
         public string Content { get; set; }
-
-        [ForeignKey("Category")]
+        [ForeignKey(nameof(Category))]
         public long CategoryId { get; set; }
-        [ForeignKey("AuthorId")]
+        [ForeignKey(nameof(AuthorId))]
         public string AuthorId { get; set; }
         public virtual Category Category { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }

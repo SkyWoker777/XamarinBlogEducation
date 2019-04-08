@@ -23,7 +23,7 @@ namespace XamarinBlogEducation.Core.Services
         }
         public async Task<GetDetailsPostBlogView> ShowDetailedPost()
         {
-            var url = $"/Blog/getPost";
+            var url = $"/Blog/post";
             var result = await _httpService.ExecuteQuery(url, HttpOperationMode.GET);
             var parsedResult = await _httpService.ProcessJson<GetDetailsPostBlogView>(result);
             return parsedResult;
@@ -37,7 +37,7 @@ namespace XamarinBlogEducation.Core.Services
                 {
                     var json = JsonConvert.SerializeObject(model);
                     var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
-                    var message = new HttpRequestMessage(HttpMethod.Post, "http://195.26.92.83:6776/api/Blog/add");
+                    var message = new HttpRequestMessage(HttpMethod.Post, "http://195.26.92.83:6776/api/Blog/post");
                     message.Content = httpContent;
                     client.DefaultRequestHeaders.Add("Authorization", "Bearer " + CrossSecureStorage.Current.GetValue("securityToken"));
                     var response = await client.SendAsync(message);
@@ -65,7 +65,7 @@ namespace XamarinBlogEducation.Core.Services
 
         public async Task<List<GetAllPostsBlogViewItem>> GetAllPosts()
         {
-            var url = $"/Blog/getPostList";
+            var url = $"/Blog/posts";
             var result = await _httpService.ExecuteQuery(url, HttpOperationMode.GET);
             var json = await result.Content.ReadAsStringAsync().ConfigureAwait(false);
             var parsedResult = JsonConvert.DeserializeObject<List<GetAllPostsBlogViewItem>>(json);
@@ -76,7 +76,7 @@ namespace XamarinBlogEducation.Core.Services
             var parsedResult = new List<GetAllPostsBlogViewItem>();
             using (var client = new HttpClient())
             {
-                var url = $"{"http://195.26.92.83:6776/api/Blog/getUserPosts?useremail="}{userEmail}";
+                var url = $"{"http://195.26.92.83:6776/api/Blog/user-posts-list?useremail="}{userEmail}";
                 var message = new HttpRequestMessage(HttpMethod.Get, url);
                 client.DefaultRequestHeaders.Add("Authorization", "Bearer " + CrossSecureStorage.Current.GetValue("securityToken"));
                 var response = await client.SendAsync(message);              
@@ -97,7 +97,7 @@ namespace XamarinBlogEducation.Core.Services
                 {
                     var json = JsonConvert.SerializeObject(editedPost);
                     var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
-                    var message = new HttpRequestMessage(HttpMethod.Post, "http://195.26.92.83:6776/api/Blog/edit");
+                    var message = new HttpRequestMessage(HttpMethod.Post, "http://195.26.92.83:6776/api/Blog/edit-post");
                     message.Content = httpContent;
                     client.DefaultRequestHeaders.Add("Authorization", "Bearer " + CrossSecureStorage.Current.GetValue("securityToken"));
                     var response = await client.SendAsync(message);               
@@ -114,7 +114,7 @@ namespace XamarinBlogEducation.Core.Services
 
         public async Task<List<GetAllCategoriesblogViewItem>> GetAllCategories()
         {
-            var url = $"/Blog/getCategoryList";
+            var url = $"/Blog/categories";
             var result = await _httpService.ExecuteQuery(url, HttpOperationMode.GET);
             var json = await result.Content.ReadAsStringAsync().ConfigureAwait(false);
             var parsedResult = JsonConvert.DeserializeObject<List<GetAllCategoriesblogViewItem>>(json);
@@ -122,7 +122,7 @@ namespace XamarinBlogEducation.Core.Services
         }
         public async Task<bool> AddNewCategory(GetAllCategoriesblogViewItem category)
         {
-            var url = $"/Blog/addCategory";
+            var url = $"/Blog/add-new-category";
             var json = JsonConvert.SerializeObject(category);
             var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
             var result = await _httpService.ExecuteQuery(url, HttpOperationMode.POST, httpContent);

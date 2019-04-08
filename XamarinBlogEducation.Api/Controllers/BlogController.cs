@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -21,48 +22,53 @@ namespace XamarinBlogEducation.Api.Controllers
         private readonly IPostsService _postService;
         private readonly ICommentsService _commentService;
         private readonly IAccountService _accountService;
-        public BlogController(IPostsService postsService, ICommentsService commentService,IAccountService accountService)
+        private readonly IMapper _mapper;
+        public BlogController(IPostsService postsService, ICommentsService commentService,IAccountService accountService, IMapper mapper)
         {
             _postService = postsService;
             _commentService = commentService;
             _accountService = accountService;
+            _mapper = mapper; 
         }
 
         [HttpGet]
-        [Route("getPost")]
+        [Route("post")]
         public async Task<IActionResult> GetPost(int postId)
         {
             var post = await _postService.GetDetailsPost(postId);
+            var mappedPost = _mapper.Map<GetDetailsPostBlogView>(post);
             return Ok(post);
 
         }
         [AllowAnonymous]
         [HttpGet]
-        [Route("getPostList")]
+        [Route("posts")]
         public async Task<IActionResult> GetPosts()
         {
             var list = await _postService.GetAll();
-            return Ok(list);
+            var mappedList = _mapper.Map<List<GetAllPostsBlogViewItem>>(list);
+            return Ok(mappedList);
         }
         [AllowAnonymous]
         [HttpGet]
-        [Route("getCategoryList")]
+        [Route("categories")]
         public async Task<IActionResult> GetCategories()
         {
             var list = await _postService.GetAllCategories();
-            return Ok(list);
+            var mappedList = _mapper.Map<List<GetAllCategoriesblogViewItem>>(list);
+            return Ok(mappedList);
         }
         [Authorize(JwtBearerDefaults.AuthenticationScheme)]
         [HttpDelete]
-        [Route("delete")]
+        [Route("post")]
         public async Task<IActionResult> DeleteAsync(int postId)
         {
             await _postService.DeletePost(postId);
             return Ok();
         }
         [AllowAnonymous]
-        [HttpPost()]
-        [Route("add")]
+        [HttpPost]
+        [Route("post")]
         public async Task<IActionResult> Add([FromBody]CreatePostBlogViewModel newpost)
         {
             var id = User.Identity.GetUserId();
@@ -72,7 +78,7 @@ namespace XamarinBlogEducation.Api.Controllers
         }
         [Authorize(JwtBearerDefaults.AuthenticationScheme)]
         [HttpPost()]
-        [Route("edit")]
+        [Route("edit-post")]
         public async Task<IActionResult> EditPost([FromBody]CreatePostBlogViewModel post)
         {
             await _postService.EditPostAsync(post);
@@ -80,14 +86,15 @@ namespace XamarinBlogEducation.Api.Controllers
         }
         
         [HttpGet]
-        [Route("getUserPosts")]
+        [Route("user-posts-list")]
         public async Task<IActionResult> GetUserPosts(string userEmail)
         {
             var list = await _postService.GetUserPosts(userEmail);
-            return Ok(list);
+            var mappedList = _mapper.Map<List<GetAllPostsBlogViewItem>>(list);
+            return Ok(mappedList);
         }
         [AllowAnonymous]
-        [HttpPost("addCategory")]
+        [HttpPost("add-new-category")]
         public async Task<IActionResult> AddCategory([FromBody]GetAllCategoriesblogViewItem newCategory)
         {
             await _postService.AddCategory(newCategory);

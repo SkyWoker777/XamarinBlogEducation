@@ -9,14 +9,10 @@ namespace XamarinBlogEducation.DataAccess.Entities
     public class Comment : BaseEntity
     {
         public string Content { get; set; }
-
-        [ForeignKey("Post")]
+        [ForeignKey(nameof(Post))]
         public long PostId { get; set; }
-
-        [ForeignKey("User")]
+        [ForeignKey(nameof(User))]
         public string UserId { get; set; }
-
-
         public virtual ApplicationUser User { get; set; }
         public virtual Post Post { get; set; }
 

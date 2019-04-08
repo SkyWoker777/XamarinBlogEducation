@@ -24,11 +24,13 @@ namespace XamarinBlogEducation.DataAccess.Repositories
         public async Task Add(TEntity entity)
         {
             await _dbContext.AddAsync<TEntity>(entity);
+            await SaveChanges();
         }
 
         public void Delete(TEntity entity)
         {
             _dbContext.Remove<TEntity>(entity);
+            SaveChanges();
         }
 
         public async Task SaveChanges()

@@ -24,7 +24,7 @@ namespace XamarinBlogEducation.DataAccess.Repositories
 
         public async Task<IEnumerable<Post>> GetByCategory(long categoryId)
         {
-            return await _context.Posts.Where(x => x.CategoryId != null && x.CategoryId == categoryId).ToListAsync();
+            return await _context.Posts.Where(x => x.CategoryId == categoryId).ToListAsync();
         }
         public async Task<IEnumerable<Post>> GetByAuthor(string userId)
         {
@@ -47,9 +47,7 @@ namespace XamarinBlogEducation.DataAccess.Repositories
 
         public async Task<Post> GetPost(long id)
         {
-            var res = await _context.Posts.Where(x => x.Id == id).FirstOrDefaultAsync<Post>();
-            if (res == null)
-                return null;
+            var res = await _context.Posts.FirstOrDefaultAsync<Post>(x => x.Id == id);
             return res;
         }
 

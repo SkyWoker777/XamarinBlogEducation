@@ -50,7 +50,7 @@ namespace XamarinBlogEducation.Core.Services.Interfaces
             {
                 Email = email
             };
-            var url = "/Account/getInfo";
+            var url = "/Account/info";
             var json = JsonConvert.SerializeObject(model);
             var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
             var response = await _httpService.ExecuteQuery(url, HttpOperationMode.POST, httpContent);
@@ -66,7 +66,7 @@ namespace XamarinBlogEducation.Core.Services.Interfaces
                 {
                     var json = JsonConvert.SerializeObject(model);
                     var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
-                    var message = new HttpRequestMessage(HttpMethod.Post, "http://195.26.92.83:6776/api/User/update");
+                    var message = new HttpRequestMessage(HttpMethod.Post, "http://195.26.92.83:6776/api/User/profile");
                     message.Content = httpContent;
                     client.DefaultRequestHeaders.Add("Authorization", "Bearer " + CrossSecureStorage.Current.GetValue("securityToken"));
                     var response = await client.SendAsync(message);
@@ -85,7 +85,7 @@ namespace XamarinBlogEducation.Core.Services.Interfaces
         public async Task ChangeUserPassword(ChangePasswordViewModel model)
         {
             model.Token = CrossSecureStorage.Current.GetValue("securityToken");
-            var url = "/Account/updatePassword";
+            var url = "/User/change-password";
             var json = JsonConvert.SerializeObject(model);
             var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
             var result = await _httpService.ExecuteQuery(url, HttpOperationMode.POST, httpContent);

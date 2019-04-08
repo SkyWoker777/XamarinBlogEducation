@@ -117,7 +117,7 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
             {
                 Title = _title,
                 Content = _postContent,
-                CategoriesId = _selectedCategoryId,
+                CategoryId = _selectedCategoryId,
                 Author = _nickName,
                 Description=_description
             };

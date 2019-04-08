@@ -20,7 +20,7 @@ namespace XamarinBlogEducation.Api.Controllers
         {
             _accountService = accountService;
         }
-        [HttpPost("update")]
+        [HttpPost("profile")]
         public async Task<IActionResult> Edit([FromBody]EditAccountViewModel model)
         {
             var id = User.Identity.GetUserId();
@@ -38,7 +38,7 @@ namespace XamarinBlogEducation.Api.Controllers
             await _accountService.RemoveUser(userid);
             return Ok();
         }
-        [HttpPost("updatePassword")]
+        [HttpPost("change-password")]
         public async Task<IActionResult> UpdatePassword([FromBody]ChangePasswordViewModel model)
         {
             var id = User.Identity.GetUserId();

@@ -12,6 +12,7 @@ using XamarinBlogEducation.ViewModels.Models.Account;
 using XamarinBlogEducation.Business.Services.Interfaces;
 using XamarinBlogEducation.DataAccess.Entities;
 using Microsoft.AspNetCore.Http;
+using AutoMapper;
 
 namespace XamarinBlogEducation.Business.Services
 {
@@ -20,12 +21,12 @@ namespace XamarinBlogEducation.Business.Services
 
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IConfiguration _configuration;
-
-        public AccountService(UserManager<ApplicationUser> userManager,
-            IConfiguration configuration)
+        private readonly IMapper _mapper;
+        public AccountService(UserManager<ApplicationUser> userManager,IConfiguration configuration, IMapper mapper)
         {
             _userManager = userManager;
             _configuration = configuration;
+            _mapper = mapper;
         }
 
 
@@ -51,11 +52,7 @@ namespace XamarinBlogEducation.Business.Services
         {
    
             var user = await _userManager.FindByEmailAsync(model.Email);
-            var editUser = new EditAccountViewModel();
-            editUser.Email = user.Email;
-            editUser.FirstName = user.FirstName;
-            editUser.LastName = user.LastName;
-            editUser.UserImage = user.UserImage;
+            var editUser = _mapper.Map<EditAccountViewModel>(user);
             if (user == null)
             {
                 throw new ApplicationException("User is not found.");
@@ -71,13 +68,9 @@ namespace XamarinBlogEducation.Business.Services
                 throw new ApplicationException($"Email {model.Email} is already taken.");
             }
 
-            var newUser = new ApplicationUser();
-            newUser.Email = model.Email;
+            var newUser = _mapper.Map<ApplicationUser>(model);   
             newUser.UserName = model.Email.Substring(0, model.Email.IndexOf("@"));
-            newUser.EmailConfirmed = true;
-            newUser.FirstName = model.FirstName;
-            newUser.LastName = model.LastName;
-            newUser.UserImage = model.UserImage;
+            newUser.EmailConfirmed = true;       
             var identityResult = await _userManager.CreateAsync(newUser, model.Password);
             if (!identityResult.Succeeded)
             {
@@ -94,16 +87,14 @@ namespace XamarinBlogEducation.Business.Services
 
         public async Task UpdateUserProfile(EditAccountViewModel model, string id)
         {
-            var user = await _userManager.FindByIdAsync(id);
+            var updatedUser = _mapper.Map<ApplicationUser>(model);
             if (_userManager.FindByEmailAsync(model.Email)== null)
             {
-            user.Email = model.Email;
+                updatedUser.Email = model.Email;
             }
-            user.UserName= model.Email.Substring(0, model.Email.IndexOf("@"));
-            user.FirstName = model.FirstName;
-            user.LastName = model.LastName;
-            user.UserImage = model.UserImage;
-            await _userManager.UpdateAsync(user);
+           // updatedUser.UserName= model.Email.Substring(0, model.Email.IndexOf("@"));
+            updatedUser.Id = id;
+            await _userManager.UpdateAsync(updatedUser);
 
         }
         public async Task ChangeUserPassword(ChangePasswordViewModel model)
@@ -122,8 +113,7 @@ namespace XamarinBlogEducation.Business.Services
                 }
                 else
                 {
-                    await _userManager.ResetPasswordAsync(user, token, model.Password);
-                    
+                    await _userManager.ResetPasswordAsync(user, token, model.Password);  
                 }
             }
         }

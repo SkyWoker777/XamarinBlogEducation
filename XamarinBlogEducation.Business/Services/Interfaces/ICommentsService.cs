@@ -9,7 +9,7 @@ namespace XamarinBlogEducation.Business.Services.Interfaces
 {
     public interface ICommentsService
     {
-        Task<List<Comment>> GetAll(int postId);//получим список комментов к нужному посту
+        Task<List<Comment>> GetAllComments(int postId);
         Task AddComment(AddCommentBlogViewModel newComment, int postId);
     }
 }

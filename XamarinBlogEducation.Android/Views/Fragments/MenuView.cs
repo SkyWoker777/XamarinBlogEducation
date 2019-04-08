@@ -28,7 +28,6 @@ namespace XamarinBlogEducation.Android.Views.Fragments
             {
             _navigationView = view.FindViewById<NavigationView>(Resource.Id.menu_view);
             _navigationView.SetNavigationItemSelectedListener(this);
-          //  _navigationView.Menu.FindItem(Resource.Id.menu_home).SetChecked(true);
             _navigationView.Menu.FindItem(Resource.Id.menu_profile).SetVisible(true);
             _navigationView.Menu.FindItem(Resource.Id.menu_exit).SetVisible(true);
              return view;
@@ -38,12 +37,7 @@ namespace XamarinBlogEducation.Android.Views.Fragments
 
         public bool OnNavigationItemSelected(IMenuItem item)
         {
-            if (_previousMenuItem != null)
-            //    _previousMenuItem.SetChecked(false);
-
-            //item.SetCheckable(true);
-            //item.SetChecked(true);
-
+            if (_previousMenuItem != null)         
             _previousMenuItem = item;
 
            Navigate(item.ItemId);
