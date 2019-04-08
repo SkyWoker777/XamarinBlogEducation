@@ -30,9 +30,9 @@ namespace XamarinBlogEducation.Api.Controllers
             _accountService = accountService;
             _mapper = mapper; 
         }
-
+        [AllowAnonymous]
         [HttpGet]
-        [Route("post")]
+        [Route("post/{postId}")]
         public async Task<IActionResult> GetPost(int postId)
         {
             var post = await _postService.GetDetailsPost(postId);

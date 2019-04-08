@@ -13,12 +13,16 @@ namespace XamarinBlogEducation.Business
         public MappingProfile()
         {
 
-            CreateMap<List<Post>, List<GetAllPostsBlogViewItem>>();
+          
+            CreateMap<Post,GetAllPostsBlogViewItem>();
             CreateMap<Post, GetDetailsPostBlogView>();
             CreateMap<CreatePostBlogViewModel, Post>();
             CreateMap<ApplicationUser, EditAccountViewModel>().ReverseMap();
             CreateMap<RegisterAccountViewModel, ApplicationUser>();
-            CreateMap<List<Category>, List<GetAllCategoriesblogViewItem>>();
+            CreateMap<Category, GetAllCategoriesblogViewItem>().ForMember(
+                ct=>ct.Category, 
+                opt=>opt.MapFrom(src=>src.CategoryName));
+                
             CreateMap<AddCommentBlogViewModel, Comment>();
         }
     }

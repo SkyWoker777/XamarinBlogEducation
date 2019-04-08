@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using System;
 using StructureMap;
+using XamarinBlogEducation.Business;
 
 namespace XamarinBlogEducation.Api.Mapping
 {
@@ -28,10 +29,7 @@ namespace XamarinBlogEducation.Api.Mapping
 
             var config = new MapperConfiguration(cfg =>
             {
-                foreach (var profile in _container.GetAllInstances<Profile>())
-                {
-                    cfg.AddProfile(profile);
-                }
+                cfg.AddProfile(new MappingProfile());
             });
 
             _container.Configure(c => c.For<MapperConfiguration>().Use(config));
