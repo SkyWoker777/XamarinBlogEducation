@@ -65,7 +65,9 @@
     <Compile Include="Elements\DialogCategory.cs" />
     <Compile Include="Elements\InfoView.cs" />
     <Compile Include="Elements\PasswordDialog.cs" />
-    <Compile Include="Extensions\Adapter.cs" />
+    <Compile Include="Extensions\CommentsAdapter.cs" />
+    <Compile Include="Extensions\CommentsViewHolder.cs" />
+    <Compile Include="Extensions\PostsAdapter.cs" />
     <Compile Include="Extensions\MvxRecyclerViewExtensions.cs" />
     <Compile Include="MainAplication.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
@@ -345,6 +347,11 @@
   <ItemGroup>
     <AndroidResource Include="Resources\layout\AllPostsView.axml">
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\comment_item.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

@@ -12,17 +12,26 @@ namespace XamarinBlogEducation.DataAccess
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Tag> Tags { get; set; }
         public DbSet<PostTag> PostTags { get; set; }
+
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
-
+         
         }
         
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<PostTag>().HasKey(pt => new { pt.PostId, pt.TagId });
+            modelBuilder.Entity<Post>()
+           .HasOne(b => b.ApplicationUser)
+           .WithMany()
+           .OnDelete(DeleteBehavior.SetNull);
+            modelBuilder.Entity<Post>()
+            .HasOne(b => b.Category)
+            .WithMany()
+            .OnDelete(DeleteBehavior.Restrict);
+            DbSeeder.SeedDb(this);
             base.OnModelCreating(modelBuilder);
-
         }
+        
     }
 }

@@ -14,7 +14,7 @@ using MvvmCross.Droid.Support.V7.RecyclerView;
 
 namespace XamarinBlogEducation.Android.Extensions
 {
-    public class Adapter : MvxRecyclerView.Adapter, IFilterable
+    public class PostsAdapter : MvxRecyclerView.Adapter, IFilterable
     {
         public override int ItemCount => throw new NotImplementedException();
 

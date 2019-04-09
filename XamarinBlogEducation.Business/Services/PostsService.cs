@@ -47,7 +47,7 @@ namespace XamarinBlogEducation.Business.Services
         public async Task AddCategory(GetAllCategoriesblogViewItem newCategory)
         {
             Category category = new Category();
-            category.CategoryName = newCategory.Category;
+            category.Name = newCategory.Category;
             await _categoriesRepository.Add(category);
         }
 

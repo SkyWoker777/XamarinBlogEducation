@@ -144,9 +144,11 @@ namespace XamarinBlogEducation.DataAccess.Migrations
 
                     b.Property<bool>("EmailConfirmed");
 
-                    b.Property<string>("FirstName");
+                    b.Property<string>("FirstName")
+                        .IsRequired();
 
-                    b.Property<string>("LastName");
+                    b.Property<string>("LastName")
+                        .IsRequired();
 
                     b.Property<bool>("LockoutEnabled");
 
@@ -192,9 +194,10 @@ namespace XamarinBlogEducation.DataAccess.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("CategoryName");
-
                     b.Property<DateTime>("CreationDate");
+
+                    b.Property<string>("Name")
+                        .IsRequired();
 
                     b.HasKey("Id");
 
@@ -207,13 +210,15 @@ namespace XamarinBlogEducation.DataAccess.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Content");
+                    b.Property<string>("Content")
+                        .IsRequired();
 
                     b.Property<DateTime>("CreationDate");
 
                     b.Property<long>("PostId");
 
-                    b.Property<string>("UserId");
+                    b.Property<string>("UserId")
+                        .IsRequired();
 
                     b.HasKey("Id");
 
@@ -230,25 +235,26 @@ namespace XamarinBlogEducation.DataAccess.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("ApplicationUserId");
-
                     b.Property<string>("AuthorId");
 
                     b.Property<string>("AuthorName");
 
                     b.Property<long>("CategoryId");
 
-                    b.Property<string>("Content");
+                    b.Property<string>("Content")
+                        .IsRequired();
 
                     b.Property<DateTime>("CreationDate");
 
-                    b.Property<string>("Description");
+                    b.Property<string>("Description")
+                        .IsRequired();
 
-                    b.Property<string>("Title");
+                    b.Property<string>("Title")
+                        .IsRequired();
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ApplicationUserId");
+                    b.HasIndex("AuthorId");
 
                     b.HasIndex("CategoryId");
 
@@ -257,19 +263,21 @@ namespace XamarinBlogEducation.DataAccess.Migrations
 
             modelBuilder.Entity("XamarinBlogEducation.DataAccess.Entities.PostTag", b =>
                 {
-                    b.Property<int>("PostId");
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("TagId");
+                    b.Property<DateTime>("CreationDate");
 
-                    b.Property<long?>("PostId1");
+                    b.Property<long>("PostId");
 
-                    b.Property<long?>("TagId1");
+                    b.Property<long>("TagId");
 
-                    b.HasKey("PostId", "TagId");
+                    b.HasKey("Id");
 
-                    b.HasIndex("PostId1");
+                    b.HasIndex("PostId");
 
-                    b.HasIndex("TagId1");
+                    b.HasIndex("TagId");
 
                     b.ToTable("PostTags");
                 });
@@ -282,7 +290,8 @@ namespace XamarinBlogEducation.DataAccess.Migrations
 
                     b.Property<DateTime>("CreationDate");
 
-                    b.Property<string>("TagName");
+                    b.Property<string>("Name")
+                        .IsRequired();
 
                     b.HasKey("Id");
 
@@ -337,36 +346,40 @@ namespace XamarinBlogEducation.DataAccess.Migrations
             modelBuilder.Entity("XamarinBlogEducation.DataAccess.Entities.Comment", b =>
                 {
                     b.HasOne("XamarinBlogEducation.DataAccess.Entities.Post", "Post")
-                        .WithMany("Comments")
+                        .WithMany()
                         .HasForeignKey("PostId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("XamarinBlogEducation.DataAccess.Entities.ApplicationUser", "User")
                         .WithMany()
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("XamarinBlogEducation.DataAccess.Entities.Post", b =>
                 {
                     b.HasOne("XamarinBlogEducation.DataAccess.Entities.ApplicationUser", "ApplicationUser")
-                        .WithMany("Posts")
-                        .HasForeignKey("ApplicationUserId");
+                        .WithMany()
+                        .HasForeignKey("AuthorId")
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.HasOne("XamarinBlogEducation.DataAccess.Entities.Category", "Category")
-                        .WithMany("Posts")
+                        .WithMany()
                         .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("XamarinBlogEducation.DataAccess.Entities.PostTag", b =>
                 {
                     b.HasOne("XamarinBlogEducation.DataAccess.Entities.Post", "Post")
-                        .WithMany("PostTags")
-                        .HasForeignKey("PostId1");
+                        .WithMany()
+                        .HasForeignKey("PostId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("XamarinBlogEducation.DataAccess.Entities.Tag", "Tag")
-                        .WithMany("PostTags")
-                        .HasForeignKey("TagId1");
+                        .WithMany()
+                        .HasForeignKey("TagId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

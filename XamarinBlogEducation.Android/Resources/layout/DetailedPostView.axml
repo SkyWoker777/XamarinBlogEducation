@@ -75,6 +75,74 @@
 				android:paddingTop="15dp"
 				android:paddingBottom="15dp"
 				local:MvxBind="ItemsSource DetailedPost;Text DetailedPost.Content;" />
+		
+		<LinearLayout
+			    android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:orientation="vertical">
+			<TextView
+				android:id="@+id/cantLeaveCommentMessage"
+				android:text="Log in to add a comment"
+			    android:paddingLeft="16dp"
+				android:paddingRight="5dp"
+				android:paddingTop="5dp"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:textSize="12dp"
+				android:textColor="#537487"
+				android:textStyle="italic"/>
+				<TextView
+			    android:id="@+id/leaveCommentMessage"
+				android:text="Write your comment here:"
+			    android:paddingLeft="16dp"
+				android:paddingRight="5dp"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:textSize="12dp"
+				android:textColor="#537487"
+				android:textStyle="italic"/>
+		<EditText
+		android:layout_marginTop="5dp"
+		android:layout_marginRight="16dp"
+		android:layout_marginLeft="16dp"
+		android:layout_gravity="center_horizontal"
+		android:ems="10"
+		android:textSize="15dp"
+		android:padding="16dp"
+		android:drawablePadding="16dp"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:hint="Comment" 
+		android:background="@drawable/background_login"
+	    android:id="@+id/inputComment"/>
+		<Button 
+		android:id="@+id/addCommentButton"
+		android:backgroundTint="#6db3ce"
+		android:layout_width="50dp"
+        android:layout_height="40dp"
+		android:text="add"
+		android:textSize="10dp"
+		android:layout_gravity="right"
+		android:layout_marginRight="16dp"
+		android:layout_marginTop="7dp"/>
+	<android.support.v4.widget.SwipeRefreshLayout
+    android:id="@+id/swipeRefreshComments"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+	android:layout_marginRight="16dp"
+	android:layout_marginLeft="16dp"
+	android:layout_marginBottom="16dp">
+
+		<MvxRecyclerView
+		android:id="@+id/comments_recycler_view"
+		android:scrollbars="vertical"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		
+		local:MvxItemTemplate="@layout/comment_item"
+		local:MvxBind="ItemsSource AllComments" />
+		</android.support.v4.widget.SwipeRefreshLayout>
+		</LinearLayout>
 		</LinearLayout>
 		</android.support.design.widget.CoordinatorLayout>
 	</RelativeLayout>

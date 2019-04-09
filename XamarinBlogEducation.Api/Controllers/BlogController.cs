@@ -100,14 +100,19 @@ namespace XamarinBlogEducation.Api.Controllers
             await _postService.AddCategory(newCategory);
             return Ok();
         }
-
-        [AllowAnonymous]
-        [HttpPost("{postId}")]
-        public async Task<List<GetAllCommentsBlogViewItem>> AddComment([FromBody]AddCommentBlogViewModel newComment, int postId)
-        {
-            await _commentService.AddComment(newComment, postId);
-            return await _postService.ShowComments(postId);
-        }
         
+        [HttpPost("comment/{postId}")]
+        public async Task<IActionResult> AddComment([FromBody]AddCommentBlogViewModel newComment)
+        {
+            newComment.UserId= User.Identity.GetUserId();
+            await _commentService.AddComment(newComment, newComment.PostId);
+            return Ok();
+        }
+        [AllowAnonymous]
+        [HttpGet("comment/{postId}")]
+        public async Task<List<GetAllCommentsBlogViewItem>> GetComments(long postId)
+        {
+            return await _commentService.GetAllComments(postId);
+        }
     }
 }

@@ -33,23 +33,25 @@ namespace XamarinBlogEducation.Core.Services
         {
             using (var client = new HttpClient())
             {
-                try
-                {
                     var json = JsonConvert.SerializeObject(model);
                     var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
                     var message = new HttpRequestMessage(HttpMethod.Post, "http://195.26.92.83:6776/api/Blog/post");
                     message.Content = httpContent;
                     client.DefaultRequestHeaders.Add("Authorization", "Bearer " + CrossSecureStorage.Current.GetValue("securityToken"));
-                    var response = await client.SendAsync(message);
-                    //await UploadImageAsync(model.UserImage, model);                 
-                    if (response.IsSuccessStatusCode)
-                    {
-                        return;
-                    }
-                }
-                catch (Exception ex)
-                {
-                }
+                    var response = await client.SendAsync(message);   
+            }
+        }
+        public async Task AddComment(AddCommentBlogViewModel model)
+        {
+            var url = $"{"http://195.26.92.83:6776/api/Blog/comment/"}{model.PostId}";
+            using (var client = new HttpClient())
+            {
+                var json = JsonConvert.SerializeObject(model);
+                var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
+                var message = new HttpRequestMessage(HttpMethod.Post, url);
+                message.Content = httpContent;
+                client.DefaultRequestHeaders.Add("Authorization", "Bearer " + CrossSecureStorage.Current.GetValue("securityToken"));
+                var response = await client.SendAsync(message);
             }
         }
 
@@ -79,7 +81,7 @@ namespace XamarinBlogEducation.Core.Services
                 var url = $"{"http://195.26.92.83:6776/api/Blog/user-posts-list?useremail="}{userEmail}";
                 var message = new HttpRequestMessage(HttpMethod.Get, url);
                 client.DefaultRequestHeaders.Add("Authorization", "Bearer " + CrossSecureStorage.Current.GetValue("securityToken"));
-                var response = await client.SendAsync(message);              
+                var response = await client.SendAsync(message);
                 if (response.IsSuccessStatusCode)
                 {
                     var json = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
@@ -89,29 +91,26 @@ namespace XamarinBlogEducation.Core.Services
                 return parsedResult;
             }
         }
+        public async Task<List<GetAllCommentsBlogViewItem>> GetAllComments(long postId)
+        {
+            var url = $"{"/Blog/comment/"}{postId}";
+            var result = await _httpService.ExecuteQuery(url, HttpOperationMode.GET);
+            var json = await result.Content.ReadAsStringAsync().ConfigureAwait(false);
+            var parsedResult = JsonConvert.DeserializeObject<List<GetAllCommentsBlogViewItem>>(json);
+            return parsedResult;
+        }
         public async Task UpdatePost(CreatePostBlogViewModel editedPost)
         {
             using (var client = new HttpClient())
             {
-                try
-                {
-                    var json = JsonConvert.SerializeObject(editedPost);
-                    var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
-                    var message = new HttpRequestMessage(HttpMethod.Post, "http://195.26.92.83:6776/api/Blog/edit-post");
-                    message.Content = httpContent;
-                    client.DefaultRequestHeaders.Add("Authorization", "Bearer " + CrossSecureStorage.Current.GetValue("securityToken"));
-                    var response = await client.SendAsync(message);               
-                    if (response.IsSuccessStatusCode)
-                    {
-                        return;
-                    }
-                }
-                catch (Exception ex)
-                {
-                }
+                var json = JsonConvert.SerializeObject(editedPost);
+                var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
+                var message = new HttpRequestMessage(HttpMethod.Post, "http://195.26.92.83:6776/api/Blog/edit-post");
+                message.Content = httpContent;
+                client.DefaultRequestHeaders.Add("Authorization", "Bearer " + CrossSecureStorage.Current.GetValue("securityToken"));
+                var response = await client.SendAsync(message);
             }
-            }
-
+        }
         public async Task<List<GetAllCategoriesblogViewItem>> GetAllCategories()
         {
             var url = $"/Blog/categories";

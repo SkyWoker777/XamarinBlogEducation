@@ -21,9 +21,10 @@ namespace XamarinBlogEducation.Business
             CreateMap<RegisterAccountViewModel, ApplicationUser>();
             CreateMap<Category, GetAllCategoriesblogViewItem>().ForMember(
                 ct=>ct.Category, 
-                opt=>opt.MapFrom(src=>src.CategoryName));
+                opt=>opt.MapFrom(src=>src.Name));
                 
             CreateMap<AddCommentBlogViewModel, Comment>();
+            CreateMap<GetAllCommentsBlogViewItem, Comment>().ReverseMap();
         }
     }
 }

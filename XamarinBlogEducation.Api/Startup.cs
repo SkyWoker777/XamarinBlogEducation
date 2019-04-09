@@ -89,12 +89,6 @@ namespace XamarinBlogEducation.Api
 
             services.AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            //var mappingConfig = new MapperConfiguration(mc =>
-            //{
-            //    mc.AddProfile(new MappingProfile());
-            //});        
-            //var mapper = mappingConfig.CreateMapper();
-            // services.AddSingleton(mapper);
 
         }
 
@@ -113,6 +107,7 @@ namespace XamarinBlogEducation.Api
             }
 
             app.UseAuthentication();
+            
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
