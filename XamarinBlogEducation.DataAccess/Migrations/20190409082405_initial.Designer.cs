@@ -10,8 +10,8 @@ using XamarinBlogEducation.DataAccess;
 namespace XamarinBlogEducation.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190329110712_init4")]
-    partial class init4
+    [Migration("20190409082405_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -200,7 +200,7 @@ namespace XamarinBlogEducation.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Catgories");
+                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("XamarinBlogEducation.DataAccess.Entities.Comment", b =>
@@ -234,9 +234,9 @@ namespace XamarinBlogEducation.DataAccess.Migrations
 
                     b.Property<string>("ApplicationUserId");
 
-                    b.Property<string>("Author");
-
                     b.Property<string>("AuthorId");
+
+                    b.Property<string>("AuthorName");
 
                     b.Property<long>("CategoryId");
 
@@ -255,6 +255,40 @@ namespace XamarinBlogEducation.DataAccess.Migrations
                     b.HasIndex("CategoryId");
 
                     b.ToTable("Posts");
+                });
+
+            modelBuilder.Entity("XamarinBlogEducation.DataAccess.Entities.PostTag", b =>
+                {
+                    b.Property<int>("PostId");
+
+                    b.Property<int>("TagId");
+
+                    b.Property<long?>("PostId1");
+
+                    b.Property<long?>("TagId1");
+
+                    b.HasKey("PostId", "TagId");
+
+                    b.HasIndex("PostId1");
+
+                    b.HasIndex("TagId1");
+
+                    b.ToTable("PostTags");
+                });
+
+            modelBuilder.Entity("XamarinBlogEducation.DataAccess.Entities.Tag", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreationDate");
+
+                    b.Property<string>("TagName");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Tags");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -316,7 +350,7 @@ namespace XamarinBlogEducation.DataAccess.Migrations
 
             modelBuilder.Entity("XamarinBlogEducation.DataAccess.Entities.Post", b =>
                 {
-                    b.HasOne("XamarinBlogEducation.DataAccess.Entities.ApplicationUser")
+                    b.HasOne("XamarinBlogEducation.DataAccess.Entities.ApplicationUser", "ApplicationUser")
                         .WithMany("Posts")
                         .HasForeignKey("ApplicationUserId");
 
@@ -324,6 +358,17 @@ namespace XamarinBlogEducation.DataAccess.Migrations
                         .WithMany("Posts")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("XamarinBlogEducation.DataAccess.Entities.PostTag", b =>
+                {
+                    b.HasOne("XamarinBlogEducation.DataAccess.Entities.Post", "Post")
+                        .WithMany("PostTags")
+                        .HasForeignKey("PostId1");
+
+                    b.HasOne("XamarinBlogEducation.DataAccess.Entities.Tag", "Tag")
+                        .WithMany("PostTags")
+                        .HasForeignKey("TagId1");
                 });
 #pragma warning restore 612, 618
         }

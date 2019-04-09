@@ -74,6 +74,8 @@
 		android:drawablePadding="16dp"
 		android:layout_width="200dp"
 		android:layout_height="wrap_content"
+		android:maxHeight="200dp"
+		android:dropDownHeight="100dp"
 		android:text="Select a category"	
 		local:MvxItemTemplate="@layout/item_category"
         local:MvxDropDownItemTemplate="@layout/categoryitem_spinnerdropdown"

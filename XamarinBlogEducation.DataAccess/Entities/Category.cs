@@ -5,16 +5,9 @@ using System.Text;
 
 namespace XamarinBlogEducation.DataAccess.Entities
 {
-    [Table("Catgories")]
     public class Category : BaseEntity
     {
-        public Category()
-        {
-            Posts = new HashSet<Post>();
-        }
-
         public string CategoryName { get; set; }
-
-        public virtual ICollection<Post> Posts { get; set; }
+        public ICollection<Post> Posts { get; set; }
     }
 }

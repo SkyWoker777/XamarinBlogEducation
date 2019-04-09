@@ -6,23 +6,23 @@ using System.Text;
 namespace XamarinBlogEducation.DataAccess.Entities
 {
 
-    [Table("Posts")]
+    
     public class Post : BaseEntity
     {
-        public Post()
-        {
-            Comments = new HashSet<Comment>();
-        }
         public string Title { get; set; }
-        public string Author { get; set; }
+        public string AuthorName { get; set; }
         public string Description { get; set; }
         public string Content { get; set; }
-        [ForeignKey(nameof(Category))]
+
         public long CategoryId { get; set; }
-        [ForeignKey(nameof(AuthorId))]
         public string AuthorId { get; set; }
-        public virtual Category Category { get; set; }
-        public virtual ICollection<Comment> Comments { get; set; }
+
+      //  [ForeignKey(nameof(Category))]
+        public  Category Category { get; set; }
+       // [ForeignKey(nameof(ApplicationUser))]
+        public  ApplicationUser ApplicationUser { get; set; }
+        public IList<PostTag> PostTags { get; set; }
+        public ICollection<Comment> Comments { get; set; }
 
     }
 }

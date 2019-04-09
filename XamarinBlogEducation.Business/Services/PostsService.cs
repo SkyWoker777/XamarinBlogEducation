@@ -36,7 +36,7 @@ namespace XamarinBlogEducation.Business.Services
             var author = await _userManager.FindByIdAsync(postBlog.AuthorId);
             if (postBlog.Author == null)
             {
-                post.Author = (author.FirstName + " " + author.LastName);
+                post.AuthorName = (author.FirstName + " " + author.LastName);
             }
             await _postsRepository.Add(post);
         }

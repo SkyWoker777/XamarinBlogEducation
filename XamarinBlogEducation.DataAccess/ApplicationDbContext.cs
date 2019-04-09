@@ -10,6 +10,8 @@ namespace XamarinBlogEducation.DataAccess
         public DbSet<Post> Posts { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Comment> Comments { get; set; }
+        public DbSet<Tag> Tags { get; set; }
+        public DbSet<PostTag> PostTags { get; set; }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
 
@@ -18,6 +20,7 @@ namespace XamarinBlogEducation.DataAccess
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<PostTag>().HasKey(pt => new { pt.PostId, pt.TagId });
             base.OnModelCreating(modelBuilder);
 
         }

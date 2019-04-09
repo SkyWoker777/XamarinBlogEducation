@@ -47,6 +47,7 @@ namespace XamarinBlogEducation.Android.Views.Fragments
             addNewPostButton = view.FindViewById<Button>(Resource.Id.addNewPostButton);
             addCategoryButton = view.FindViewById<Button>(Resource.Id.addCategoryButton);
             mvxSpinner = view.FindViewById<MvxAppCompatSpinner>(Resource.Id.allCategoriesSpinner);
+           
             inputTitle = view.FindViewById<EditText>(Resource.Id.inputTitle);
             inputPostContent = view.FindViewById<EditText>(Resource.Id.inputPostContent);
             inputPostContent.VerticalScrollBarEnabled = true;

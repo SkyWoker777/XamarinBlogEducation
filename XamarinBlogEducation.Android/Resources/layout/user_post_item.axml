@@ -25,7 +25,6 @@
 		android:layout_marginRight="10dp"
 		android:textStyle="italic"
 		android:textSize="15dp"
-		android:background="@drawable/background_login"
 		local:MvxBind="Text Description" />
 	<TextView
 		android:text="Edit"	
