@@ -26,18 +26,14 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
             FetchPostCommand = new MvxCommand(
                 () =>
                 {
-
                     FetchPostsTask = MvxNotifyTask.Create(LoadPosts);
                     RaisePropertyChanged(() => FetchPostsTask);
-
                 });
             RefreshPostsCommand = new MvxCommand(RefreshPosts);
         }
         public override Task Initialize()
         {
-
             LoadPostsTask = MvxNotifyTask.Create(LoadPosts);
-
             return Task.FromResult(0);
         }
         public IMvxCommand GoBackCommand { get; private set; }

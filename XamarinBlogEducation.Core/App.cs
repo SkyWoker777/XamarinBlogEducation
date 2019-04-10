@@ -17,7 +17,7 @@ namespace XamarinBlogEducation.Core
                 .AsInterfaces()
                 .RegisterAsLazySingleton();
             
-            RegisterAppStart<LoginViewModel>();
+            RegisterAppStart<LoginActivityViewModel>();
 
         }
        

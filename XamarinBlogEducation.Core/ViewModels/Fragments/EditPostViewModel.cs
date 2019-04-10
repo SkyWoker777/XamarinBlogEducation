@@ -23,18 +23,15 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
         {
             _blogService = blogService;
             SaveEditCommand = new MvxAsyncCommand(SaveAsync);
-            CancelEditCommand = new MvxAsyncCommand(CancelAsync);
+            CancelEditCommand = new MvxAsyncCommand(async()=> await NavigationService.Navigate<UserPostsViewModel>());
             GoToPostsCommand = new MvxAsyncCommand(GoToPostsAsync);
-            GoBackCommand = new MvxAsyncCommand(GoBackAsync);
+            GoBackCommand = new MvxAsyncCommand(async()=> await this.NavigationService.Close(this));
         }
         public IMvxCommand SaveEditCommand { get; private set; }
         public IMvxCommand CancelEditCommand { get; private set; }
         public IMvxCommand GoToPostsCommand { get; private set; }
         public IMvxCommand GoBackCommand { get; private set; }
-        private async Task GoBackAsync()
-        {
-            await this.NavigationService.Close(this);
-        }
+   
         public override Task Initialize()
         {
             return Task.FromResult(0);
@@ -88,12 +85,7 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
             };
             await _blogService.UpdatePost(_editedPost);
         }
-        private async Task CancelAsync()
-        {
-            //await DisposeView(this);
-            await NavigationService.Navigate<UserPostsViewModel>();
-            
-        }
+
         private async Task GoToPostsAsync()
         {
             await DisposeView(this);
@@ -102,7 +94,6 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
         public override void Prepare(GetAllPostsBlogViewItem parameter)
         {
             _postToEdit = parameter;
-
         }
     }
 }

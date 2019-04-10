@@ -19,8 +19,8 @@ namespace XamarinBlogEducation.Core.ViewModels
         {
             _userService = userService;
             LoginCommand = new MvxAsyncCommand(LoginAsync);
-            SingUpCommand = new MvxAsyncCommand(SignUpAsync);
-            SkipCommand = new MvxAsyncCommand(SkipAsync);
+            SingUpCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<RegisterViewModel>());
+            SkipCommand = new MvxAsyncCommand(async()=> await NavigationService.Navigate<AllPostsFragmentViewModel>());
             ToProfileCommand = new MvxAsyncCommand<EditAccountViewModel>(ToProfileAsync);
         }
         public IMvxCommand LoginCommand { get; private set; }
@@ -46,7 +46,7 @@ namespace XamarinBlogEducation.Core.ViewModels
                 RaisePropertyChanged();
             }
         }
-
+        public EditAccountViewModel loggedUser;
         private async Task LoginAsync()
         {
             user = new LoginAccountViewModel()
@@ -55,21 +55,12 @@ namespace XamarinBlogEducation.Core.ViewModels
                 Password = _password
             };
 
-            var loggedUser = await _userService.GetUserAsync(user);
-            await NavigationService.Navigate<AllPostsViewModel>();
-            await DisposeView(this);
-        }
-
-        private async Task SignUpAsync()
-        {
-
-            await NavigationService.Navigate<RegisterViewModel>();
-        }
-
-        private async Task SkipAsync()
-        {
-            await NavigationService.Navigate<AllPostsViewModel>();
-
+            loggedUser = await _userService.GetUserAsync(user);
+            if (loggedUser.Email != null)
+            {
+                await NavigationService.Navigate<AllPostsFragmentViewModel>();
+                await DisposeView(this);
+            }
         }
         private async Task ToProfileAsync(EditAccountViewModel user)
         {

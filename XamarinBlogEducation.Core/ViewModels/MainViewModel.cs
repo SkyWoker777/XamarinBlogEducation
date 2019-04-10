@@ -9,12 +9,13 @@ namespace XamarinBlogEducation.Core.ViewModels
 
         public MainViewModel(IMvxNavigationService _navigationService) : base(_navigationService)
         {
-            ShowMenuViewModelCommand = new MvxAsyncCommand(async () => await _navigationService.Navigate<MenuViewModel>());
-            ShowHomeCommand = new MvxAsyncCommand(async () => await _navigationService.Navigate<AllPostsViewModel>());
-            AddPostCommand = new MvxAsyncCommand(async () => await _navigationService.Navigate<CreatePostViewModel>());
-            ShowProfileCommand = new MvxAsyncCommand(async () => await _navigationService.Navigate<UserProfileViewModel>());
+            ShowMenuViewModelCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<MenuViewModel>());
+            ShowHomeCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<AllPostsFragmentViewModel>());
+            AddPostCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<CreatePostViewModel>());
+            ShowProfileCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<UserProfileViewModel>());
             ExitCommand = new MvxAsyncCommand(async() =>  System.Diagnostics.Process.GetCurrentProcess().CloseMainWindow());
-            LoginCommand = new MvxAsyncCommand(async () => await _navigationService.Navigate<LoginViewModel>());
+            LoginCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<LoginViewModel>());
+            AboutCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<AboutFragmentModel>());
             GoBackCommand = new MvxAsyncCommand(async () => await NavigationService.Close(this));
         }
         public IMvxAsyncCommand ShowMenuViewModelCommand { get; private set; }
@@ -24,5 +25,6 @@ namespace XamarinBlogEducation.Core.ViewModels
         public IMvxCommand ExitCommand { get; private set; }
         public IMvxCommand LoginCommand { get; private set; }
         public IMvxCommand GoBackCommand { get; private set; }
+        public IMvxCommand AboutCommand { get; private set; }
     }
 }

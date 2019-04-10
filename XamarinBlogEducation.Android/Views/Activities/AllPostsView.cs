@@ -39,13 +39,13 @@ namespace XamarinBlogEducation.Android.Views.Activities
             if (toolbar != null)
             {
                 SetSupportActionBar(toolbar);
-                SupportActionBar.SetDisplayShowTitleEnabled(false);
+                SupportActionBar.SetDisplayShowTitleEnabled(true);
+                SupportActionBar.SetTitle(Resource.String.AllPostsTitle);
                 if (ifUser == true)
                 {
                     DrawerLayout.Activated = true;
                     SupportActionBar.SetDisplayHomeAsUpEnabled(true);
                     SupportActionBar.SetHomeAsUpIndicator(Android.Resource.Mipmap.icons8_menu_48);
-                    //SupportActionBar.SetDisplayShowHomeEnabled(false);
                     _drawerToggle = new MvxActionBarDrawerToggle(this, DrawerLayout,
                         toolbar,
                         Resource.String.drawer_open,
@@ -56,17 +56,7 @@ namespace XamarinBlogEducation.Android.Views.Activities
                     DrawerLayout.AddDrawerListener(_drawerToggle);
                 }
             }
-                //TODO:set gravity
-
-                var recyclerView = FindViewById<MvxRecyclerView>(Resource.Id.posts_recycler_view);
-            //if (recyclerView != null)
-            //{
-            //    recyclerView.HasFixedSize = true;
-            //    var layoutManager = new LinearLayoutManager(Activity);
-            //    recyclerView.SetLayoutManager(layoutManager);
-
-            //    recyclerView.AddOnScrollFetchItemsListener(layoutManager, () => ViewModel.FetchPostsTask, () => this.ViewModel.FetchPostCommand);
-            //}
+                var recyclerView = FindViewById<MvxRecyclerView>(Resource.Id.posts_recycler_view);      
             var set = this.CreateBindingSet<AllPostsView, AllPostsViewModel>();
             set.Apply();
             
@@ -76,8 +66,8 @@ namespace XamarinBlogEducation.Android.Views.Activities
             switch (item.ItemId)
             {
 
-                case Resource.Id.nav_posts:
-                    ViewModel.ShowHomeCommand.Execute(null);
+                case Resource.Id.nav_about:
+                    ViewModel.AboutCommand.Execute(null);
                     break;
                 case Resource.Id.nav_add:
                     ViewModel.AddPostCommand.Execute(null);
@@ -92,8 +82,7 @@ namespace XamarinBlogEducation.Android.Views.Activities
         {
             if (DrawerLayout != null && DrawerLayout.IsDrawerOpen(GravityCompat.Start))
                 DrawerLayout.CloseDrawers();
-            else
-                base.OnBackPressed();
+               
         }
         public void HideSoftKeyboard()
         {
@@ -115,8 +104,8 @@ namespace XamarinBlogEducation.Android.Views.Activities
             }
             if (ifUser != true)
             {
-                var login = menu.FindItem(Resource.Id.nav_add);
-                login.SetVisible(false);
+                var add = menu.FindItem(Resource.Id.nav_add);
+                add.SetVisible(false);
             }
             return true;
         }

@@ -105,7 +105,6 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
             };
             await _userService.AddUserAsync(user);
             await _userService.AutologinUserAsync(user);
-            //await NavigationService.Navigate<UserProfileViewModel, EditAccountViewModel>(loginUser);
             await DisposeView(this);
             await NavigationService.Navigate<AllPostsViewModel>();
             

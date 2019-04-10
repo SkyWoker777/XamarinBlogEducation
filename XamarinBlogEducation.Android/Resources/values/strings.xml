@@ -14,4 +14,6 @@
   <string name="DetailedPostTitle">More information to read</string>
   <string name="EditPostTitle">Edit your post</string>
   <string name="UserProfileTitle">Manage your profile</string>
+  <string name="AboutTitle">About Us</string>
+ 
 </resources>

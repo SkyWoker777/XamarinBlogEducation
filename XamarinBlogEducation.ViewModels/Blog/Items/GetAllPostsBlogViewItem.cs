@@ -16,5 +16,6 @@ namespace XamarinBlogEducation.ViewModels.Blog.Items
         public string AuthorId { get; set; }
         public List<GetAllCommentsBlogViewItem> Comments { get; set; }
         public DateTime CreationDate { get; set; }
+
     }
 }

@@ -65,9 +65,6 @@
     <Compile Include="Elements\DialogCategory.cs" />
     <Compile Include="Elements\InfoView.cs" />
     <Compile Include="Elements\PasswordDialog.cs" />
-    <Compile Include="Extensions\CommentsAdapter.cs" />
-    <Compile Include="Extensions\CommentsViewHolder.cs" />
-    <Compile Include="Extensions\PostsAdapter.cs" />
     <Compile Include="Extensions\MvxRecyclerViewExtensions.cs" />
     <Compile Include="MainAplication.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
@@ -75,7 +72,10 @@
     <Compile Include="Setup.cs" />
     <Compile Include="Views\Activities\AllPostsView.cs" />
     <Compile Include="Views\Activities\BaseActivity.cs" />
+    <Compile Include="Views\Activities\LoginActivity.cs" />
     <Compile Include="Views\Activities\LoginView.cs" />
+    <Compile Include="Views\Fragments\AboutFragment.cs" />
+    <Compile Include="Views\Fragments\AllPostsFragment.cs" />
     <Compile Include="Views\Fragments\BaseFragment.cs" />
     <Compile Include="Views\Fragments\CreatePostView.cs" />
     <Compile Include="Views\Fragments\DetailedPostView.cs" />
@@ -170,6 +170,9 @@
     <PackageReference Include="Xamarin.Android.Support.v7.RecyclerView">
       <Version>27.0.2.1</Version>
     </PackageReference>
+    <PackageReference Include="XamarinSlideMenuLayout">
+      <Version>1.0.0</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\avatar_default.png" />
@@ -228,6 +231,10 @@
     <ProjectReference Include="..\XamarinBlogEducation.Core\XamarinBlogEducation.Core.csproj">
       <Project>{7f3de5f6-49d9-4ad5-89a5-2eda0d05320d}</Project>
       <Name>XamarinBlogEducation.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\XamarinBlogEducation.ViewModels\XamarinBlogEducation.ViewModels.csproj">
+      <Project>{551553CB-2165-4053-B6AE-1858B86848AE}</Project>
+      <Name>XamarinBlogEducation.ViewModels</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -352,6 +359,26 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\comment_item.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\LoginFragment.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\AboutFragment.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\AllPostFragment.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\menu\filter_menu.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

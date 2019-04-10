@@ -14,7 +14,7 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
         {
             _navigationService = navigationService;
 
-            ShowHomeCommand = new MvxAsyncCommand(async () => await _navigationService.Navigate<AllPostsViewModel>());
+            ShowHomeCommand = new MvxAsyncCommand(async () => await _navigationService.Navigate<AllPostsFragmentViewModel>());
             AddPostCommand = new MvxAsyncCommand(async () => await _navigationService.Navigate<CreatePostViewModel>());
             ShowProfileCommand = new MvxAsyncCommand(async () => await _navigationService.Navigate<UserProfileViewModel>());
             ShowUserPostsCommand= new MvxAsyncCommand(async () => await _navigationService.Navigate<UserPostsViewModel>());

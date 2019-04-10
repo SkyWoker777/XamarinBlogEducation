@@ -53,14 +53,11 @@ namespace XamarinBlogEducation.Android.Views.Fragments
 
             switch (itemId)
             {
-                case Resource.Id.menu_posts:
+                case Resource.Id.menu_home:
                     ViewModel.ShowHomeCommand.Execute(null);
                     break;
                 case Resource.Id.menu_exit:
                     ViewModel.ExitCommand.Execute(null);
-                    break;
-                case Resource.Id.menu_addpost:
-                    ViewModel.AddPostCommand.Execute(null);
                     break;
                 case Resource.Id.menu_profile:
                     ViewModel.ShowProfileCommand.Execute(null);

@@ -31,6 +31,7 @@ namespace XamarinBlogEducation.Android.Views.Fragments
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             var view = base.OnCreateView(inflater, container, savedInstanceState);
+            ((AppCompatActivity)Activity).SupportActionBar.SetDisplayShowTitleEnabled(true);
             ((AppCompatActivity)Activity).SupportActionBar.SetTitle(Resource.String.EditPostTitle);
             if (Activity is MainView mainView)
             {

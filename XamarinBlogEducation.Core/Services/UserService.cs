@@ -25,22 +25,29 @@ namespace XamarinBlogEducation.Core.Services.Interfaces
             var url = "/Account/register";
             var json = JsonConvert.SerializeObject(model);
             var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
-            var result= await _httpService.ExecuteQuery(url, HttpOperationMode.POST, httpContent);
-            
+            var result = await _httpService.ExecuteQuery(url, HttpOperationMode.POST, httpContent);
+
         }
 
         public async Task<EditAccountViewModel> GetUserAsync(LoginAccountViewModel model)
         {
+            string testToken;
+            EditAccountViewModel loggedUser=new EditAccountViewModel();
             var url = "/Account/login";
             var json = JsonConvert.SerializeObject(model);
-            var httpContent = new StringContent(json, Encoding.UTF8, "application/json");         
+            var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
             var response = await _httpService.ExecuteQuery(url, HttpOperationMode.POST, httpContent);
-            var testToken = await _httpService.ProcessToken(response);
-            CrossSecureStorage.Current.SetValue("securityToken",testToken);
-            var loggedUser=await GetUserInfo(model.Email);
-            CrossSecureStorage.Current.SetValue("UserName", loggedUser.FirstName);
-            CrossSecureStorage.Current.SetValue("UserLastName", loggedUser.LastName);
-            CrossSecureStorage.Current.SetValue("UserEmail", loggedUser.Email);
+            if (response.IsSuccessStatusCode) { 
+            loggedUser = await GetUserInfo(model.Email);
+            if (loggedUser != null)
+            {
+                testToken = await _httpService.ProcessToken(response);
+                CrossSecureStorage.Current.SetValue("securityToken", testToken);
+                CrossSecureStorage.Current.SetValue("UserName", loggedUser.FirstName);
+                CrossSecureStorage.Current.SetValue("UserLastName", loggedUser.LastName);
+                CrossSecureStorage.Current.SetValue("UserEmail", loggedUser.Email);
+            }
+            }
             return loggedUser;
 
         }
@@ -90,7 +97,7 @@ namespace XamarinBlogEducation.Core.Services.Interfaces
             var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
             var result = await _httpService.ExecuteQuery(url, HttpOperationMode.POST, httpContent);
         }
-        public async Task UploadImageAsync(byte[] image,EditAccountViewModel model)
+        public async Task UploadImageAsync(byte[] image, EditAccountViewModel model)
         {
             var url = "/Common/addImage";
             ByteArrayContent baContent = new ByteArrayContent(image);
@@ -98,7 +105,7 @@ namespace XamarinBlogEducation.Core.Services.Interfaces
             using (var formData = new MultipartFormDataContent())
             {
                 formData.Add(baContent, "file", "userimg.png");
-                var response = await client.PostAsync(url, formData);  
+                var response = await client.PostAsync(url, formData);
             }
         }
         public async Task AutologinUserAsync(RegisterAccountViewModel model)

@@ -23,8 +23,7 @@ namespace XamarinBlogEducation.Android.Views
     [Activity(Theme = "@style/AppTheme", LaunchMode = LaunchMode.SingleTop)]
     public class MainView : MvxAppCompatActivity<MainViewModel>
     {
-
-        private MvxActionBarDrawerToggle _drawerToggle;
+        
         public DrawerLayout DrawerLayout { get; set; }
         private bool ifUser;
         protected override void OnCreate(Bundle bundle)
@@ -37,7 +36,6 @@ namespace XamarinBlogEducation.Android.Views
             if (toolbar != null)
             {
                 SetSupportActionBar(toolbar);
-                //SetActionBar(toolbar);
                 SupportActionBar.SetDisplayShowTitleEnabled(false);         
                 SupportActionBar.SetDisplayHomeAsUpEnabled(true);    
             }
@@ -46,8 +44,6 @@ namespace XamarinBlogEducation.Android.Views
         }
         public override bool OnSupportNavigateUp()
         {
-
-            //ViewModel.GoBackCommand.Execute();
             BackButtonPressed?.Invoke(this, EventArgs.Empty);
             return base.OnSupportNavigateUp();
 
@@ -61,15 +57,15 @@ namespace XamarinBlogEducation.Android.Views
             {
                 case Resource.Id.home:
                     ViewModel.GoBackCommand.Execute();
-                    break;
-                case Resource.Id.nav_posts:
-                    ViewModel.ShowHomeCommand.Execute(null);
-                    break;
+                    break;        
                 case Resource.Id.nav_add:
                     ViewModel.AddPostCommand.Execute(null);
                     break;
                 case Resource.Id.nav_login:
                     ViewModel.LoginCommand.Execute(null);
+                    break;
+                case Resource.Id.nav_about:
+                    ViewModel.AboutCommand.Execute(null);
                     break;
             }
             return base.OnOptionsItemSelected(item);

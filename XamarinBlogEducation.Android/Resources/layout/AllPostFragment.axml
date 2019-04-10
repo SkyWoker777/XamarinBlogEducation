@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:local="http://schemas.android.com/apk/res-auto"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="#e8d2c0">
+	
+	<LinearLayout
+			android:layout_height= "match_parent"
+			android:layout_width="match_parent"
+			android:orientation= "vertical"
+			android:background="#e8d2c0">
+	<LinearLayout
+	android:layout_gravity="center"
+	android:gravity="center"
+	android:orientation="horizontal"	
+	android:focusable="true"
+	android:layout_marginTop="?android:attr/actionBarSize"
+    android:focusableInTouchMode="true"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">	
+	<TextView
+			android:text="Filter by category:"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textSize="10sp"
+			android:textStyle="bold"
+			android:textColor="#6db3ce"
+			android:paddingRight="16dp"/>
+	<MvxSpinner
+		android:id="@+id/filterByCategorySpinner"
+		android:layout_gravity="center"
+		android:verticalScrollbarPosition="left"
+		android:paddingTop="16dp"
+		android:paddingBottom="16dp"
+		android:paddingLeft="16dp"
+		android:layout_width="200dp"
+		android:layout_height="50dp"
+		android:maxHeight="200dp"
+		android:dropDownHeight="100dp"
+			
+		android:text="Select a category"	
+		local:MvxItemTemplate="@layout/item_category"
+        local:MvxDropDownItemTemplate="@layout/categoryitem_spinnerdropdown"
+        local:MvxBind="ItemsSource CategoryItems;SelectedItem SelectedItem;HandleItemSelected ItemSelectedCommand" />	
+	</LinearLayout>	
+<RelativeLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"> 
+		<MvxRecyclerView
+				android:id="@+id/posts_recycler_view"
+				android:scrollbars="vertical"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				local:MvxItemTemplate="@layout/post_item"
+				local:MvxBind="ItemsSource AllPosts; ItemClick PostSelectedCommand" />
+</RelativeLayout>
+	</LinearLayout>
+</android.support.design.widget.CoordinatorLayout>

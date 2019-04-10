@@ -33,6 +33,7 @@ namespace XamarinBlogEducation.Android.Views.Fragments
         {
 
             var view = base.OnCreateView(inflater, container, savedInstanceState);
+            ((AppCompatActivity)Activity).SupportActionBar.SetDisplayShowTitleEnabled(true);
             ((AppCompatActivity)Activity).SupportActionBar.SetTitle(Resource.String.DetailedPostTitle);
             if (Activity is MainView mainView)
             {
