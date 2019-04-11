@@ -13,20 +13,14 @@
 		<RelativeLayout
 		android:layout_width="match_parent"
 		android:layout_height="match_parent">
-		<MvxSwipeRefreshLayout	
-			android:id="@+id/user_refresher"
-			android:layout_width="match_parent"
-			android:layout_height="match_parent"	
-			android:paddingTop="?android:attr/actionBarSize"	
-			local:MvxBind="IsRefreshing LoadPostsTask; RefreshCommand RefreshPostsCommand">
-			<MvxRecyclerView
+		<MvxRecyclerView
 				android:id="@+id/user_posts_recycler_view"
+				android:paddingTop="?android:attr/actionBarSize"
 				android:scrollbars="vertical"
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
 				local:MvxItemTemplate="@layout/user_post_item"
-				local:MvxBind="ItemsSource UserPosts; ItemClick PostSelectedCommand" />
-		</MvxSwipeRefreshLayout>
+				local:MvxBind="ItemsSource UserPosts; ItemClick PostSelectedCommand" />	
 	</RelativeLayout>
 	</LinearLayout>
 </android.support.design.widget.CoordinatorLayout>

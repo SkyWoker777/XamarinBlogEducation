@@ -10,8 +10,9 @@
     android:layout_width="match_parent"  
     android:layout_height="?android:attr/actionBarSize"  
     android:background="?attr/colorPrimary"  
+	local:titleTextColor="@color/colorText"
     local:theme="@style/ThemeOverlay.AppCompat.Dark" 
 	local:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-    android:id="@+id/filters_toolbar">  
+	android:id="@+id/filters_toolbar">  
 </android.support.v7.widget.Toolbar>   
 </android.support.design.widget.AppBarLayout>

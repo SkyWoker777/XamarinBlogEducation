@@ -55,7 +55,7 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
                 RaisePropertyChanged(() => UserPosts);
             }
         }
-
+        
         public IMvxCommand EditPostCommand { get; private set; }
         public IMvxCommand<GetAllPostsBlogViewItem> PostSelectedCommand { get; private set; }
         public IMvxCommand FetchPostCommand { get; private set; }
@@ -86,6 +86,7 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
             LoadPostsTask = MvxNotifyTask.Create(LoadPosts);
             RaisePropertyChanged(() => LoadPostsTask);
         }
-
+       
     }
+
 }

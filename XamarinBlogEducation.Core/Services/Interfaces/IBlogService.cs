@@ -22,5 +22,6 @@ namespace XamarinBlogEducation.Core.Services.Interfaces
         Task NavigatePosts();
         Task UpdatePost(CreatePostBlogViewModel model);
         Task RemovePost();
+        Task DeletePost(long postId);
     }
 }

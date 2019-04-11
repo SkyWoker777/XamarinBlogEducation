@@ -14,11 +14,12 @@ namespace XamarinBlogEducation.ViewModels.Blog
         public string Title { get; set; }
         [JsonProperty("Content")]
         public string Content { get; set; }
-        [JsonProperty("Author")]
-        public string Author { get; set; }
+        [JsonProperty("AuthorName")]
+        public string AuthorName { get; set; }
         [JsonProperty("Comments")]
         public List<GetAllCommentsBlogViewItem> Comments { get; set; }        
         [JsonProperty("CreationDate")]
         public DateTime CreationDate { get; set; }
+        public string Category { get; set; }
     }
 }

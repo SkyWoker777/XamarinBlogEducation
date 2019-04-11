@@ -17,7 +17,7 @@ using XamarinBlogEducation.Core.ViewModels.Fragments;
 
 namespace XamarinBlogEducation.Android.Views.Fragments
 {
-    [MvxFragmentPresentation(typeof(MainViewModel), Resource.Id.content_frame, true)]
+    [MvxFragmentPresentation(typeof(AllPostsViewModel), Resource.Id.allposts_frame, true)]
     public class UserProfileView : BaseFragment<UserProfileViewModel>
     {
         private EditText editEmail;

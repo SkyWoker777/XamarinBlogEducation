@@ -3,6 +3,8 @@ using System.Threading.Tasks;
 using Android.OS;
 using Android.Support.Design.Widget;
 using Android.Views;
+using Android.Widget;
+using MvvmCross.Binding.BindingContext;
 using MvvmCross.Droid.Support.V4;
 using MvvmCross.Platforms.Android.Binding.BindingContext;
 using MvvmCross.Platforms.Android.Presenters.Attributes;
@@ -17,20 +19,21 @@ namespace XamarinBlogEducation.Android.Views.Fragments
 
     public class MenuView : MvxFragment<MenuViewModel>, NavigationView.IOnNavigationItemSelectedListener
     {
+       
         private NavigationView _navigationView;
         private IMenuItem _previousMenuItem;
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             var ignore = base.OnCreateView(inflater, container, savedInstanceState);
             var ifUser = CrossSecureStorage.Current.HasKey("securityToken");
-            var view = this.BindingInflate(Resource.Layout.MenuView, null);           
+            var view = this.BindingInflate(Resource.Layout.MenuView, null);
             if (ifUser==true)
             {
             _navigationView = view.FindViewById<NavigationView>(Resource.Id.menu_view);
             _navigationView.SetNavigationItemSelectedListener(this);
             _navigationView.Menu.FindItem(Resource.Id.menu_profile).SetVisible(true);
             _navigationView.Menu.FindItem(Resource.Id.menu_exit).SetVisible(true);
-             return view;
+            return view;
             }
             return null;
         }

@@ -46,7 +46,7 @@ namespace XamarinBlogEducation.Core.ViewModels
                 RaisePropertyChanged();
             }
         }
-        public EditAccountViewModel loggedUser;
+        public EditAccountViewModel loggedUser= new EditAccountViewModel();
         private async Task LoginAsync()
         {
             user = new LoginAccountViewModel()
@@ -54,8 +54,9 @@ namespace XamarinBlogEducation.Core.ViewModels
                 Email = _email,
                 Password = _password
             };
-
             loggedUser = await _userService.GetUserAsync(user);
+           
+            
             if (loggedUser.Email != null)
             {
                 await NavigationService.Navigate<AllPostsFragmentViewModel>();

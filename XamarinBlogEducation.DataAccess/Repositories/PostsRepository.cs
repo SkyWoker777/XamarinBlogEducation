@@ -44,7 +44,12 @@ namespace XamarinBlogEducation.DataAccess.Repositories
                 .ToListAsync();
             return result;
         }
-
+        public async Task<string> GetCategoryName(long id)
+        {
+            var res = _context.Categories.FirstOrDefault<Category>(x => x.Id == id).Name;   
+            return res;
+        }
+        
         public async Task<Post> GetPost(long id)
         {
             var res = await _context.Posts.FirstOrDefaultAsync<Post>(x => x.Id == id);

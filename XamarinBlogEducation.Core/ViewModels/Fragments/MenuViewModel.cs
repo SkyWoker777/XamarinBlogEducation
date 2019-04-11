@@ -8,6 +8,7 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
 {
     public class MenuViewModel: MvxViewModel
     {
+        private string _userName;
         private readonly IMvxNavigationService _navigationService;
 
         public MenuViewModel(IMvxNavigationService navigationService)
@@ -19,6 +20,7 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
             ShowProfileCommand = new MvxAsyncCommand(async () => await _navigationService.Navigate<UserProfileViewModel>());
             ShowUserPostsCommand= new MvxAsyncCommand(async () => await _navigationService.Navigate<UserPostsViewModel>());
             ExitCommand = new MvxAsyncCommand(ExitAsync);
+            UserName = (CrossSecureStorage.Current.GetValue("UserName") + " " + CrossSecureStorage.Current.GetValue("UserLastName"));
         }
 
         public IMvxCommand ShowHomeCommand { get; private set; }
@@ -30,7 +32,15 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
         {
             CrossSecureStorage.Current.DeleteKey("securityToken");
             await _navigationService.Navigate<LoginViewModel>();
-
+        }
+        public string UserName
+        {
+            get => _userName;
+            set
+            {
+                _userName = value;
+                RaisePropertyChanged();
+            }
         }
     }
 }

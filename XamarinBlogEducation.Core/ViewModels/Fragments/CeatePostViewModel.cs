@@ -122,7 +122,7 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
                 Description=_description
             };
             await _blogService.AddNewPost(post);
-            
+            await NavigationService.Navigate<UserPostsViewModel>();
         }
         public async Task GoBack()
         {

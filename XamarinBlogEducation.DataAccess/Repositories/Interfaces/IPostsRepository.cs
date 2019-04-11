@@ -14,5 +14,6 @@ namespace XamarinBlogEducation.DataAccess.Repositories.Interfaces
         Task<Post> GetPost(long id);
         Task<IEnumerable<Category>> GetAllCategories();
         Task<IEnumerable<Post>> GetByAuthor(string userId);
+        Task<string> GetCategoryName(long id);
     }
 }

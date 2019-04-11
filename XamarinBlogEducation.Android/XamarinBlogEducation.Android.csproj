@@ -62,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controls\RecyclerViewOnScrollListener.cs" />
+    <Compile Include="Elements\DeletePostDialog.cs" />
     <Compile Include="Elements\DialogCategory.cs" />
     <Compile Include="Elements\InfoView.cs" />
     <Compile Include="Elements\PasswordDialog.cs" />
@@ -379,6 +380,11 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\menu\filter_menu.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\DeletePostDialog.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

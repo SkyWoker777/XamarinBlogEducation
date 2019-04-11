@@ -55,10 +55,7 @@ namespace XamarinBlogEducation.Android.Views.Activities
                     _drawerToggle.DrawerOpened += (object sender, ActionBarDrawerEventArgs e) => (this)?.HideSoftKeyboard();
                     DrawerLayout.AddDrawerListener(_drawerToggle);
                 }
-            }
-                var recyclerView = FindViewById<MvxRecyclerView>(Resource.Id.posts_recycler_view);      
-            var set = this.CreateBindingSet<AllPostsView, AllPostsViewModel>();
-            set.Apply();
+            }   
             
         }
         public override bool OnOptionsItemSelected(IMenuItem item)

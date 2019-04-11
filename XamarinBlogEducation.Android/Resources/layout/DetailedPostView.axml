@@ -4,17 +4,18 @@
 	xmlns:local="http://schemas.android.com/apk/res-auto"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent">
+	
 	<android.support.design.widget.CoordinatorLayout
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		android:background="#e8d2c0">
-		
 		<LinearLayout
 				android:paddingTop="?android:attr/actionBarSize"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:orientation="vertical">
 		<TextView
+				android:text="TEST"
 				android:layout_gravity="center_horizontal"
 				android:paddingLeft="16dp"
 				android:paddingRight="16dp"
@@ -43,6 +44,7 @@
 				android:textColor="#537487"
 				android:textStyle="italic" />
 				<TextView
+					android:text="TEST"
 				android:paddingLeft="5dp"
 				android:paddingTop="10dp"
 				android:layout_width="match_parent"
@@ -50,15 +52,44 @@
 				android:textSize="12dp"
 				android:textColor="#537487"
 				android:textStyle="italic"
-				local:MvxBind="ItemsSource DetailedPost;Text DetailedPost.Author;" />
+				local:MvxBind="ItemsSource DetailedPost;Text DetailedPost.AuthorName;" />
+			/>
+		</LinearLayout>
+		<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:orientation="horizontal"
+				android:gravity="right"
+				android:layout_marginRight="25dp">
+			<TextView
+				android:paddingLeft="16dp"
+				android:paddingRight="5dp"
+				android:paddingTop="10dp"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="Category:"
+				android:textSize="12dp"
+				android:textColor="#537487"
+				android:textStyle="italic" />
+				<TextView
+				android:paddingLeft="5dp"
+				android:paddingTop="10dp"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:textSize="12dp"
+				android:textColor="#537487"
+				android:textStyle="italic"
+				local:MvxBind="ItemsSource DetailedPost;Text DetailedPost.Category;" />
 			/>
 		</LinearLayout>
 		<TextView
 				android:gravity="left"
 				android:paddingLeft="16dp"
+				android:paddingTop="10dp"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:textSize="12dp"
+				android:text="TEST"
 				android:textColor="#537487"
 				android:textStyle="italic" 
 				local:MvxBind="ItemsSource DetailedPost;Text DetailedPost.CreationDate;"/>
@@ -70,17 +101,12 @@
 				android:layout_marginRight="15dp"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:paddingLeft="15dp"
 				android:paddingRight="15dp"
 				android:paddingTop="15dp"
 				android:paddingBottom="15dp"
+				android:text="test test test"
 				local:MvxBind="ItemsSource DetailedPost;Text DetailedPost.Content;" />
-		
-		<LinearLayout
-			    android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:orientation="vertical">
-			<TextView
+		<TextView
 				android:id="@+id/cantLeaveCommentMessage"
 				android:text="Log in to add a comment"
 			    android:paddingLeft="16dp"
@@ -91,20 +117,16 @@
 				android:textSize="12dp"
 				android:textColor="#537487"
 				android:textStyle="italic"/>
-				<TextView
-			    android:id="@+id/leaveCommentMessage"
-				android:text="Write your comment here:"
-			    android:paddingLeft="16dp"
-				android:paddingRight="5dp"
-				android:layout_width="wrap_content"
+		<LinearLayout
+				android:id="@+id/coomentLayout"
+			    android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:textSize="12dp"
-				android:textColor="#537487"
-				android:textStyle="italic"/>
+				android:orientation="vertical">
+			
 		<EditText
 		android:layout_marginTop="5dp"
 		android:layout_marginRight="16dp"
-		android:layout_marginLeft="16dp"
+		android:layout_marginLeft="15dp"
 		android:layout_gravity="center_horizontal"
 		android:ems="10"
 		android:textSize="15dp"
@@ -112,30 +134,33 @@
 		android:drawablePadding="16dp"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:hint="Comment" 
+		android:hint="Write your comment here" 
 		android:background="@drawable/background_login"
 	    android:id="@+id/inputComment"/>
 		<Button 
 		android:id="@+id/addCommentButton"
 		android:backgroundTint="#6db3ce"
-		android:layout_width="50dp"
-        android:layout_height="40dp"
+		android:layout_width="60dp"
+        android:layout_height="45dp"
 		android:text="add"
-		android:textSize="10dp"
+		android:textSize="15dp"
 		android:layout_gravity="right"
 		android:layout_marginRight="16dp"
 		android:layout_marginTop="7dp"/>
+		</LinearLayout>
 		<MvxRecyclerView
 		android:id="@+id/comments_recycler_view"
 		android:scrollbars="vertical"
 		android:layout_width="match_parent"
-		android:layout_height="match_parent"
+		android:layout_height="wrap_content"
+		android:minHeight="100dp"	
+        android:maxHeight="300dp"
 		android:layout_marginRight="16dp"
 		android:layout_marginLeft="16dp"
 		android:layout_marginBottom="16dp"
 		local:MvxItemTemplate="@layout/comment_item"
 		local:MvxBind="ItemsSource AllComments" />
 		</LinearLayout>
-		</LinearLayout>
 		</android.support.design.widget.CoordinatorLayout>
+		
 	</RelativeLayout>

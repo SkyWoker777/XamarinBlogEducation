@@ -13,7 +13,7 @@ namespace XamarinBlogEducation.Business.Services.Interfaces
     {
         Task<IEnumerable<Post>> GetAll();
         Task CreatePost(CreatePostBlogViewModel post);
-        Task DeletePost(int selectedPostId);
+        Task DeletePost(long selectedPostId);
         Task EditPostAsync(CreatePostBlogViewModel post);
         Task<Post> GetDetailsPost(int selectedPostId);
         Task<List<GetAllCommentsBlogViewItem>> ShowComments(int selectedPostId);
@@ -24,6 +24,6 @@ namespace XamarinBlogEducation.Business.Services.Interfaces
         Task<List<Category>> GetAllCategories();
         Task AddCategory(GetAllCategoriesblogViewItem newCategory);
         Task<IEnumerable<Post>> GetUserPosts(string userEmail);
-
+        Task<string> GetCategoryName(long categoryId);
     }
 }

@@ -60,19 +60,17 @@ namespace XamarinBlogEducation.Android.Views.Fragments
             inputComment = view.FindViewById<EditText>(Resource.Id.inputComment);
             
             cantLeaveCommentMessage = view.FindViewById<TextView>(Resource.Id.cantLeaveCommentMessage);
-            leaveCommentMessage = view.FindViewById<TextView>(Resource.Id.leaveCommentMessage);
+            var coomentLayout = view.FindViewById<LinearLayout>(Resource.Id.coomentLayout);
             addCommentButton = view.FindViewById<Button>(Resource.Id.addCommentButton);
             if (CrossSecureStorage.Current.HasKey("securityToken") == true)
             {
-                cantLeaveCommentMessage.Visibility = ViewStates.Invisible;
-                leaveCommentMessage.Visibility = ViewStates.Visible;
+                cantLeaveCommentMessage.Visibility = ViewStates.Gone;
+                
             }
             if (CrossSecureStorage.Current.HasKey("securityToken") == false)
             {
                 cantLeaveCommentMessage.Visibility = ViewStates.Visible;
-                leaveCommentMessage.Visibility = ViewStates.Invisible;
-                inputComment.Visibility = ViewStates.Invisible;
-                addCommentButton.Visibility = ViewStates.Invisible;
+                coomentLayout.Visibility = ViewStates.Gone;
             }
             addCommentButton.Click += addCommentButton_OnClick;
             var set = this.CreateBindingSet<DetailedPostView, DetailedPostViewModel>();

@@ -10,6 +10,9 @@ using MvvmCross.Droid.Support.V7.AppCompat.Widget;
 using Android.Text.Method;
 using Plugin.SecureStorage;
 using Android.Support.V7.App;
+using System.Reflection;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace XamarinBlogEducation.Android.Views.Fragments
 {
@@ -48,7 +51,8 @@ namespace XamarinBlogEducation.Android.Views.Fragments
             addNewPostButton = view.FindViewById<Button>(Resource.Id.addNewPostButton);
             addCategoryButton = view.FindViewById<Button>(Resource.Id.addCategoryButton);
             mvxSpinner = view.FindViewById<MvxAppCompatSpinner>(Resource.Id.allCategoriesSpinner);
-           
+            LimitSpinner(mvxSpinner, 400);
+           // Test(mvxSpinner);
             inputTitle = view.FindViewById<EditText>(Resource.Id.inputTitle);
             inputPostContent = view.FindViewById<EditText>(Resource.Id.inputPostContent);
             inputPostContent.VerticalScrollBarEnabled = true;
@@ -72,14 +76,15 @@ namespace XamarinBlogEducation.Android.Views.Fragments
             addNewPostButton.Click += addNewPostButton_OnClick;
             return view;
         }
-        
+      
+      
+
         private void addNewPostButton_OnClick(object sender, EventArgs e)
         {
             ViewModel.AddNewPostCommand.Execute();
             
             string toast = "Your post was successfuly added";
             Toast.MakeText(Context, toast, ToastLength.Long).Show();
-            ViewModel.GoBackCommand.Execute();
         }
        
     }

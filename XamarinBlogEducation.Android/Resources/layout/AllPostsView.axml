@@ -7,9 +7,11 @@
 	android:layout_height="match_parent"
 	android:layout_width="match_parent"
 	android:background="#e8d2c0">
+	
 <RelativeLayout
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"> 
+	
 			<android.support.design.widget.AppBarLayout
             android:id="@+id/filterToolBar"
             android:layout_width="match_parent"
@@ -17,11 +19,17 @@
             <include
                 layout="@layout/filters_toolbar" />
         </android.support.design.widget.AppBarLayout>
+	<ScrollView
+	android:gravity="center"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="#e8d2c0">
 		<FrameLayout
 		android:id="@+id/allposts_frame"
 		android:layout_height="match_parent"
 		android:layout_width="wrap_content"
 		android:layout_centerInParent="true"/>
+	</ScrollView>
 	</RelativeLayout>
 	<FrameLayout
 		android:id="@+id/navigation_frame"
@@ -29,4 +37,5 @@
 		android:layout_width="wrap_content"
 		android:layout_gravity="left|start" 
 	/>
+		
 </android.support.v4.widget.DrawerLayout>

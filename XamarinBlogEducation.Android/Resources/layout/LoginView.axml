@@ -6,11 +6,16 @@
 	android:fitsSystemWindows="true"	
 	android:layout_height="match_parent"
 	android:layout_width="match_parent">
+		<ScrollView
+	android:gravity="center"
+	android:background="#e8d2c0"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
 	<FrameLayout
 			android:id="@+id/login_content_frame"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
 			android:layout_centerInParent="true"
 	/>
-	
+	</ScrollView>
 </android.support.v4.widget.DrawerLayout>

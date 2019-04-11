@@ -24,6 +24,7 @@ namespace XamarinBlogEducation.Android.Views.Fragments
         private EditText content;
         private EditText description;
         private EditText title;
+        private Button deletePostButton;
         private Button canselEditPostButton;
         private Button saveEditPostButton;
         private LinearLayout linearLayout;
@@ -55,9 +56,10 @@ namespace XamarinBlogEducation.Android.Views.Fragments
             linearLayout = view.FindViewById<LinearLayout>(Resource.Id.editPostLayout);
             saveEditPostButton = view.FindViewById<Button>(Resource.Id.saveEditPostButton);
             canselEditPostButton = view.FindViewById<Button>(Resource.Id.canselEditPostButton);
+            deletePostButton = view.FindViewById<Button>(Resource.Id.deletePostButton);
             linearLayout.VerticalScrollBarEnabled = true;
-           
-            
+
+            deletePostButton.Click+= deletePostButton_onClick;
             canselEditPostButton.Click += canselEditPostButton_onClick;
             saveEditPostButton.Click += saveEditPostButton_onClick;
             return view;
@@ -70,7 +72,10 @@ namespace XamarinBlogEducation.Android.Views.Fragments
             Toast.MakeText(Context, toast, ToastLength.Long).Show();
             ViewModel.GoToPostsCommand.Execute();
         }
-
+        private void deletePostButton_onClick(object sender, EventArgs e)
+        {
+            ViewModel.DeleteCommand.Execute(null);
+        }
         private void canselEditPostButton_onClick(object sender, EventArgs e)
         {
             string toast = string.Format("No changes were saved");

@@ -40,7 +40,7 @@ namespace XamarinBlogEducation.Business.Services
             }
             await _postsRepository.Add(post);
         }
-        public async Task DeletePost(int selectedPostId)
+        public async Task DeletePost(long selectedPostId)
         {
             _postsRepository.Delete(await _postsRepository.GetPost(selectedPostId));
         }
@@ -102,7 +102,11 @@ namespace XamarinBlogEducation.Business.Services
             var result = await _postsRepository.GetPost(selectedPostId);      
             return result;
         }
-
+        public async Task<string> GetCategoryName(long categoryId)
+        {
+            var result = await _postsRepository.GetCategoryName(categoryId);
+            return result;
+        }
         public Task<List<GetAllCommentsBlogViewItem>> ShowComments(int selectedPostId)
         {
             throw new NotImplementedException();

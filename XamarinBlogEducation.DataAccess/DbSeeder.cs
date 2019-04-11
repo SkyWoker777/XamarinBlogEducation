@@ -14,7 +14,7 @@ namespace XamarinBlogEducation.DataAccess
         }
         private static void SeedInitialData(ApplicationDbContext context)
         {
-            context.Database.EnsureCreated();
+           // context.Database.EnsureCreated();
             if (!context.Categories.Any())
             {
                 context.Categories.Add(

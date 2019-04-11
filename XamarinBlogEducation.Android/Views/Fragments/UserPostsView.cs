@@ -21,6 +21,7 @@ namespace XamarinBlogEducation.Android.Views.Fragments
     [MvxFragmentPresentation(typeof(AllPostsViewModel), Resource.Id.allposts_frame, false)]
     public class UserPostsView:BaseFragment<UserPostsViewModel>
     {
+        private Button deleteButton;
         protected override int FragmentId => Resource.Layout.UserPostsView;      
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
@@ -28,9 +29,13 @@ namespace XamarinBlogEducation.Android.Views.Fragments
             ((AppCompatActivity)Activity).SupportActionBar.SetDisplayShowTitleEnabled(true);
             ((AppCompatActivity)Activity).SupportActionBar.SetTitle(Resource.String.UserPostsTitle);         
             var recyclerView = view.FindViewById<MvxRecyclerView>(Resource.Id.user_posts_recycler_view);
+        
             var set = this.CreateBindingSet<UserPostsView, UserPostsViewModel>();
             set.Apply();
             return view;
         }
+
+       
     }
+    
 }

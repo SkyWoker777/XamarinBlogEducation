@@ -11,13 +11,29 @@
 		android:background="#e8d2c0">
 		
 		<LinearLayout
-				android:paddingTop="?android:attr/actionBarSize"
-			    android:id="@+id/editPostLayout"
+				android:id="@+id/editPostLayout"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:orientation="vertical"
+			android:paddingTop="?android:attr/actionBarSize"
 			    android:paddingLeft="16dp"
 				android:paddingRight="16dp">
+			<LinearLayout
+				android:gravity="right"
+			    android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:orientation="horizontal"
+			    android:paddingLeft="16dp"
+				android:paddingRight="16dp">
+		<Button
+		android:id="@+id/deletePostButton"
+		android:rotation="45"
+		android:layout_marginTop="5dp"
+		android:backgroundTint="#6db3ce"
+		android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@drawable/add_ic"/>
+			</LinearLayout>
 		<EditText
 				android:id="@+id/editTitle"
 				android:layout_gravity="center_horizontal"
@@ -78,7 +94,8 @@
 		android:layout_marginBottom="20dp"
 		android:backgroundTint="#6db3ce"
 		android:padding="12dp"
-		android:layout_width="100dp"
+		android:layout_weight="1"
+		android:layout_width="0dp"
 		android:layout_height="60dp"
 		 />
 	<Button android:id="@+id/saveEditPostButton"
@@ -88,7 +105,8 @@
 		android:layout_marginBottom="20dp"
 		android:backgroundTint="#6db3ce"
 		android:padding="12dp"
-		android:layout_width="100dp"
+		android:layout_weight="1"
+		android:layout_width="0dp"
 		android:layout_height="60dp"
 		 />
 				</LinearLayout>

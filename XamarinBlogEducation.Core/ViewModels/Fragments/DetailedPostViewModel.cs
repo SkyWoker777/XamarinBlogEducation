@@ -39,13 +39,10 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
         public MvxNotifyTask LoadCommentsTask { get; private set; }
         private async Task LoadComments()
         {
+            AllComments.Clear();
             var result = await _blogService.GetAllComments(DetailedPost.Id);
-            List<GetAllCommentsBlogViewItem> commentsToAdd = new List<GetAllCommentsBlogViewItem>();
-            commentsToAdd.AddRange(result);
-            for (int i = 0; i < commentsToAdd.Count; i++)
-            {
-                AllComments.Add(commentsToAdd[i]);
-            }
+            AllComments.AddRange(result);
+
         }
         private async Task GoBackAsync()
         {

@@ -11,6 +11,7 @@ using Android.Support.V4.Widget;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
+using MvvmCross.Droid.Support.V7.AppCompat.Widget;
 using MvvmCross.Droid.Support.V7.RecyclerView;
 using MvvmCross.Platforms.Android.Presenters.Attributes;
 using XamarinBlogEducation.Android.Extensions;
@@ -23,11 +24,14 @@ namespace XamarinBlogEducation.Android.Views.Fragments
     public class AllPostsFragment : BaseFragment<AllPostsFragmentViewModel>
     {
         private MvxRecyclerView recyclerView;
+        private MvxAppCompatSpinner mvxSpinner;
         protected override int FragmentId => Resource.Layout.AllPostFragment;
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             var view= base.OnCreateView(inflater, container, savedInstanceState);
             recyclerView = view.FindViewById<MvxRecyclerView>(Resource.Id.posts_recycler_view);
+            mvxSpinner = view.FindViewById<MvxAppCompatSpinner>(Resource.Id.filterByCategorySpinner);
+            LimitSpinner(mvxSpinner, 400);
             return view;
         }
     }

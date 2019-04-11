@@ -29,7 +29,7 @@ namespace XamarinBlogEducation.DataAccess
             .HasOne(b => b.Category)
             .WithMany()
             .OnDelete(DeleteBehavior.Restrict);
-            DbSeeder.SeedDb(this);
+          //  DbSeeder.SeedDb(this);
             base.OnModelCreating(modelBuilder);
         }
         

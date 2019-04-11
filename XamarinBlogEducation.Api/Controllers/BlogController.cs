@@ -36,8 +36,10 @@ namespace XamarinBlogEducation.Api.Controllers
         public async Task<IActionResult> GetPost(int postId)
         {
             var post = await _postService.GetDetailsPost(postId);
+            var category =await _postService.GetCategoryName(post.CategoryId);
             var mappedPost = _mapper.Map<GetDetailsPostBlogView>(post);
-            return Ok(post);
+            mappedPost.Category = category;
+            return Ok(mappedPost);
 
         }
         [AllowAnonymous]
@@ -47,6 +49,10 @@ namespace XamarinBlogEducation.Api.Controllers
         {
             var list = await _postService.GetAll();
             var mappedList = _mapper.Map<List<GetAllPostsBlogViewItem>>(list);
+            foreach (var item in mappedList)
+            {
+                item.Category = await _postService.GetCategoryName(item.CategoryId);
+            }
             return Ok(mappedList);
         }
         [AllowAnonymous]
@@ -113,6 +119,13 @@ namespace XamarinBlogEducation.Api.Controllers
         public async Task<List<GetAllCommentsBlogViewItem>> GetComments(long postId)
         {
             return await _commentService.GetAllComments(postId);
+        }
+        [AllowAnonymous]
+        [HttpPost("delete/{postId}")]
+        public async Task<IActionResult> DeletePost(long postId)
+        {
+            await _postService.DeletePost(postId);
+            return Ok();
         }
     }
 }

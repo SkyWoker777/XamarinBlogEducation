@@ -31,6 +31,7 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
             ChangePasswordCommand = new MvxAsyncCommand(ChangePasswordAsync);
             GoToPostsCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<AllPostsFragmentViewModel>());
             GoBackCommand = new MvxAsyncCommand(GoBackAsync);
+          
         }
 
         public IMvxCommand GoToPostsCommand { get; private set; }
@@ -84,6 +85,7 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
         {
             await NavigationService.Navigate<ChangePasswordDialogViewModel, LoginAccountViewModel>(user);
         }
+       
         private async Task ChangePasswordAsync()
         {
             OpenDialogCommand.Execute(_model);

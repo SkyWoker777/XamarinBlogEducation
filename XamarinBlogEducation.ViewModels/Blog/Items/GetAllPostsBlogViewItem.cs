@@ -12,10 +12,10 @@ namespace XamarinBlogEducation.ViewModels.Blog.Items
         public string Description { get; set; }
         public string Content { get; set; }
         public long CategoryId { get; set; }
-        public string Author { get; set; }
+        public string AuthorName { get; set; }
         public string AuthorId { get; set; }
         public List<GetAllCommentsBlogViewItem> Comments { get; set; }
         public DateTime CreationDate { get; set; }
-
+        public string Category { get; set; }
     }
 }

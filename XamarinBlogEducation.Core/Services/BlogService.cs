@@ -127,5 +127,10 @@ namespace XamarinBlogEducation.Core.Services
             var result = await _httpService.ExecuteQuery(url, HttpOperationMode.POST, httpContent);
             return result.IsSuccessStatusCode;
         }
+        public async Task DeletePost(long postId)
+        {
+            var url = $"{"/Blog/delete/"}{postId}";
+            var result = await _httpService.ExecuteQuery(url, HttpOperationMode.POST);
+        }
     }
 }

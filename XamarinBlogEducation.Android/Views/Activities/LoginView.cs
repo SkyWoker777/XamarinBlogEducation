@@ -48,16 +48,12 @@ namespace XamarinBlogEducation.Android.Views.Activities
             return view;
         }
 
-        private  void loginButton_OnClickAsync(object sender, EventArgs e)
+        private void loginButton_OnClickAsync(object sender, EventArgs e)
         {
+         
             ViewModel.LoginCommand.Execute();
-            if (ViewModel.loggedUser == null)
-            {
-                string toast = "Wrong mail or password";
-                Toast.MakeText(Context, toast, ToastLength.Long).Show();
-                inputEmail.Text = "";
-                inputPassword.Text = "";
-            }
+           inputEmail.Text = "";
+           inputPassword.Text = "";
 
         }
         private void linkSkip_OnClick(object sender, EventArgs e)

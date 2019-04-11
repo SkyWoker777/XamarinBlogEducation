@@ -4,7 +4,11 @@
 	android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
-<TextView
+	<LinearLayout
+	android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+		<TextView
 		android:id="@+id/txt_utitle"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
@@ -14,9 +18,16 @@
 		android:layout_marginRight="8dp"
 		android:textStyle="bold"
 		local:MvxBind="Text Title" />
+		
+	</LinearLayout>
+	<LinearLayout
+	android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 	<TextView
 		android:id="@+id/txt_udescription"
-		android:layout_width="match_parent"
+		android:layout_width="0dp"
+		android:layout_weight="4"
 		android:layout_height="wrap_content"
 		android:paddingLeft="5dp"
 		android:paddingRight="5dp"
@@ -29,16 +40,16 @@
 	<TextView
 		android:text="Edit"	
 		android:layout_width="wrap_content"
+		android:layout_gravity="bottom"
 		android:gravity="center"	
-		android:layout_gravity="right"
 		android:layout_height="wrap_content"
 		android:layout_marginBottom="5dp"
 		android:textColor="#6db3ce"
 		android:textStyle="bold"
-		android:textSize="30px"
-		android:layout_marginTop="10dp"
-		android:layout_marginRight="15dp"
-		android:padding="10dp"/>
+		android:textSize="40px"
+		android:paddingTop="20dp"
+		android:layout_marginRight="15dp"/>
+		</LinearLayout>
 	<View
 		android:layout_width="match_parent"
 		android:layout_height="2dp"
