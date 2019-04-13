@@ -35,6 +35,6 @@ namespace XamarinBlogEducation.Core.ViewModels
         public IMvxCommand LoginCommand { get; private set; }
         public IMvxCommand GoBackCommand { get; private set; }
         public IMvxCommand AboutCommand { get; private set; }
-       
+   
     }
 }

@@ -3,6 +3,7 @@ using Android.Content;
 using Android.Graphics;
 using Android.OS;
 using Android.Provider;
+using Android.Support.V4.App;
 using Android.Support.V7.App;
 using Android.Views;
 using Android.Widget;
@@ -30,7 +31,10 @@ namespace XamarinBlogEducation.Android.Views.Fragments
         private const int PICK_IMAGE_REQUEST = 71;
         private CircleImageView updateProfileImage;
         protected override int FragmentId => Resource.Layout.UserProfileViewModel;
-       
+        public override void OnAttachFragment(global::Android.Support.V4.App.Fragment childFragment)
+        {
+            base.OnAttachFragment(childFragment);
+        }
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             var view = base.OnCreateView(inflater, container, savedInstanceState);

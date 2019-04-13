@@ -1,6 +1,7 @@
 ﻿using System;
 using Android.App;
-
+using Android.Content;
+using Android.Content.PM;
 using Android.OS;
 using Android.Support.V4.View;
 using Android.Support.V4.Widget;
@@ -8,6 +9,7 @@ using Android.Support.V7.App;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Views.InputMethods;
+using Java.Lang;
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.Droid.Support.V7.AppCompat;
 using MvvmCross.Droid.Support.V7.RecyclerView;
@@ -19,12 +21,13 @@ using XamarinBlogEducation.Core.ViewModels;
 namespace XamarinBlogEducation.Android.Views.Activities
 {
     [MvxActivityPresentation]
-    [Activity(Theme = "@style/AppTheme")]
+    [Activity(Theme = "@style/AppTheme",ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.ScreenSize)]
     public class AllPostsView : MvxAppCompatActivity<AllPostsViewModel>
     {
         private MvxActionBarDrawerToggle _drawerToggle;
         public DrawerLayout DrawerLayout { get; set; }
         private bool ifUser;
+
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
@@ -58,6 +61,7 @@ namespace XamarinBlogEducation.Android.Views.Activities
             }   
             
         }
+       
         public override bool OnOptionsItemSelected(IMenuItem item)
         {
             switch (item.ItemId)

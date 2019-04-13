@@ -19,7 +19,7 @@ using XamarinBlogEducation.Core.ViewModels;
 namespace XamarinBlogEducation.Android.Views.Activities
 {
    
-    [Activity(MainLauncher = true, NoHistory = true)]
+    [Activity(MainLauncher = true, NoHistory = true, ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.ScreenSize)]
     public class LoginActivity : MvxAppCompatActivity<LoginActivityViewModel>
     {
         public DrawerLayout DrawerLayout { get; set; }

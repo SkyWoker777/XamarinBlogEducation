@@ -9,7 +9,7 @@
 		android:orientation="vertical">
 	<TextView
 			
-			android:text="Are you sure?"
+			android:text="Do you want to delete your post?"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:layout_marginTop="20dp"
@@ -27,7 +27,7 @@
 				android:layout_marginTop="10dp">
 
 	<Button android:id="@+id/CancelDeleteButton"
-		android:text="CANCEL"
+		android:text="NO"
 		android:gravity="center"
 		android:layout_gravity="center_horizontal"
 		android:layout_marginBottom="20dp"
@@ -42,7 +42,7 @@
 		android:gravity="center"
 		android:layout_gravity="center_horizontal"
 		android:layout_marginBottom="20dp"
-		android:backgroundTint="#6db3ce"
+		android:backgroundTint="#ce6d83"
 		android:layout_marginTop="10dp"
 		android:padding="12dp"
 		android:layout_width="100dp"

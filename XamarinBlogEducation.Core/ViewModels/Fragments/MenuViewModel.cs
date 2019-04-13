@@ -6,19 +6,15 @@ using System.Threading.Tasks;
 
 namespace XamarinBlogEducation.Core.ViewModels.Fragments
 {
-    public class MenuViewModel: MvxViewModel
+    public class MenuViewModel: BaseViewModel
     {
         private string _userName;
-        private readonly IMvxNavigationService _navigationService;
-
-        public MenuViewModel(IMvxNavigationService navigationService)
+        public MenuViewModel (IMvxNavigationService navigationService) : base(navigationService)
         {
-            _navigationService = navigationService;
-
-            ShowHomeCommand = new MvxAsyncCommand(async () => await _navigationService.Navigate<AllPostsFragmentViewModel>());
-            AddPostCommand = new MvxAsyncCommand(async () => await _navigationService.Navigate<CreatePostViewModel>());
-            ShowProfileCommand = new MvxAsyncCommand(async () => await _navigationService.Navigate<UserProfileViewModel>());
-            ShowUserPostsCommand= new MvxAsyncCommand(async () => await _navigationService.Navigate<UserPostsViewModel>());
+            ShowHomeCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<AllPostsFragmentViewModel>());
+            AddPostCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<CreatePostViewModel>());
+            ShowProfileCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<UserProfileViewModel>());
+            ShowUserPostsCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<UserPostsViewModel>());
             ExitCommand = new MvxAsyncCommand(ExitAsync);
             UserName = (CrossSecureStorage.Current.GetValue("UserName") + " " + CrossSecureStorage.Current.GetValue("UserLastName"));
         }
@@ -31,7 +27,11 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
         private async Task ExitAsync()
         {
             CrossSecureStorage.Current.DeleteKey("securityToken");
-            await _navigationService.Navigate<LoginViewModel>();
+            CrossSecureStorage.Current.DeleteKey("UserName");
+            CrossSecureStorage.Current.DeleteKey("UserEmail");
+            CrossSecureStorage.Current.DeleteKey("UserLastName");
+            await NavigationService.Navigate<LoginViewModel>();
+            await DisposeView(this);
         }
         public string UserName
         {
@@ -42,5 +42,6 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
                 RaisePropertyChanged();
             }
         }
+       
     }
 }

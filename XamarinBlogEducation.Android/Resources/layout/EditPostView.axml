@@ -25,14 +25,7 @@
 				android:orientation="horizontal"
 			    android:paddingLeft="16dp"
 				android:paddingRight="16dp">
-		<Button
-		android:id="@+id/deletePostButton"
-		android:rotation="45"
-		android:layout_marginTop="5dp"
-		android:backgroundTint="#6db3ce"
-		android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:background="@drawable/add_ic"/>
+		
 			</LinearLayout>
 		<EditText
 				android:id="@+id/editTitle"
@@ -70,6 +63,7 @@
 				android:paddingTop="15dp"
 				android:paddingBottom="15dp"
 				local:MvxBind="ItemsSource PostToEdit;Text PostToEdit.Content;" />
+			
 			<TextView
 				android:gravity="left"
 				android:paddingLeft="16dp"
@@ -110,6 +104,14 @@
 		android:layout_height="60dp"
 		 />
 				</LinearLayout>
+		<Button
+		android:id="@+id/deletePostButton"
+		android:text="DELETE"
+		android:layout_marginTop="50dp"
+		android:layout_gravity="bottom"
+		android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:backgroundTint="#ce6d83"/>
 		</LinearLayout>
 	
 		</android.support.design.widget.CoordinatorLayout>

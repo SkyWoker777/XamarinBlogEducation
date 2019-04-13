@@ -103,15 +103,17 @@
 				android:layout_height="wrap_content"
 				android:paddingRight="15dp"
 				android:paddingTop="15dp"
+				android:textSize="15dp"
 				android:paddingBottom="15dp"
-				android:text="test test test"
+				android:text="It's important that the RadioButtons are grouped together by the RadioGroup element so that no more than one can be selected at a time. This logic is automatically handled by the Android system. When one RadioButton within a group is selected, all others are automatically deselected."
 				local:MvxBind="ItemsSource DetailedPost;Text DetailedPost.Content;" />
-		<TextView
+		
+			<TextView
 				android:id="@+id/cantLeaveCommentMessage"
 				android:text="Log in to add a comment"
-			    android:paddingLeft="16dp"
-				android:paddingRight="5dp"
+			    android:paddingRight="16dp"
 				android:paddingTop="5dp"
+				android:layout_gravity="right"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:textSize="12dp"
@@ -155,6 +157,7 @@
 		android:layout_height="wrap_content"
 		android:minHeight="100dp"	
         android:maxHeight="300dp"
+		android:layout_marginTop="16dp"		
 		android:layout_marginRight="16dp"
 		android:layout_marginLeft="16dp"
 		android:layout_marginBottom="16dp"

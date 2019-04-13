@@ -2,6 +2,7 @@
 using Android.App;
 using Android.OS;
 using Android.Support.V7.App;
+using Android.Text;
 using Android.Text.Method;
 using Android.Views;
 using Android.Views.InputMethods;
@@ -55,7 +56,7 @@ namespace XamarinBlogEducation.Android.Views.Fragments
            // commentsAdapter = new CommentsAdapter((IMvxAndroidBindingContext)this.BindingContext);
             //recyclerView.Adapter = commentsAdapter;
             content = view.FindViewById<TextView>(Resource.Id.textViewContent);
-            content.VerticalScrollBarEnabled = true;
+            content.VerticalScrollBarEnabled = true;          
             content.MovementMethod = new ScrollingMovementMethod();
             inputComment = view.FindViewById<EditText>(Resource.Id.inputComment);
             

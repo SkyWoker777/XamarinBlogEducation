@@ -1,16 +1,15 @@
 ﻿using System;
-using Android.App;
+using System.Threading.Tasks;
 using Android.OS;
+using Android.Support.V4.App;
 using Android.Views;
 using Android.Widget;
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.Platforms.Android.Presenters.Attributes;
-using MvvmCross.Platforms.Android.Views;
 using Plugin.SecureStorage;
-using XamarinBlogEducation.Android.Views.Fragments;
 using XamarinBlogEducation.Core.ViewModels;
 
-namespace XamarinBlogEducation.Android.Views.Activities
+namespace XamarinBlogEducation.Android.Views.Fragments
 {
     [MvxFragmentPresentation(typeof(LoginActivityViewModel), Resource.Id.login_content_frame, true)]
     public class LoginView : BaseFragment<LoginViewModel>
@@ -25,7 +24,6 @@ namespace XamarinBlogEducation.Android.Views.Activities
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             var view = base.OnCreateView(inflater, container, savedInstanceState);
-           
             CrossSecureStorage.Current.DeleteKey("securityToken");
             CrossSecureStorage.Current.DeleteKey("UserName");
             CrossSecureStorage.Current.DeleteKey("UserEmail");
@@ -40,7 +38,7 @@ namespace XamarinBlogEducation.Android.Views.Activities
             var set = this.CreateBindingSet<LoginView, LoginViewModel>();
             set.Bind(inputEmail).To(vm => vm.Email);
             set.Bind(inputPassword).To(vm => vm.Password);
-            set.Bind(loginButton).To(vm => vm.LoginCommand);
+
             set.Apply();
             loginButton.Click += loginButton_OnClickAsync;
             buttonRegister.Click += buttonRegister_OnClickAsync;
@@ -48,14 +46,24 @@ namespace XamarinBlogEducation.Android.Views.Activities
             return view;
         }
 
-        private void loginButton_OnClickAsync(object sender, EventArgs e)
+        private async void loginButton_OnClickAsync(object sender, EventArgs e)
         {
-         
-            ViewModel.LoginCommand.Execute();
-           inputEmail.Text = "";
-           inputPassword.Text = "";
+            await ViewModel.LoginCommand.ExecuteAsync();
 
+            var mail = CrossSecureStorage.Current.GetValue("UserEmail");
+            if (mail != inputEmail.Text)
+            {
+                inputEmail.Text = "";
+                inputPassword.Text = "";
+                string toast = string.Format("Wrong mail or password");
+                Toast.MakeText(Context, toast, ToastLength.Long).Show();
+            }
+            else
+            {
+                ViewModel.GoNextCommand.Execute();
+            }
         }
+
         private void linkSkip_OnClick(object sender, EventArgs e)
         {
             ViewModel.SkipCommand.Execute();
@@ -64,5 +72,6 @@ namespace XamarinBlogEducation.Android.Views.Activities
         {
             ViewModel.SingUpCommand.Execute();
         }
+       
     }
 }

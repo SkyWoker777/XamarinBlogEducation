@@ -70,11 +70,12 @@
     <Compile Include="MainAplication.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\DialogsService.cs" />
     <Compile Include="Setup.cs" />
     <Compile Include="Views\Activities\AllPostsView.cs" />
     <Compile Include="Views\Activities\BaseActivity.cs" />
     <Compile Include="Views\Activities\LoginActivity.cs" />
-    <Compile Include="Views\Activities\LoginView.cs" />
+    <Compile Include="Views\Fragments\LoginView.cs" />
     <Compile Include="Views\Fragments\AboutFragment.cs" />
     <Compile Include="Views\Fragments\AllPostsFragment.cs" />
     <Compile Include="Views\Fragments\BaseFragment.cs" />
@@ -116,6 +117,9 @@
     <AndroidResource Include="Resources\mipmap-xxxhdpi\ic_launcher_round.png" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Karamunting.Android.Iceboy1369.TextViewJustify">
+      <Version>1.1.0</Version>
+    </PackageReference>
     <PackageReference Include="Microsoft.IdentityModel.Tokens">
       <Version>5.4.0</Version>
     </PackageReference>
@@ -385,6 +389,16 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\DeletePostDialog.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\item_filter.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\filteritem_spinnerdropdown.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

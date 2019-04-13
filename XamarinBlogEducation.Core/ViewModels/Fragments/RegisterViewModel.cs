@@ -25,10 +25,11 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
         {
             _userService = userService;
             RegistrateCommand = new MvxAsyncCommand(RegistrateAsync);
+            LoginCommand = new MvxAsyncCommand(LoginAsync);
         }
 
         public IMvxCommand RegistrateCommand { get; private set; }
-
+        public IMvxCommand LoginCommand { get; private set; }
 
         public string Email
         {
@@ -74,8 +75,7 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
                 _lastName = value;
                 RaisePropertyChanged();
             }
-        }
-        
+        } 
         public byte[] UserImage
         {
             get => _userImage ;
@@ -108,6 +108,11 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
             await DisposeView(this);
             await NavigationService.Navigate<AllPostsFragmentViewModel>();
             
+        }
+        private async Task LoginAsync()
+        {
+            await DisposeView(this);
+
         }
     }
 }

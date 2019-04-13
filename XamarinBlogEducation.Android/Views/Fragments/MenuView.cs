@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Android.OS;
 using Android.Support.Design.Widget;
+using Android.Support.V7.App;
 using Android.Views;
 using Android.Widget;
 using MvvmCross.Binding.BindingContext;
@@ -57,7 +58,9 @@ namespace XamarinBlogEducation.Android.Views.Fragments
             switch (itemId)
             {
                 case Resource.Id.menu_home:
+                    ((AppCompatActivity)Activity).SupportActionBar.SetTitle(Resource.String.AllPostsTitle);
                     ViewModel.ShowHomeCommand.Execute(null);
+                   
                     break;
                 case Resource.Id.menu_exit:
                     ViewModel.ExitCommand.Execute(null);

@@ -1,5 +1,6 @@
 ﻿using MvvmCross.Commands;
 using MvvmCross.Navigation;
+using Plugin.SecureStorage;
 using System.Threading.Tasks;
 using XamarinBlogEducation.Core.Services.Interfaces;
 using XamarinBlogEducation.Core.ViewModels.Fragments;
@@ -12,6 +13,7 @@ namespace XamarinBlogEducation.Core.ViewModels
         private string _email;
         private string _password;
         private LoginAccountViewModel user;
+        private EditAccountViewModel _loggedUser;
         private readonly IUserService _userService;
 
         public LoginViewModel(IUserService userService,
@@ -20,13 +22,13 @@ namespace XamarinBlogEducation.Core.ViewModels
             _userService = userService;
             LoginCommand = new MvxAsyncCommand(LoginAsync);
             SingUpCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<RegisterViewModel>());
-            SkipCommand = new MvxAsyncCommand(async()=> await NavigationService.Navigate<AllPostsFragmentViewModel>());
-            ToProfileCommand = new MvxAsyncCommand<EditAccountViewModel>(ToProfileAsync);
+            SkipCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<AllPostsFragmentViewModel>());
+            GoNextCommand= new MvxAsyncCommand(GoNextAsync);
         }
-        public IMvxCommand LoginCommand { get; private set; }
+        public IMvxAsyncCommand LoginCommand { get; private set; }
+        public IMvxCommand GoNextCommand { get; private set; }
         public IMvxCommand SingUpCommand { get; private set; }
         public IMvxCommand SkipCommand { get; private set; }
-        public IMvxCommand<EditAccountViewModel> ToProfileCommand { get; private set; }
         public string Email
         {
             get => _email;
@@ -46,7 +48,15 @@ namespace XamarinBlogEducation.Core.ViewModels
                 RaisePropertyChanged();
             }
         }
-        public EditAccountViewModel loggedUser= new EditAccountViewModel();
+        public EditAccountViewModel loggedUser
+        {
+            get => _loggedUser;
+            set
+            {
+                _loggedUser = value;
+                RaisePropertyChanged();
+            }
+        }
         private async Task LoginAsync()
         {
             user = new LoginAccountViewModel()
@@ -54,18 +64,13 @@ namespace XamarinBlogEducation.Core.ViewModels
                 Email = _email,
                 Password = _password
             };
-            loggedUser = await _userService.GetUserAsync(user);
-           
-            
-            if (loggedUser.Email != null)
-            {
-                await NavigationService.Navigate<AllPostsFragmentViewModel>();
-                await DisposeView(this);
-            }
+          _loggedUser=  await _userService.GetUserAsync(user);
+         var mail = CrossSecureStorage.Current.GetValue("UserEmail");
         }
-        private async Task ToProfileAsync(EditAccountViewModel user)
+        private async Task GoNextAsync()
         {
-            await NavigationService.Navigate<UserProfileViewModel, EditAccountViewModel>(user);
+            await NavigationService.Navigate<AllPostsFragmentViewModel>();
+            await DisposeView(this);
         }
 
     }
