@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginView">
+            <connections>
+                <outlet property="inputEmail" destination="143" id="name-outlet-143"/>
+                <outlet property="inputPassword" destination="144" id="name-outlet-144"/>
+                <outlet property="skipButton" destination="553" id="name-outlet-553"/>
+                <outlet property="signInButton" destination="511" id="name-outlet-511"/>
+                <outlet property="signUpButton" destination="523" id="name-outlet-523"/>
+                <outlet property="imgWelcome" destination="494" id="name-outlet-494"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="1">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <textField clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="143" translatesAutoresizingMaskIntoConstraints="NO" textAlignment="center" clearButtonMode="whileEditing" opaque="NO" placeholder="Email">
+                    <rect key="frame" x="19" y="240" width="338" height="40"/>
+                    <color key="textColor" colorSpace="calibratedRGB" red="0" green="0" blue="0" alpha="1"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                    <color key="backgroundColor" colorSpace="calibratedRGB" red="0.6705882352941176" green="0.55686274509803924" blue="0.46274509803921571" alpha="1"/>
+                    <color key="tintColor" colorSpace="calibratedRGB" red="0.42745098039215684" green="0.70196078431372544" blue="0.807843137254902" alpha="1"/>
+                    <rect key="contentStretch" x="0.0" y="0.0" width="1" height="1"/>
+                    <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
+                    <constraints>
+                        <constraint id="1123" firstAttribute="height" constant="40"/>
+                    </constraints>
+                </textField>
+                <textField clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="144" translatesAutoresizingMaskIntoConstraints="NO" textAlignment="center" clearButtonMode="whileEditing" placeholder="Password">
+                    <rect key="frame" x="19" y="314" width="338" height="40"/>
+                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" textContentType="email"/>
+                    <color key="backgroundColor" colorSpace="calibratedRGB" red="0.6705882352941176" green="0.55686274509803924" blue="0.46274509803921571" alpha="1"/>
+                    <color key="tintColor" colorSpace="calibratedRGB" red="0.42745098039215684" green="0.70196078431372544" blue="0.807843137254902" alpha="1"/>
+                    <constraints>
+                        <constraint id="1122" firstAttribute="height" constant="40"/>
+                    </constraints>
+                </textField>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="494" translatesAutoresizingMaskIntoConstraints="NO" image="Views/welcome_png_1496568.png" adjustsImageSizeForAccessibilityContentSizeCategory="YES">
+                    <rect key="frame" x="96" y="96" width="183" height="72"/>
+                </imageView>
+                <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="553" translatesAutoresizingMaskIntoConstraints="NO">
+                    <rect key="frame" x="13" y="499.5" width="349" height="33"/>
+                    <color key="tintColor" colorSpace="calibratedRGB" red="0.81960784313725488" green="0.73725490196078436" blue="0.6705882352941176" alpha="1"/>
+                    <fontDescription key="fontDescription" type="italicSystem" pointSize="17"/>
+                    <state key="normal" title="Want just surf the blog? Skip login">
+                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                    </state>
+                </button>
+                <view contentMode="scaleToFill" id="1130" translatesAutoresizingMaskIntoConstraints="NO">
+                    <rect key="frame" x="8" y="386" width="359" height="50"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="511" translatesAutoresizingMaskIntoConstraints="NO">
+                            <rect key="frame" x="8" y="5" width="161.5" height="40"/>
+                            <color key="tintColor" colorSpace="calibratedRGB" red="0.42745098039215684" green="0.70196078431372544" blue="0.807843137254902" alpha="1"/>
+                            <color key="backgroundColor" colorSpace="calibratedRGB" red="0.42745098039215684" green="0.70196078431372544" blue="0.807843137254902" alpha="1"/>
+                            <state key="normal" title="SIGN IN">
+                                <color key="titleColor" colorSpace="calibratedWhite" white="0" alpha="1"/>
+                            </state>
+                            <constraints>
+                                <constraint id="1410" firstAttribute="height" constant="40"/>
+                            </constraints>
+                        </button>
+                        <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="523" translatesAutoresizingMaskIntoConstraints="NO">
+                            <rect key="frame" x="189.5" y="5" width="161.5" height="40"/>
+                            <color key="tintColor" colorSpace="calibratedRGB" red="0.42745098039215684" green="0.70196078431372544" blue="0.807843137254902" alpha="1"/>
+                            <color key="backgroundColor" colorSpace="calibratedRGB" red="0.42745098039215684" green="0.70196078431372544" blue="0.807843137254902" alpha="1"/>
+                            <state key="normal" title="SIGN UP">
+                                <color key="titleColor" colorSpace="calibratedWhite" white="0" alpha="1"/>
+                            </state>
+                            <constraints>
+                                <constraint id="1409" firstAttribute="height" constant="40"/>
+                            </constraints>
+                        </button>
+                    </subviews>
+                    <color key="tintColor" colorSpace="calibratedRGB" red="0.81960784313725488" green="0.73725490196078436" blue="0.6705882352941176" alpha="1"/>
+                    <color key="backgroundColor" colorSpace="calibratedRGB" red="0.81960784313725488" green="0.73725490196078436" blue="0.6705882352941176" alpha="1"/>
+                    <constraints>
+                        <constraint id="1406" firstItem="523" firstAttribute="leading" secondItem="511" secondAttribute="trailing" constant="20"/>
+                        <constraint id="1407" firstItem="511" firstAttribute="leading" secondItem="1130" secondAttribute="leading" constant="8"/>
+                        <constraint id="1411" firstItem="511" firstAttribute="top" secondItem="1130" secondAttribute="top" constant="5"/>
+                        <constraint id="1412" firstItem="523" firstAttribute="top" secondItem="1130" secondAttribute="top" constant="5"/>
+                        <constraint id="1415" firstItem="523" firstAttribute="width" secondItem="511" secondAttribute="width"/>
+                        <constraint id="1417" firstAttribute="trailing" secondItem="523" secondAttribute="trailing" constant="8"/>
+                        <constraint id="1424" firstAttribute="height" constant="50"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="tintColor" colorSpace="calibratedRGB" red="0.81960784313725488" green="0.73725490196078436" blue="0.6705882352941176" alpha="1"/>
+            <color key="backgroundColor" colorSpace="calibratedRGB" red="0.81960784313725488" green="0.73725490196078436" blue="0.6705882352941176" alpha="1"/>
+            <constraints>
+                <constraint id="814" firstAttribute="centerX" secondItem="144" secondAttribute="centerX" constant="-0.5"/>
+                <constraint id="815" firstAttribute="centerY" secondItem="144" secondAttribute="centerY" constant="-0.5"/>
+                <constraint id="816" firstItem="144" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="19"/>
+                <constraint id="817" firstAttribute="trailing" secondItem="144" secondAttribute="trailing" constant="18"/>
+                <constraint id="845" firstItem="143" firstAttribute="centerX" secondItem="1" secondAttribute="centerX" constant="0.5"/>
+                <constraint id="1098" firstItem="143" firstAttribute="width" secondItem="144" secondAttribute="width"/>
+                <constraint id="1103" firstItem="144" firstAttribute="top" secondItem="143" secondAttribute="bottom" constant="34"/>
+                <constraint id="1395" firstItem="1130" firstAttribute="top" secondItem="144" secondAttribute="bottom" constant="32"/>
+                <constraint id="1423" firstItem="1130" firstAttribute="width" secondItem="144" secondAttribute="width" constant="21"/>
+                <constraint id="1425" firstItem="1130" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="8"/>
+                <constraint id="1430" firstItem="553" firstAttribute="width" secondItem="1130" secondAttribute="width" constant="-10"/>
+                <constraint id="1431" firstItem="553" firstAttribute="top" secondItem="1130" secondAttribute="bottom" constant="63.5"/>
+                <constraint id="1432" firstItem="553" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="13"/>
+                <constraint id="1433" firstAttribute="trailing" secondItem="553" secondAttribute="trailing" constant="13"/>
+                <constraint id="1434" firstItem="143" firstAttribute="top" secondItem="494" secondAttribute="bottom" constant="72"/>
+                <constraint id="1435" firstItem="494" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="96"/>
+                <constraint id="1436" firstAttribute="trailing" secondItem="494" secondAttribute="trailing" constant="96"/>
+                <constraint id="1437" firstItem="494" firstAttribute="top" secondItem="1" secondAttribute="top" constant="96"/>
+            </constraints>
+            <point key="canvasLocation" x="28" y="-33"/>
+        </view>
+        <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="1129"/>
+    </objects>
+    <resources>
+        <image name="Views/welcome_png_1496568.png" width="750" height="250"/>
+    </resources>
+</document>

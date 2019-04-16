@@ -13,12 +13,12 @@ namespace XamarinBlogEducation.Core
         public AppStart(IMvxApplication app, IMvxNavigationService mvxNavigationService)
            : base(app, mvxNavigationService)
         {
-        }      
+        }
         protected override Task NavigateToFirstViewModel(object hint = null)
         {
 
-           return NavigationService.Navigate<LoginActivityViewModel>();
-           
+            return NavigationService.Navigate<StartViewModel>();
+
         }
     }
 }

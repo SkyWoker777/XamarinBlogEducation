@@ -6,9 +6,9 @@ using System.Text;
 
 namespace XamarinBlogEducation.Core.ViewModels
 {
-    public class LoginActivityViewModel : BaseViewModel
+    public class StartViewModel : BaseViewModel
     {
-        public LoginActivityViewModel(IMvxNavigationService _navigationService) : base(_navigationService)
+        public StartViewModel(IMvxNavigationService _navigationService) : base(_navigationService)
         {
             LoginCommand = new MvxAsyncCommand(async () => await _navigationService.Navigate<LoginViewModel>());
         }

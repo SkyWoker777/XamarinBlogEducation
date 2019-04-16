@@ -16,8 +16,8 @@ namespace XamarinBlogEducation.Core
                 .EndingWith("Service")
                 .AsInterfaces()
                 .RegisterAsLazySingleton();
-            
-            RegisterAppStart<LoginActivityViewModel>();
+
+            RegisterCustomAppStart<AppStart>();
 
         }
        

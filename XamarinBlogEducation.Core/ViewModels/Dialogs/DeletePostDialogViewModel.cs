@@ -1,5 +1,4 @@
-﻿using Android.Widget;
-using MvvmCross.Commands;
+﻿using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using System;
 using System.Collections.Generic;
@@ -13,8 +12,6 @@ namespace XamarinBlogEducation.Core.ViewModels.Dialogs
 {
     public class DeletePostDialogViewModel : BaseViewModel<GetAllPostsBlogViewItem>
     {
-        private Button delete;
-        private Button cancel;
         public GetAllPostsBlogViewItem currentPost;
         private readonly IBlogService _blogService;
         public DeletePostDialogViewModel(IMvxNavigationService navigationService, IBlogService blogService) : base(navigationService)

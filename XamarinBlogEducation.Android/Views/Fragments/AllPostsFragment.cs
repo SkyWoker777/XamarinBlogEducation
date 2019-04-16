@@ -36,7 +36,6 @@ namespace XamarinBlogEducation.Android.Views.Fragments
             LimitSpinner(filterByCategorySpinner, 500);
             filterSpinner = view.FindViewById<MvxAppCompatSpinner>(Resource.Id.filterSpinner);
             filterSpinner.DropDownWidth = 500;
-           // LimitSpinner(filterSpinner, 500);
             return view;
         }
         

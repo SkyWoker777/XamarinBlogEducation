@@ -3,6 +3,7 @@ using Android.OS;
 using Android.Support.V7.App;
 using Android.Support.V7.Widget;
 using Android.Views;
+using Android.Views.InputMethods;
 using MvvmCross.Droid.Support.V4;
 using MvvmCross.Droid.Support.V7.AppCompat;
 using MvvmCross.Droid.Support.V7.AppCompat.Widget;
@@ -50,6 +51,7 @@ namespace XamarinBlogEducation.Android.Views.Fragments
             popupWindow.Height = height;
         }
         protected abstract int FragmentId { get; }
+       
 
     }
     public abstract class BaseFragment<TViewModel> : BaseFragment where TViewModel : class, IMvxViewModel

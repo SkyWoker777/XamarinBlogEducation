@@ -13,14 +13,14 @@ using Android.Views;
 using Android.Widget;
 using MvvmCross.Droid.Support.V7.AppCompat;
 using MvvmCross.Platforms.Android.Presenters.Attributes;
-using MvvmCross.Platforms.Android.Views;
 using XamarinBlogEducation.Core.ViewModels;
 
 namespace XamarinBlogEducation.Android.Views.Activities
 {
-   
+    [MvxActivityPresentation]
     [Activity(MainLauncher = true, NoHistory = true, ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.ScreenSize)]
-    public class LoginActivity : MvxAppCompatActivity<LoginActivityViewModel>
+    public class Start : MvxAppCompatActivity<StartViewModel>
+        
     {
         public DrawerLayout DrawerLayout { get; set; }
         protected override void OnCreate(Bundle savedInstanceState)
@@ -30,6 +30,7 @@ namespace XamarinBlogEducation.Android.Views.Activities
             DrawerLayout = FindViewById<DrawerLayout>(Resource.Id.login_drawer_layout);
             ViewModel.LoginCommand.Execute();
         }
+       
         public override void OnBackPressed()
         {
 

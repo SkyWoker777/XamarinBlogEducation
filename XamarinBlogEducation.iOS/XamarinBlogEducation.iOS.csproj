@@ -7,9 +7,9 @@
     <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TemplateGuid>{440aa056-593a-4519-8708-27081dee632f}</TemplateGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Blank</RootNamespace>
+    <RootNamespace>XamarinBlogEducation.iOS</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
-    <AssemblyName>Blank</AssemblyName>
+    <AssemblyName>XamarinBlogEducation.iOS</AssemblyName>
     <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
@@ -61,26 +61,48 @@
     <CodesignKey>iPhone Developer</CodesignKey>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="LinkerPleaseInclude.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+    <Compile Include="RegisterView.cs" />
+    <Compile Include="RegisterView.designer.cs">
+      <DependentUpon>RegisterView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Setup.cs" />
+    <Compile Include="StartView.cs" />
+    <Compile Include="StartView.designer.cs">
+      <DependentUpon>StartView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\AllPostsView.cs" />
     <Compile Include="Views\CreatePostView.cs" />
     <Compile Include="Views\EditPostView.cs" />
     <Compile Include="Views\LoginView.cs" />
-    <Compile Include="Views\MainView.cs" />
+    <Compile Include="Views\LoginView.designer.cs">
+      <DependentUpon>LoginView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RegisterView.cs" />
+    <Compile Include="Views\RegisterView.designer.cs">
+      <DependentUpon>RegisterView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\StartView.cs" />
     <Compile Include="Views\MenuView.cs" />
-    <Compile Include="Views\RegistrationView.cs" />
     <Compile Include="Views\UserPostsView.cs" />
     <Compile Include="Views\UserProfileView.cs" />
+    <BundleResource Include="Views\welcome_png_1496568.png" />
+    <BundleResource Include="Resources\welcome_png_1496568.png" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="Entitlements.plist" />
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
     <None Include="packages.config" />
-    <InterfaceDefinition Include="Pages\Main.xib" />
+    <InterfaceDefinition Include="Views\LoginView.xib">
+      <SubType>Designer</SubType>
+    </InterfaceDefinition>
+    <InterfaceDefinition Include="Views\StartView.xib" />
+    <InterfaceDefinition Include="Views\RegisterView.xib" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="MonoTouch.Dialog-1" />
     <Reference Include="MvvmCross, Version=6.2.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmCross.6.2.3\lib\xamarinios10\MvvmCross.dll</HintPath>
     </Reference>
@@ -138,10 +160,14 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon60.png">
       <Visible>false</Visible>
     </ImageAsset>
+    <ImageAsset Include="Assets1.xcassets\AppIcons.appiconset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets1.xcassets\LaunchImages.launchimage\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\XamarinBlogEducation.Core\XamarinBlogEducation.Core.csproj">
       <Project>{7F3DE5F6-49D9-4AD5-89A5-2EDA0D05320D}</Project>

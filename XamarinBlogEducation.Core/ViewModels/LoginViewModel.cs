@@ -72,6 +72,5 @@ namespace XamarinBlogEducation.Core.ViewModels
             await NavigationService.Navigate<AllPostsFragmentViewModel>();
             await DisposeView(this);
         }
-
     }
 }

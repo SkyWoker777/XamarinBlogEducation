@@ -10,6 +10,7 @@ using MvvmCross.Binding.Bindings.Target.Construction;
 using MvvmCross.IoC;
 using MvvmCross.Platforms.Ios.Core;
 using MvvmCross.Plugin.Json;
+using MvvmCross.ViewModels;
 using UIKit;
 using XamarinBlogEducation.Core;
 
@@ -17,23 +18,9 @@ namespace XamarinBlogEducation.iOS
 {
     public class Setup : MvxIosSetup<App>
     {
-        protected override void InitializeFirstChance()
+        protected override IMvxApplication CreateApp()
         {
-            base.InitializeFirstChance();
-
-            Mvx.IoCProvider.ConstructAndRegisterSingleton<IMvxJsonConverter, MvxJsonConverter>();
-        }
-        protected override void InitializeLastChance()
-        {
-            base.InitializeLastChance();
-            
-        }
-        protected override IMvxIocOptions CreateIocOptions()
-        {
-            return new MvxIocOptions
-            {
-                PropertyInjectorOptions = MvxPropertyInjectorOptions.MvxInject
-            };
+            return new App();
         }
     }
 }

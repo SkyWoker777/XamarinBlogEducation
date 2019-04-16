@@ -12,7 +12,10 @@ namespace XamarinBlogEducation.Core.ViewModels
         {
             NavigationService = navigationService;
         }
-
+        public virtual void OnResume()
+        {
+            RaiseAllPropertiesChanged();
+        }
         public async Task DisposeView(IMvxViewModel model)
         {
            await NavigationService.Close(model);
@@ -31,6 +34,10 @@ namespace XamarinBlogEducation.Core.ViewModels
         public async Task DisposeView(IMvxViewModel model)
         {
             await NavigationService.Close(model);
+        }
+        public virtual void OnResume()
+        {
+            RaiseAllPropertiesChanged();
         }
     }
 }

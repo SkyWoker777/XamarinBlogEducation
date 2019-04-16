@@ -7,11 +7,12 @@ using Android.Widget;
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.Platforms.Android.Presenters.Attributes;
 using Plugin.SecureStorage;
+using XamarinBlogEducation.Android.Views.Activities;
 using XamarinBlogEducation.Core.ViewModels;
 
 namespace XamarinBlogEducation.Android.Views.Fragments
 {
-    [MvxFragmentPresentation(typeof(LoginActivityViewModel), Resource.Id.login_content_frame, true)]
+    [MvxFragmentPresentation(typeof(StartViewModel), Resource.Id.login_content_frame, true)]
     public class LoginView : BaseFragment<LoginViewModel>
     {
         private EditText inputEmail;

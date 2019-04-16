@@ -1,14 +1,17 @@
 ﻿
-using MvvmCross.Platforms.Ios.Presenters.Attributes;
+using System;
+using System.Drawing;
+
+using Foundation;
 using MvvmCross.Platforms.Ios.Views;
-using XamarinBlogEducation.Core.ViewModels;
+using UIKit;
+using XamarinBlogEducation.Core.ViewModels.Fragments;
 
 namespace XamarinBlogEducation.iOS.Views
 {
-    [MvxChildPresentation]
-    public partial class LoginView : MvxViewController<LoginViewModel>
+    public partial class RegisterView : MvxViewController<RegisterViewModel>
     {
-        public LoginView()
+        public RegisterView(IntPtr handle) : base(handle)
         {
         }
 

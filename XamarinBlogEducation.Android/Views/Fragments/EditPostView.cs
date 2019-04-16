@@ -1,17 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
 using Android.OS;
-using Android.Runtime;
 using Android.Support.V7.App;
-using Android.Text.Method;
 using Android.Views;
+using Android.Views.InputMethods;
 using Android.Widget;
-using MvvmCross.Binding.BindingContext;
 using MvvmCross.Platforms.Android.Presenters.Attributes;
 using XamarinBlogEducation.Core.ViewModels;
 using XamarinBlogEducation.Core.ViewModels.Fragments;
@@ -58,13 +50,12 @@ namespace XamarinBlogEducation.Android.Views.Fragments
             canselEditPostButton = view.FindViewById<Button>(Resource.Id.canselEditPostButton);
             deletePostButton = view.FindViewById<Button>(Resource.Id.deletePostButton);
             linearLayout.VerticalScrollBarEnabled = true;
-
+            title.SetTextIsSelectable(true);
             deletePostButton.Click+= deletePostButton_onClick;
             canselEditPostButton.Click += canselEditPostButton_onClick;
             saveEditPostButton.Click += saveEditPostButton_onClick;
             return view;
         }
-
         private void saveEditPostButton_onClick(object sender, EventArgs e)
         {
             ViewModel.SaveEditCommand.Execute(null);
@@ -82,5 +73,7 @@ namespace XamarinBlogEducation.Android.Views.Fragments
             Toast.MakeText(Context, toast, ToastLength.Long).Show();
             ViewModel.GoToPostsCommand.Execute();
         }
+        
+        
     }
 }

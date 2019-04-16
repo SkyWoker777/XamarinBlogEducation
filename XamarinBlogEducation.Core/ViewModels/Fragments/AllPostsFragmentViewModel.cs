@@ -29,9 +29,7 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
             CategoryItems = new MvxObservableCollection<GetAllCategoriesblogViewItem>();
             FilterItems = new MvxObservableCollection<Filter>();
             AllPosts = new MvxObservableCollection<GetAllPostsBlogViewItem>();
-            OriginalPostList = new MvxObservableCollection<GetAllPostsBlogViewItem>();
-            ShowMenuViewModelCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<MenuViewModel>());
-            GoBackCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<AllPostsFragmentViewModel>());
+            OriginalPostList = new MvxObservableCollection<GetAllPostsBlogViewItem>();      
             PostSelectedCommand = new MvxAsyncCommand<GetAllPostsBlogViewItem>(PostSelected);
             ItemSelectedCommand = new MvxCommand<GetAllCategoriesblogViewItem>(ItemSelectedAsync);
             FilterSelectedCommand = new MvxCommand<Filter>(FilterSelectedAsync);
@@ -83,8 +81,6 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
 
         public IMvxCommand ItemSelectedCommand { get; private set; }
         public IMvxCommand FilterSelectedCommand { get; private set; }      
-        public IMvxAsyncCommand ShowMenuViewModelCommand { get; private set; }
-        public IMvxCommand GoBackCommand { get; private set; }
         public IMvxCommand<GetAllPostsBlogViewItem> PostSelectedCommand { get; private set; }
         public IMvxCommand FetchPostCommand { get; private set; }
         public IMvxCommand RefreshPostsCommand { get; private set; }

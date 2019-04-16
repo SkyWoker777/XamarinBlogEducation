@@ -13,7 +13,7 @@ using System.Text.RegularExpressions;
 
 namespace XamarinBlogEducation.Android.Views.Fragments
 {
-    [MvxFragmentPresentation(typeof(LoginActivityViewModel), Resource.Id.login_content_frame, true)]
+    [MvxFragmentPresentation(typeof(StartViewModel), Resource.Id.login_content_frame, true)]
     public class RegisterView : BaseFragment<RegisterViewModel>
     {
         public EditText inputEmail;

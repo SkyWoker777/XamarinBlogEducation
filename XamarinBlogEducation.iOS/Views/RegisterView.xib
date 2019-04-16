@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina5_9" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RegisterView">
+            <connections>
+                <outlet property="registrationLabel" destination="364" id="name-outlet-364"/>
+                <outlet property="textConfirmPassword" destination="2303" id="name-outlet-2303"/>
+                <outlet property="textPassword" destination="2267" id="name-outlet-2267"/>
+                <outlet property="textEmail" destination="2231" id="name-outlet-2231"/>
+                <outlet property="textName" destination="3142" id="name-outlet-3142"/>
+                <outlet property="textSurname" destination="2651" id="name-outlet-2651"/>
+                <outlet property="registerButton" destination="9124" id="name-outlet-9124"/>
+                <outlet property="haveAccountButton" destination="9968" id="name-outlet-9968"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="1">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <color key="backgroundColor" colorSpace="calibratedRGB" red="0.81960784313725488" green="0.73725490196078436" blue="0.6705882352941176" alpha="1"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We need some information about you" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" id="364" translatesAutoresizingMaskIntoConstraints="NO" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES">
+                    <rect key="frame" x="8" y="244.5" width="359" height="20.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="2231" translatesAutoresizingMaskIntoConstraints="NO" placeholder="Email">
+                    <rect key="frame" x="8" y="402" width="359" height="30"/>
+                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                    <color key="backgroundColor" colorSpace="calibratedRGB" red="0.6705882352941176" green="0.55686274509803924" blue="0.46274509803921571" alpha="1"/>
+                </textField>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="2267" translatesAutoresizingMaskIntoConstraints="NO" placeholder="Password">
+                    <rect key="frame" x="8" y="456" width="359" height="30"/>
+                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                    <color key="backgroundColor" colorSpace="calibratedRGB" red="0.6705882352941176" green="0.55686274509803924" blue="0.46274509803921571" alpha="1"/>
+                </textField>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="2303" translatesAutoresizingMaskIntoConstraints="NO" placeholder="Confirm Password">
+                    <rect key="frame" x="8" y="510" width="359" height="30"/>
+                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                    <color key="backgroundColor" colorSpace="calibratedRGB" red="0.6705882352941176" green="0.55686274509803924" blue="0.46274509803921571" alpha="1"/>
+                </textField>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="2651" translatesAutoresizingMaskIntoConstraints="NO" placeholder="Your Surname">
+                    <rect key="frame" x="8" y="348" width="359" height="30"/>
+                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                    <color key="backgroundColor" colorSpace="calibratedRGB" red="0.6705882352941176" green="0.55686274509803924" blue="0.46274509803921571" alpha="1"/>
+                </textField>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="3142" translatesAutoresizingMaskIntoConstraints="NO" placeholder="Your Name">
+                    <rect key="frame" x="8" y="294" width="359" height="30"/>
+                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                    <color key="backgroundColor" colorSpace="calibratedRGB" red="0.6705882352941176" green="0.55686274509803924" blue="0.46274509803921571" alpha="1"/>
+                </textField>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="9124" translatesAutoresizingMaskIntoConstraints="NO">
+                    <rect key="frame" x="8" y="600" width="359" height="30"/>
+                    <color key="backgroundColor" colorSpace="calibratedRGB" red="0.42745098039215684" green="0.70196078431372544" blue="0.807843137254902" alpha="1"/>
+                    <state key="normal" title="SIGN UP">
+                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="9968" translatesAutoresizingMaskIntoConstraints="NO">
+                    <rect key="frame" x="8" y="650" width="359" height="30"/>
+                    <color key="backgroundColor" colorSpace="calibratedRGB" red="0.42745098039215684" green="0.70196078431372544" blue="0.807843137254902" alpha="1"/>
+                    <state key="normal" title="I HAVE AN ACCOUNT">
+                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                    </state>
+                </button>
+            </subviews>
+            <connections>
+                <outlet property="inputName" destination="1625" id="name-outlet-1625"/>
+                <outlet property="inputLastName" destination="2195" id="name-outlet-2195"/>
+            </connections>
+            <constraints>
+                <constraint id="3704" firstItem="2231" firstAttribute="centerX" secondItem="1" secondAttribute="centerX"/>
+                <constraint id="3740" firstItem="2231" firstAttribute="centerY" secondItem="1" secondAttribute="centerY" constant="11"/>
+                <constraint id="3969" firstItem="2231" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="8"/>
+                <constraint id="4005" firstAttribute="trailing" secondItem="2231" secondAttribute="trailing" constant="8"/>
+                <constraint id="4402" firstItem="2267" firstAttribute="width" secondItem="2231" secondAttribute="width"/>
+                <constraint id="4824" firstItem="2303" firstAttribute="width" secondItem="2231" secondAttribute="width"/>
+                <constraint id="5003" firstItem="3142" firstAttribute="width" secondItem="2231" secondAttribute="width"/>
+                <constraint id="7192" firstItem="2651" firstAttribute="width" secondItem="2231" secondAttribute="width"/>
+                <constraint id="7228" firstItem="2231" firstAttribute="top" secondItem="2651" secondAttribute="bottom" constant="24"/>
+                <constraint id="7264" firstItem="2651" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="8"/>
+                <constraint id="7300" firstAttribute="trailing" secondItem="2651" secondAttribute="trailing" constant="8"/>
+                <constraint id="7336" firstItem="2267" firstAttribute="top" secondItem="2231" secondAttribute="bottom" constant="24"/>
+                <constraint id="7372" firstItem="2267" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="8"/>
+                <constraint id="7408" firstAttribute="trailing" secondItem="2267" secondAttribute="trailing" constant="8"/>
+                <constraint id="7444" firstItem="2651" firstAttribute="top" secondItem="3142" secondAttribute="bottom" constant="24"/>
+                <constraint id="7480" firstItem="3142" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="8"/>
+                <constraint id="7516" firstAttribute="trailing" secondItem="3142" secondAttribute="trailing" constant="8"/>
+                <constraint id="7552" firstItem="2303" firstAttribute="top" secondItem="2267" secondAttribute="bottom" constant="24"/>
+                <constraint id="7588" firstItem="2303" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="8"/>
+                <constraint id="7624" firstAttribute="trailing" secondItem="2303" secondAttribute="trailing" constant="8"/>
+                <constraint id="8701" firstItem="364" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="8"/>
+                <constraint id="8737" firstAttribute="trailing" secondItem="364" secondAttribute="trailing" constant="8"/>
+                <constraint id="8808" firstItem="3142" firstAttribute="top" secondItem="364" secondAttribute="bottom" constant="29"/>
+                <constraint id="10906" firstItem="9124" firstAttribute="top" secondItem="2303" secondAttribute="bottom" constant="60"/>
+                <constraint id="10942" firstItem="9124" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="8"/>
+                <constraint id="10978" firstAttribute="trailing" secondItem="9124" secondAttribute="trailing" constant="8"/>
+                <constraint id="11014" firstItem="9968" firstAttribute="top" secondItem="9124" secondAttribute="bottom" constant="20"/>
+                <constraint id="11050" firstItem="9968" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="8"/>
+                <constraint id="11086" firstAttribute="trailing" secondItem="9968" secondAttribute="trailing" constant="8"/>
+            </constraints>
+        </view>
+    </objects>
+</document>
