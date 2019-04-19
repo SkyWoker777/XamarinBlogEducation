@@ -19,5 +19,10 @@ namespace XamarinBlogEducation.Core.Helpers
 
         public string Name { get; set; }
         public int Key { get; set; }
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

@@ -24,6 +24,12 @@
     <MtouchArch>x86_64</MtouchArch>
     <MtouchLink>None</MtouchLink>
     <MtouchDebug>true</MtouchDebug>
+    <MtouchExtraArgs>-v -v -v -v</MtouchExtraArgs>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <CodesignProvision />
+    <CodesignExtraArgs />
+    <CodesignResourceRules />
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -64,16 +70,37 @@
     <Compile Include="LinkerPleaseInclude.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="RegisterView.cs" />
-    <Compile Include="RegisterView.designer.cs">
-      <DependentUpon>RegisterView.cs</DependentUpon>
+    <Compile Include="MvxBindings\NetworkIndicatorTargetBinding.cs" />
+    <Compile Include="Views\AllPostsView.cs" />
+    <Compile Include="Views\AllPostsView.designer.cs">
+      <DependentUpon>AllPostsView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Cells\AllPostViewCell.cs" />
+    <Compile Include="Views\Cells\AllPostViewCell.designer.cs">
+      <DependentUpon>AllPostViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Cells\BaseTableViewCell.cs" />
+    <Compile Include="Views\Cells\MenuTableViewCell.cs" />
+    <Compile Include="Views\Cells\MenuTableViewCell.designer.cs">
+      <DependentUpon>MenuTableViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CreatePostView.designer.cs">
+      <DependentUpon>CreatePostView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainController.cs" />
+    <Compile Include="Views\MainController.designer.cs">
+      <DependentUpon>MainController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MenuTableViewSource.cs" />
+    <Compile Include="Views\MenuView.cs" />
+    <Compile Include="Views\MenuView.designer.cs">
+      <DependentUpon>MenuView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NavViewController.cs" />
+    <Compile Include="Views\NavViewController.designer.cs">
+      <DependentUpon>NavViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="Setup.cs" />
-    <Compile Include="StartView.cs" />
-    <Compile Include="StartView.designer.cs">
-      <DependentUpon>StartView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\AllPostsView.cs" />
     <Compile Include="Views\CreatePostView.cs" />
     <Compile Include="Views\EditPostView.cs" />
     <Compile Include="Views\LoginView.cs" />
@@ -85,11 +112,17 @@
       <DependentUpon>RegisterView.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\StartView.cs" />
-    <Compile Include="Views\MenuView.cs" />
+    <Compile Include="Views\StartView.designer.cs">
+      <DependentUpon>StartView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\UserPostsView.cs" />
     <Compile Include="Views\UserProfileView.cs" />
     <BundleResource Include="Views\welcome_png_1496568.png" />
     <BundleResource Include="Resources\welcome_png_1496568.png" />
+    <Compile Include="Views\UserProfileView.designer.cs">
+      <DependentUpon>UserProfileView.cs</DependentUpon>
+    </Compile>
+    <None Include="app.config" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="Entitlements.plist" />
@@ -98,19 +131,72 @@
     <InterfaceDefinition Include="Views\LoginView.xib">
       <SubType>Designer</SubType>
     </InterfaceDefinition>
-    <InterfaceDefinition Include="Views\StartView.xib" />
-    <InterfaceDefinition Include="Views\RegisterView.xib" />
+    <InterfaceDefinition Include="Views\StartView.xib">
+      <SubType>Designer</SubType>
+    </InterfaceDefinition>
+    <InterfaceDefinition Include="Views\RegisterView.xib">
+      <SubType>Designer</SubType>
+    </InterfaceDefinition>
+    <InterfaceDefinition Include="Views\AllPostsView.xib">
+      <SubType>Designer</SubType>
+    </InterfaceDefinition>
+    <InterfaceDefinition Include="Views\MenuView.xib">
+      <SubType>Designer</SubType>
+    </InterfaceDefinition>
+    <InterfaceDefinition Include="Views\Cells\AllPostViewCell.xib">
+      <SubType>Designer</SubType>
+    </InterfaceDefinition>
+    <InterfaceDefinition Include="Views\MainView.xib">
+      <SubType>Designer</SubType>
+    </InterfaceDefinition>
+    <InterfaceDefinition Include="Views\Cells\MenuTableViewCell.xib">
+      <SubType>Designer</SubType>
+    </InterfaceDefinition>
+    <InterfaceDefinition Include="Views\UserProfileView.xib" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Cirrious.FluentLayouts.Touch, Version=2.6.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Cirrious.FluentLayout.2.9.0\lib\Xamarin.iOS10\Cirrious.FluentLayouts.Touch.dll</HintPath>
+    </Reference>
+    <Reference Include="JASidePanels, Version=1.0.6158.17214, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\jasidepanels.1.0.0\lib\JASidePanels.dll</HintPath>
+    </Reference>
     <Reference Include="MonoTouch.Dialog-1" />
     <Reference Include="MvvmCross, Version=6.2.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmCross.6.2.3\lib\xamarinios10\MvvmCross.dll</HintPath>
     </Reference>
-    <Reference Include="MvvmCross.Plugin.Json, Version=6.2.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.Plugin.Json.6.2.3\lib\netstandard2.0\MvvmCross.Plugin.Json.dll</HintPath>
+    <Reference Include="MvvmCross.Core, Version=5.7.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmCross.Core.5.7.0\lib\Xamarin.iOS10\MvvmCross.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.iOS, Version=5.7.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmCross.Core.5.7.0\lib\Xamarin.iOS10\MvvmCross.iOS.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.iOS.Support, Version=5.7.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmCross.iOS.Support.5.7.0\lib\Xamarin.iOS10\MvvmCross.iOS.Support.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Localization, Version=5.7.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmCross.Binding.5.7.0\lib\Xamarin.iOS10\MvvmCross.Localization.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Platform, Version=5.7.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmCross.Platform.5.7.0\lib\Xamarin.iOS10\MvvmCross.Platform.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Platform.iOS, Version=5.7.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmCross.Platform.5.7.0\lib\Xamarin.iOS10\MvvmCross.Platform.iOS.dll</HintPath>
+    </Reference>
+    <Reference Include="MvxPlugins.Picker.iOS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvxPlugins.Picker.iOS.1.1.1\lib\Xamarin.iOS10\MvxPlugins.Picker.iOS.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\netstandard2.0\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.SecureStorage, Version=1.0.12.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xam.Plugin.SecureStorage.1.0.12\lib\xamarinios10\Plugin.SecureStorage.dll</HintPath>
+    </Reference>
+    <Reference Include="SidePanels, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xamarin.SidePanels.2.0.0.3\lib\Xamarin.iOS\SidePanels.dll</HintPath>
+    </Reference>
+    <Reference Include="SlideMenuController, Version=1.0.6263.28323, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SlideMenuControllerXamarin.1.1.1\lib\Xamarin.iOS10\SlideMenuController.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
@@ -172,6 +258,10 @@
     <ProjectReference Include="..\XamarinBlogEducation.Core\XamarinBlogEducation.Core.csproj">
       <Project>{7F3DE5F6-49D9-4AD5-89A5-2EDA0D05320D}</Project>
       <Name>XamarinBlogEducation.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\XamarinBlogEducation.ViewModels\XamarinBlogEducation.ViewModels.csproj">
+      <Project>{551553CB-2165-4053-B6AE-1858B86848AE}</Project>
+      <Name>XamarinBlogEducation.ViewModels</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />

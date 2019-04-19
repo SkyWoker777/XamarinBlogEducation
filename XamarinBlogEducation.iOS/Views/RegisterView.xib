@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RegisterView">
             <connections>
+                <outlet property="view" destination="1" id="outlet-register-veiw"/>
                 <outlet property="registrationLabel" destination="364" id="name-outlet-364"/>
                 <outlet property="textConfirmPassword" destination="2303" id="name-outlet-2303"/>
                 <outlet property="textPassword" destination="2267" id="name-outlet-2267"/>

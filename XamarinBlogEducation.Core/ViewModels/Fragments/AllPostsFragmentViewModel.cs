@@ -33,7 +33,7 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
             PostSelectedCommand = new MvxAsyncCommand<GetAllPostsBlogViewItem>(PostSelected);
             ItemSelectedCommand = new MvxCommand<GetAllCategoriesblogViewItem>(ItemSelectedAsync);
             FilterSelectedCommand = new MvxCommand<Filter>(FilterSelectedAsync);
-
+            ShowMenu = new MvxAsyncCommand((async () => await NavigationService.Navigate<MenuViewModel>()));
             FetchPostCommand = new MvxCommand(
                 () =>
                 {
@@ -44,7 +44,7 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
                 });
             RefreshPostsCommand = new MvxCommand(RefreshPosts);
         }
-
+       
         public override Task Initialize()
         {
             LoadFiltersTask = MvxNotifyTask.Create(LoadFilters);
@@ -65,7 +65,6 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
                 Category = "All"
             });
             var result = await _blogService.GetAllCategories();
-            //result.OrderBy(r => r.Category);
             CategoryItems.AddRange(result.OrderBy(r => r.Category));
         }
         private async Task LoadFilters()
@@ -84,7 +83,7 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
         public IMvxCommand<GetAllPostsBlogViewItem> PostSelectedCommand { get; private set; }
         public IMvxCommand FetchPostCommand { get; private set; }
         public IMvxCommand RefreshPostsCommand { get; private set; }
-
+        public IMvxCommand ShowMenu { get; private set; }
         public MvxNotifyTask LoadPostsTask { get; private set; }
         public MvxNotifyTask FetchPostsTask { get; private set; }
         public MvxNotifyTask LoadCategoriesTask { get; private set; }
@@ -269,6 +268,5 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
         {
             SelectedFilterId = filter.Key;
         }
-       
     }
 }

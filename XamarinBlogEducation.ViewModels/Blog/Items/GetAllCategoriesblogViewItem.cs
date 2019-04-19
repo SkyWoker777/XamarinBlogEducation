@@ -8,5 +8,10 @@ namespace XamarinBlogEducation.ViewModels.Blog.Items
     {
         public long Id { get; set; }
         public string Category { get; set; }
+
+        public override string ToString()
+        {
+            return Category;
+        }
     }
 }

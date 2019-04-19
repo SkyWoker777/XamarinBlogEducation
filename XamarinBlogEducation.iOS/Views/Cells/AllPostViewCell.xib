@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AllPostViewCell">
+            <connections>
+                <outlet property="AllPostsViewCell" destination="252" id="name-outlet-252"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="252" rowHeight="195">
+            <rect key="frame" x="0.0" y="0.0" width="390" height="195"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="252" id="253">
+                <rect key="frame" x="0.0" y="0.0" width="390" height="194"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="286" translatesAutoresizingMaskIntoConstraints="NO" text="post title" ambiguous="YES" misplaced="YES">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="46"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
+                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                    </textView>
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" id="361" translatesAutoresizingMaskIntoConstraints="NO" text="Post description" ambiguous="YES" misplaced="YES">
+                        <rect key="frame" x="-1" y="82" width="392" height="111"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                    </textView>
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" id="518" translatesAutoresizingMaskIntoConstraints="NO" text="DATE" ambiguous="YES" misplaced="YES">
+                        <rect key="frame" x="0.0" y="44" width="390" height="37"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <fontDescription key="fontDescription" type="italicSystem" pointSize="14"/>
+                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                        <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                    </textView>
+                </subviews>
+                <constraints>
+                    <constraint id="335" firstItem="286" firstAttribute="leading" secondItem="253" secondAttribute="leading"/>
+                    <constraint id="339" firstItem="286" firstAttribute="trailing" secondItem="253" secondAttribute="trailing"/>
+                    <constraint id="343" firstItem="286" firstAttribute="top" secondItem="253" secondAttribute="top"/>
+                    <constraint id="478" firstAttribute="leading" secondItem="361" secondAttribute="leading"/>
+                    <constraint id="482" firstItem="361" firstAttribute="trailing" secondItem="253" secondAttribute="trailing"/>
+                    <constraint id="549" firstItem="286" firstAttribute="bottom" secondItem="518" secondAttribute="top"/>
+                    <constraint id="556" firstItem="518" firstAttribute="leading" secondItem="286" secondAttribute="leading"/>
+                    <constraint id="560" firstItem="518" firstAttribute="trailing" secondItem="253" secondAttribute="trailing"/>
+                    <constraint id="564" firstItem="361" firstAttribute="top" secondItem="518" secondAttribute="bottom"/>
+                </constraints>
+            </tableViewCellContentView>
+            <point key="canvasLocation" x="115.5" y="41.5"/>
+        </tableViewCell>
+    </objects>
+</document>

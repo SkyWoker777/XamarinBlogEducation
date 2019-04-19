@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginView">
             <connections>
+                <outlet property="view" destination="1" id="outlet-login-view"/>
                 <outlet property="inputEmail" destination="143" id="name-outlet-143"/>
                 <outlet property="inputPassword" destination="144" id="name-outlet-144"/>
                 <outlet property="skipButton" destination="553" id="name-outlet-553"/>
@@ -48,7 +49,10 @@
                     </constraints>
                 </textField>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="494" translatesAutoresizingMaskIntoConstraints="NO" image="Views/welcome_png_1496568.png" adjustsImageSizeForAccessibilityContentSizeCategory="YES">
-                    <rect key="frame" x="96" y="96" width="183" height="72"/>
+                    <rect key="frame" x="58" y="71.5" width="258" height="117.5"/>
+                    <constraints>
+                        <constraint id="1697" firstAttribute="height" constant="117.5"/>
+                    </constraints>
                 </imageView>
                 <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="553" translatesAutoresizingMaskIntoConstraints="NO">
                     <rect key="frame" x="13" y="499.5" width="349" height="33"/>
@@ -114,10 +118,9 @@
                 <constraint id="1431" firstItem="553" firstAttribute="top" secondItem="1130" secondAttribute="bottom" constant="63.5"/>
                 <constraint id="1432" firstItem="553" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="13"/>
                 <constraint id="1433" firstAttribute="trailing" secondItem="553" secondAttribute="trailing" constant="13"/>
-                <constraint id="1434" firstItem="143" firstAttribute="top" secondItem="494" secondAttribute="bottom" constant="72"/>
-                <constraint id="1435" firstItem="494" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="96"/>
-                <constraint id="1436" firstAttribute="trailing" secondItem="494" secondAttribute="trailing" constant="96"/>
-                <constraint id="1437" firstItem="494" firstAttribute="top" secondItem="1" secondAttribute="top" constant="96"/>
+                <constraint id="1691" firstAttribute="trailing" secondItem="494" secondAttribute="trailing" constant="59"/>
+                <constraint id="1692" firstItem="494" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="58"/>
+                <constraint id="1698" firstItem="143" firstAttribute="top" secondItem="494" secondAttribute="bottom" constant="51"/>
             </constraints>
             <point key="canvasLocation" x="28" y="-33"/>
         </view>

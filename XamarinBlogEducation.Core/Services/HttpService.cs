@@ -14,11 +14,7 @@ namespace XamarinBlogEducation.Core.Services
     {
        
         private const string baseUrl = @"http://195.26.92.83:6776/api";
-        private readonly IMvxJsonConverter _jsonConverter;
-        public HttpService(IMvxJsonConverter jsonConverter)
-        {
-            _jsonConverter = jsonConverter;
-        }
+
         public async Task<HttpResponseMessage> ExecuteQuery(string url, HttpOperationMode mode)
         {
             var stringContent = new StringContent(string.Empty);

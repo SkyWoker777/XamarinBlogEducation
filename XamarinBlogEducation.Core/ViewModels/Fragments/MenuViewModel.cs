@@ -2,13 +2,19 @@
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using Plugin.SecureStorage;
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using XamarinBlogEducation.Core.Helpers;
 
 namespace XamarinBlogEducation.Core.ViewModels.Fragments
 {
     public class MenuViewModel: BaseViewModel
     {
         private string _userName;
+        public List<MenuModel> MenuItems
+        {
+            get;
+        }
         public MenuViewModel (IMvxNavigationService navigationService) : base(navigationService)
         {
             ShowHomeCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<AllPostsFragmentViewModel>());
@@ -17,6 +23,12 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
             ShowUserPostsCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<UserPostsViewModel>());
             ExitCommand = new MvxAsyncCommand(ExitAsync);
             UserName = (CrossSecureStorage.Current.GetValue("UserName") + " " + CrossSecureStorage.Current.GetValue("UserLastName"));
+            MenuItems = new List<MenuModel>();
+            MenuItems.Add(new MenuModel() { Title = "Home", Navigate = ShowHomeCommand });
+            MenuItems.Add(new MenuModel() { Title = "Profile", Navigate = ShowProfileCommand });
+            MenuItems.Add(new MenuModel() { Title = "My posts",  Navigate = ShowUserPostsCommand });
+            MenuItems.Add(new MenuModel() { Title = "Logout", Navigate = ExitCommand });
+ 
         }
 
         public IMvxCommand ShowHomeCommand { get; private set; }

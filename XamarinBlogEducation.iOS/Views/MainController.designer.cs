@@ -1,4 +1,4 @@
-// WARNING
+﻿// WARNING
 //
 // This file has been generated automatically by Visual Studio from the outlets and
 // actions declared in your storyboard file.
@@ -8,10 +8,10 @@ using Foundation;
 using System;
 using System.CodeDom.Compiler;
 
-namespace XamarinBlogEducation.iOS
+namespace XamarinBlogEducation.iOS.Views
 {
-    [Register ("StartView")]
-    partial class StartView
+    [Register ("MainController")]
+    partial class MainController
     {
         void ReleaseDesignerOutlets ()
         {

@@ -3,6 +3,7 @@ using MvvmCross.Platforms.Ios.Core;
 using UIKit;
 using XamarinBlogEducation.Core;
 using XamarinBlogEducation.iOS;
+using XamarinBlogEducation.iOS.Views;
 
 namespace XamarinBlogEducation.iOS
 {
@@ -11,10 +12,13 @@ namespace XamarinBlogEducation.iOS
     {
         public override UIWindow Window { get; set; }
 
+       
+
         public override bool FinishedLaunching(UIApplication application, NSDictionary launchOptions)
         {
             var result = base.FinishedLaunching(application, launchOptions);
             return result;
+
         }
 
         public override void OnResignActivation(UIApplication application)
