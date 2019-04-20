@@ -7,18 +7,19 @@ using MvvmCross.Binding.BindingContext;
 using MvvmCross.Platforms.Ios.Binding.Views;
 using Plugin.SecureStorage;
 using CoreGraphics;
+using Cirrious.FluentLayouts.Touch;
+using XamarinBlogEducation.iOS.Views.Cells;
 
 namespace XamarinBlogEducation.iOS.Views
 {
-    
+
     public partial class AllPostsView : MvxViewController<AllPostsFragmentViewModel>
     {
-        private AllPostsTableViewSource _source;
-        public AllPostsView() : base(nameof(AllPostsView),null)
+        private MvxSimpleTableViewSource _source;
+        public AllPostsView() : base(nameof(AllPostsView), null)
         {
-     
+
         }
-        public NavViewController NavController { get; private set; }
 
         public override void DidReceiveMemoryWarning()
         {
@@ -26,18 +27,14 @@ namespace XamarinBlogEducation.iOS.Views
         }
 
         #region View lifecycle
-       
-        public override void ViewDidLoad()
+
+        public override async void ViewDidLoad()
         {
             base.ViewDidLoad();
-
-            EdgesForExtendedLayout = UIRectEdge.None;
-            //MenuTableView.BackgroundColor = UIColor.Clear;
-            _source = new AllPostsTableViewSource(AllPostsTableView);
-            AllPostsTableView.Source = _source;
-            AllPostsTableView.SeparatorColor = UIColor.FromRGBA(109, 179, 206, 255);
-            AllPostsTableView.BackgroundColor = UIColor.FromRGBA(209, 188, 171, 255);
+            await ViewModel.Initialize();
+            _source = new MvxSimpleTableViewSource(AllPostsTableView, AllPostViewCell.Key, AllPostViewCell.Key);
             bool ifUser = CrossSecureStorage.Current.HasKey("securityToken");
+            EdgesForExtendedLayout = UIRectEdge.None;
             categoryPicker.ShowSelectionIndicator = true;
             var categoryPikerViewModel = new MvxPickerViewModel(categoryPicker);
             categoryPicker.Model = categoryPikerViewModel;
@@ -49,20 +46,26 @@ namespace XamarinBlogEducation.iOS.Views
             set.Bind(_source).For(v => v.SelectionChangedCommand).To(vm => vm.PostSelectedCommand);
             set.Bind(categoryPikerViewModel).For(p => p.ItemsSource).To(vm => vm.CategoryItems);
             set.Bind(categoryPikerViewModel).For(p => p.SelectedItem).To(vm => vm.SelectedCategoryId);
-
             set.Bind(filterPickerViewModel).For(p => p.ItemsSource).To(vm => vm.FilterItems);
             set.Bind(filterPickerViewModel).For(p => p.SelectedItem).To(vm => vm.SelectedFilterId);
             set.Apply();
+           
+            AllPostsTableView.Source = _source;
+            AllPostsTableView.SeparatorColor = UIColor.FromRGBA(109, 179, 206, 255);
+            AllPostsTableView.BackgroundColor = UIColor.FromRGBA(209, 188, 171, 255);
+            AllPostsTableView.ContentInset = UIEdgeInsets.FromString("20.0, 20.0, 20.0, 20.0");
+            AllPostsTableView.RowHeight = 215;
+            AllPostsTableView.ReloadData();
 
             var threeDotsButton = new UIBarButtonItem
-                {
+            {
 
-                   Image= UIImage.FromFile("icons8_more_48.png")
-                };
+                Image = UIImage.FromFile("icons8_more_48.png")
+            };
 
-                NavigationItem.HidesBackButton = true;
-                NavigationItem.RightBarButtonItems = new UIBarButtonItem[] { threeDotsButton };
-          
+            NavigationItem.HidesBackButton = true;
+            NavigationItem.RightBarButtonItems = new UIBarButtonItem[] { threeDotsButton };
+
             threeDotsButton.Clicked += (a, e) =>
             {
 
@@ -86,8 +89,8 @@ namespace XamarinBlogEducation.iOS.Views
                          ViewModel.LoginCommand.Execute();
                      }));
                 }
-              
-                PresentViewController(alert, true,null);
+
+                PresentViewController(alert, true, null);
             };
             if (ifUser)
             {
@@ -108,38 +111,16 @@ namespace XamarinBlogEducation.iOS.Views
                menuButton
                 };
             }
-         
-            
-            
-        }
 
-        private void categoryPikerViewModel_SelectedItemChanged(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
         }
 
         public override void ViewWillAppear(bool animated)
         {
             base.ViewWillAppear(animated);
+            ViewModel.OnResume();
             NavigationController.NavigationBar.Hidden = false;
             NavigationController.NavigationBar.BackgroundColor = UIColor.FromRGBA(209, 188, 171, 255);
         }
-
-        public override void ViewDidAppear(bool animated)
-        {
-            base.ViewDidAppear(animated);
-        }
-
-        public override void ViewWillDisappear(bool animated)
-        {
-            base.ViewWillDisappear(animated);
-        }
-
-        public override void ViewDidDisappear(bool animated)
-        {
-            base.ViewDidDisappear(animated);
-        }
-
         #endregion
     }
 }

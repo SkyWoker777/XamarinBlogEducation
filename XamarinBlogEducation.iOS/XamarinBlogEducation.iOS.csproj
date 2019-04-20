@@ -71,7 +71,6 @@
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <Compile Include="MvxBindings\NetworkIndicatorTargetBinding.cs" />
-    <Compile Include="Views\AllPostsTableViewSource.cs" />
     <Compile Include="Views\AllPostsView.cs" />
     <Compile Include="Views\AllPostsView.designer.cs">
       <DependentUpon>AllPostsView.cs</DependentUpon>
@@ -96,10 +95,6 @@
     <Compile Include="Views\MenuView.cs" />
     <Compile Include="Views\MenuView.designer.cs">
       <DependentUpon>MenuView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\NavViewController.cs" />
-    <Compile Include="Views\NavViewController.designer.cs">
-      <DependentUpon>NavViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="Setup.cs" />
     <Compile Include="Views\CreatePostView.cs" />
@@ -146,9 +141,6 @@
     <InterfaceDefinition Include="Views\MenuView.xib">
       <SubType>Designer</SubType>
     </InterfaceDefinition>
-    <InterfaceDefinition Include="Views\Cells\AllPostViewCell.xib">
-      <SubType>Designer</SubType>
-    </InterfaceDefinition>
     <InterfaceDefinition Include="Views\MainView.xib">
       <SubType>Designer</SubType>
     </InterfaceDefinition>
@@ -156,6 +148,10 @@
       <SubType>Designer</SubType>
     </InterfaceDefinition>
     <InterfaceDefinition Include="Views\UserProfileView.xib" />
+    <InterfaceDefinition Include="Views\Cells\AllPostViewCell.xib">
+      <SubType>Designer</SubType>
+    </InterfaceDefinition>
+    <InterfaceDefinition Include="Views\CreatePostView.xib" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Cirrious.FluentLayouts.Touch, Version=2.6.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -253,6 +249,12 @@
       <Visible>false</Visible>
     </ImageAsset>
     <ImageAsset Include="Assets1.xcassets\LaunchImages.launchimage\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Media.xcassets\AppIcons.appiconset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Media.xcassets\LaunchImages.launchimage\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
   </ItemGroup>

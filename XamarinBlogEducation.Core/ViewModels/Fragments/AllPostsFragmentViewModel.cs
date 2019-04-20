@@ -29,7 +29,7 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
             CategoryItems = new MvxObservableCollection<GetAllCategoriesblogViewItem>();
             FilterItems = new MvxObservableCollection<Filter>();
             AllPosts = new MvxObservableCollection<GetAllPostsBlogViewItem>();
-            OriginalPostList = new MvxObservableCollection<GetAllPostsBlogViewItem>();      
+            OriginalPostList = new MvxObservableCollection<GetAllPostsBlogViewItem>();
             PostSelectedCommand = new MvxAsyncCommand<GetAllPostsBlogViewItem>(PostSelected);
             ItemSelectedCommand = new MvxCommand<GetAllCategoriesblogViewItem>(ItemSelectedAsync);
             FilterSelectedCommand = new MvxCommand<Filter>(FilterSelectedAsync);
@@ -45,9 +45,9 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
             RefreshPostsCommand = new MvxCommand(RefreshPosts);
             LoginCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<LoginViewModel>());
             AboutUsComand = new MvxAsyncCommand(async () => await NavigationService.Navigate<AboutFragmentModel>());
-            AddPostCommand= new MvxAsyncCommand(async () => await NavigationService.Navigate<CreatePostViewModel>());
+            AddPostCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<CreatePostViewModel>());
         }
-       
+
         public override Task Initialize()
         {
             LoadFiltersTask = MvxNotifyTask.Create(LoadFilters);
@@ -75,8 +75,8 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
             var filters = new AllFilters();
             FilterItems.Add(new Filter
             {
-               Name="Default",
-               Key=0
+                Name = "Default",
+                Key = 0
             });
             FilterItems.AddRange(filters.list);
         }
@@ -84,7 +84,7 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
         public IMvxCommand AboutUsComand { get; private set; }
         public IMvxCommand LoginCommand { get; private set; }
         public IMvxCommand ItemSelectedCommand { get; private set; }
-        public IMvxCommand FilterSelectedCommand { get; private set; }      
+        public IMvxCommand FilterSelectedCommand { get; private set; }
         public IMvxCommand<GetAllPostsBlogViewItem> PostSelectedCommand { get; private set; }
         public IMvxCommand FetchPostCommand { get; private set; }
         public IMvxCommand RefreshPostsCommand { get; private set; }
@@ -139,10 +139,10 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
         private async Task SortByAlphabet()
         {
             AllPosts = OriginalPostList;
-            if(SelectedCategoryId!=0)
-            { filteredPosts = OriginalPostList.Where(p=>p.CategoryId== SelectedCategoryId).OrderBy(t => t.Title); }
+            if (SelectedCategoryId != 0)
+            { filteredPosts = OriginalPostList.Where(p => p.CategoryId == SelectedCategoryId).OrderBy(t => t.Title); }
             else
-            filteredPosts = OriginalPostList.OrderBy(t => t.Title);
+                filteredPosts = OriginalPostList.OrderBy(t => t.Title);
             AllPosts = new MvxObservableCollection<GetAllPostsBlogViewItem>(filteredPosts);
         }
         private async Task SortByDate()
@@ -151,7 +151,7 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
             if (SelectedCategoryId != 0)
             { filteredPosts = OriginalPostList.Where(p => p.CategoryId == SelectedCategoryId).OrderBy(d => d.CreationDate); }
             else
-            filteredPosts = OriginalPostList.OrderBy(d => d.CreationDate);
+                filteredPosts = OriginalPostList.OrderBy(d => d.CreationDate);
             AllPosts = new MvxObservableCollection<GetAllPostsBlogViewItem>(filteredPosts);
         }
         private async Task SortByDateDesc()
@@ -160,14 +160,14 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
             if (SelectedCategoryId != 0)
             { filteredPosts = OriginalPostList.Where(p => p.CategoryId == SelectedCategoryId).OrderByDescending(d => d.CreationDate); }
             else
-            filteredPosts = OriginalPostList.OrderByDescending(d => d.CreationDate);
+                filteredPosts = OriginalPostList.OrderByDescending(d => d.CreationDate);
             AllPosts = new MvxObservableCollection<GetAllPostsBlogViewItem>(filteredPosts);
         }
         private async Task PostSelected(GetAllPostsBlogViewItem selectedPost)
         {
             await NavigationService.Navigate<DetailedPostViewModel, GetAllPostsBlogViewItem>(selectedPost);
         }
-       
+
         public long SelectedCategoryId
         {
             get => _selectedCategoryId;
@@ -215,12 +215,12 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
                     case 3:
                         SortByDateDesc();
                         break;
-                       
-                }              
+
+                }
             }
         }
 
-       
+
         private void RefreshPosts()
         {
             LoadPostsTask = MvxNotifyTask.Create(LoadPosts);
@@ -268,7 +268,7 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
         {
             SelectedCategoryId = category.Id;
         }
-       
+
         private void FilterSelectedAsync(Filter filter)
         {
             SelectedFilterId = filter.Key;
