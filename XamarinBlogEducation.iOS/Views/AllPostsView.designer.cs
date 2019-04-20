@@ -15,6 +15,10 @@ namespace XamarinBlogEducation.iOS.Views
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UITableView AllPostsTableView { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UIPickerView categoryPicker { get; set; }
 
         [Outlet]
@@ -23,6 +27,11 @@ namespace XamarinBlogEducation.iOS.Views
 
         void ReleaseDesignerOutlets ()
         {
+            if (AllPostsTableView != null) {
+                AllPostsTableView.Dispose ();
+                AllPostsTableView = null;
+            }
+
             if (categoryPicker != null) {
                 categoryPicker.Dispose ();
                 categoryPicker = null;

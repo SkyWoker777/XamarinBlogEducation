@@ -17,6 +17,7 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
         }
         public MenuViewModel (IMvxNavigationService navigationService) : base(navigationService)
         {
+            MenuItemSelectedCommand = new MvxAsyncCommand<MenuModel>(MenuItemSelected);
             ShowHomeCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<AllPostsFragmentViewModel>());
             AddPostCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<CreatePostViewModel>());
             ShowProfileCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<UserProfileViewModel>());
@@ -30,7 +31,7 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
             MenuItems.Add(new MenuModel() { Title = "Logout", Navigate = ExitCommand });
  
         }
-
+        public IMvxCommand<MenuModel> MenuItemSelectedCommand { get; private set; }
         public IMvxCommand ShowHomeCommand { get; private set; }
         public IMvxCommand ShowUserPostsCommand { get; private set; }
         public IMvxCommand AddPostCommand { get; private set; }
@@ -54,6 +55,11 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
                 RaisePropertyChanged();
             }
         }
-       
+        public async Task MenuItemSelected(MenuModel menuItem)
+        {
+           menuItem.Navigate.Execute();
+        }
+
+
     }
 }

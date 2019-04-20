@@ -27,7 +27,7 @@ namespace XamarinBlogEducation.iOS.Views.Cells
 
             _lblName = new UILabel
             {
-                TextColor = UIColor.Black,
+                TextColor = UIColor.FromRGB(109,179,206),
                 TextAlignment=UITextAlignment.Center,
                 Font = UIFont.SystemFontOfSize(15f, UIFontWeight.Bold)
             };

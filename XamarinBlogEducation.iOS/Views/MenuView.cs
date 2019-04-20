@@ -31,9 +31,32 @@ namespace XamarinBlogEducation.iOS.Views
 
             set.Bind(_source).For(v => v.ItemsSource).To(vm => vm.MenuItems);
             lblUserName.Text= ViewModel.UserName;
+            set.Bind(_source).For(v => v.SelectionChangedCommand).To(vm => vm.MenuItemSelectedCommand);
             set.Apply();
+            
         }
+        public override void ViewWillAppear(bool animated)
+        {
+            base.ViewWillAppear(animated);
+            NavigationController.NavigationBar.BackgroundColor = UIColor.FromRGBA(209, 188, 171, 255);
+            NavigationController.NavigationBar.Hidden = false;
+            var menuButton = new UIBarButtonItem
+            {
 
+                Image = UIImage.FromFile("menu.png")
+            };
+
+            menuButton.Clicked += async (s, e) =>
+            {
+                await ViewModel.DisposeView(ViewModel);
+            };
+
+            NavigationItem.HidesBackButton = true;
+            NavigationItem.LeftBarButtonItems = new UIBarButtonItem[]
+            {
+               menuButton
+            };
+        }
 
 
         #endregion

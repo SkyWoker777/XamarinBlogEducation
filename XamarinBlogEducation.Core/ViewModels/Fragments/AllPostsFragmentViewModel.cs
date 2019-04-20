@@ -43,6 +43,9 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
 
                 });
             RefreshPostsCommand = new MvxCommand(RefreshPosts);
+            LoginCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<LoginViewModel>());
+            AboutUsComand = new MvxAsyncCommand(async () => await NavigationService.Navigate<AboutFragmentModel>());
+            AddPostCommand= new MvxAsyncCommand(async () => await NavigationService.Navigate<CreatePostViewModel>());
         }
        
         public override Task Initialize()
@@ -77,7 +80,9 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
             });
             FilterItems.AddRange(filters.list);
         }
-
+        public IMvxCommand AddPostCommand { get; private set; }
+        public IMvxCommand AboutUsComand { get; private set; }
+        public IMvxCommand LoginCommand { get; private set; }
         public IMvxCommand ItemSelectedCommand { get; private set; }
         public IMvxCommand FilterSelectedCommand { get; private set; }      
         public IMvxCommand<GetAllPostsBlogViewItem> PostSelectedCommand { get; private set; }

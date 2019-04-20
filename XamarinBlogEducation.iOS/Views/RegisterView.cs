@@ -46,14 +46,14 @@ namespace XamarinBlogEducation.iOS.Views
             View.AddGestureRecognizer(viewTap);
             registerButton.TouchDown += (sender, args) => { ViewModel.RegistrateCommand.Execute(); };
             haveAccountButton.TouchDown += (sender, args) => { ViewModel.LoginCommand.Execute(); };
-
-            NavigationController.ToolbarHidden = true;
+           
 
         }
 
         public override void ViewWillAppear(bool animated)
         {
             base.ViewWillAppear(animated);
+            NavigationController.NavigationBar.Hidden = true;
         }
 
         public override void ViewDidAppear(bool animated)

@@ -71,6 +71,7 @@
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <Compile Include="MvxBindings\NetworkIndicatorTargetBinding.cs" />
+    <Compile Include="Views\AllPostsTableViewSource.cs" />
     <Compile Include="Views\AllPostsView.cs" />
     <Compile Include="Views\AllPostsView.designer.cs">
       <DependentUpon>AllPostsView.cs</DependentUpon>
@@ -102,7 +103,6 @@
     </Compile>
     <Compile Include="Setup.cs" />
     <Compile Include="Views\CreatePostView.cs" />
-    <Compile Include="Views\EditPostView.cs" />
     <Compile Include="Views\LoginView.cs" />
     <Compile Include="Views\LoginView.designer.cs">
       <DependentUpon>LoginView.cs</DependentUpon>
@@ -122,6 +122,9 @@
     <Compile Include="Views\UserProfileView.designer.cs">
       <DependentUpon>UserProfileView.cs</DependentUpon>
     </Compile>
+    <BundleResource Include="Resources\menu_button.png" />
+    <BundleResource Include="Resources\menu.png" />
+    <BundleResource Include="Resources\icons8_more_48.png" />
     <None Include="app.config" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />

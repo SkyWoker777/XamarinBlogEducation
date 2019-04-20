@@ -46,8 +46,7 @@ namespace XamarinBlogEducation.iOS.Views
             signUpButton.TouchDown += (sender, args) => { ViewModel.SingUpCommand.Execute(); };
             skipButton.TouchDown += (sender, args) => { ViewModel.SkipCommand.Execute(); };
             inputPassword.EditingDidEndOnExit += (sender, args) => { inputPassword.ResignFirstResponder(); };
-
-            NavigationController.ToolbarHidden = true;
+           
             
         }
 
@@ -61,6 +60,7 @@ namespace XamarinBlogEducation.iOS.Views
         public override void ViewWillAppear(bool animated)
         {
             base.ViewWillAppear(animated);
+            NavigationController.NavigationBar.Hidden = true;
         }
 
         #endregion

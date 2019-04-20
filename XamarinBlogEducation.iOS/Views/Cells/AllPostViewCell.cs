@@ -1,55 +1,73 @@
 ﻿
 using System;
 using System.Drawing;
-
+using Cirrious.FluentLayouts.Touch;
 using Foundation;
+using MvvmCross.Binding.BindingContext;
 using UIKit;
 
 namespace XamarinBlogEducation.iOS.Views.Cells
 {
-    public partial class AllPostViewCell : UIViewController
+    public partial class AllPostViewCell : BaseTableViewCell
     {
+        private UILabel _lblTitle;
+        private UILabel _lblDate;
+        private UILabel _lblDescripion;
+        private const float PADDING = 12f;
         public AllPostViewCell(IntPtr handle) : base(handle)
         {
         }
-
-        public override void DidReceiveMemoryWarning()
+        protected override void CreateView()
         {
-            // Releases the view if it doesn't have a superview.
-            base.DidReceiveMemoryWarning();
+            base.CreateView();
 
-            // Release any cached data, images, etc that aren't in use.
+            SelectionStyle = UITableViewCellSelectionStyle.None;
+
+            _lblTitle = new UILabel
+            {
+                TextColor = UIColor.Brown,
+                TextAlignment = UITextAlignment.Left,
+                Font = UIFont.SystemFontOfSize(30f, UIFontWeight.Bold)
+            };
+            _lblDate = new UILabel
+            {
+                TextColor = UIColor.Gray,
+                TextAlignment = UITextAlignment.Left,
+                Font = UIFont.SystemFontOfSize(10f, UIFontWeight.Thin)
+            };
+            _lblDescripion = new UILabel
+            {
+                TextColor = UIColor.Brown,
+                TextAlignment = UITextAlignment.Justified,
+                Font = UIFont.SystemFontOfSize(20f, UIFontWeight.Bold)
+            };
+            ContentView.AddSubviews(_lblTitle, _lblDate, _lblDescripion);
+            ContentView.SubviewsDoNotTranslateAutoresizingMaskIntoConstraints();
+
+            this.DelayBind(
+                () =>
+                {
+                    this.AddBindings(_lblTitle, "Text Title");
+                    this.AddBindings(_lblDate, "Text CreationDate");
+                    this.AddBindings(_lblDescripion, "Text Description");
+                });
         }
-
-        #region View lifecycle
-
-        public override void ViewDidLoad()
+        protected override void CreateConstraints()
         {
-            base.ViewDidLoad();
+            base.CreateConstraints();
 
-            // Perform any additional setup after loading the view, typically from a nib.
+            ContentView.AddConstraints(
+                _lblTitle.AtLeftOf(ContentView, PADDING),
+                _lblTitle.AtTopOf(ContentView, PADDING),
+                _lblTitle.AtBottomOf(ContentView, PADDING),
+                _lblTitle.AtRightOf(ContentView, PADDING),
+                _lblDate.AtLeftOf(ContentView, PADDING),
+                _lblDate.AtTopOf(_lblTitle, 10f),
+                _lblDate.AtRightOf(ContentView, PADDING),
+                 _lblDescripion.AtLeftOf(ContentView, PADDING),
+                _lblDescripion.AtTopOf(_lblDate, 10f),
+                _lblDescripion.AtRightOf(ContentView, PADDING)
+            );
         }
-
-        public override void ViewWillAppear(bool animated)
-        {
-            base.ViewWillAppear(animated);
-        }
-
-        public override void ViewDidAppear(bool animated)
-        {
-            base.ViewDidAppear(animated);
-        }
-
-        public override void ViewWillDisappear(bool animated)
-        {
-            base.ViewWillDisappear(animated);
-        }
-
-        public override void ViewDidDisappear(bool animated)
-        {
-            base.ViewDidDisappear(animated);
-        }
-
-        #endregion
     }
 }

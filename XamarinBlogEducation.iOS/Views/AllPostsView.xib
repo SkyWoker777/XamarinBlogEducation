@@ -10,6 +10,7 @@
                 <outlet property="view" destination="1" id="allpost-view-outlet"/>
                 <outlet property="categoryPicker" destination="311" id="name-outlet-311"/>
                 <outlet property="filterPicker" destination="314" id="name-outlet-314"/>
+                <outlet property="AllPostsTableView" destination="5736" id="name-outlet-5736"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -21,22 +22,70 @@
                 <outlet property="navigationAllPosts" destination="303" id="name-outlet-303"/>
             </connections>
             <subviews>
-                <view contentMode="scaleToFill" id="309" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
-                    <rect key="frame" x="0.0" y="61" width="414" height="88"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                <view contentMode="scaleToFill" id="309" translatesAutoresizingMaskIntoConstraints="NO" ambiguous="YES" misplaced="YES">
+                    <rect key="frame" x="0.0" y="60" width="414" height="149"/>
                     <subviews>
-                        <pickerView contentMode="scaleToFill" id="311" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
-                            <rect key="frame" x="8" y="4" width="199" height="87"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                        <pickerView contentMode="scaleToFill" id="311" translatesAutoresizingMaskIntoConstraints="NO">
+                            <rect key="frame" x="8" y="54" width="190" height="80"/>
+                            <constraints>
+                                <constraint id="3865" firstAttribute="height" constant="80"/>
+                            </constraints>
                         </pickerView>
-                        <pickerView contentMode="scaleToFill" id="314" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
-                            <rect key="frame" x="216" y="8" width="190" height="80"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                        <pickerView contentMode="scaleToFill" id="314" translatesAutoresizingMaskIntoConstraints="NO">
+                            <rect key="frame" x="216" y="54" width="190" height="80"/>
+                            <constraints>
+                                <constraint id="3881" firstAttribute="height" constant="80"/>
+                            </constraints>
                         </pickerView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category:" textAlignment="center" lineBreakMode="clip" id="1078" translatesAutoresizingMaskIntoConstraints="NO" adjustsFontSizeToFit="NO" autoresizesSubviews="NO" clipsSubviews="YES" adjustsFontForContentSizeCategory="YES" baselineAdjustment="none">
+                            <rect key="frame" x="8" y="8" width="190" height="20"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                            <size key="shadowOffset" width="0" height="0"/>
+                            <constraints>
+                                <constraint id="3801" firstAttribute="width" constant="190"/>
+                            </constraints>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Filters:" textAlignment="center" lineBreakMode="clip" adjustsFontSizeToFit="NO" id="1094" translatesAutoresizingMaskIntoConstraints="NO" autoresizesSubviews="NO" clipsSubviews="YES" baselineAdjustment="none" adjustsFontForContentSizeCategory="YES">
+                            <rect key="frame" x="216" y="8" width="190" height="20"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                            <size key="shadowOffset" width="0" height="0"/>
+                            <constraints>
+                                <constraint id="3817" firstAttribute="width" constant="190"/>
+                            </constraints>
+                        </label>
                     </subviews>
+                    <color key="backgroundColor" colorSpace="calibratedRGB" red="0.81960784313725488" green="0.73725490196078436" blue="0.6705882352941176" alpha="1"/>
+                    <constraints>
+                        <constraint id="3535" firstItem="311" firstAttribute="width" secondItem="314" secondAttribute="width"/>
+                        <constraint id="3551" firstItem="314" firstAttribute="leading" secondItem="311" secondAttribute="trailing" constant="18"/>
+                        <constraint id="3567" firstItem="311" firstAttribute="leading" secondItem="309" secondAttribute="leading" constant="8"/>
+                        <constraint id="3583" firstAttribute="trailing" secondItem="314" secondAttribute="trailing" constant="8"/>
+                        <constraint id="3661" firstItem="1078" firstAttribute="top" secondItem="309" secondAttribute="top" constant="8"/>
+                        <constraint id="3677" firstItem="1094" firstAttribute="top" secondItem="309" secondAttribute="top" constant="8"/>
+                        <constraint id="3693" firstItem="1094" firstAttribute="leading" secondItem="1078" secondAttribute="trailing" constant="18"/>
+                        <constraint id="3709" firstItem="1078" firstAttribute="leading" secondItem="309" secondAttribute="leading" constant="8"/>
+                        <constraint id="3725" firstAttribute="trailing" secondItem="1094" secondAttribute="trailing" constant="8"/>
+                        <constraint id="3833" firstItem="311" firstAttribute="top" secondItem="1078" secondAttribute="bottom" constant="26"/>
+                        <constraint id="3849" firstItem="314" firstAttribute="top" secondItem="1094" secondAttribute="bottom" constant="26"/>
+                    </constraints>
                 </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="5736" translatesAutoresizingMaskIntoConstraints="NO" ambiguous="YES" misplaced="YES">
+                    <rect key="frame" x="8" y="217" width="398" height="511"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
             </subviews>
+            <constraints>
+                <constraint id="4363" firstItem="309" firstAttribute="top" secondItem="1" secondAttribute="top" constant="60"/>
+                <constraint id="4394" firstItem="309" firstAttribute="leading" secondItem="1" secondAttribute="leading"/>
+                <constraint id="4410" firstItem="309" firstAttribute="trailing" secondItem="1" secondAttribute="trailing"/>
+                <constraint id="5782" firstItem="5736" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="8"/>
+                <constraint id="5783" firstAttribute="trailing" secondItem="5736" secondAttribute="trailing" constant="8"/>
+                <constraint id="5811" firstItem="5736" firstAttribute="top" secondItem="309" secondAttribute="bottom"/>
+            </constraints>
         </view>
     </objects>
 </document>
