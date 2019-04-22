@@ -6,7 +6,16 @@ namespace XamarinBlogEducation.iOS
     {
         static void Main(string[] args)
         {
-           UIApplication.Main(args, null, nameof(AppDelegate));
+            try
+            {
+                UIApplication.Main(args, null, nameof(AppDelegate));
+
+            }
+            catch (System.Exception ex)
+            {
+
+                var p = ex;
+            }
         }
     }
 }

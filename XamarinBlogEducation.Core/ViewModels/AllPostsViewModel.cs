@@ -26,6 +26,7 @@ namespace XamarinBlogEducation.Core.ViewModels
             LoginCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<LoginViewModel>());
             GoBackCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<AllPostsFragmentViewModel>());
             AboutCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<AboutFragmentModel>());
+
         }
         public IMvxAsyncCommand ShowMenuViewModelCommand { get; private set; }
         public IMvxCommand ShowHomeCommand { get; private set; }

@@ -75,14 +75,14 @@
     <Compile Include="Views\AllPostsView.designer.cs">
       <DependentUpon>AllPostsView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\Cells\AllPostViewCell.cs" />
-    <Compile Include="Views\Cells\AllPostViewCell.designer.cs">
-      <DependentUpon>AllPostViewCell.cs</DependentUpon>
-    </Compile>
     <Compile Include="Views\Cells\BaseTableViewCell.cs" />
     <Compile Include="Views\Cells\MenuTableViewCell.cs" />
     <Compile Include="Views\Cells\MenuTableViewCell.designer.cs">
       <DependentUpon>MenuTableViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Cells\PostViewCell.cs" />
+    <Compile Include="Views\Cells\PostViewCell.designer.cs">
+      <DependentUpon>PostViewCell.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\CreatePostView.designer.cs">
       <DependentUpon>CreatePostView.cs</DependentUpon>
@@ -148,10 +148,8 @@
       <SubType>Designer</SubType>
     </InterfaceDefinition>
     <InterfaceDefinition Include="Views\UserProfileView.xib" />
-    <InterfaceDefinition Include="Views\Cells\AllPostViewCell.xib">
-      <SubType>Designer</SubType>
-    </InterfaceDefinition>
     <InterfaceDefinition Include="Views\CreatePostView.xib" />
+    <InterfaceDefinition Include="Views\Cells\PostViewCell.xib" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Cirrious.FluentLayouts.Touch, Version=2.6.0.0, Culture=neutral, processorArchitecture=MSIL">

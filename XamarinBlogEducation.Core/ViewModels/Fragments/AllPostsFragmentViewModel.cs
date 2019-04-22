@@ -46,14 +46,29 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
             LoginCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<LoginViewModel>());
             AboutUsComand = new MvxAsyncCommand(async () => await NavigationService.Navigate<AboutFragmentModel>());
             AddPostCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<CreatePostViewModel>());
+
+            //AllPosts = new MvxObservableCollection<GetAllPostsBlogViewItem>
+            //{
+            //    new GetAllPostsBlogViewItem
+            //    {
+            //        AuthorId = "123",
+            //        AuthorName = "213",
+            //        Category = "123",
+            //        CategoryId = 123,
+            //        Content = "123",
+            //        CreationDate = DateTime.Now,
+            //        Description= "123",
+            //        Id = 123,
+            //        Title = "12345",
+            //    }
+            //};
         }
 
-        public override Task Initialize()
+        public async override Task Initialize()
         {
-            LoadFiltersTask = MvxNotifyTask.Create(LoadFilters);
-            LoadCategoriesTask = MvxNotifyTask.Create(LoadCategories);
-            LoadPostsTask = MvxNotifyTask.Create(LoadPosts);
-            return Task.FromResult(0);
+            LoadFilters();
+            LoadCategories();
+            LoadPosts();
         }
         private async Task LoadPosts()
         {

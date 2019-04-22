@@ -76,15 +76,17 @@
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="5736" translatesAutoresizingMaskIntoConstraints="NO" ambiguous="YES" misplaced="YES">
                     <rect key="frame" x="8" y="217" width="398" height="511"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint id="7738" firstAttribute="height" constant="511"/>
+                        <constraint id="7739" firstAttribute="width" constant="398"/>
+                    </constraints>
                 </tableView>
             </subviews>
             <constraints>
                 <constraint id="4363" firstItem="309" firstAttribute="top" secondItem="1" secondAttribute="top" constant="60"/>
                 <constraint id="4394" firstItem="309" firstAttribute="leading" secondItem="1" secondAttribute="leading"/>
                 <constraint id="4410" firstItem="309" firstAttribute="trailing" secondItem="1" secondAttribute="trailing"/>
-                <constraint id="5782" firstItem="5736" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="8"/>
-                <constraint id="5783" firstAttribute="trailing" secondItem="5736" secondAttribute="trailing" constant="8"/>
-                <constraint id="5811" firstItem="5736" firstAttribute="top" secondItem="309" secondAttribute="bottom"/>
+                <constraint id="7740" firstItem="5736" firstAttribute="top" secondItem="309" secondAttribute="bottom" constant="8"/>
             </constraints>
         </view>
     </objects>
