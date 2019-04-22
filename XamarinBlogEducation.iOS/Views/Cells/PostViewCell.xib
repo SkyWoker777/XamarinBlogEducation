@@ -14,34 +14,46 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="194"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="399" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
-                        <rect key="frame" x="16" y="12" width="42" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="399" translatesAutoresizingMaskIntoConstraints="NO" adjustsFontForContentSizeCategory="YES" numberOfLines="2">
+                        <rect key="frame" x="0.0" y="10" width="320" height="24"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="20" weight="semibold"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="533" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
-                        <rect key="frame" x="16" y="52" width="42" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="533" translatesAutoresizingMaskIntoConstraints="NO">
+                        <rect key="frame" x="0.0" y="53" width="320" height="14.5"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                        <color key="textColor" colorSpace="calibratedRGB" red="0.42745098039215684" green="0.70196078431372544" blue="0.807843137254902" alpha="1"/>
+                        <color key="highlightedColor" colorSpace="calibratedRGB" red="0.42745098039215684" green="0.70196078431372544" blue="0.807843137254902" alpha="1"/>
                     </label>
-                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" id="647" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES" text=" Nam liber te conscient to factor tum poen legum odioque civiuda.">
-                        <rect key="frame" x="12" y="96" width="50" height="50"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="647" translatesAutoresizingMaskIntoConstraints="NO" text=" Nam liber te conscient to factor tum poen legum odioque civiuda." insetsLayoutMarginsFromSafeArea="NO">
+                        <rect key="frame" x="0.0" y="76" width="320" height="119"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                        <color key="backgroundColor" colorSpace="calibratedRGB" red="0.81960784313725488" green="0.73725490196078436" blue="0.6705882352941176" alpha="1"/>
+                        <color key="textColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                     </textView>
                 </subviews>
+                <constraints>
+                    <constraint id="3544" firstItem="399" firstAttribute="leading" secondItem="YTl-1W-gDM" secondAttribute="leading"/>
+                    <constraint id="3572" firstAttribute="trailing" secondItem="399" secondAttribute="trailing"/>
+                    <constraint id="3691" firstItem="399" firstAttribute="top" secondItem="YTl-1W-gDM" secondAttribute="top" constant="10"/>
+                    <constraint id="4424" firstItem="533" firstAttribute="leading" secondItem="YTl-1W-gDM" secondAttribute="leading"/>
+                    <constraint id="5502" firstItem="533" firstAttribute="width" secondItem="399" secondAttribute="width"/>
+                    <constraint id="5530" firstItem="533" firstAttribute="top" secondItem="399" secondAttribute="bottom" constant="19"/>
+                    <constraint id="5635" firstItem="647" firstAttribute="width" secondItem="399" secondAttribute="width"/>
+                    <constraint id="6684" firstItem="647" firstAttribute="top" secondItem="533" secondAttribute="bottom" constant="8.5"/>
+                    <constraint id="6788" firstItem="647" firstAttribute="leading" secondItem="YTl-1W-gDM" secondAttribute="leading"/>
+                    <constraint id="6816" firstItem="647" firstAttribute="trailing" secondItem="YTl-1W-gDM" secondAttribute="trailing"/>
+                    <constraint id="6871" firstItem="647" firstAttribute="bottom" secondItem="YTl-1W-gDM" secondAttribute="bottom"/>
+                </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="lbTitle" destination="399" id="name-outlet-399"/>
                 <outlet property="lbCreationDate" destination="533" id="name-outlet-533"/>
                 <outlet property="tvDescription" destination="647" id="name-outlet-647"/>
             </connections>
+            <color key="backgroundColor" colorSpace="calibratedRGB" red="0.81960784313725488" green="0.73725490196078436" blue="0.6705882352941176" alpha="1"/>
         </tableViewCell>
     </objects>
 </document>
