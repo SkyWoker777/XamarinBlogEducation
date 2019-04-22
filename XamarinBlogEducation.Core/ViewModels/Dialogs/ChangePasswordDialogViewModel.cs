@@ -72,7 +72,8 @@ namespace XamarinBlogEducation.Core.ViewModels.Dialogs
         }
         private async Task GoBackAsync()
         {
-            await NavigationService.Navigate<UserProfileViewModel>();
+            await DisposeView(this);
+            //await NavigationService.Navigate<UserProfileViewModel>();
         }
         public override void Prepare(LoginAccountViewModel parameter)
         {

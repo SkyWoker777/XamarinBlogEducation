@@ -7,10 +7,12 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UserProfileView">
             <connections>
+                <outlet property="view" destination="1" id="view-outlet-11111"/>
                 <outlet property="textEditUserName" destination="365" id="name-outlet-365"/>
                 <outlet property="textEditUserLastName" destination="2011" id="name-outlet-2011"/>
                 <outlet property="textEditUserEmail" destination="2389" id="name-outlet-2389"/>
                 <outlet property="changePasswordBtn" destination="3003" id="name-outlet-3003"/>
+                <outlet property="btnSaveChanges" destination="3005" id="name-outlet-3005"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>

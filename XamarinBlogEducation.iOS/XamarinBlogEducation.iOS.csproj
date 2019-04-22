@@ -103,6 +103,10 @@
     <Compile Include="Views\LoginView.designer.cs">
       <DependentUpon>LoginView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\PasswordDialog.cs" />
+    <Compile Include="Views\PasswordDialog.designer.cs">
+      <DependentUpon>PasswordDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\RegisterView.cs" />
     <Compile Include="Views\RegisterView.designer.cs">
       <DependentUpon>RegisterView.cs</DependentUpon>
@@ -111,7 +115,6 @@
     <Compile Include="Views\StartView.designer.cs">
       <DependentUpon>StartView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserPostsView.cs" />
     <Compile Include="Views\UserProfileView.cs" />
     <BundleResource Include="Views\welcome_png_1496568.png" />
     <BundleResource Include="Resources\welcome_png_1496568.png" />
@@ -121,6 +124,7 @@
     <BundleResource Include="Resources\menu_button.png" />
     <BundleResource Include="Resources\menu.png" />
     <BundleResource Include="Resources\icons8_more_48.png" />
+    <BundleResource Include="Resources\add_ic.png" />
     <None Include="app.config" />
     <None Include="Info.plist">
       <SubType>Designer</SubType>
@@ -152,9 +156,16 @@
     <InterfaceDefinition Include="Views\Cells\MenuTableViewCell.xib">
       <SubType>Designer</SubType>
     </InterfaceDefinition>
-    <InterfaceDefinition Include="Views\UserProfileView.xib" />
-    <InterfaceDefinition Include="Views\CreatePostView.xib" />
+    <InterfaceDefinition Include="Views\UserProfileView.xib">
+      <SubType>Designer</SubType>
+    </InterfaceDefinition>
+    <InterfaceDefinition Include="Views\CreatePostView.xib">
+      <SubType>Designer</SubType>
+    </InterfaceDefinition>
     <InterfaceDefinition Include="Views\Cells\PostViewCell.xib" />
+    <InterfaceDefinition Include="Views\PasswordDialog.xib">
+      <SubType>Designer</SubType>
+    </InterfaceDefinition>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Cirrious.FluentLayouts.Touch, Version=2.6.0.0, Culture=neutral, processorArchitecture=MSIL">

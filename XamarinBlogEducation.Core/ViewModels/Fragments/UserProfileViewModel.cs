@@ -31,7 +31,8 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
             ChangePasswordCommand = new MvxAsyncCommand(ChangePasswordAsync);
             GoToPostsCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<AllPostsFragmentViewModel>());
             GoBackCommand = new MvxAsyncCommand(GoBackAsync);
-          
+
+
         }
 
         public IMvxCommand GoToPostsCommand { get; private set; }
@@ -130,5 +131,6 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
             var loginModel = new LoginAccountViewModel() { Email = model.Email };
             Model = loginModel;
         }
+       
     }
 }

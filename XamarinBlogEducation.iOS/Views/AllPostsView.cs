@@ -32,8 +32,6 @@ namespace XamarinBlogEducation.iOS.Views
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-            //await ViewModel.Initialize();
-            //_source = new PostsTableViewSource(AllPostsTableView);
 
             _source = new MvxSimpleTableViewSource(AllPostsTableView, nameof(PostViewCell), PostViewCell.Key);
             AllPostsTableView.RowHeight = 130;
@@ -49,7 +47,6 @@ namespace XamarinBlogEducation.iOS.Views
             filterPicker.ShowSelectionIndicator = true;
             var filterPickerViewModel = new MvxPickerViewModel(filterPicker);
             filterPicker.Model = filterPickerViewModel;
-
             var set = this.CreateBindingSet<AllPostsView, AllPostsFragmentViewModel>();
 
             set.Bind(_source).For(v => v.ItemsSource).To(vm => vm.AllPosts);
@@ -77,7 +74,8 @@ namespace XamarinBlogEducation.iOS.Views
 
             NavigationItem.HidesBackButton = true;
             NavigationItem.RightBarButtonItems = new UIBarButtonItem[] { threeDotsButton };
-
+            filterPickerViewModel.SelectedItemChanged += (a, e) => { AllPostsTableView.ReloadData(); };
+            categoryPikerViewModel.SelectedItemChanged += (a, e) => { AllPostsTableView.ReloadData(); };
             threeDotsButton.Clicked += (a, e) =>
             {
 
@@ -135,54 +133,5 @@ namespace XamarinBlogEducation.iOS.Views
         }
         #endregion
     }
-
-    //public class PostsTableViewSource : MvxSimpleTableViewSource
-    //{
-    //    public PostsTableViewSource(UITableView tableView) : base(tableView, typeof(AllPostViewCell))
-    //    {
-    //        try
-    //        {
-    //            DeselectAutomatically = true;
-
-    //        }
-    //        catch (Exception ex)
-    //        {
-    //            var p = ex;
-
-    //        }
-    //    }
-
-    //    public override nfloat GetHeightForRow(UITableView tableView, NSIndexPath indexPath)
-    //    {
-    //        return 215f;
-    //    }
-
-    //    public override nint RowsInSection(UITableView tableview, nint section)
-    //    {
-    //        return base.RowsInSection(tableview, section);
-    //    }
-
-    //    protected override UITableViewCell GetOrCreateCellFor(UITableView tableView, NSIndexPath indexPath, object item)
-    //    {
-    //        try
-    //        {
-    //            var cell = base.GetOrCreateCellFor(tableView, indexPath, item);
-
-
-
-    //            cell.BackgroundColor = UIColor.Clear;
-
-    //            cell.SeparatorInset = UIEdgeInsets.Zero;
-    //            cell.LayoutMargins = UIEdgeInsets.Zero;
-
-    //            cell.Accessory = UITableViewCellAccessory.DisclosureIndicator;
-
-    //            return cell;
-    //        }
-    //        catch (Exception ex)
-    //        {
-    //            throw;
-    //        }
-    //    }
-    //}
+    
 }

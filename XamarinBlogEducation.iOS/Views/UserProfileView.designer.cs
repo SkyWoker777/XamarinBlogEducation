@@ -15,6 +15,10 @@ namespace XamarinBlogEducation.iOS.Views
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIButton btnSaveChanges { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UIButton changePasswordBtn { get; set; }
 
         [Outlet]
@@ -31,6 +35,11 @@ namespace XamarinBlogEducation.iOS.Views
 
         void ReleaseDesignerOutlets ()
         {
+            if (btnSaveChanges != null) {
+                btnSaveChanges.Dispose ();
+                btnSaveChanges = null;
+            }
+
             if (changePasswordBtn != null) {
                 changePasswordBtn.Dispose ();
                 changePasswordBtn = null;
