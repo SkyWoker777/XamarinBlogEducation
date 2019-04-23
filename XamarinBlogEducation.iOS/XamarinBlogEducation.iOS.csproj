@@ -85,8 +85,16 @@
     <Compile Include="Views\Cells\PostViewCell.designer.cs">
       <DependentUpon>PostViewCell.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Cells\UserPostViewCell.cs" />
+    <Compile Include="Views\Cells\UserPostViewCell.designer.cs">
+      <DependentUpon>UserPostViewCell.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\CreatePostView.designer.cs">
       <DependentUpon>CreatePostView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DetailedPostView.cs" />
+    <Compile Include="Views\DetailedPostView.designer.cs">
+      <DependentUpon>DetailedPostView.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\MainController.cs" />
     <Compile Include="Views\MainController.designer.cs">
@@ -103,8 +111,12 @@
     <Compile Include="Views\LoginView.designer.cs">
       <DependentUpon>LoginView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\PasswordDialog.cs" />
-    <Compile Include="Views\PasswordDialog.designer.cs">
+    <Compile Include="Views\Modals\CategoryModal.cs" />
+    <Compile Include="Views\Modals\CategoryModal.designer.cs">
+      <DependentUpon>CategoryModal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Modals\PasswordDialog.cs" />
+    <Compile Include="Views\Modals\PasswordDialog.designer.cs">
       <DependentUpon>PasswordDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\RegisterView.cs" />
@@ -114,6 +126,10 @@
     <Compile Include="Views\StartView.cs" />
     <Compile Include="Views\StartView.designer.cs">
       <DependentUpon>StartView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserPostsView.cs" />
+    <Compile Include="Views\UserPostsView.designer.cs">
+      <DependentUpon>UserPostsView.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\UserProfileView.cs" />
     <BundleResource Include="Views\welcome_png_1496568.png" />
@@ -162,10 +178,22 @@
     <InterfaceDefinition Include="Views\CreatePostView.xib">
       <SubType>Designer</SubType>
     </InterfaceDefinition>
-    <InterfaceDefinition Include="Views\Cells\PostViewCell.xib" />
-    <InterfaceDefinition Include="Views\PasswordDialog.xib">
+    <InterfaceDefinition Include="Views\Cells\PostViewCell.xib">
       <SubType>Designer</SubType>
     </InterfaceDefinition>
+    <InterfaceDefinition Include="Views\Modals\PasswordDialog.xib">
+      <SubType>Designer</SubType>
+    </InterfaceDefinition>
+    <InterfaceDefinition Include="Views\Modals\CategoryModal.xib">
+      <SubType>Designer</SubType>
+    </InterfaceDefinition>
+    <InterfaceDefinition Include="Views\UserPostsView.xib">
+      <SubType>Designer</SubType>
+    </InterfaceDefinition>
+    <InterfaceDefinition Include="Views\Cells\UserPostViewCell.xib">
+      <SubType>Designer</SubType>
+    </InterfaceDefinition>
+    <InterfaceDefinition Include="Views\DetailedPostView.xib" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Cirrious.FluentLayouts.Touch, Version=2.6.0.0, Culture=neutral, processorArchitecture=MSIL">

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailedPostView">
+            <connections>
+                <outlet property="lblLoginToWrite" destination="436" id="name-outlet-436"/>
+                <outlet property="lblTitle" destination="429" id="name-outlet-429"/>
+                <outlet property="lblAuthor" destination="431" id="name-outlet-431"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="1">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <color key="backgroundColor" customColorSpace="sRGB" colorSpace="calibratedRGB" red="0.81960784313725488" green="0.73725490196078436" blue="0.6705882352941176" alpha="1"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="429" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES" text="TITLE" ambiguous="YES">
+                    <rect key="frame" x="20" y="10" width="372" height="74"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                    <color key="textColor" colorSpace="calibratedRGB" red="0.074509803921568626" green="0.33725490196078434" blue="0.48627450980392156" alpha="1"/>
+                    <color key="highlightedColor" colorSpace="calibratedRGB" red="0" green="0" blue="0" alpha="1"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="430" translatesAutoresizingMaskIntoConstraints="NO" ambiguous="YES" text="Author:" misplaced="YES">
+                    <rect key="frame" x="20" y="92" width="64" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="highlightedColor" colorSpace="calibratedRGB" red="0.32549019607843138" green="0.45490196078431372" blue="0.52941176470588236" alpha="1"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="431" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
+                    <rect key="frame" x="81" y="92" width="42" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="italicSystem" pointSize="12"/>
+                    <nil key="textColor"/>
+                    <color key="highlightedColor" colorSpace="calibratedRGB" red="0" green="0" blue="0" alpha="1"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="432" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES" ambiguous="YES">
+                    <rect key="frame" x="20" y="143" width="42" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <color key="highlightedColor" colorSpace="calibratedRGB" red="0" green="0" blue="0" alpha="1"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="433" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
+                    <rect key="frame" x="73" y="143" width="42" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="434" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES" ambiguous="YES">
+                    <rect key="frame" x="20" y="185" width="42" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" id="435" translatesAutoresizingMaskIntoConstraints="NO">
+                    <rect key="frame" x="20.5" y="205.5" width="373" height="331"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login to add a comment" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="436" translatesAutoresizingMaskIntoConstraints="NO">
+                    <rect key="frame" x="245" y="542" width="141" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="437" translatesAutoresizingMaskIntoConstraints="NO">
+                    <rect key="frame" x="20.5" y="570.5" width="373" height="147"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
+            </subviews>
+            <constraints>
+                <constraint id="438" firstItem="437" firstAttribute="width" secondItem="1" secondAttribute="width" multiplier="0.9"/>
+                <constraint id="439" firstItem="437" firstAttribute="height" secondItem="1" secondAttribute="height" multiplier="0.2"/>
+                <constraint id="442" firstItem="437" firstAttribute="centerY" secondItem="1" secondAttribute="centerY" multiplier="1.75"/>
+                <constraint id="443" firstItem="437" firstAttribute="centerX" secondItem="1" secondAttribute="centerX"/>
+                <constraint id="444" firstItem="436" firstAttribute="width" secondItem="437" secondAttribute="width" multiplier="0.4" constant="-8.200003"/>
+                <constraint id="451" firstItem="437" firstAttribute="top" secondItem="436" secondAttribute="bottom" constant="7.5"/>
+                <constraint id="452" firstAttribute="trailing" secondItem="436" secondAttribute="trailing" constant="28"/>
+                <constraint id="480" firstItem="435" firstAttribute="width" secondItem="437" secondAttribute="width"/>
+                <constraint id="481" firstItem="435" firstAttribute="height" secondItem="1" secondAttribute="height" multiplier="0.45"/>
+                <constraint id="482" firstItem="435" firstAttribute="centerX" secondItem="1" secondAttribute="centerX"/>
+                <constraint id="483" firstItem="435" firstAttribute="centerY" secondItem="1" secondAttribute="centerY" constant="3"/>
+                <constraint id="497" firstItem="436" firstAttribute="top" secondItem="435" secondAttribute="bottom" constant="5"/>
+                <constraint id="498" firstItem="434" firstAttribute="leading" secondItem="1" secondAttribute="leading" multiplier="0.05"/>
+                <constraint id="527" firstItem="432" firstAttribute="leading" secondItem="1" secondAttribute="leading" multiplier="0.05"/>
+                <constraint id="543" firstItem="430" firstAttribute="leading" secondItem="1" secondAttribute="leading" multiplier="0.05"/>
+                <constraint id="1563" firstItem="429" firstAttribute="width" secondItem="1" secondAttribute="width" multiplier="0.9"/>
+                <constraint id="1625" firstItem="429" firstAttribute="height" secondItem="1" secondAttribute="height" multiplier="0.1"/>
+                <constraint id="2787" firstAttribute="centerX" secondItem="429" secondAttribute="centerX"/>
+                <constraint id="3257" firstAttribute="centerX" secondItem="429" secondAttribute="centerX" constant="1"/>
+            </constraints>
+        </view>
+    </objects>
+</document>

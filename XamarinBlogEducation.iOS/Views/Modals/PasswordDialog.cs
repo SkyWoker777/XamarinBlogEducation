@@ -10,7 +10,7 @@ using MvvmCross.Platforms.Ios.Views;
 using UIKit;
 using XamarinBlogEducation.Core.ViewModels.Dialogs;
 
-namespace XamarinBlogEducation.iOS.Views
+namespace XamarinBlogEducation.iOS.Views.Modals
 {
     [MvxModalPresentation(ModalTransitionStyle = UIModalTransitionStyle.CoverVertical, ModalPresentationStyle = UIModalPresentationStyle.BlurOverFullScreen)]
     public partial class PasswordDialog : MvxViewController<ChangePasswordDialogViewModel>

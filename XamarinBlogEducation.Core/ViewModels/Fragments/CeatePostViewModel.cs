@@ -16,6 +16,7 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
         private string _title;
         private string _description;
         private long _selectedCategoryId;
+        private GetAllCategoriesblogViewItem _selectedCategory;
         private string _postContent;
         private string _nickName;
         private readonly IBlogService _blogService;
@@ -40,7 +41,6 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
         public MvxNotifyTask LoadCategoriesTask { get; private set; }
         public IMvxCommand OpenDialogCommand { get; private set; }
         public IMvxCommand AddNewPostCommand { get; private set; }
-        public IMvxCommand AddNewCategoryCommand { get; private set; }
         public IMvxCommand ItemSelectedCommand { get; private set; }
         public IMvxCommand GoBackCommand { get; private set; }
         private MvxObservableCollection<GetAllCategoriesblogViewItem> _allCategories;
@@ -71,6 +71,16 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
             set
             {
                 _selectedCategoryId = value;
+                RaisePropertyChanged();
+            }
+        }
+        public GetAllCategoriesblogViewItem SelectedCategory
+        {
+            get => _selectedCategory;
+            set
+            {
+                _selectedCategory = value;
+                _selectedCategoryId = _selectedCategory.Id;
                 RaisePropertyChanged();
             }
         }

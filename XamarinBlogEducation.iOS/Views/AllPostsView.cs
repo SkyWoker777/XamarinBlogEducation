@@ -52,9 +52,9 @@ namespace XamarinBlogEducation.iOS.Views
             set.Bind(_source).For(v => v.ItemsSource).To(vm => vm.AllPosts);
             set.Bind(_source).For(v => v.SelectionChangedCommand).To(vm => vm.PostSelectedCommand);
             set.Bind(categoryPikerViewModel).For(p => p.ItemsSource).To(vm => vm.CategoryItems);
-            set.Bind(categoryPikerViewModel).For(p => p.SelectedItem).To(vm => vm.SelectedCategoryId);
+            set.Bind(categoryPikerViewModel).For(p => p.SelectedItem).To(vm => vm.SelectedCategory);
             set.Bind(filterPickerViewModel).For(p => p.ItemsSource).To(vm => vm.FilterItems);
-            set.Bind(filterPickerViewModel).For(p => p.SelectedItem).To(vm => vm.SelectedFilterId);
+            set.Bind(filterPickerViewModel).For(p => p.SelectedItem).To(vm => vm.SelectedFilter);
 
             set.Apply();
            
@@ -63,9 +63,6 @@ namespace XamarinBlogEducation.iOS.Views
 
             AllPostsTableView.SeparatorColor = UIColor.FromRGBA(109, 179, 206, 255);
             AllPostsTableView.BackgroundColor = UIColor.FromRGBA(209, 188, 171, 255);
-           // AllPostsTableView.ContentInset = UIEdgeInsets.FromString("20.0, 20.0, 20.0, 20.0");
-           // AllPostsTableView.RowHeight = 215;
-
             var threeDotsButton = new UIBarButtonItem
             {
 

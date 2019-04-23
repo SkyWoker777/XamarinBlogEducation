@@ -8,7 +8,7 @@ using Foundation;
 using System;
 using System.CodeDom.Compiler;
 
-namespace XamarinBlogEducation.iOS.Views
+namespace XamarinBlogEducation.iOS.Views.Modals
 {
     [Register ("PasswordDialog")]
     partial class PasswordDialog

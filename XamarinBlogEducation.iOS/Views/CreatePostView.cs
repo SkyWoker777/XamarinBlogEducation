@@ -42,11 +42,14 @@ namespace XamarinBlogEducation.iOS.Views
             set.Bind(txtTitle).To(vm => vm.Title);
             set.Bind(btnAddPost).To(vm => vm.AddNewPostCommand);
             set.Bind(txtContent).To(vm => vm.PostContent);
-            set.Bind(btnNewCategory).To(vm => vm.AddNewCategoryCommand);
+            set.Bind(btnNewCategory).To(vm => vm.OpenDialogCommand);
             set.Bind(pickerPostCategoryViewModel).For(p => p.ItemsSource).To(vm => vm.CategoryItems);
-            set.Bind(pickerPostCategoryViewModel).For(p => p.SelectedItem).To(vm => vm.SelectedCategoryId);
+            set.Bind(pickerPostCategoryViewModel).For(p => p.SelectedItem).To(vm => vm.SelectedCategory);
             set.Apply();
-			// Perform any additional setup after loading the view, typically from a nib.
+            //this.DelayBind(() =>
+            //{
+            //    this.AddBindings(pickerPostCategory, "ItemsSource CategoryItems;SelectedItem SelectedItem;HandleItemSelected ItemSelectedCommand");
+            //});
 		}
 
 		public override void ViewWillAppear (bool animated)

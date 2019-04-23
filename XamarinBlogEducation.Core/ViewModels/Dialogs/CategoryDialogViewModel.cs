@@ -10,16 +10,14 @@ using XamarinBlogEducation.ViewModels.Blog.Items;
 
 namespace XamarinBlogEducation.Core.ViewModels.Fragments
 {
-    public class CategoryDialogViewModel : MvxViewModel
+    public class CategoryDialogViewModel : BaseViewModel
     {
         private string _newCategory;
         private GetAllCategoriesblogViewItem category;
         private readonly IBlogService _blogService;
-        private IMvxNavigationService _navigationService;
-        public CategoryDialogViewModel(IBlogService blogService, IMvxNavigationService navigationService)
+        public CategoryDialogViewModel(IBlogService blogService, IMvxNavigationService navigationService) : base(navigationService)
         {
             _blogService = blogService;
-            _navigationService = navigationService;
             AddCategoryCommand = new MvxAsyncCommand(AddCategoryAsync);
             GoBackCommand = new MvxAsyncCommand(GoBackAsync);
 
@@ -46,11 +44,12 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
 
             };
             var result = await _blogService.AddNewCategory(category);
-           
+            await DisposeView(this);
+
         }
         private async Task GoBackAsync()
         {
-            await _navigationService.Navigate<CreatePostViewModel>();
+            await DisposeView(this);
         }
     }
 }
