@@ -10,6 +10,7 @@ using CoreGraphics;
 using Cirrious.FluentLayouts.Touch;
 using XamarinBlogEducation.iOS.Views.Cells;
 using Foundation;
+using XamarinBlogEducation.ViewModels.Blog.Items;
 
 namespace XamarinBlogEducation.iOS.Views
 {
@@ -41,18 +42,21 @@ namespace XamarinBlogEducation.iOS.Views
             bool ifUser = CrossSecureStorage.Current.HasKey("securityToken");
 
             EdgesForExtendedLayout = UIRectEdge.None;
+
             categoryPicker.ShowSelectionIndicator = true;
             var categoryPikerViewModel = new MvxPickerViewModel(categoryPicker);
             categoryPicker.Model = categoryPikerViewModel;
+            categoryPikerViewModel.SelectedItemChanged += CategoryPikerViewModel_SelectedItemChanged;
+
             filterPicker.ShowSelectionIndicator = true;
             var filterPickerViewModel = new MvxPickerViewModel(filterPicker);
             filterPicker.Model = filterPickerViewModel;
             var set = this.CreateBindingSet<AllPostsView, AllPostsFragmentViewModel>();
 
             set.Bind(_source).For(v => v.ItemsSource).To(vm => vm.AllPosts);
-            set.Bind(_source).For(v => v.SelectionChangedCommand).To(vm => vm.PostSelectedCommand);
+            set.Bind(_source).For(v => v.SelectedItem).To(vm => vm.SelectedPost);
             set.Bind(categoryPikerViewModel).For(p => p.ItemsSource).To(vm => vm.CategoryItems);
-            set.Bind(categoryPikerViewModel).For(p => p.SelectedItem).To(vm => vm.SelectedCategory);
+            //set.Bind(categoryPikerViewModel).For(p => p.SelectedItem).To(vm => vm.SelectedCategory);
             set.Bind(filterPickerViewModel).For(p => p.ItemsSource).To(vm => vm.FilterItems);
             set.Bind(filterPickerViewModel).For(p => p.SelectedItem).To(vm => vm.SelectedFilter);
 
@@ -119,6 +123,17 @@ namespace XamarinBlogEducation.iOS.Views
                 };
             }
 
+        }
+
+        private void CategoryPikerViewModel_SelectedItemChanged(object sender, EventArgs e)
+        {
+            if(categoryPicker.Model is MvxPickerViewModel mvxPickerViewModel)
+            {
+                if(mvxPickerViewModel.SelectedItem is GetAllCategoriesblogViewItem item)
+                {
+                    ViewModel.SelectedCategory = item;
+                }
+            }
         }
 
         public override void ViewWillAppear(bool animated)

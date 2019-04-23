@@ -66,6 +66,7 @@ namespace XamarinBlogEducation.Core.ViewModels
             };
           _loggedUser=  await _userService.GetUserAsync(user);
          var mail = CrossSecureStorage.Current.GetValue("UserEmail");
+            await DisposeView(this);
         }
         private async Task GoNextAsync()
         {

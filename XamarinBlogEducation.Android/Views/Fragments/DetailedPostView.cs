@@ -53,8 +53,6 @@ namespace XamarinBlogEducation.Android.Views.Fragments
             }
             
             recyclerView = view.FindViewById<MvxRecyclerView>(Resource.Id.comments_recycler_view);
-           // commentsAdapter = new CommentsAdapter((IMvxAndroidBindingContext)this.BindingContext);
-            //recyclerView.Adapter = commentsAdapter;
             content = view.FindViewById<TextView>(Resource.Id.textViewContent);
             content.VerticalScrollBarEnabled = true;          
             content.MovementMethod = new ScrollingMovementMethod();

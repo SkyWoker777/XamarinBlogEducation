@@ -44,14 +44,14 @@
                     <rect key="frame" x="8" y="456" width="359" height="30"/>
                     <nil key="textColor"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits"/>
+                    <textInputTraits key="textInputTraits" textContentType="password"/>
                     <color key="backgroundColor" colorSpace="calibratedRGB" red="0.6705882352941176" green="0.55686274509803924" blue="0.46274509803921571" alpha="1"/>
                 </textField>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="2303" translatesAutoresizingMaskIntoConstraints="NO" placeholder="Confirm Password">
                     <rect key="frame" x="8" y="510" width="359" height="30"/>
                     <nil key="textColor"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits"/>
+                    <textInputTraits key="textInputTraits" textContentType="password"/>
                     <color key="backgroundColor" colorSpace="calibratedRGB" red="0.6705882352941176" green="0.55686274509803924" blue="0.46274509803921571" alpha="1"/>
                 </textField>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="2651" translatesAutoresizingMaskIntoConstraints="NO" placeholder="Your Surname">

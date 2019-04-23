@@ -107,6 +107,7 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
 
             };
             await _userService.UpdateUserAsync(_user);
+            await DisposeView(this);
         }
         public LoginAccountViewModel Model
         {

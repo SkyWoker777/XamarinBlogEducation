@@ -8,9 +8,16 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailedPostView">
             <connections>
+                <outlet property="view" destination="1" id="view-outlet-436"/>
                 <outlet property="lblLoginToWrite" destination="436" id="name-outlet-436"/>
                 <outlet property="lblTitle" destination="429" id="name-outlet-429"/>
                 <outlet property="lblAuthor" destination="431" id="name-outlet-431"/>
+                <outlet property="lblCategory" destination="433" id="name-outlet-433"/>
+                <outlet property="lblDate" destination="434" id="name-outlet-434"/>
+                <outlet property="CommentsTableView" destination="437" id="name-outlet-437"/>
+                <outlet property="txtPostContent" destination="435" id="name-outlet-435"/>
+                <outlet property="inpComment" destination="4569" id="name-outlet-4569"/>
+                <outlet property="btnComment" destination="4702" id="name-outlet-4702"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -19,80 +26,116 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <color key="backgroundColor" customColorSpace="sRGB" colorSpace="calibratedRGB" red="0.81960784313725488" green="0.73725490196078436" blue="0.6705882352941176" alpha="1"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="429" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES" text="TITLE" ambiguous="YES">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="429" translatesAutoresizingMaskIntoConstraints="NO" text="TITLE">
                     <rect key="frame" x="20" y="10" width="372" height="74"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                     <color key="textColor" colorSpace="calibratedRGB" red="0.074509803921568626" green="0.33725490196078434" blue="0.48627450980392156" alpha="1"/>
                     <color key="highlightedColor" colorSpace="calibratedRGB" red="0" green="0" blue="0" alpha="1"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="430" translatesAutoresizingMaskIntoConstraints="NO" ambiguous="YES" text="Author:" misplaced="YES">
-                    <rect key="frame" x="20" y="92" width="64" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="430" translatesAutoresizingMaskIntoConstraints="NO" text="Author:">
+                    <rect key="frame" x="20" y="96" width="42" height="14"/>
+                    <fontDescription key="fontDescription" type="italicSystem" pointSize="12"/>
                     <color key="highlightedColor" colorSpace="calibratedRGB" red="0.32549019607843138" green="0.45490196078431372" blue="0.52941176470588236" alpha="1"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="431" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
-                    <rect key="frame" x="81" y="92" width="42" height="21"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="431" translatesAutoresizingMaskIntoConstraints="NO">
+                    <rect key="frame" x="79.5" y="96" width="290" height="14.5"/>
                     <fontDescription key="fontDescription" type="italicSystem" pointSize="12"/>
                     <nil key="textColor"/>
                     <color key="highlightedColor" colorSpace="calibratedRGB" red="0" green="0" blue="0" alpha="1"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="432" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES" ambiguous="YES">
-                    <rect key="frame" x="20" y="143" width="42" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="432" translatesAutoresizingMaskIntoConstraints="NO">
+                    <rect key="frame" x="20" y="122" width="65" height="21"/>
+                    <fontDescription key="fontDescription" type="italicSystem" pointSize="12"/>
                     <nil key="textColor"/>
                     <color key="highlightedColor" colorSpace="calibratedRGB" red="0" green="0" blue="0" alpha="1"/>
+                    <constraints>
+                        <constraint id="3837" firstAttribute="width" constant="65"/>
+                        <constraint id="3838" firstAttribute="height" constant="21"/>
+                    </constraints>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="433" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
-                    <rect key="frame" x="73" y="143" width="42" height="21"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="433" translatesAutoresizingMaskIntoConstraints="NO">
+                    <rect key="frame" x="93" y="122" width="285" height="21"/>
+                    <fontDescription key="fontDescription" type="italicSystem" pointSize="12"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="434" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES" ambiguous="YES">
-                    <rect key="frame" x="20" y="185" width="42" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="21.02.34" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="434" translatesAutoresizingMaskIntoConstraints="NO">
+                    <rect key="frame" x="20" y="161.5" width="372.5" height="21"/>
+                    <fontDescription key="fontDescription" type="italicSystem" pointSize="12"/>
                     <nil key="highlightedColor"/>
+                    <constraints>
+                        <constraint id="3844" firstAttribute="height" constant="21"/>
+                    </constraints>
                 </label>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" id="435" translatesAutoresizingMaskIntoConstraints="NO">
-                    <rect key="frame" x="20.5" y="205.5" width="373" height="331"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" id="435" translatesAutoresizingMaskIntoConstraints="NO" editable="NO">
+                    <rect key="frame" x="20.5" y="191.5" width="373" height="257.5"/>
+                    <color key="backgroundColor" colorSpace="calibratedRGB" red="0.81960784313725488" green="0.73725490196078436" blue="0.6705882352941176" alpha="1"/>
                     <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login to add a comment" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="436" translatesAutoresizingMaskIntoConstraints="NO">
-                    <rect key="frame" x="245" y="542" width="141" height="21"/>
+                <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login to add a comment" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="436" translatesAutoresizingMaskIntoConstraints="NO" hidden="YES">
+                    <rect key="frame" x="20.5" y="453" width="373" height="14.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
+                    <color key="highlightedColor" colorSpace="calibratedWhite" white="0" alpha="0"/>
                 </label>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="437" translatesAutoresizingMaskIntoConstraints="NO">
-                    <rect key="frame" x="20.5" y="570.5" width="373" height="147"/>
+                    <rect key="frame" x="20.5" y="552" width="373" height="184"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="4569" translatesAutoresizingMaskIntoConstraints="NO" placeholder="Write your comment here">
+                    <rect key="frame" x="20" y="471" width="374" height="30"/>
+                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="4702" translatesAutoresizingMaskIntoConstraints="NO">
+                    <rect key="frame" x="339" y="509" width="46" height="30"/>
+                    <color key="backgroundColor" colorSpace="calibratedRGB" red="0.42745098039215684" green="0.70196078431372544" blue="0.807843137254902" alpha="1"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                    <state key="normal" title="ADD">
+                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                    </state>
+                </button>
             </subviews>
             <constraints>
                 <constraint id="438" firstItem="437" firstAttribute="width" secondItem="1" secondAttribute="width" multiplier="0.9"/>
-                <constraint id="439" firstItem="437" firstAttribute="height" secondItem="1" secondAttribute="height" multiplier="0.2"/>
+                <constraint id="439" firstItem="437" firstAttribute="height" secondItem="1" secondAttribute="height" multiplier="0.25"/>
                 <constraint id="442" firstItem="437" firstAttribute="centerY" secondItem="1" secondAttribute="centerY" multiplier="1.75"/>
                 <constraint id="443" firstItem="437" firstAttribute="centerX" secondItem="1" secondAttribute="centerX"/>
-                <constraint id="444" firstItem="436" firstAttribute="width" secondItem="437" secondAttribute="width" multiplier="0.4" constant="-8.200003"/>
-                <constraint id="451" firstItem="437" firstAttribute="top" secondItem="436" secondAttribute="bottom" constant="7.5"/>
-                <constraint id="452" firstAttribute="trailing" secondItem="436" secondAttribute="trailing" constant="28"/>
                 <constraint id="480" firstItem="435" firstAttribute="width" secondItem="437" secondAttribute="width"/>
-                <constraint id="481" firstItem="435" firstAttribute="height" secondItem="1" secondAttribute="height" multiplier="0.45"/>
+                <constraint id="481" firstItem="435" firstAttribute="height" secondItem="1" secondAttribute="height" multiplier="0.35"/>
                 <constraint id="482" firstItem="435" firstAttribute="centerX" secondItem="1" secondAttribute="centerX"/>
-                <constraint id="483" firstItem="435" firstAttribute="centerY" secondItem="1" secondAttribute="centerY" constant="3"/>
-                <constraint id="497" firstItem="436" firstAttribute="top" secondItem="435" secondAttribute="bottom" constant="5"/>
-                <constraint id="498" firstItem="434" firstAttribute="leading" secondItem="1" secondAttribute="leading" multiplier="0.05"/>
-                <constraint id="527" firstItem="432" firstAttribute="leading" secondItem="1" secondAttribute="leading" multiplier="0.05"/>
-                <constraint id="543" firstItem="430" firstAttribute="leading" secondItem="1" secondAttribute="leading" multiplier="0.05"/>
-                <constraint id="1563" firstItem="429" firstAttribute="width" secondItem="1" secondAttribute="width" multiplier="0.9"/>
-                <constraint id="1625" firstItem="429" firstAttribute="height" secondItem="1" secondAttribute="height" multiplier="0.1"/>
-                <constraint id="2787" firstAttribute="centerX" secondItem="429" secondAttribute="centerX"/>
-                <constraint id="3257" firstAttribute="centerX" secondItem="429" secondAttribute="centerX" constant="1"/>
+                <constraint id="483" firstItem="435" firstAttribute="centerY" secondItem="1" secondAttribute="centerY" multiplier="0.87"/>
+                <constraint id="498" firstItem="434" firstAttribute="leading" secondItem="1" secondAttribute="leading" multiplier="0.05" constant="20"/>
+                <constraint id="527" firstItem="432" firstAttribute="leading" secondItem="1" secondAttribute="leading" multiplier="0.05" constant="20"/>
+                <constraint id="1563" firstItem="429" firstAttribute="width" secondItem="1" secondAttribute="width" multiplier="0.9" constant="-0.5999901"/>
+                <constraint id="1625" firstItem="429" firstAttribute="height" secondItem="1" secondAttribute="height" multiplier="0.1" constant="0.3999989"/>
+                <constraint id="2787" firstAttribute="centerX" secondItem="429" secondAttribute="centerX" constant="1"/>
+                <constraint id="3730" firstAttribute="centerY" secondItem="429" secondAttribute="centerY" multiplier="6" constant="86"/>
+                <constraint id="3777" firstItem="430" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="20"/>
+                <constraint id="3778" firstItem="430" firstAttribute="top" secondItem="429" secondAttribute="bottom" constant="12"/>
+                <constraint id="3802" firstItem="431" firstAttribute="leading" secondItem="430" secondAttribute="trailing" constant="18"/>
+                <constraint id="3803" firstItem="431" firstAttribute="top" secondItem="429" secondAttribute="bottom" constant="12"/>
+                <constraint id="3806" firstItem="431" firstAttribute="height" secondItem="430" secondAttribute="height"/>
+                <constraint id="3808" firstItem="431" firstAttribute="width" secondItem="1" secondAttribute="width" multiplier="0.7"/>
+                <constraint id="3836" firstItem="432" firstAttribute="top" secondItem="430" secondAttribute="bottom" constant="12"/>
+                <constraint id="3839" firstItem="433" firstAttribute="top" secondItem="431" secondAttribute="bottom" constant="11.5"/>
+                <constraint id="3840" firstItem="433" firstAttribute="leading" secondItem="432" secondAttribute="centerX" constant="40.5"/>
+                <constraint id="3841" firstItem="433" firstAttribute="width" secondItem="431" secondAttribute="width" constant="-5"/>
+                <constraint id="3842" firstItem="433" firstAttribute="height" secondItem="431" secondAttribute="height" constant="6.5"/>
+                <constraint id="3843" firstItem="434" firstAttribute="top" secondItem="432" secondAttribute="bottom" constant="18"/>
+                <constraint id="3885" firstItem="434" firstAttribute="width" secondItem="435" secondAttribute="width"/>
+                <constraint id="4408" firstItem="436" firstAttribute="width" secondItem="435" secondAttribute="width"/>
+                <constraint id="4447" firstItem="435" firstAttribute="centerX" secondItem="436" secondAttribute="centerX"/>
+                <constraint id="4448" firstItem="436" firstAttribute="centerY" secondItem="1" secondAttribute="centerY" multiplier="1.25"/>
+                <constraint id="4570" firstItem="4569" firstAttribute="width" secondItem="435" secondAttribute="width" constant="1"/>
+                <constraint id="4571" firstItem="4569" firstAttribute="centerX" secondItem="435" secondAttribute="centerX"/>
+                <constraint id="4572" firstItem="4569" firstAttribute="centerY" secondItem="1" secondAttribute="centerY" multiplier="1.32"/>
+                <constraint id="5511" firstItem="4702" firstAttribute="top" secondItem="4569" secondAttribute="bottom" constant="8"/>
+                <constraint id="5512" firstAttribute="trailing" secondItem="4702" secondAttribute="trailing" constant="29"/>
+                <constraint id="5513" firstItem="4702" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="339"/>
+                <constraint id="5514" firstItem="437" firstAttribute="top" secondItem="4702" secondAttribute="bottom" constant="13"/>
             </constraints>
         </view>
     </objects>

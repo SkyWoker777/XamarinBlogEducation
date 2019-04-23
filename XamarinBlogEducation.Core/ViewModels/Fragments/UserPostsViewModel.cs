@@ -11,6 +11,7 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
 {
     public class UserPostsViewModel: BaseViewModel
     {
+        private GetAllPostsBlogViewItem _selectedPost;
         private readonly IBlogService _blogService;
         public UserPostsViewModel(
             IBlogService blogService,
@@ -86,7 +87,16 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
             LoadPostsTask = MvxNotifyTask.Create(LoadPosts);
             RaisePropertyChanged(() => LoadPostsTask);
         }
-       
+        public GetAllPostsBlogViewItem SelectedPost
+        {
+            get => _selectedPost;
+            set
+            {
+                _selectedPost = value;
+                NavigationService.Navigate<EditPostViewModel, GetAllPostsBlogViewItem>(_selectedPost);
+                RaisePropertyChanged();
+            }
+        }
     }
 
 }

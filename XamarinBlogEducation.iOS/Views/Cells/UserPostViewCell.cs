@@ -20,7 +20,6 @@ namespace XamarinBlogEducation.iOS.Views.Cells
 
         protected UserPostViewCell(IntPtr handle) : base(handle)
         {
-            // Note: this .ctor should not contain any initialization logic.
             this.DelayBind(() =>
             {
                 var set = this.CreateBindingSet<UserPostViewCell, GetAllPostsBlogViewItem>();

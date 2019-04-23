@@ -28,7 +28,7 @@
                     <rect key="frame" x="19" y="240" width="338" height="40"/>
                     <color key="textColor" colorSpace="calibratedRGB" red="0" green="0" blue="0" alpha="1"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                    <textInputTraits key="textInputTraits"/>
+                    <textInputTraits key="textInputTraits" textContentType="email"/>
                     <color key="backgroundColor" colorSpace="calibratedRGB" red="0.6705882352941176" green="0.55686274509803924" blue="0.46274509803921571" alpha="1"/>
                     <color key="tintColor" colorSpace="calibratedRGB" red="0.42745098039215684" green="0.70196078431372544" blue="0.807843137254902" alpha="1"/>
                     <rect key="contentStretch" x="0.0" y="0.0" width="1" height="1"/>
@@ -41,7 +41,7 @@
                     <rect key="frame" x="19" y="314" width="338" height="40"/>
                     <nil key="textColor"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                    <textInputTraits key="textInputTraits" textContentType="email"/>
+                    <textInputTraits key="textInputTraits" textContentType="password"/>
                     <color key="backgroundColor" colorSpace="calibratedRGB" red="0.6705882352941176" green="0.55686274509803924" blue="0.46274509803921571" alpha="1"/>
                     <color key="tintColor" colorSpace="calibratedRGB" red="0.42745098039215684" green="0.70196078431372544" blue="0.807843137254902" alpha="1"/>
                     <constraints>

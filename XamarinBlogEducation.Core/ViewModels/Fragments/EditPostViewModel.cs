@@ -27,8 +27,9 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
             CancelEditCommand = new MvxAsyncCommand(async()=> await NavigationService.Navigate<UserPostsViewModel>());
             GoToPostsCommand = new MvxAsyncCommand(GoToPostsAsync);
             DeleteCommand = new MvxAsyncCommand(Delete);
+            DeletePostCommand = new MvxAsyncCommand(DeletePost);
             OpenDialogCommand = new MvxAsyncCommand<GetAllPostsBlogViewItem>(OpenDialogAsync);
-            GoBackCommand = new MvxAsyncCommand(async()=> await this.NavigationService.Close(this));
+            GoBackCommand = new MvxAsyncCommand(async()=> await DisposeView(this));
         }
         public IMvxCommand SaveEditCommand { get; private set; }
         public IMvxCommand CancelEditCommand { get; private set; }
@@ -36,6 +37,7 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
         public IMvxCommand GoBackCommand { get; private set; }
         public IMvxCommand<GetAllPostsBlogViewItem> OpenDialogCommand { get; private set; }
         public IMvxCommand DeleteCommand { get; private set; }
+        public IMvxCommand DeletePostCommand { get; private set; }
         public override Task Initialize()
         {
             return Task.FromResult(0);
@@ -88,6 +90,7 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
                 Content = PostToEdit.Content
             };
             await _blogService.UpdatePost(_editedPost);
+            await DisposeView(this);
         }
 
         private async Task GoToPostsAsync()
@@ -102,6 +105,11 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
         private async Task Delete()
         {
             OpenDialogCommand.Execute(_postToEdit);
+        }
+        private async Task DeletePost()
+        {
+            await _blogService.DeletePost(_postToEdit.Id);
+            await DisposeView(this);
         }
         private async Task OpenDialogAsync(GetAllPostsBlogViewItem post)
         {

@@ -77,6 +77,10 @@
       <DependentUpon>AllPostsView.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Cells\BaseTableViewCell.cs" />
+    <Compile Include="Views\Cells\CommentTableViewCell.cs" />
+    <Compile Include="Views\Cells\CommentTableViewCell.designer.cs">
+      <DependentUpon>CommentTableViewCell.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Cells\MenuTableViewCell.cs" />
     <Compile Include="Views\Cells\MenuTableViewCell.designer.cs">
       <DependentUpon>MenuTableViewCell.cs</DependentUpon>
@@ -95,6 +99,10 @@
     <Compile Include="Views\DetailedPostView.cs" />
     <Compile Include="Views\DetailedPostView.designer.cs">
       <DependentUpon>DetailedPostView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EditPostView.cs" />
+    <Compile Include="Views\EditPostView.designer.cs">
+      <DependentUpon>EditPostView.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\MainController.cs" />
     <Compile Include="Views\MainController.designer.cs">
@@ -193,7 +201,13 @@
     <InterfaceDefinition Include="Views\Cells\UserPostViewCell.xib">
       <SubType>Designer</SubType>
     </InterfaceDefinition>
-    <InterfaceDefinition Include="Views\DetailedPostView.xib" />
+    <InterfaceDefinition Include="Views\DetailedPostView.xib">
+      <SubType>Designer</SubType>
+    </InterfaceDefinition>
+    <InterfaceDefinition Include="Views\Cells\CommentTableViewCell.xib" />
+    <InterfaceDefinition Include="Views\EditPostView.xib">
+      <SubType>Designer</SubType>
+    </InterfaceDefinition>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Cirrious.FluentLayouts.Touch, Version=2.6.0.0, Culture=neutral, processorArchitecture=MSIL">

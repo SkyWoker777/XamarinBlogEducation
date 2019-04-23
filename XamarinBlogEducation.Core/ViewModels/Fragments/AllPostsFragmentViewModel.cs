@@ -20,6 +20,7 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
         private long _selectedCategoryId;
         private long _selectedFilterId;
         private GetAllCategoriesblogViewItem _selectedCategory;
+        private GetAllPostsBlogViewItem _selectedPost;
         public IEnumerable<GetAllPostsBlogViewItem> filteredPosts;
         public AllPostsFragmentViewModel(
             IBlogService blogService,
@@ -167,7 +168,15 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
         {
             await NavigationService.Navigate<DetailedPostViewModel, GetAllPostsBlogViewItem>(selectedPost);
         }
-
+        public GetAllPostsBlogViewItem SelectedPost
+        {
+            get => _selectedPost;
+            set
+            {
+                _selectedPost = value;
+                NavigationService.Navigate<DetailedPostViewModel, GetAllPostsBlogViewItem>(_selectedPost);
+            }
+        }
         public long SelectedCategoryId
         {
             get => _selectedCategoryId;
@@ -203,33 +212,42 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
             set
             {
                 _selectedFilterId = value;
+
+                IEnumerable<GetAllPostsBlogViewItem> sortedPosts;
+
                 switch (SelectedFilterId)
                 {
                     case 0:
-                        if (SelectedCategoryId != 0)
-                        {
-                            IEnumerable<GetAllPostsBlogViewItem> filteredPosts = OriginalPostList.Where(x => x.CategoryId == value);
-                            AllPosts = new MvxObservableCollection<GetAllPostsBlogViewItem>(filteredPosts);
-                        }
-                        if (SelectedCategoryId == 0)
-                        {
-                            AllPosts = OriginalPostList;
-                        }        
+                        sortedPosts = GetPostsByCategoryId(SelectedCategoryId);
+                        AllPosts = new MvxObservableCollection<GetAllPostsBlogViewItem>(sortedPosts);
                         break;
                     case 1:
-                        SortByDate();
+                        sortedPosts = GetPostsByCategoryId(SelectedCategoryId).OrderBy(y=>y.CreationDate);
+                        AllPosts = new MvxObservableCollection<GetAllPostsBlogViewItem>(sortedPosts);
                         break;
                     case 2:
-                        SortByAlphabet();
+                        sortedPosts = GetPostsByCategoryId(SelectedCategoryId).OrderBy(y => y.Title);
+                        AllPosts = new MvxObservableCollection<GetAllPostsBlogViewItem>(sortedPosts);
                         break;
                     case 3:
-                        SortByDateDesc();
+                        sortedPosts = GetPostsByCategoryId(SelectedCategoryId).OrderByDescending(y => y.CreationDate);
+                        AllPosts = new MvxObservableCollection<GetAllPostsBlogViewItem>(sortedPosts);
                         break;
                 }
                 RaisePropertyChanged();
             }
         }
-      
+
+        private IEnumerable<GetAllPostsBlogViewItem> GetPostsByCategoryId(long categoryId)
+        {
+            if(categoryId == 0)
+            {
+                return OriginalPostList;
+            }
+
+            return OriginalPostList.Where(x => x.CategoryId == SelectedCategoryId);
+        }
+
         private void RefreshPosts()
         {
             LoadPostsTask = MvxNotifyTask.Create(LoadPosts);

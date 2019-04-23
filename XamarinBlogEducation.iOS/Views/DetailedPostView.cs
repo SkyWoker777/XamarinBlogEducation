@@ -3,51 +3,68 @@ using System;
 using System.Drawing;
 
 using Foundation;
+using MvvmCross.Binding.BindingContext;
+using MvvmCross.Platforms.Ios.Binding.Views;
+using MvvmCross.Platforms.Ios.Views;
+using Plugin.SecureStorage;
 using UIKit;
+using XamarinBlogEducation.Core.ViewModels.Fragments;
+using XamarinBlogEducation.iOS.Views.Cells;
 
 namespace XamarinBlogEducation.iOS.Views
 {
-    public partial class DetailedPostView : UIViewController
+    public partial class DetailedPostView : MvxViewController<DetailedPostViewModel>
     {
-        public DetailedPostView(IntPtr handle) : base(handle)
+        private MvxSimpleTableViewSource _source;
+        public DetailedPostView() : base(nameof(DetailedPostView), null)
         {
+
         }
 
         public override void DidReceiveMemoryWarning()
         {
-            // Releases the view if it doesn't have a superview.
             base.DidReceiveMemoryWarning();
-
-            // Release any cached data, images, etc that aren't in use.
         }
+
 
         #region View lifecycle
 
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
+            _source = new MvxSimpleTableViewSource(CommentsTableView, nameof(CommentTableViewCell), CommentTableViewCell.Key);
+            CommentsTableView.RowHeight = 70;
 
-            // Perform any additional setup after loading the view, typically from a nib.
-        }
+            bool ifUser = CrossSecureStorage.Current.HasKey("securityToken");
 
-        public override void ViewWillAppear(bool animated)
-        {
-            base.ViewWillAppear(animated);
-        }
+            EdgesForExtendedLayout = UIRectEdge.None;
+            
+            var set = this.CreateBindingSet<DetailedPostView, DetailedPostViewModel>();
+           
+            set.Bind(_source).For(v => v.ItemsSource).To(vm => vm.AllComments);
+            set.Bind(inpComment).To(vm => vm.Content);
+            set.Bind(btnComment).To(vm => vm.AddCommentCommand);
+            set.Bind(lblAuthor).For(lb => lb.Text).To(vm => vm.DetailedPost.AuthorName);
+            set.Bind(lblTitle).For(lb => lb.Text).To(vm => vm.DetailedPost.Title);
+            set.Bind(lblDate).For(lb => lb.Text).To(vm => vm.DetailedPost.CreationDate);
+            set.Bind(txtPostContent).For(lb => lb.Text).To(vm => vm.DetailedPost.Content);
+            set.Bind(lblCategory).For(lb => lb.Text).To(vm => vm.DetailedPost.Category);
 
-        public override void ViewDidAppear(bool animated)
-        {
-            base.ViewDidAppear(animated);
-        }
+            set.Apply();
 
-        public override void ViewWillDisappear(bool animated)
-        {
-            base.ViewWillDisappear(animated);
-        }
+            CommentsTableView.Source = _source;
+            CommentsTableView.ReloadData();
+           
+            CommentsTableView.SeparatorColor = UIColor.FromRGBA(109, 179, 206, 255);
+            CommentsTableView.BackgroundColor = UIColor.FromRGBA(209, 188, 171, 255);
+            if (!ifUser)
+            {
+                lblLoginToWrite.Hidden = false;
+                lblLoginToWrite.BackgroundColor = UIColor.Clear;
 
-        public override void ViewDidDisappear(bool animated)
-        {
-            base.ViewDidDisappear(animated);
+                inpComment.Hidden = true;
+                btnComment.Hidden = true;
+            }
         }
 
         #endregion

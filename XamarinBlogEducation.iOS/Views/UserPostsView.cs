@@ -38,7 +38,7 @@ namespace XamarinBlogEducation.iOS.Views
             var set = this.CreateBindingSet<UserPostsView, UserPostsViewModel>();
 
             set.Bind(_source).For(v => v.ItemsSource).To(vm => vm.UserPosts);
-            set.Bind(_source).For(v => v.SelectionChangedCommand).To(vm => vm.PostSelectedCommand);
+            set.Bind(_source).For(v => v.SelectedItem).To(vm => vm.SelectedPost);
 
             set.Apply();
 
@@ -48,7 +48,11 @@ namespace XamarinBlogEducation.iOS.Views
             UserPostsTable.SeparatorColor = UIColor.FromRGBA(109, 179, 206, 255);
             UserPostsTable.BackgroundColor = UIColor.FromRGBA(209, 188, 171, 255);
         }
-
+        public override void ViewWillAppear(bool animated)
+        {
+            base.ViewWillAppear(animated);
+            NavigationController.Title = "My Posts";
+        }
         #endregion
     }
 }
