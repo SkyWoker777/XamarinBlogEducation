@@ -29,7 +29,7 @@ namespace XamarinBlogEducation.DataAccess.Repositories
 
         public void Delete(TEntity entity)
         {
-            _dbContext.Remove<TEntity>(entity);
+            _dbContext.Remove(entity);
             SaveChanges();
         }
 

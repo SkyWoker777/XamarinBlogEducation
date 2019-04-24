@@ -19,7 +19,7 @@ namespace XamarinBlogEducation.Core.ViewModels.Dialogs
         {
             _userService = userService;
             ChangePasswordCommand = new MvxAsyncCommand(ChangePassword);
-            GoBackCommand = new MvxAsyncCommand(GoBackAsync);
+            GoBackCommand = new MvxAsyncCommand(async() => await DisposeView(this));
 
         }
         public IMvxCommand ChangePasswordCommand { get; private set; }
@@ -69,11 +69,6 @@ namespace XamarinBlogEducation.Core.ViewModels.Dialogs
             };
             await _userService.ChangeUserPassword(passwordModel);
 
-        }
-        private async Task GoBackAsync()
-        {
-            await DisposeView(this);
-            //await NavigationService.Navigate<UserProfileViewModel>();
         }
         public override void Prepare(LoginAccountViewModel parameter)
         {

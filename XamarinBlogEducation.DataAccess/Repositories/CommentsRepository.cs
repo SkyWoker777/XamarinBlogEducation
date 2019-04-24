@@ -20,9 +20,12 @@ namespace XamarinBlogEducation.DataAccess.Repositories
 
         public async Task<List<Comment>> GetList(long postId)
         {
-            return await _context.Comments
+
+            var posts= await _context.Comments
                 .Where(x => x.Post.Id == postId)
                 .ToListAsync();
+
+            return posts;
         }
     }
 }

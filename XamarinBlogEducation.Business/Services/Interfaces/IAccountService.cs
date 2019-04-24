@@ -14,7 +14,7 @@ namespace XamarinBlogEducation.Business.Services.Interfaces
         Task<string> SignIn(LoginAccountViewModel model);
         Task UpdateUserProfile(EditAccountViewModel model, string id);
         Task ChangeUserPassword(ChangePasswordViewModel model);
-        Task<EditAccountViewModel> FindUser(LoginAccountViewModel model);
+        Task<EditAccountViewModel> FindUser(string email);
         Task RemoveUser(string userId);
     }
 }

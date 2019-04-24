@@ -11,14 +11,8 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
     {
         public AboutFragmentModel(IMvxNavigationService navigationService) : base(navigationService)
         {
-
-            GoBackCommand = new MvxAsyncCommand(GoBack);
+            GoBackCommand = new MvxAsyncCommand(async () => await DisposeView(this));
         }
         public IMvxCommand GoBackCommand { get; private set; }
-        public async Task GoBack()
-        {
-            await this.NavigationService.Close(this);
-
-        }
     }
 }

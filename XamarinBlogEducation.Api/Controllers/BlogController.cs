@@ -36,7 +36,7 @@ namespace XamarinBlogEducation.Api.Controllers
         public async Task<IActionResult> GetPost(int postId)
         {
             var post = await _postService.GetDetailsPost(postId);
-            var category =await _postService.GetCategoryName(post.CategoryId);
+            var category = await _postService.GetCategoryName(post.CategoryId);
             var mappedPost = _mapper.Map<GetDetailsPostBlogView>(post);
             mappedPost.Category = category;
             return Ok(mappedPost);

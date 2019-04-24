@@ -26,7 +26,7 @@ namespace XamarinBlogEducation.Android.Views.Activities
     {
         private MvxActionBarDrawerToggle _drawerToggle;
         public DrawerLayout DrawerLayout { get; set; }
-        private bool ifUser;
+        private bool isUserExists;
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -36,15 +36,15 @@ namespace XamarinBlogEducation.Android.Views.Activities
             DrawerLayout = FindViewById<DrawerLayout>(Resource.Id.allpost_drawer);
             if (bundle == null)
             {
-                ViewModel.ShowMenuViewModelCommand.Execute(null);
+                ViewModel.ShowMenuViewModelCommand.Execute();
             }
-            ifUser = CrossSecureStorage.Current.HasKey("securityToken");
+            isUserExists = CrossSecureStorage.Current.HasKey("securityToken");
             if (toolbar != null)
             {
                 SetSupportActionBar(toolbar);
                 SupportActionBar.SetDisplayShowTitleEnabled(true);
                 SupportActionBar.SetTitle(Resource.String.AllPostsTitle);
-                if (ifUser == true)
+                if (isUserExists)
                 {
                     DrawerLayout.Activated = true;
                     SupportActionBar.SetDisplayHomeAsUpEnabled(true);
@@ -68,13 +68,13 @@ namespace XamarinBlogEducation.Android.Views.Activities
             {
 
                 case Resource.Id.nav_about:
-                    ViewModel.AboutCommand.Execute(null);
+                    ViewModel.AboutCommand.Execute();
                     break;
                 case Resource.Id.nav_add:
-                    ViewModel.AddPostCommand.Execute(null);
+                    ViewModel.AddPostCommand.Execute();
                     break;
                 case Resource.Id.nav_login:
-                    ViewModel.LoginCommand.Execute(null);
+                    ViewModel.LoginCommand.Execute();
                     break;
             }
             return base.OnOptionsItemSelected(item);
@@ -85,7 +85,7 @@ namespace XamarinBlogEducation.Android.Views.Activities
                 DrawerLayout.CloseDrawers();
                
         }
-        public void HideSoftKeyboard()
+        private void HideSoftKeyboard()
         {
             if (CurrentFocus == null)
                 return;
@@ -98,12 +98,12 @@ namespace XamarinBlogEducation.Android.Views.Activities
         public override bool OnCreateOptionsMenu(IMenu menu)
         {
             MenuInflater.Inflate(Resource.Menu.navigation_drawer, menu);
-            if (ifUser == true)
+            if (isUserExists)
             {
                 var login = menu.FindItem(Resource.Id.nav_login);
                 login.SetVisible(false);
             }
-            if (ifUser != true)
+            if (!isUserExists)
             {
                 var add = menu.FindItem(Resource.Id.nav_add);
                 add.SetVisible(false);

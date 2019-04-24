@@ -19,7 +19,7 @@ namespace XamarinBlogEducation.Android.Views.Fragments
         private Toolbar _toolbar;
         private MvxActionBarDrawerToggle _drawerToggle;
 
-        public MvxAppCompatActivity ParentActivity
+        public MvxAppCompatActivity parentActivity
         {
             get
             {
@@ -32,24 +32,21 @@ namespace XamarinBlogEducation.Android.Views.Fragments
             var ignore = base.OnCreateView(inflater, container, savedInstanceState);
 
             var view = this.BindingInflate(FragmentId, null);
-            //_toolbar = ((AppCompatActivity)Activity).FindViewById<Toolbar>(Resource.Id.toolbar);
-            //_toolbar.NavigationClick += NavigationClick;
             return view;
         }
 
         private void NavigationClick(object sender, Toolbar.NavigationClickEventArgs e)
         {
-            
          
         }
-        public void LimitSpinner(MvxAppCompatSpinner mvxAppCompatSpinner,int height)
-        {
-            var jClass = Java.Lang.Class.FromType(typeof(Spinner));
-            var mPopupField = jClass.GetDeclaredField("mPopup");
-            mPopupField.Accessible = true;
-            ListPopupWindow popupWindow = (ListPopupWindow)mPopupField.Get(mvxAppCompatSpinner);
-            popupWindow.Height = height;
-        }
+        //public void LimitSpinner(MvxAppCompatSpinner mvxAppCompatSpinner,int height)
+        //{
+        //    var jClass = Java.Lang.Class.FromType(typeof(Spinner));
+        //    var mPopupField = jClass.GetDeclaredField("mPopup");
+        //    mPopupField.Accessible = true;
+        //    ListPopupWindow popupWindow = (ListPopupWindow)mPopupField.Get(mvxAppCompatSpinner);
+        //    popupWindow.Height = height;
+        //}
         protected abstract int FragmentId { get; }
        
 
@@ -60,14 +57,6 @@ namespace XamarinBlogEducation.Android.Views.Fragments
         {
             get { return (TViewModel)base.ViewModel; }
             set { base.ViewModel = value; }
-        }
-        public void LimitSpinner(MvxAppCompatSpinner mvxAppCompatSpinner, int height)
-        {
-            var jClass = Java.Lang.Class.FromType(typeof(Spinner));
-            var mPopupField = jClass.GetDeclaredField("mPopup");
-            mPopupField.Accessible = true;
-            ListPopupWindow popupWindow = (ListPopupWindow)mPopupField.Get(mvxAppCompatSpinner);
-            popupWindow.Height = height;
-        }
+        }      
     }
 }

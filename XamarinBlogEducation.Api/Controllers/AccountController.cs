@@ -20,33 +20,28 @@ namespace XamarinBlogEducation.Api.Controllers
 
         [HttpPost]
         [Route("login")]
-        public async Task<IActionResult> Login([FromBody]LoginAccountViewModel model)
+        public async Task<IActionResult> Login([FromBody]LoginAccountViewModel loginModel)
         {
-            IActionResult res = Unauthorized();
-            var token = await _accountService.SignIn(model);
-            if (token != null)
+            var token = await _accountService.SignIn(loginModel);
+            if (token == null)
             {
-                return Ok(token);
+                return Unauthorized();
             }
-            return res;
+            return Ok(token);
         }
-        [HttpPost]
+        [HttpGet]
         [Route("info")]
-        public async Task<IActionResult> Find([FromBody]LoginAccountViewModel model)
+        public async Task<IActionResult> GetUserInfo(string userEmail)
         {
-            IActionResult res = Unauthorized();
-            var user = await _accountService.FindUser(model);
+            var user = await _accountService.FindUser(userEmail);
             return Ok(user);
-            
         }
         [HttpPost]
         [Route("register")]
-        public async Task<IActionResult> Register([FromBody]RegisterAccountViewModel model)
+        public async Task<IActionResult> Register([FromBody]RegisterAccountViewModel registrationModel)
         {
-
-          var res =  await _accountService.CreateUser(model);
-
-            return Ok(res);
+            var registrationResult = await _accountService.CreateUser(registrationModel);
+            return Ok(registrationResult);
         }
 
     }

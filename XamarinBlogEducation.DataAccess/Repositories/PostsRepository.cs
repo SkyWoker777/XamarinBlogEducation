@@ -19,40 +19,37 @@ namespace XamarinBlogEducation.DataAccess.Repositories
 
         public async Task<IEnumerable<Category>> GetAllCategories()
         {
-            return await _context.Categories.ToListAsync();
+            List<Category> allCategories = await _context.Categories.ToListAsync();
+            return allCategories;
         }
 
         public async Task<IEnumerable<Post>> GetByCategory(long categoryId)
         {
-            return await _context.Posts.Where(x => x.CategoryId == categoryId).ToListAsync();
+            List<Post> postsByCategory = await _context.Posts.Where(x => x.CategoryId == categoryId).ToListAsync();
+            return postsByCategory;
         }
         public async Task<IEnumerable<Post>> GetByAuthor(string userId)
         {
-            return await _context.Posts.Where(x => x.AuthorId != null && x.AuthorId == userId).ToListAsync();
+            List<Post> postsByAuthor = await _context.Posts.Where(x => x.AuthorId != null && x.AuthorId == userId).ToListAsync();
+            return postsByAuthor;
         }
         public async Task<IEnumerable<Post>> GetByDate(DateTime creationDate)
         {
-            return await _context.Posts
+            List<Post> postsByDate = await _context.Posts
                .Where(x => x.CreationDate == creationDate)
                .ToListAsync();
-        }
-
-        public async Task<IEnumerable<Post>> GetByKey(string key)
-        {
-            var result = await _context.Posts
-                .Where(x => x.Content != null && x.Content.Contains(key))
-                .ToListAsync();
-            return result;
+            return postsByDate;
         }
         public async Task<string> GetCategoryName(long id)
         {
-            var res = _context.Categories.FirstOrDefault<Category>(x => x.Id == id).Name;   
-            return res;
+            Category category = await _context.Categories.FirstOrDefaultAsync(x => x.Id == id);
+            string categoryName = category?.Name;
+            return categoryName;
         }
-        
+
         public async Task<Post> GetPost(long id)
         {
-            var res = await _context.Posts.FirstOrDefaultAsync<Post>(x => x.Id == id);
+            Post res = await _context.Posts.FirstOrDefaultAsync<Post>(x => x.Id == id);
             return res;
         }
 

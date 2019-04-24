@@ -20,14 +20,14 @@ namespace XamarinBlogEducation.Android.Views
     {
         
         public DrawerLayout DrawerLayout { get; set; }
-        private bool ifUser;
+        private bool isUserExists;
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
             SetContentView(Resource.Layout.MainView);        
             DrawerLayout = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);          
             var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
-            ifUser = CrossSecureStorage.Current.HasKey("securityToken");
+            isUserExists = CrossSecureStorage.Current.HasKey("securityToken");
             if (toolbar != null)
             {
                 SetSupportActionBar(toolbar);
@@ -41,7 +41,6 @@ namespace XamarinBlogEducation.Android.Views
         {
             BackButtonPressed?.Invoke(this, EventArgs.Empty);
             return base.OnSupportNavigateUp();
-
         }
 
         public event EventHandler BackButtonPressed;
@@ -54,13 +53,13 @@ namespace XamarinBlogEducation.Android.Views
                     ViewModel.GoBackCommand.Execute();
                     break;        
                 case Resource.Id.nav_add:
-                    ViewModel.AddPostCommand.Execute(null);
+                    ViewModel.AddPostCommand.Execute();
                     break;
                 case Resource.Id.nav_login:
-                    ViewModel.LoginCommand.Execute(null);
+                    ViewModel.LoginCommand.Execute();
                     break;
                 case Resource.Id.nav_about:
-                    ViewModel.AboutCommand.Execute(null);
+                    ViewModel.AboutCommand.Execute();
                     break;
             }
             return base.OnOptionsItemSelected(item);
@@ -69,7 +68,7 @@ namespace XamarinBlogEducation.Android.Views
         {
           
         }
-        public void HideSoftKeyboard()
+        private void HideSoftKeyboard()
         {
             if (CurrentFocus == null)
                 return;
@@ -79,22 +78,18 @@ namespace XamarinBlogEducation.Android.Views
 
             CurrentFocus.ClearFocus();
         }
-        private void ShowMenu(object sender, EventArgs e)
-        {
-            DrawerLayout.OpenDrawer(GravityCompat.Start);
-        }
         public override bool OnCreateOptionsMenu(IMenu menu)
         {
             MenuInflater.Inflate(Resource.Menu.navigation_drawer, menu);
-            if (ifUser == true)
+            if (isUserExists )
             {   
-                var login = menu.FindItem(Resource.Id.nav_login);
-                login.SetVisible(false);
+                var lblLogin = menu.FindItem(Resource.Id.nav_login);
+                lblLogin.SetVisible(false);
             }
-            if (ifUser != true)
+            if (!isUserExists)
             {
-                var login = menu.FindItem(Resource.Id.nav_add);
-                login.SetVisible(false);
+                var lblAddPost = menu.FindItem(Resource.Id.nav_add);
+                lblAddPost.SetVisible(false);
             }
             return true;
         }

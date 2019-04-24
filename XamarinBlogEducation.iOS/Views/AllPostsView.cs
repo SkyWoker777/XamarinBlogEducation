@@ -39,7 +39,7 @@ namespace XamarinBlogEducation.iOS.Views
 
 
 
-            bool ifUser = CrossSecureStorage.Current.HasKey("securityToken");
+            bool isUserExists = CrossSecureStorage.Current.HasKey("securityToken");
 
             EdgesForExtendedLayout = UIRectEdge.None;
 
@@ -56,7 +56,6 @@ namespace XamarinBlogEducation.iOS.Views
             set.Bind(_source).For(v => v.ItemsSource).To(vm => vm.AllPosts);
             set.Bind(_source).For(v => v.SelectedItem).To(vm => vm.SelectedPost);
             set.Bind(categoryPikerViewModel).For(p => p.ItemsSource).To(vm => vm.CategoryItems);
-            //set.Bind(categoryPikerViewModel).For(p => p.SelectedItem).To(vm => vm.SelectedCategory);
             set.Bind(filterPickerViewModel).For(p => p.ItemsSource).To(vm => vm.FilterItems);
             set.Bind(filterPickerViewModel).For(p => p.SelectedItem).To(vm => vm.SelectedFilter);
 
@@ -85,7 +84,7 @@ namespace XamarinBlogEducation.iOS.Views
                 {
                     ViewModel.AboutUsComand.Execute();
                 }));
-                if (ifUser)
+                if (isUserExists)
                 {
                     alert.AddAction(UIAlertAction.Create("Add Post", UIAlertActionStyle.Default, (UIAlertAction obj) =>
                     {
@@ -93,7 +92,7 @@ namespace XamarinBlogEducation.iOS.Views
                     }));
 
                 }
-                if (!ifUser)
+                if (!isUserExists)
                 {
                     alert.AddAction(UIAlertAction.Create("Join Us", UIAlertActionStyle.Default, (UIAlertAction obj) =>
                      {
@@ -103,7 +102,7 @@ namespace XamarinBlogEducation.iOS.Views
 
                 PresentViewController(alert, true, null);
             };
-            if (ifUser)
+            if (isUserExists)
             {
                 var menuButton = new UIBarButtonItem
                 {

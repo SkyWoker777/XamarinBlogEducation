@@ -19,7 +19,7 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
         private string _description;
         private CreatePostBlogViewModel _editedPost;
         private GetAllPostsBlogViewItem _postToEdit;
-        private IBlogService _blogService;
+        private readonly IBlogService _blogService;
         public EditPostViewModel(IBlogService blogService, IMvxNavigationService navigationService) : base(navigationService)
         {
             _blogService = blogService;

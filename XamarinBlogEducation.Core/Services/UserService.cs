@@ -53,13 +53,8 @@ namespace XamarinBlogEducation.Core.Services.Interfaces
         }
         public async Task<EditAccountViewModel> GetUserInfo(string email)
         {
-            var model = new LoginAccountViewModel()
-            {
-                Email = email
-            };
             var url = "/Account/info";
-            var json = JsonConvert.SerializeObject(model);
-            var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
+            var httpContent = new StringContent(email, Encoding.UTF8, "application/json");
             var response = await _httpService.ExecuteQuery(url, HttpOperationMode.POST, httpContent);
             var parsedResult = await _httpService.ProcessJson<EditAccountViewModel>(response);
             return parsedResult;
@@ -75,9 +70,8 @@ namespace XamarinBlogEducation.Core.Services.Interfaces
                     var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
                     var message = new HttpRequestMessage(HttpMethod.Post, "http://195.26.92.83:6776/api/User/profile");
                     message.Content = httpContent;
-                    client.DefaultRequestHeaders.Add("Authorization", "Bearer " + CrossSecureStorage.Current.GetValue("securityToken"));
-                    var response = await client.SendAsync(message);
-                    //await UploadImageAsync(model.UserImage, model);                 
+                    client.DefaultRequestHeaders.Add("Authorization", $"Bearer { CrossSecureStorage.Current.GetValue("securityToken")}");
+                   var response = await client.SendAsync(message);                
                     if (response.IsSuccessStatusCode)
                     {
                         return;
@@ -97,17 +91,7 @@ namespace XamarinBlogEducation.Core.Services.Interfaces
             var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
             var result = await _httpService.ExecuteQuery(url, HttpOperationMode.POST, httpContent);
         }
-        public async Task UploadImageAsync(byte[] image, EditAccountViewModel model)
-        {
-            var url = "/Common/addImage";
-            ByteArrayContent baContent = new ByteArrayContent(image);
-            using (var client = new HttpClient())
-            using (var formData = new MultipartFormDataContent())
-            {
-                formData.Add(baContent, "file", "userimg.png");
-                var response = await client.PostAsync(url, formData);
-            }
-        }
+       
         public async Task AutologinUserAsync(RegisterAccountViewModel model)
         {
             var loginModel = new LoginAccountViewModel();

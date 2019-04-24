@@ -2,7 +2,6 @@
 using Android.OS;
 using Android.Support.V7.App;
 using Android.Views;
-using Android.Views.InputMethods;
 using Android.Widget;
 using MvvmCross.Platforms.Android.Presenters.Attributes;
 using XamarinBlogEducation.Core.ViewModels;
@@ -13,12 +12,12 @@ namespace XamarinBlogEducation.Android.Views.Fragments
     [MvxFragmentPresentation(typeof(MainViewModel), Resource.Id.content_frame, true)]
     public class EditPostView: BaseFragment<EditPostViewModel>
     {
-        private EditText content;
-        private EditText description;
-        private EditText title;
-        private Button deletePostButton;
-        private Button canselEditPostButton;
-        private Button saveEditPostButton;
+        private EditText inpUpdatedContent;
+        private EditText inpUndatedDescription;
+        private EditText inpUpdatedTitle;
+        private Button btnDeletePost;
+        private Button btnCancelEditPost;
+        private Button btnSaveEditPost;
         private LinearLayout linearLayout;
         protected override int FragmentId => Resource.Layout.EditPostView;
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -42,34 +41,34 @@ namespace XamarinBlogEducation.Android.Views.Fragments
                 };
             }
 
-            content = view.FindViewById<EditText>(Resource.Id.editContent);
-            title = view.FindViewById<EditText>(Resource.Id.editTitle);
-            description = view.FindViewById<EditText>(Resource.Id.editDescription);
+            inpUpdatedContent = view.FindViewById<EditText>(Resource.Id.editContent);
+            inpUpdatedTitle = view.FindViewById<EditText>(Resource.Id.editTitle);
+            inpUndatedDescription = view.FindViewById<EditText>(Resource.Id.editDescription);
             linearLayout = view.FindViewById<LinearLayout>(Resource.Id.editPostLayout);
-            saveEditPostButton = view.FindViewById<Button>(Resource.Id.saveEditPostButton);
-            canselEditPostButton = view.FindViewById<Button>(Resource.Id.canselEditPostButton);
-            deletePostButton = view.FindViewById<Button>(Resource.Id.deletePostButton);
+            btnSaveEditPost = view.FindViewById<Button>(Resource.Id.saveEditPostButton);
+            btnCancelEditPost = view.FindViewById<Button>(Resource.Id.canselEditPostButton);
+            btnDeletePost = view.FindViewById<Button>(Resource.Id.deletePostButton);
             linearLayout.VerticalScrollBarEnabled = true;
-            title.SetTextIsSelectable(true);
-            deletePostButton.Click+= deletePostButton_onClick;
-            canselEditPostButton.Click += canselEditPostButton_onClick;
-            saveEditPostButton.Click += saveEditPostButton_onClick;
+            inpUpdatedTitle.SetTextIsSelectable(true);
+
+            btnCancelEditPost.Click += btnCancelEditPost_onClick;
+            btnSaveEditPost.Click += btnSaveEditPost_onClick;
+            btnDeletePost.Click+=new EventHandler(delegate (Object o, EventArgs a)
+            {
+                ViewModel.DeleteCommand.Execute();
+            });
             return view;
         }
-        private void saveEditPostButton_onClick(object sender, EventArgs e)
+        private void btnSaveEditPost_onClick(object sender, EventArgs e)
         {
-            ViewModel.SaveEditCommand.Execute(null);
-            string toast = string.Format("All changes were saved");
+            ViewModel.SaveEditCommand.Execute();
+            var toast = string.Format("All changes were saved");
             Toast.MakeText(Context, toast, ToastLength.Long).Show();
             ViewModel.GoToPostsCommand.Execute();
-        }
-        private void deletePostButton_onClick(object sender, EventArgs e)
+        }      
+        private void btnCancelEditPost_onClick(object sender, EventArgs e)
         {
-            ViewModel.DeleteCommand.Execute(null);
-        }
-        private void canselEditPostButton_onClick(object sender, EventArgs e)
-        {
-            string toast = string.Format("No changes were saved");
+            var toast = string.Format("No changes were saved");
             Toast.MakeText(Context, toast, ToastLength.Long).Show();
             ViewModel.GoToPostsCommand.Execute();
         }

@@ -64,9 +64,9 @@
     <Compile Include="Controls\RecyclerViewOnScrollListener.cs" />
     <Compile Include="Elements\DeletePostDialog.cs" />
     <Compile Include="Elements\DialogCategory.cs" />
-    <Compile Include="Elements\InfoView.cs" />
     <Compile Include="Elements\PasswordDialog.cs" />
     <Compile Include="Extensions\MvxRecyclerViewExtensions.cs" />
+    <Compile Include="Extensions\MvxSpinnerExtensions.cs" />
     <Compile Include="MainAplication.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

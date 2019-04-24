@@ -15,5 +15,5 @@
   <string name="EditPostTitle">Edit your post</string>
   <string name="UserProfileTitle">Profile</string>
   <string name="AboutTitle">About Us</string>
- 
+  <string name="PostDeleted">Your post was deleted</string>
 </resources>

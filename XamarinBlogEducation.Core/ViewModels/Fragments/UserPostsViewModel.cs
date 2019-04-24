@@ -22,7 +22,7 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
 
             UserPosts = new MvxObservableCollection<GetAllPostsBlogViewItem>();
             EditPostCommand = new MvxAsyncCommand(EditPost);
-            GoBackCommand = new MvxAsyncCommand(GoBackAsync);
+            GoBackCommand = new MvxAsyncCommand(async () => await DisposeView(this));
             PostSelectedCommand = new MvxAsyncCommand<GetAllPostsBlogViewItem>(PostSelected);
             FetchPostCommand = new MvxCommand(
                 () =>
@@ -37,13 +37,12 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
             LoadPostsTask = MvxNotifyTask.Create(LoadPosts);
             return Task.FromResult(0);
         }
-        public IMvxCommand GoBackCommand { get; private set; }
-        private async Task GoBackAsync()
-        {
-            await this.NavigationService.Close(this);
-        }
+        public IMvxCommand GoBackCommand { get; private set; } 
+        public IMvxCommand EditPostCommand { get; private set; }
+        public IMvxCommand<GetAllPostsBlogViewItem> PostSelectedCommand { get; private set; }
+        public IMvxCommand FetchPostCommand { get; private set; }
+        public IMvxCommand RefreshPostsCommand { get; private set; }
         public MvxNotifyTask LoadPostsTask { get; private set; }
-
         public MvxNotifyTask FetchPostsTask { get; private set; }
 
         private MvxObservableCollection<GetAllPostsBlogViewItem> _userPosts;
@@ -57,10 +56,7 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
             }
         }
         
-        public IMvxCommand EditPostCommand { get; private set; }
-        public IMvxCommand<GetAllPostsBlogViewItem> PostSelectedCommand { get; private set; }
-        public IMvxCommand FetchPostCommand { get; private set; }
-        public IMvxCommand RefreshPostsCommand { get; private set; }
+   
 
         private async Task LoadPosts()
         {
@@ -73,7 +69,7 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
             }
         }
 
-        public async Task EditPost()
+        private async Task EditPost()
         {
             await NavigationService.Navigate<CreatePostViewModel>();
         }

@@ -16,7 +16,7 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
         private string _commentContent;
         private string _commentAuthor;
         private string _creationDate;
-        private IBlogService _blogService;
+        private readonly IBlogService _blogService;
         private AddCommentBlogViewModel comment;
         private GetAllPostsBlogViewItem _detailedPost;
         private MvxObservableCollection<GetAllCommentsBlogViewItem> _allComments;
@@ -46,7 +46,7 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
         }
         private async Task GoBackAsync()
         {
-            await this.NavigationService.Close(this);
+            await DisposeView(this);
         }
         private async Task AddComment()
         {

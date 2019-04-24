@@ -14,7 +14,7 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
         private string _firstName;
         private string _lastName;
         private byte[] _userImage;
-        private string _userEmail;
+        private readonly string _userEmail;
         private readonly IUserService _userService;
         private EditAccountViewModel _user;
         private LoginAccountViewModel _model;
@@ -30,7 +30,7 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
             OpenDialogCommand = new MvxAsyncCommand<LoginAccountViewModel>(OpenDialogAsync);
             ChangePasswordCommand = new MvxAsyncCommand(ChangePasswordAsync);
             GoToPostsCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<AllPostsFragmentViewModel>());
-            GoBackCommand = new MvxAsyncCommand(GoBackAsync);
+            GoBackCommand = new MvxAsyncCommand(async () => await DisposeView(this));
 
 
         }
@@ -41,10 +41,6 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
         public IMvxCommand GetUserInfoCommand { get; private set; }
         public IMvxCommand<LoginAccountViewModel> OpenDialogCommand { get; private set; }
         public IMvxCommand GoBackCommand { get; private set; }
-        private async Task GoBackAsync()
-        {
-            await this.NavigationService.Close(this);
-        }
         public string Email
         {
             get => _email;

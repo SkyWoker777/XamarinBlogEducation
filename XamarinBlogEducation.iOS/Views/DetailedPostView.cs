@@ -32,10 +32,11 @@ namespace XamarinBlogEducation.iOS.Views
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
+
             _source = new MvxSimpleTableViewSource(CommentsTableView, nameof(CommentTableViewCell), CommentTableViewCell.Key);
             CommentsTableView.RowHeight = 70;
 
-            bool ifUser = CrossSecureStorage.Current.HasKey("securityToken");
+            bool isUserExists = CrossSecureStorage.Current.HasKey("securityToken");
 
             EdgesForExtendedLayout = UIRectEdge.None;
             
@@ -57,7 +58,8 @@ namespace XamarinBlogEducation.iOS.Views
            
             CommentsTableView.SeparatorColor = UIColor.FromRGBA(109, 179, 206, 255);
             CommentsTableView.BackgroundColor = UIColor.FromRGBA(209, 188, 171, 255);
-            if (!ifUser)
+
+            if (!isUserExists)
             {
                 lblLoginToWrite.Hidden = false;
                 lblLoginToWrite.BackgroundColor = UIColor.Clear;

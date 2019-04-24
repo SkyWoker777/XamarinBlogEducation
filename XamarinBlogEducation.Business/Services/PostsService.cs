@@ -92,11 +92,6 @@ namespace XamarinBlogEducation.Business.Services
             return _postsRepository.GetByDate(CreationDate);
         }
 
-        public Task<IEnumerable<Post>> GetPostsByKeyWord(string key)
-        {
-            return _postsRepository.GetByKey(key);
-        }
-
         public async Task<Post> GetDetailsPost(int selectedPostId)
         {
             var result = await _postsRepository.GetPost(selectedPostId);      

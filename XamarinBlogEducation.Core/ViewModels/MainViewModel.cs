@@ -16,7 +16,7 @@ namespace XamarinBlogEducation.Core.ViewModels
             ExitCommand = new MvxAsyncCommand(async() =>  System.Diagnostics.Process.GetCurrentProcess().CloseMainWindow());
             LoginCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<LoginViewModel>());
             AboutCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<AboutFragmentModel>());
-            GoBackCommand = new MvxAsyncCommand(async () => await NavigationService.Close(this));
+            GoBackCommand = new MvxAsyncCommand(async () => await DisposeView(this));
         }
         public IMvxAsyncCommand ShowMenuViewModelCommand { get; private set; }
         public IMvxCommand ShowHomeCommand { get; private set; }

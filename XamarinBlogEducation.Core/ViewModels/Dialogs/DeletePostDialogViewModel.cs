@@ -17,7 +17,7 @@ namespace XamarinBlogEducation.Core.ViewModels.Dialogs
         public DeletePostDialogViewModel(IMvxNavigationService navigationService, IBlogService blogService) : base(navigationService)
         {
             _blogService = blogService;
-            CancelCommand = new MvxAsyncCommand(CancelAsync);
+            CancelCommand = new MvxAsyncCommand(async()=>await NavigationService.Navigate<UserPostsViewModel>()) ;
             DeleteCommand = new MvxAsyncCommand(DeleteAsync);
         }
         public IMvxCommand CancelCommand { get; private set; }
@@ -26,12 +26,7 @@ namespace XamarinBlogEducation.Core.ViewModels.Dialogs
         public override void Prepare(GetAllPostsBlogViewItem parameter)
         {
             currentPost = parameter;
-        }
-
-        private async Task CancelAsync()
-        {
-            await NavigationService.Navigate<UserPostsViewModel>();
-        }
+        }     
         private async Task DeleteAsync()
         {
             await _blogService.DeletePost(currentPost.Id);

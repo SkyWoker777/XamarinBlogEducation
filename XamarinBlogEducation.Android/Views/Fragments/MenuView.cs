@@ -26,9 +26,9 @@ namespace XamarinBlogEducation.Android.Views.Fragments
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             var ignore = base.OnCreateView(inflater, container, savedInstanceState);
-            var ifUser = CrossSecureStorage.Current.HasKey("securityToken");
+            var isUserExists = CrossSecureStorage.Current.HasKey("securityToken");
             var view = this.BindingInflate(Resource.Layout.MenuView, null);
-            if (ifUser==true)
+            if (isUserExists)
             {
             _navigationView = view.FindViewById<NavigationView>(Resource.Id.menu_view);
             _navigationView.SetNavigationItemSelectedListener(this);
@@ -59,17 +59,17 @@ namespace XamarinBlogEducation.Android.Views.Fragments
             {
                 case Resource.Id.menu_home:
                     ((AppCompatActivity)Activity).SupportActionBar.SetTitle(Resource.String.AllPostsTitle);
-                    ViewModel.ShowHomeCommand.Execute(null);
+                    ViewModel.ShowHomeCommand.Execute();
                    
                     break;
                 case Resource.Id.menu_exit:
-                    ViewModel.ExitCommand.Execute(null);
+                    ViewModel.ExitCommand.Execute();
                     break;
                 case Resource.Id.menu_profile:
-                    ViewModel.ShowProfileCommand.Execute(null);
+                    ViewModel.ShowProfileCommand.Execute();
                     break;
                 case Resource.Id.menu_userPosts:
-                    ViewModel.ShowUserPostsCommand.Execute(null);
+                    ViewModel.ShowUserPostsCommand.Execute();
                     break;
             }
         }

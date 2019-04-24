@@ -48,10 +48,10 @@ namespace XamarinBlogEducation.Business.Services
             var token = await GetToken(user);
             return token;
         }
-        public async Task<EditAccountViewModel> FindUser(LoginAccountViewModel model)
+        public async Task<EditAccountViewModel> FindUser(string email)
         {
    
-            var user = await _userManager.FindByEmailAsync(model.Email);
+            var user = await _userManager.FindByEmailAsync(email);
             var editUser = _mapper.Map<EditAccountViewModel>(user);
             if (user == null)
             {

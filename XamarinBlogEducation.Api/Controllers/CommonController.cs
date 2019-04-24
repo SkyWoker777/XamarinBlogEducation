@@ -22,20 +22,6 @@ namespace XamarinBlogEducation.Api.Controllers
         {
             _environment = environment ?? throw new ArgumentNullException(nameof(environment));
             _accountService = accountService;
-        }
-        // POST: api/Image
-        //[HttpPost]
-        //[Route("addImage")]
-        //public async Task<IActionResult> UploadImage(IFormFile file)
-        //{
-        //var id = User.Identity.GetUserId();
-        //    IActionResult res = BadRequest();
-        //    byte[] img;
-        //    foreach (var item in HttpContext.Request.Form)
-        //    {   
-        //    }
-        //       
-        //    return res;
-        //}
+        }     
     }
 }

@@ -22,13 +22,12 @@ namespace XamarinBlogEducation.Android.Views.Fragments
     public class DetailedPostView : BaseFragment<DetailedPostViewModel>
     {
         private Toolbar _toolbar;
-        private TextView content;
-        private EditText inputComment;
-        private TextView cantLeaveCommentMessage;
-        private TextView leaveCommentMessage;
-        private Button addCommentButton;
+        private TextView txtPostContent;
+        private EditText inpComment;
+        private TextView msgCantLeaveComment;
+        private TextView msgLeaveComment;
+        private Button btnAddComment;
         private MvxRecyclerView recyclerView;
-        //private CommentsAdapter commentsAdapter;
         protected override int FragmentId => Resource.Layout.DetailedPostView;
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
@@ -53,44 +52,44 @@ namespace XamarinBlogEducation.Android.Views.Fragments
             }
             
             recyclerView = view.FindViewById<MvxRecyclerView>(Resource.Id.comments_recycler_view);
-            content = view.FindViewById<TextView>(Resource.Id.textViewContent);
-            content.VerticalScrollBarEnabled = true;          
-            content.MovementMethod = new ScrollingMovementMethod();
-            inputComment = view.FindViewById<EditText>(Resource.Id.inputComment);
+            txtPostContent = view.FindViewById<TextView>(Resource.Id.textViewContent);
+            txtPostContent.VerticalScrollBarEnabled = true;          
+            txtPostContent.MovementMethod = new ScrollingMovementMethod();
+            inpComment = view.FindViewById<EditText>(Resource.Id.inputComment);
             
-            cantLeaveCommentMessage = view.FindViewById<TextView>(Resource.Id.cantLeaveCommentMessage);
+            msgCantLeaveComment = view.FindViewById<TextView>(Resource.Id.cantLeaveCommentMessage);
             var coomentLayout = view.FindViewById<LinearLayout>(Resource.Id.coomentLayout);
-            addCommentButton = view.FindViewById<Button>(Resource.Id.addCommentButton);
+            btnAddComment = view.FindViewById<Button>(Resource.Id.addCommentButton);
             if (CrossSecureStorage.Current.HasKey("securityToken") == true)
             {
-                cantLeaveCommentMessage.Visibility = ViewStates.Gone;
+                msgCantLeaveComment.Visibility = ViewStates.Gone;
                 
             }
             if (CrossSecureStorage.Current.HasKey("securityToken") == false)
             {
-                cantLeaveCommentMessage.Visibility = ViewStates.Visible;
+                msgCantLeaveComment.Visibility = ViewStates.Visible;
                 coomentLayout.Visibility = ViewStates.Gone;
             }
-            addCommentButton.Click += addCommentButton_OnClick;
+            btnAddComment.Click += btnAddComment_OnClick;
             var set = this.CreateBindingSet<DetailedPostView, DetailedPostViewModel>();
-            set.Bind(inputComment).To(vm => vm.Content);
+            set.Bind(inpComment).To(vm => vm.Content);
             set.Apply();
             return view;
         }
 
-        private void addCommentButton_OnClick(object sender, EventArgs e)
+        private void btnAddComment_OnClick(object sender, EventArgs e)
         {
-            if (inputComment.Text == null)
+            if (inpComment.Text == null)
             {
-                string toast = "Please, write something";
+                var toast = "Please, write something";
                 Toast.MakeText(Context, toast, ToastLength.Long).Show();
             }
-            if (inputComment.Text != null)
+            if (inpComment.Text != null)
             {
                 ViewModel.AddCommentCommand.Execute();
-                string toast = "Your comment was successfuly added";
+                var toast = "Your comment was successfuly added";
                 Toast.MakeText(Context, toast, ToastLength.Long).Show();
-                inputComment.Text = "";
+                inpComment.Text = "";
             }
             
         }

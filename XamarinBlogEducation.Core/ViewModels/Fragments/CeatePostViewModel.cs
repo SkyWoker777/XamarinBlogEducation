@@ -137,7 +137,7 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
         }
         public async Task GoBack()
         {
-            await this.NavigationService.Close(this);
+            await DisposeView(this);
 
         }
         private GetAllCategoriesblogViewItem _selectedItem = new GetAllCategoriesblogViewItem();

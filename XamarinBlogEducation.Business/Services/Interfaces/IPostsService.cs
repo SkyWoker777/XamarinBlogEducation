@@ -19,7 +19,6 @@ namespace XamarinBlogEducation.Business.Services.Interfaces
         Task<List<GetAllCommentsBlogViewItem>> ShowComments(int selectedPostId);
         Task<Post> GetPost(int postId);
         Task<IEnumerable<Post>> GetPostsByCategory(int categoryId);
-        Task<IEnumerable<Post>> GetPostsByKeyWord(string key);
         Task<IEnumerable<Post>> GetPostsByDate(DateTime CreationDate);
         Task<List<Category>> GetAllCategories();
         Task AddCategory(GetAllCategoriesblogViewItem newCategory);

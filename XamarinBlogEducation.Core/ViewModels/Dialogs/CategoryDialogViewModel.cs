@@ -19,7 +19,7 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
         {
             _blogService = blogService;
             AddCategoryCommand = new MvxAsyncCommand(AddCategoryAsync);
-            GoBackCommand = new MvxAsyncCommand(GoBackAsync);
+            GoBackCommand = new MvxAsyncCommand(async() => await DisposeView(this));
 
 
         }
@@ -46,10 +46,6 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
             var result = await _blogService.AddNewCategory(category);
             await DisposeView(this);
 
-        }
-        private async Task GoBackAsync()
-        {
-            await DisposeView(this);
         }
     }
 }

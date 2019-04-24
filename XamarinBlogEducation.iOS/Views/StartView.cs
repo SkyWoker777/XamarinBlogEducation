@@ -23,7 +23,7 @@ namespace XamarinBlogEducation.iOS.Views
         {
             base.ViewDidLoad();
            
-            ViewModel.LoginCommand.Execute(null);
+            ViewModel.LoginCommand.Execute();
         }
         
 

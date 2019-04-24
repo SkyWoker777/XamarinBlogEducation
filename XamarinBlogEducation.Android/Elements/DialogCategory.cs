@@ -18,15 +18,9 @@ namespace XamarinBlogEducation.Android.Elements
     [Register(nameof(DialogCategory))]
     public class DialogCategory : MvxDialogFragment<CategoryDialogViewModel>
     {
-        private EditText inputCategory;
-        private Button cancelCategoryButton;
-        private Button applyCategoryButton;
-
-        public DialogCategory()
-        {
-
-        }
-
+        private EditText txtCategory;
+        private Button btnCancelAddCategory;
+        private Button btnApplyNewCategory;
         public DialogCategory(IntPtr javaReference, JniHandleOwnership transfer) : base(javaReference, transfer)
         {
 
@@ -37,33 +31,30 @@ namespace XamarinBlogEducation.Android.Elements
             base.OnCreateView(inflater, container, savedInstanceState);
             var view = this.BindingInflate(Resource.Layout.DialogCategory, null);
             
-            inputCategory = view.FindViewById<EditText>(Resource.Id.inputCategory);
-            cancelCategoryButton = view.FindViewById<Button>(Resource.Id.cancelCategoryButton);
-            applyCategoryButton = view.FindViewById<Button>(Resource.Id.applyCategoryButton);
+            txtCategory = view.FindViewById<EditText>(Resource.Id.inputCategory);
+            btnCancelAddCategory = view.FindViewById<Button>(Resource.Id.cancelCategoryButton);
+            btnApplyNewCategory = view.FindViewById<Button>(Resource.Id.applyCategoryButton);
 
             var set = this.CreateBindingSet<DialogCategory, CategoryDialogViewModel>();
-            set.Bind(inputCategory).To(vm => vm.NewCategory);
+            set.Bind(txtCategory).To(vm => vm.NewCategory);
+            set.Bind(btnCancelAddCategory).To(vm => vm.GoBackCommand);
             set.Apply();
-            cancelCategoryButton.Click += cancelCategoryButton_OnClick;
-            applyCategoryButton.Click += applyCategoryButton_OnClick;
+            
+            btnApplyNewCategory.Click += btnApplyNewCategory_OnClick;
             return view;
         }
 
-        private void applyCategoryButton_OnClick(object sender, EventArgs e)
+        private void btnApplyNewCategory_OnClick(object sender, EventArgs e)
         {
-           ViewModel.AddCategoryCommand.Execute(null);
+           ViewModel.AddCategoryCommand.Execute();
            HideSoftKeyboard();
-           string toast = string.Format("New category {0} was added", inputCategory.Text);         
+           var toast = string.Format("New category {0} was added", txtCategory.Text);         
            Toast.MakeText(Context, toast, ToastLength.Long).Show();
            Dialog.Cancel();
            ViewModel.GoBackCommand.Execute();
         }
 
-        private void cancelCategoryButton_OnClick(object sender, EventArgs e)
-        {
-            Dialog.Cancel();
-        }
-        public  void HideSoftKeyboard()
+        private  void HideSoftKeyboard()
         {
             InputMethodManager inputMethodManager =
                 (InputMethodManager)Context.GetSystemService(

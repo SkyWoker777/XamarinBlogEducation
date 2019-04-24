@@ -28,11 +28,6 @@ namespace XamarinBlogEducation.Android.Elements
         private Button cancelPasswordChangeButton;
         private Button applyPaswordChangeButton;
 
-        public PasswordDialog()
-        {
-
-        }
-
         public PasswordDialog(IntPtr javaReference, JniHandleOwnership transfer) : base(javaReference, transfer)
         {
 
@@ -50,12 +45,16 @@ namespace XamarinBlogEducation.Android.Elements
             applyPaswordChangeButton = view.FindViewById<Button>(Resource.Id.applyPaswordChangeButton);
 
             var set = this.CreateBindingSet<PasswordDialog, ChangePasswordDialogViewModel>();
+
             set.Bind(inputOldPassword).To(vm => vm.OldPassword);
             set.Bind(inputNewPassword).To(vm => vm.NewPassword);
             set.Bind(inputComfirmPassword).To(vm => vm.ComfirmPassword);
+            set.Bind(cancelPasswordChangeButton).To(vm => vm.GoBackCommand);
+
             set.Apply();
-            cancelPasswordChangeButton.Click += cancelPasswordChangeButton_OnClick;
+
             applyPaswordChangeButton.Click+= applyPaswordChangeButton_OnClick;
+
             return view;
         }
 
@@ -91,11 +90,5 @@ namespace XamarinBlogEducation.Android.Elements
                 inputComfirmPassword.Text = "";
             }
         }
-
-        private void cancelPasswordChangeButton_OnClick(object sender, EventArgs e)
-        {
-            Dialog.Cancel();
-        }
-
     }
 }
