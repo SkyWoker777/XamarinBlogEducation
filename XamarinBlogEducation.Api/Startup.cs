@@ -15,6 +15,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using XamarinBlogEducation.Api.Extensions;
 using XamarinBlogEducation.Api.Middlewares;
 using XamarinBlogEducation.Business;
 
@@ -22,13 +23,11 @@ namespace XamarinBlogEducation.Api
 {
     public class Startup
     {
-        private readonly IHostingEnvironment _env;
-        private readonly IServiceScopeFactory _serviceFactory;
+        private const string DefaultConnection= "DefaultConnection";
+        private const string authenticationName = "Bearer";
+        private const string policyName = "corsPolicy";
         public Startup(IHostingEnvironment env, IServiceScopeFactory serviceScopeFactory)
         {
-            _env = env;
-            _serviceFactory = serviceScopeFactory;
-
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
@@ -41,17 +40,16 @@ namespace XamarinBlogEducation.Api
         }
 
         public IConfiguration Configuration { get; }
-
-        // This method gets called by the runtime. Use this method to add services to the container.
+        
         public void ConfigureServices(IServiceCollection services)
         {
-            var connectionString = Configuration.GetConnectionString("DefaultConnection");
+            var connectionString = Configuration.GetConnectionString(DefaultConnection);
 
             Business.Startup.Configure(services, connectionString);
 
             services.AddAuthorization(auth =>
             {
-                auth.AddPolicy("Bearer", new AuthorizationPolicyBuilder()
+                auth.AddPolicy(authenticationName, new AuthorizationPolicyBuilder()
                     .AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme)
                     .RequireAuthenticatedUser().Build());
             });
@@ -82,7 +80,7 @@ namespace XamarinBlogEducation.Api
             corsPolicy.SupportsCredentials = true;
             services.AddCors(options =>
             {
-                options.AddPolicy("corsPolicy", corsPolicy);
+                options.AddPolicy(policyName, corsPolicy);
             });
            services.AddAutoMapper();
 
@@ -111,7 +109,7 @@ namespace XamarinBlogEducation.Api
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
-            app.UseCors("corsPolicy");
+            app.UseCors(policyName);
             app.UseCustomExceptionMiddleware();
             app.UseMvc(routes =>
             {

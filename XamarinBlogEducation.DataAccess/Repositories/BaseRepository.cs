@@ -9,7 +9,7 @@ namespace XamarinBlogEducation.DataAccess.Repositories
 {
     public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : class, new()
     {
-        private readonly ApplicationDbContext _dbContext;
+        protected ApplicationDbContext _dbContext;
 
         public BaseRepository(ApplicationDbContext dbContext)
         {
@@ -24,16 +24,16 @@ namespace XamarinBlogEducation.DataAccess.Repositories
         public async Task Add(TEntity entity)
         {
             await _dbContext.AddAsync<TEntity>(entity);
-            await SaveChanges();
+            await SaveChangesAsync();
         }
 
-        public void Delete(TEntity entity)
+        public async void DeleteAsync(TEntity entity)
         {
             _dbContext.Remove(entity);
-            SaveChanges();
+            await SaveChangesAsync();
         }
 
-        public async Task SaveChanges()
+        public async Task SaveChangesAsync()
         {
             await _dbContext.SaveChangesAsync();
         }
@@ -41,7 +41,7 @@ namespace XamarinBlogEducation.DataAccess.Repositories
         public void Edit(TEntity entity)
         {
             _dbContext.Update(entity);
-            _dbContext.SaveChanges();
+            _dbContext.SaveChangesAsync();
         }
     }
 }

@@ -23,7 +23,7 @@ namespace XamarinBlogEducation.Core.Services
         }
         public async Task<GetDetailsPostBlogView> ShowDetailedPost()
         {
-            var url = $"/Blog/post";
+            var url = $"/Post/post";
             var result = await _httpService.ExecuteQuery(url, HttpOperationMode.GET);
             var parsedResult = await _httpService.ProcessJson<GetDetailsPostBlogView>(result);
             return parsedResult;
@@ -35,7 +35,7 @@ namespace XamarinBlogEducation.Core.Services
             {
                     var json = JsonConvert.SerializeObject(model);
                     var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
-                    var message = new HttpRequestMessage(HttpMethod.Post, "http://195.26.92.83:6776/api/Blog/post");
+                    var message = new HttpRequestMessage(HttpMethod.Post, "http://195.26.92.83:6776/api/Post/post");
                     message.Content = httpContent;
                     client.DefaultRequestHeaders.Add("Authorization", $"{"Bearer"}{CrossSecureStorage.Current.GetValue("securityToken")}");
                     var response = await client.SendAsync(message);   
@@ -43,7 +43,7 @@ namespace XamarinBlogEducation.Core.Services
         }
         public async Task AddComment(AddCommentBlogViewModel model)
         {
-            var url = $"{"http://195.26.92.83:6776/api/Blog/comment/"}{model.PostId}";
+            var url = $"{"http://195.26.92.83:6776/api/Comment/comment/"}{model.PostId}";
             using (var client = new HttpClient())
             {
                 var json = JsonConvert.SerializeObject(model);
@@ -67,7 +67,7 @@ namespace XamarinBlogEducation.Core.Services
 
         public async Task<List<GetAllPostsBlogViewItem>> GetAllPosts()
         {
-            var url = $"/Blog/posts";
+            var url = $"/Post/posts";
             var result = await _httpService.ExecuteQuery(url, HttpOperationMode.GET);
             var parsedResult = await _httpService.ProcessJson<List<GetAllPostsBlogViewItem>>(result);
             return parsedResult;
@@ -77,7 +77,7 @@ namespace XamarinBlogEducation.Core.Services
             var parsedResult = new List<GetAllPostsBlogViewItem>();
             using (var client = new HttpClient())
             {
-                var url = $"{"http://195.26.92.83:6776/api/Blog/user-posts-list?useremail="}{userEmail}";
+                var url = $"{"http://195.26.92.83:6776/api/Post/user-posts-list?useremail="}{userEmail}";
                 var message = new HttpRequestMessage(HttpMethod.Get, url);
                 client.DefaultRequestHeaders.Add("Authorization", $"{"Bearer"}{CrossSecureStorage.Current.GetValue("securityToken")}");
                 var response = await client.SendAsync(message);
@@ -91,7 +91,7 @@ namespace XamarinBlogEducation.Core.Services
         }
         public async Task<List<GetAllCommentsBlogViewItem>> GetAllComments(long postId)
         {
-            var url = $"{"/Blog/comment/"}{postId}";
+            var url = $"{"/Comment/comment/"}{postId}";
             var result = await _httpService.ExecuteQuery(url, HttpOperationMode.GET);
             var parsedResult = await _httpService.ProcessJson<List<GetAllCommentsBlogViewItem>>(result);
             return parsedResult;
@@ -102,7 +102,7 @@ namespace XamarinBlogEducation.Core.Services
             {
                 var json = JsonConvert.SerializeObject(editedPost);
                 var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
-                var message = new HttpRequestMessage(HttpMethod.Post, "http://195.26.92.83:6776/api/Blog/edit-post");
+                var message = new HttpRequestMessage(HttpMethod.Post, "http://195.26.92.83:6776/api/Post/edit-post");
                 message.Content = httpContent;
                 client.DefaultRequestHeaders.Add("Authorization", $"{"Bearer"}{CrossSecureStorage.Current.GetValue("securityToken")}");
                 var response = await client.SendAsync(message);
@@ -110,14 +110,14 @@ namespace XamarinBlogEducation.Core.Services
         }
         public async Task<List<GetAllCategoriesblogViewItem>> GetAllCategories()
         {
-            var url = $"/Blog/categories";
+            var url = $"/Category/categories";
             var result = await _httpService.ExecuteQuery(url, HttpOperationMode.GET);
             var parsedResult = await _httpService.ProcessJson<List<GetAllCategoriesblogViewItem>>(result);
             return parsedResult;
         }
         public async Task<bool> AddNewCategory(GetAllCategoriesblogViewItem category)
         {
-            var url = $"/Blog/add-new-category";
+            var url = $"/Category/add-new-category";
             var json = JsonConvert.SerializeObject(category);
             var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
             var result = await _httpService.ExecuteQuery(url, HttpOperationMode.POST, httpContent);
@@ -125,7 +125,7 @@ namespace XamarinBlogEducation.Core.Services
         }
         public async Task DeletePost(long postId)
         {
-            var url = $"{"/Blog/delete/"}{postId}";
+            var url = $"{"/Post/delete/"}{postId}";
             var result = await _httpService.ExecuteQuery(url, HttpOperationMode.POST);
         }
     }

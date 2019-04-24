@@ -11,17 +11,14 @@ namespace XamarinBlogEducation.DataAccess.Repositories
 {
     public class CommentsRepository : BaseRepository<Comment>, ICommentsRepository
     {
-        private readonly ApplicationDbContext _context;
-
         public CommentsRepository(ApplicationDbContext context) : base(context)
         {
-            _context = context;
         }
 
         public async Task<List<Comment>> GetList(long postId)
         {
 
-            var posts= await _context.Comments
+            var posts= await _dbContext.Comments
                 .Where(x => x.Post.Id == postId)
                 .ToListAsync();
 

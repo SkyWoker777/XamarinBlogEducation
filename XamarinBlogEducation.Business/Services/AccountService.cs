@@ -13,6 +13,7 @@ using XamarinBlogEducation.Business.Services.Interfaces;
 using XamarinBlogEducation.DataAccess.Entities;
 using Microsoft.AspNetCore.Http;
 using AutoMapper;
+using XamarinBlogEducation.Business.Exceptions;
 
 namespace XamarinBlogEducation.Business.Services
 {
@@ -36,13 +37,13 @@ namespace XamarinBlogEducation.Business.Services
             var user = await _userManager.FindByEmailAsync(model.Email);
             if (user == null)
             {
-                throw new ApplicationException("User is not found.");
+                throw new AccountException("User is not found.");
             }
 
             var isEmailConfirm = await _userManager.IsEmailConfirmedAsync(user);
             if (!isEmailConfirm)
             {
-                throw new ApplicationException("Email is not confirmed");
+                throw new AccountException("Email is not confirmed");
             }
 
             var token = await GetToken(user);
@@ -55,7 +56,7 @@ namespace XamarinBlogEducation.Business.Services
             var editUser = _mapper.Map<EditAccountViewModel>(user);
             if (user == null)
             {
-                throw new ApplicationException("User is not found.");
+                throw new AccountException("User is not found.");
             }
             return editUser;
         }
@@ -65,7 +66,7 @@ namespace XamarinBlogEducation.Business.Services
             var user = await _userManager.FindByEmailAsync(model.Email);
             if (user != null)
             {
-                throw new ApplicationException($"Email {model.Email} is already taken.");
+                throw new AccountException($"Email {model.Email} is already taken.");
             }
 
             var newUser = _mapper.Map<ApplicationUser>(model);   
@@ -74,7 +75,7 @@ namespace XamarinBlogEducation.Business.Services
             var identityResult = await _userManager.CreateAsync(newUser, model.Password);
             if (!identityResult.Succeeded)
             {
-                throw new ApplicationException("");
+                throw new AccountException("Registration faild");
             }
            return identityResult.Succeeded;
         }
@@ -92,7 +93,6 @@ namespace XamarinBlogEducation.Business.Services
             {
                 updatedUser.Email = model.Email;
             }
-           // updatedUser.UserName= model.Email.Substring(0, model.Email.IndexOf("@"));
             updatedUser.Id = id;
             await _userManager.UpdateAsync(updatedUser);
 
@@ -103,13 +103,13 @@ namespace XamarinBlogEducation.Business.Services
             var token = model.Token;
             if (!await _userManager.CheckPasswordAsync(user, model.OldPassword))
             {
-                //ex
+                throw new AccountException("Wrong password");
             }
             else
             {
                 if (model.Password != model.ConfirmPassword)
                 {
-                    //ex
+                    throw new AccountException("Passwords are not the same");
                 }
                 else
                 {

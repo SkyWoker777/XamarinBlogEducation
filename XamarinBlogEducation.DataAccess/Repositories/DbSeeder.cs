@@ -10,14 +10,16 @@ namespace XamarinBlogEducation.DataAccess.Repositories
 {
     public class DbSeeder:IDbSeeder
     {
-        private readonly ICategoriesRepository _repository;
-        public DbSeeder(ICategoriesRepository repository)
+        private readonly ICategoriesRepository _categoryRepository;
+
+        public DbSeeder(ICategoriesRepository categoryRepository)
         {
-            _repository = repository;
+            _categoryRepository = categoryRepository;
         }
-        public  void SeedDb()
+
+        public void SeedDb()
         {
-            _repository.Add(new Category()
+            _categoryRepository.Add(new Category()
             {
                 Name = "common category"
            });

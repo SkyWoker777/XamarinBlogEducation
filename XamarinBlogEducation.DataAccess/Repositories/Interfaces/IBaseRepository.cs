@@ -11,7 +11,7 @@ namespace XamarinBlogEducation.DataAccess.Repositories.Interfaces
 
         Task Add(TEntity entity);
         void Edit(TEntity entity);
-        void Delete(TEntity entity);
-        Task SaveChanges();
+        void DeleteAsync(TEntity entity);
+        Task SaveChangesAsync();
     }
 }

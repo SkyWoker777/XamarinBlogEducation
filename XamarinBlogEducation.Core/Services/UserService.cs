@@ -22,7 +22,7 @@ namespace XamarinBlogEducation.Core.Services.Interfaces
         }
         public async Task AddUserAsync(RegisterAccountViewModel model)
         {
-            var url = "/Account/register";
+            var url = "/User/register";
             var json = JsonConvert.SerializeObject(model);
             var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
             var result = await _httpService.ExecuteQuery(url, HttpOperationMode.POST, httpContent);
@@ -33,7 +33,7 @@ namespace XamarinBlogEducation.Core.Services.Interfaces
         {
             string testToken;
             EditAccountViewModel loggedUser=new EditAccountViewModel();
-            var url = "/Account/login";
+            var url = "/User/login";
             var json = JsonConvert.SerializeObject(model);
             var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
             var response = await _httpService.ExecuteQuery(url, HttpOperationMode.POST, httpContent);
@@ -53,7 +53,7 @@ namespace XamarinBlogEducation.Core.Services.Interfaces
         }
         public async Task<EditAccountViewModel> GetUserInfo(string email)
         {
-            var url = "/Account/info";
+            var url = "/User/info";
             var httpContent = new StringContent(email, Encoding.UTF8, "application/json");
             var response = await _httpService.ExecuteQuery(url, HttpOperationMode.POST, httpContent);
             var parsedResult = await _httpService.ProcessJson<EditAccountViewModel>(response);

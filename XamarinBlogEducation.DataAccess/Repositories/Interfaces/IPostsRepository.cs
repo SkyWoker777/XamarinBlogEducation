@@ -11,7 +11,6 @@ namespace XamarinBlogEducation.DataAccess.Repositories.Interfaces
         Task<IEnumerable<Post>> GetByDate(DateTime CreationDate);
         Task<IEnumerable<Post>> GetByCategory(long categoryId);
         Task<Post> GetPost(long id);
-        Task<IEnumerable<Category>> GetAllCategories();
         Task<IEnumerable<Post>> GetByAuthor(string userId);
         Task<string> GetCategoryName(long id);
     }

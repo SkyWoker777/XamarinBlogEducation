@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using XamarinBlogEducation.Business.Exceptions;
 
 namespace XamarinBlogEducation.Api.Middlewares
 {
@@ -22,17 +23,20 @@ namespace XamarinBlogEducation.Api.Middlewares
             {
                 await _next(context);
             }
-            catch (ApplicationException ex)
+            catch (BaseException ex)
             {
+                
                 await HandleExceptionAsync(context, HttpStatusCode.BadRequest, ex);
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                await HandleExceptionAsync(context, HttpStatusCode.InternalServerError);
+                await HandleExceptionAsync(context, HttpStatusCode.InternalServerError, ex);
             }
+
+
         }
 
-        private Task HandleExceptionAsync(HttpContext context, HttpStatusCode statusCode, Exception exp = null)
+        private Task HandleExceptionAsync(HttpContext context, HttpStatusCode statusCode, Exception ex)
         {
             context.Response.StatusCode = (int)statusCode;
             context.Response.ContentType = "application/json";
@@ -40,7 +44,7 @@ namespace XamarinBlogEducation.Api.Middlewares
             return context.Response.WriteAsync(new
             {
                 ErrorCode = statusCode,
-                ErrorMessage = exp.Message ?? "Interna Server Error."
+                ErrorMessage = ex.Message ?? "Internal Server Error."
             }.ToString());
         }
     }

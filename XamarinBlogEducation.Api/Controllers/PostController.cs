@@ -17,17 +17,13 @@ namespace XamarinBlogEducation.Api.Controllers
 {
     [Route("api/[controller]")]
     [Authorize(JwtBearerDefaults.AuthenticationScheme)]
-    public class BlogController : Controller
+    public class PostController : Controller
     {
         private readonly IPostsService _postService;
-        private readonly ICommentsService _commentService;
-        private readonly IAccountService _accountService;
         private readonly IMapper _mapper;
-        public BlogController(IPostsService postsService, ICommentsService commentService,IAccountService accountService, IMapper mapper)
+        public PostController(IPostsService postsService,  IMapper mapper)
         {
             _postService = postsService;
-            _commentService = commentService;
-            _accountService = accountService;
             _mapper = mapper; 
         }
         [AllowAnonymous]
@@ -53,15 +49,6 @@ namespace XamarinBlogEducation.Api.Controllers
             {
                 item.Category = await _postService.GetCategoryName(item.CategoryId);
             }
-            return Ok(mappedList);
-        }
-        [AllowAnonymous]
-        [HttpGet]
-        [Route("categories")]
-        public async Task<IActionResult> GetCategories()
-        {
-            var list = await _postService.GetAllCategories();
-            var mappedList = _mapper.Map<List<GetAllCategoriesblogViewItem>>(list);
             return Ok(mappedList);
         }
         [Authorize(JwtBearerDefaults.AuthenticationScheme)]
@@ -98,27 +85,6 @@ namespace XamarinBlogEducation.Api.Controllers
             var list = await _postService.GetUserPosts(userEmail);
             var mappedList = _mapper.Map<List<GetAllPostsBlogViewItem>>(list);
             return Ok(mappedList);
-        }
-        [AllowAnonymous]
-        [HttpPost("add-new-category")]
-        public async Task<IActionResult> AddCategory([FromBody]GetAllCategoriesblogViewItem newCategory)
-        {
-            await _postService.AddCategory(newCategory);
-            return Ok();
-        }
-        
-        [HttpPost("comment/{postId}")]
-        public async Task<IActionResult> AddComment([FromBody]AddCommentBlogViewModel newComment)
-        {
-            newComment.UserId= User.Identity.GetUserId();
-            await _commentService.AddComment(newComment, newComment.PostId);
-            return Ok();
-        }
-        [AllowAnonymous]
-        [HttpGet("comment/{postId}")]
-        public async Task<List<GetAllCommentsBlogViewItem>> GetComments(long postId)
-        {
-            return await _commentService.GetAllComments(postId);
         }
         [AllowAnonymous]
         [HttpPost("delete/{postId}")]

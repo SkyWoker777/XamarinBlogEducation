@@ -42,7 +42,7 @@ namespace XamarinBlogEducation.Business.Services
         }
         public async Task DeletePost(long selectedPostId)
         {
-            _postsRepository.Delete(await _postsRepository.GetPost(selectedPostId));
+            _postsRepository.DeleteAsync(await _postsRepository.GetPost(selectedPostId));
         }
         public async Task AddCategory(GetAllCategoriesblogViewItem newCategory)
         {

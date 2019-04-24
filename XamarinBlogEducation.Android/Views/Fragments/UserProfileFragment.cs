@@ -13,6 +13,7 @@ using MvvmCross.Platforms.Android.Presenters.Attributes;
 using Refractored.Controls;
 using System;
 using System.IO;
+using XamarinBlogEducation.Core.Resources;
 using XamarinBlogEducation.Core.ViewModels;
 using XamarinBlogEducation.Core.ViewModels.Fragments;
 
@@ -26,8 +27,6 @@ namespace XamarinBlogEducation.Android.Views.Fragments
         private EditText editLastName;
         private Button btnApplyChanges;
         private Button btnChangePassword;
-        private global::Android.Net.Uri filePath;
-        private const int PICK_IMAGE_REQUEST = 71;
         protected override int FragmentId => Resource.Layout.UserProfileViewModel;
         public override void OnAttachFragment(global::Android.Support.V4.App.Fragment childFragment)
         {
@@ -61,7 +60,7 @@ namespace XamarinBlogEducation.Android.Views.Fragments
         private void applyButton_OnClick(object sender, EventArgs e)
         {
             ViewModel.UpdateCommand.Execute();
-            var toast = string.Format("All changes were saved");
+            var toast =Strings.ProfileChangesMessage;
             Toast.MakeText(Context, toast, ToastLength.Long).Show();
             ViewModel.GoToPostsCommand.Execute();
         }

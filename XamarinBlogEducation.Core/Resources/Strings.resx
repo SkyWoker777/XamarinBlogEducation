@@ -117,7 +117,37 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AboutTitle" xml:space="preserve">
+    <value>About Us</value>
+  </data>
+  <data name="action_settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="AllPostsTitle" xml:space="preserve">
+    <value>Latest Posts</value>
+  </data>
+  <data name="app_name" xml:space="preserve">
+    <value>XamarinBlogEducation.Android</value>
+  </data>
+  <data name="CreatePostTitle" xml:space="preserve">
+    <value>Add new post</value>
+  </data>
+  <data name="DetailedPostTitle" xml:space="preserve">
+    <value>In details</value>
+  </data>
+  <data name="EditPostTitle" xml:space="preserve">
+    <value>Edit your post</value>
+  </data>
   <data name="PostDeleted" xml:space="preserve">
     <value>Your post was deleted</value>
+  </data>
+  <data name="UserPostsTitle" xml:space="preserve">
+    <value>My posts</value>
+  </data>
+  <data name="UserProfileTitle" xml:space="preserve">
+    <value>Profile</value>
+  </data>
+  <data name="ProfileChangesMessage" xml:space="preserve">
+    <value>All changes were saved</value>
   </data>
 </root>

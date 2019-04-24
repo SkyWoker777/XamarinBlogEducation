@@ -8,7 +8,7 @@ using MvvmCross.Platforms.Android.Binding.BindingContext;
 using MvvmCross.Platforms.Android.Presenters.Attributes;
 using System;
 using XamarinBlogEducation.Core.ViewModels.Dialogs;
-
+using XamarinBlogEducation.Core.Resources;
 namespace XamarinBlogEducation.Android.Elements
 {
     [MvxDialogFragmentPresentation]

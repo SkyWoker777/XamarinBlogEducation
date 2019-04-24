@@ -1,9 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using XamarinBlogEducation.Api.Extensions;
 using XamarinBlogEducation.Business.Services.Interfaces;
@@ -32,12 +29,6 @@ namespace XamarinBlogEducation.Api.Controllers
             }
             return res;
         }
-
-        public async Task<IActionResult> DeleteAccount(string userid)
-        {
-            await _accountService.RemoveUser(userid);
-            return Ok();
-        }
         [HttpPost("change-password")]
         public async Task<IActionResult> UpdatePassword([FromBody]ChangePasswordViewModel model)
         {
@@ -50,6 +41,33 @@ namespace XamarinBlogEducation.Api.Controllers
             }
             return res;
         }
-
+        [AllowAnonymous]
+        [HttpPost]
+        [Route("login")]
+        public async Task<IActionResult> Login([FromBody]LoginAccountViewModel loginModel)
+        {
+            var token = await _accountService.SignIn(loginModel);
+            if (token == null)
+            {
+                return Unauthorized();
+            }
+            return Ok(token);
+        }
+        [AllowAnonymous]
+        [HttpGet]
+        [Route("info")]
+        public async Task<IActionResult> GetUserInfo(string userEmail)
+        {
+            var user = await _accountService.FindUser(userEmail);
+            return Ok(user);
+        }
+        [AllowAnonymous]
+        [HttpPost]
+        [Route("register")]
+        public async Task<IActionResult> Register([FromBody]RegisterAccountViewModel registrationModel)
+        {
+            var registrationResult = await _accountService.CreateUser(registrationModel);
+            return Ok();
+        }
     }
 }

@@ -8665,29 +8665,29 @@ namespace XamarinBlogEducation.Android
 		public partial class String
 		{
 			
-			// aapt resource value: 0x7f0b004c
-			public const int AboutTitle = 2131427404;
+			// aapt resource value: 0x7f0b004b
+			public const int AboutTitle = 2131427403;
+			
+			// aapt resource value: 0x7f0b0045
+			public const int AllPostsTitle = 2131427397;
 			
 			// aapt resource value: 0x7f0b0046
-			public const int AllPostsTitle = 2131427398;
-			
-			// aapt resource value: 0x7f0b0047
-			public const int CreatePostTitle = 2131427399;
-			
-			// aapt resource value: 0x7f0b0049
-			public const int DetailedPostTitle = 2131427401;
-			
-			// aapt resource value: 0x7f0b004a
-			public const int EditPostTitle = 2131427402;
-			
-			// aapt resource value: 0x7f0b004d
-			public const int PostDeleted = 2131427405;
+			public const int CreatePostTitle = 2131427398;
 			
 			// aapt resource value: 0x7f0b0048
-			public const int UserPostsTitle = 2131427400;
+			public const int DetailedPostTitle = 2131427400;
 			
-			// aapt resource value: 0x7f0b004b
-			public const int UserProfileTitle = 2131427403;
+			// aapt resource value: 0x7f0b0049
+			public const int EditPostTitle = 2131427401;
+			
+			// aapt resource value: 0x7f0b004c
+			public const int PostDeleted = 2131427404;
+			
+			// aapt resource value: 0x7f0b0047
+			public const int UserPostsTitle = 2131427399;
+			
+			// aapt resource value: 0x7f0b004a
+			public const int UserProfileTitle = 2131427402;
 			
 			// aapt resource value: 0x7f0b0015
 			public const int abc_action_bar_home_description = 2131427349;
@@ -8791,8 +8791,8 @@ namespace XamarinBlogEducation.Android
 			// aapt resource value: 0x7f0b0035
 			public const int character_counter_pattern = 2131427381;
 			
-			// aapt resource value: 0x7f0b0045
-			public const int closeDrawer = 2131427397;
+			// aapt resource value: 0x7f0b0044
+			public const int closeDrawer = 2131427396;
 			
 			// aapt resource value: 0x7f0b0042
 			public const int drawer_close = 2131427394;
@@ -8802,9 +8802,6 @@ namespace XamarinBlogEducation.Android
 			
 			// aapt resource value: 0x7f0b003d
 			public const int fab_scroll_shrink_grow_autohide_behavior = 2131427389;
-			
-			// aapt resource value: 0x7f0b0043
-			public const int hello = 2131427395;
 			
 			// aapt resource value: 0x7f0b003f
 			public const int library_name = 2131427391;
@@ -8872,8 +8869,8 @@ namespace XamarinBlogEducation.Android
 			// aapt resource value: 0x7f0b0014
 			public const int mr_user_route_category_name = 2131427348;
 			
-			// aapt resource value: 0x7f0b0044
-			public const int openDrawer = 2131427396;
+			// aapt resource value: 0x7f0b0043
+			public const int openDrawer = 2131427395;
 			
 			// aapt resource value: 0x7f0b0036
 			public const int password_toggle_content_description = 2131427382;
