@@ -10,7 +10,7 @@ using XamarinBlogEducation.Core.ViewModels.Fragments;
 namespace XamarinBlogEducation.Android.Views.Fragments
 {
     [MvxFragmentPresentation(typeof(MainViewModel), Resource.Id.content_frame, true)]
-    public class EditPostView: BaseFragment<EditPostViewModel>
+    public class EditPostFragment: BaseFragment<EditPostViewModel>
     {
         private EditText inpUpdatedContent;
         private EditText inpUndatedDescription;
@@ -25,22 +25,7 @@ namespace XamarinBlogEducation.Android.Views.Fragments
             var view = base.OnCreateView(inflater, container, savedInstanceState);
             ((AppCompatActivity)Activity).SupportActionBar.SetDisplayShowTitleEnabled(true);
             ((AppCompatActivity)Activity).SupportActionBar.SetTitle(Resource.String.EditPostTitle);
-            if (Activity is MainView mainView)
-            {
-                mainView.BackButtonPressed += (s, e) =>
-                {
-                    var fragmentsCount = Activity.FragmentManager.BackStackEntryCount;
-                    if (fragmentsCount > 1)
-                    {
-                        ViewModel.GoBackCommand?.Execute();
-                    }
-                    else
-                    {
-                        mainView.ViewModel.GoBackCommand?.Execute();
-                    }
-                };
-            }
-
+           
             inpUpdatedContent = view.FindViewById<EditText>(Resource.Id.editContent);
             inpUpdatedTitle = view.FindViewById<EditText>(Resource.Id.editTitle);
             inpUndatedDescription = view.FindViewById<EditText>(Resource.Id.editDescription);

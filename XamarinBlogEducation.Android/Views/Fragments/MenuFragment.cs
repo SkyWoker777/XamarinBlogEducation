@@ -4,8 +4,6 @@ using Android.OS;
 using Android.Support.Design.Widget;
 using Android.Support.V7.App;
 using Android.Views;
-using Android.Widget;
-using MvvmCross.Binding.BindingContext;
 using MvvmCross.Droid.Support.V4;
 using MvvmCross.Platforms.Android.Binding.BindingContext;
 using MvvmCross.Platforms.Android.Presenters.Attributes;
@@ -16,9 +14,9 @@ using XamarinBlogEducation.Core.ViewModels.Fragments;
 
 namespace XamarinBlogEducation.Android.Views.Fragments
 {
-    [MvxFragmentPresentation(typeof(AllPostsViewModel), Resource.Id.navigation_frame)]
+    [MvxFragmentPresentation(typeof(AllPostsBaseViewModel), Resource.Id.navigation_frame)]
 
-    public class MenuView : MvxFragment<MenuViewModel>, NavigationView.IOnNavigationItemSelectedListener
+    public class MenuFragment : MvxFragment<MenuViewModel>, NavigationView.IOnNavigationItemSelectedListener
     {
        
         private NavigationView _navigationView;
@@ -52,7 +50,7 @@ namespace XamarinBlogEducation.Android.Views.Fragments
         private async Task Navigate(int itemId)
         {
 
-            ((AllPostsView)Activity).DrawerLayout.CloseDrawers();
+            ((AllPostsActivity)Activity).DrawerLayout.CloseDrawers();
             await Task.Delay(TimeSpan.FromMilliseconds(250));
 
             switch (itemId)

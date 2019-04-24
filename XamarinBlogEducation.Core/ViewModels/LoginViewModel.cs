@@ -22,7 +22,7 @@ namespace XamarinBlogEducation.Core.ViewModels
             _userService = userService;
             LoginCommand = new MvxAsyncCommand(LoginAsync);
             SingUpCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<RegisterViewModel>());
-            SkipCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<AllPostsFragmentViewModel>());
+            SkipCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<AllPostsViewModel>());
             GoNextCommand= new MvxAsyncCommand(GoNextAsync);
         }
         public IMvxAsyncCommand LoginCommand { get; private set; }
@@ -70,7 +70,7 @@ namespace XamarinBlogEducation.Core.ViewModels
         }
         private async Task GoNextAsync()
         {
-            await NavigationService.Navigate<AllPostsFragmentViewModel>();
+            await NavigationService.Navigate<AllPostsViewModel>();
             await DisposeView(this);
         }
     }

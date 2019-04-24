@@ -22,7 +22,7 @@ namespace XamarinBlogEducation.Android.Views.Activities
 {
     [MvxActivityPresentation]
     [Activity(Theme = "@style/AppTheme",ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.ScreenSize)]
-    public class AllPostsView : MvxAppCompatActivity<AllPostsViewModel>
+    public class AllPostsActivity : MvxAppCompatActivity<AllPostsBaseViewModel>
     {
         private MvxActionBarDrawerToggle _drawerToggle;
         public DrawerLayout DrawerLayout { get; set; }

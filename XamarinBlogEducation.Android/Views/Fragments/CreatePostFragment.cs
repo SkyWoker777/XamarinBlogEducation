@@ -13,11 +13,12 @@ using Android.Support.V7.App;
 using System.Reflection;
 using System.Collections.Generic;
 using System.Linq;
+using XamarinBlogEducation.Android.Extensions;
 
 namespace XamarinBlogEducation.Android.Views.Fragments
 {
     [MvxFragmentPresentation(typeof(MainViewModel), Resource.Id.content_frame, true)]
-    public class CreatePostView : BaseFragment<CreatePostViewModel>
+    public class CreatePostFragment : BaseFragment<CreatePostViewModel>
     {
         private EditText inpTitle;
         private EditText inpPostContent;
@@ -33,25 +34,10 @@ namespace XamarinBlogEducation.Android.Views.Fragments
             var view= base.OnCreateView(inflater, container, savedInstanceState);
             ((AppCompatActivity)Activity).SupportActionBar.SetDisplayShowTitleEnabled(true);
             ((AppCompatActivity)Activity).SupportActionBar.SetTitle(Resource.String.CreatePostTitle);
-            if (Activity is MainView mainView)
-            {
-                mainView.BackButtonPressed += (s, e) =>
-                {
-                    var fragmentsCount = Activity.FragmentManager.BackStackEntryCount;
-                    if (fragmentsCount > 1)
-                    {
-                        ViewModel.GoBackCommand?.Execute();
-                    }
-                    else
-                    {
-                        mainView.ViewModel.GoBackCommand?.Execute();
-                    }
-                };
-            }
             btnAddNewPost = view.FindViewById<Button>(Resource.Id.addNewPostButton);
             btnAddCategory = view.FindViewById<Button>(Resource.Id.addCategoryButton);
             mvxSpinner = view.FindViewById<MvxAppCompatSpinner>(Resource.Id.allCategoriesSpinner);
-            LimitSpinner(mvxSpinner, 500);
+            mvxSpinner.LimitSpinner(500);
             inpTitle = view.FindViewById<EditText>(Resource.Id.inputTitle);
             inpPostContent = view.FindViewById<EditText>(Resource.Id.inputPostContent);
             inpPostContent.VerticalScrollBarEnabled = true;
@@ -67,7 +53,7 @@ namespace XamarinBlogEducation.Android.Views.Fragments
                 txtAnonimPostWarning.Visibility = ViewStates.Visible;
             }
 
-            var set = this.CreateBindingSet<CreatePostView, CreatePostViewModel>();
+            var set = this.CreateBindingSet<CreatePostFragment, CreatePostViewModel>();
 
             set.Bind(inpTitle).To(vm => vm.Title);
             set.Bind(inpPostContent).To(vm => vm.PostContent);

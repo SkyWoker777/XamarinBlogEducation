@@ -18,10 +18,11 @@ using XamarinBlogEducation.Android.Extensions;
 using XamarinBlogEducation.Core.ViewModels;
 using XamarinBlogEducation.Core.ViewModels.Fragments;
 
+
 namespace XamarinBlogEducation.Android.Views.Fragments
 {
-    [MvxFragmentPresentation(typeof(AllPostsViewModel), Resource.Id.allposts_frame, true)]
-    public class AllPostsFragment : BaseFragment<AllPostsFragmentViewModel>
+    [MvxFragmentPresentation(typeof(AllPostsBaseViewModel), Resource.Id.allposts_frame, true)]
+    public class AllPostsFragment : BaseFragment<AllPostsViewModel>
     {
         private MvxAppCompatSpinner filterByCategorySpinner;
         private MvxAppCompatSpinner sortingSpinner;
@@ -32,7 +33,7 @@ namespace XamarinBlogEducation.Android.Views.Fragments
 
             filterByCategorySpinner = view.FindViewById<MvxAppCompatSpinner>(Resource.Id.filterByCategorySpinner);
             filterByCategorySpinner.DropDownWidth = 500;
-         //   LimitSpinner(filterByCategorySpinner, 500);
+            filterByCategorySpinner.LimitSpinner(500);
 
             sortingSpinner = view.FindViewById<MvxAppCompatSpinner>(Resource.Id.filterSpinner);
             sortingSpinner.DropDownWidth = 500;

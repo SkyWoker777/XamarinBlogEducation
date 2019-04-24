@@ -18,8 +18,8 @@ using XamarinBlogEducation.Core.ViewModels.Fragments;
 
 namespace XamarinBlogEducation.Android.Views.Fragments
 {
-    [MvxFragmentPresentation(typeof(AllPostsViewModel), Resource.Id.allposts_frame, false)]
-    public class UserPostsView:BaseFragment<UserPostsViewModel>
+    [MvxFragmentPresentation(typeof(AllPostsBaseViewModel), Resource.Id.allposts_frame, false)]
+    public class UserPostsFragment:BaseFragment<UserPostsViewModel>
     {  
         protected override int FragmentId => Resource.Layout.UserPostsView;      
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)

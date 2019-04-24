@@ -13,7 +13,7 @@ using XamarinBlogEducation.Core.ViewModels;
 namespace XamarinBlogEducation.Android.Views.Fragments
 {
     [MvxFragmentPresentation(typeof(StartViewModel), Resource.Id.login_content_frame, true)]
-    public class LoginView : BaseFragment<LoginViewModel>
+    public class LoginFragment : BaseFragment<LoginViewModel>
     {
         private EditText inpEmail;
         private EditText inpPassword;
@@ -36,7 +36,7 @@ namespace XamarinBlogEducation.Android.Views.Fragments
             btnRegister = view.FindViewById<Button>(Resource.Id.buttonRegister);
             linkSkip = view.FindViewById<TextView>(Resource.Id.linkSkip);
 
-            var set = this.CreateBindingSet<LoginView, LoginViewModel>();
+            var set = this.CreateBindingSet<LoginFragment, LoginViewModel>();
             set.Bind(inpEmail).To(vm => vm.Email);
             set.Bind(inpPassword).To(vm => vm.Password);
 

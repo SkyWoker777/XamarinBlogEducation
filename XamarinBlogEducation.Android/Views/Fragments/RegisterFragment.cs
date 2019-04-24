@@ -14,7 +14,7 @@ using System.Text.RegularExpressions;
 namespace XamarinBlogEducation.Android.Views.Fragments
 {
     [MvxFragmentPresentation(typeof(StartViewModel), Resource.Id.login_content_frame, true)]
-    public class RegisterView : BaseFragment<RegisterViewModel>
+    public class RegisterFragment : BaseFragment<RegisterViewModel>
     {
         public EditText inpEmail;
         public EditText inpPassword;
@@ -36,7 +36,7 @@ namespace XamarinBlogEducation.Android.Views.Fragments
             btnSignUp = view.FindViewById<Button>(Resource.Id.signUpButton);
             btnSignUpLogin = view.FindViewById<Button>(Resource.Id.signUpLoginButton);
 
-            var set = this.CreateBindingSet<RegisterView, RegisterViewModel>();
+            var set = this.CreateBindingSet<RegisterFragment, RegisterViewModel>();
 
             set.Bind(inpEmail).To(vm => vm.Email);
             set.Bind(inpPassword).To(vm => vm.Password);

@@ -85,7 +85,7 @@
 		android:layout_width="30dp"
         android:layout_height="30dp"
 		android:layout_marginLeft="40dp"
-        android:background="@drawable/add_ic"/>
+        android:background="@drawable/add_button"/>
 	</LinearLayout>
 	<EditText
 		android:id="@+id/inputPostContent" 

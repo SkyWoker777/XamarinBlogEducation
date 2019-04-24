@@ -1,16 +1,11 @@
-﻿using System;
+﻿
 using Android.OS;
-using Android.Support.V7.App;
 using Android.Support.V7.Widget;
 using Android.Views;
-using Android.Views.InputMethods;
 using MvvmCross.Droid.Support.V4;
 using MvvmCross.Droid.Support.V7.AppCompat;
-using MvvmCross.Droid.Support.V7.AppCompat.Widget;
 using MvvmCross.Platforms.Android.Binding.BindingContext;
 using MvvmCross.ViewModels;
-using ListPopupWindow = Android.Widget.ListPopupWindow;
-using Spinner = Android.Widget.Spinner;
 
 namespace XamarinBlogEducation.Android.Views.Fragments
 {
@@ -39,14 +34,7 @@ namespace XamarinBlogEducation.Android.Views.Fragments
         {
          
         }
-        //public void LimitSpinner(MvxAppCompatSpinner mvxAppCompatSpinner,int height)
-        //{
-        //    var jClass = Java.Lang.Class.FromType(typeof(Spinner));
-        //    var mPopupField = jClass.GetDeclaredField("mPopup");
-        //    mPopupField.Accessible = true;
-        //    ListPopupWindow popupWindow = (ListPopupWindow)mPopupField.Get(mvxAppCompatSpinner);
-        //    popupWindow.Height = height;
-        //}
+       
         protected abstract int FragmentId { get; }
        
 

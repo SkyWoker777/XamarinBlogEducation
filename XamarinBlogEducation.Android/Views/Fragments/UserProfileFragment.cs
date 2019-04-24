@@ -18,8 +18,8 @@ using XamarinBlogEducation.Core.ViewModels.Fragments;
 
 namespace XamarinBlogEducation.Android.Views.Fragments
 {
-    [MvxFragmentPresentation(typeof(AllPostsViewModel), Resource.Id.allposts_frame, true)]
-    public class UserProfileView : BaseFragment<UserProfileViewModel>
+    [MvxFragmentPresentation(typeof(AllPostsBaseViewModel), Resource.Id.allposts_frame, true)]
+    public class UserProfileFragment : BaseFragment<UserProfileViewModel>
     {
         private EditText editEmail;
         private EditText editUserName;
@@ -38,29 +38,14 @@ namespace XamarinBlogEducation.Android.Views.Fragments
             var view = base.OnCreateView(inflater, container, savedInstanceState);
             ((AppCompatActivity)Activity).SupportActionBar.SetDisplayShowTitleEnabled(true);
             ((AppCompatActivity)Activity).SupportActionBar.SetTitle(Resource.String.UserProfileTitle);
-            if (Activity is MainView mainView)
-            {
-                mainView.BackButtonPressed += (s, e) =>
-                {
-                    var fragmentsCount = Activity.FragmentManager.BackStackEntryCount;
-                    if (fragmentsCount > 1)
-                    {
-                        ViewModel.GoBackCommand?.Execute();
-                    }
-                    else
-                    {
-                        mainView.ViewModel.GoBackCommand?.Execute();
-                    }
-                };
-            }
-
+           
             editEmail = view.FindViewById<EditText>(Resource.Id.editEmail);
             editUserName = view.FindViewById<EditText>(Resource.Id.editUserName);
             editLastName = view.FindViewById<EditText>(Resource.Id.editLastName);
             btnApplyChanges = view.FindViewById<Button>(Resource.Id.applyButton);
             btnChangePassword = view.FindViewById<Button>(Resource.Id.changePasswordButton);
 
-            var set = this.CreateBindingSet<UserProfileView, UserProfileViewModel>();
+            var set = this.CreateBindingSet<UserProfileFragment, UserProfileViewModel>();
 
             set.Bind(editEmail).To(vm => vm.Email);
             set.Bind(editLastName).To(vm => vm.LastName);

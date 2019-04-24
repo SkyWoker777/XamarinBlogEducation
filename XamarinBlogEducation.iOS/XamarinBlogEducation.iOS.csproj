@@ -148,7 +148,7 @@
     <BundleResource Include="Resources\menu_button.png" />
     <BundleResource Include="Resources\menu.png" />
     <BundleResource Include="Resources\icons8_more_48.png" />
-    <BundleResource Include="Resources\add_ic.png" />
+    <BundleResource Include="Resources\add_button.png" />
     <None Include="app.config" />
     <None Include="Info.plist">
       <SubType>Designer</SubType>

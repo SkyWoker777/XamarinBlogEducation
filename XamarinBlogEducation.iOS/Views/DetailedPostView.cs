@@ -1,8 +1,4 @@
 ﻿
-using System;
-using System.Drawing;
-
-using Foundation;
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.Platforms.Ios.Binding.Views;
 using MvvmCross.Platforms.Ios.Views;

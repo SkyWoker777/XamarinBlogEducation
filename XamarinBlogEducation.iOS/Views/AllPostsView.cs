@@ -6,16 +6,13 @@ using UIKit;
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.Platforms.Ios.Binding.Views;
 using Plugin.SecureStorage;
-using CoreGraphics;
-using Cirrious.FluentLayouts.Touch;
 using XamarinBlogEducation.iOS.Views.Cells;
-using Foundation;
 using XamarinBlogEducation.ViewModels.Blog.Items;
 
 namespace XamarinBlogEducation.iOS.Views
 {
 
-    public partial class AllPostsView : MvxViewController<AllPostsFragmentViewModel>
+    public partial class AllPostsView : MvxViewController<AllPostsViewModel>
     {
         private MvxSimpleTableViewSource _source;
         public AllPostsView() : base(nameof(AllPostsView), null)
@@ -27,9 +24,7 @@ namespace XamarinBlogEducation.iOS.Views
         {
             base.DidReceiveMemoryWarning();
         }
-
-        #region View lifecycle
-
+        
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
@@ -51,7 +46,7 @@ namespace XamarinBlogEducation.iOS.Views
             filterPicker.ShowSelectionIndicator = true;
             var filterPickerViewModel = new MvxPickerViewModel(filterPicker);
             filterPicker.Model = filterPickerViewModel;
-            var set = this.CreateBindingSet<AllPostsView, AllPostsFragmentViewModel>();
+            var set = this.CreateBindingSet<AllPostsView, AllPostsViewModel>();
 
             set.Bind(_source).For(v => v.ItemsSource).To(vm => vm.AllPosts);
             set.Bind(_source).For(v => v.SelectedItem).To(vm => vm.SelectedPost);
@@ -142,7 +137,6 @@ namespace XamarinBlogEducation.iOS.Views
             NavigationController.NavigationBar.Hidden = false;
             NavigationController.NavigationBar.BackgroundColor = UIColor.FromRGBA(209, 188, 171, 255);
         }
-        #endregion
     }
     
 }

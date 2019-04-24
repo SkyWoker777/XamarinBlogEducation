@@ -66,26 +66,26 @@
     <Compile Include="Elements\DialogCategory.cs" />
     <Compile Include="Elements\PasswordDialog.cs" />
     <Compile Include="Extensions\MvxRecyclerViewExtensions.cs" />
-    <Compile Include="Extensions\MvxSpinnerExtensions.cs" />
+    <Compile Include="Extensions\MvxAppCompatSpinnerExtensions.cs" />
     <Compile Include="MainAplication.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\DialogsService.cs" />
     <Compile Include="Setup.cs" />
-    <Compile Include="Views\Activities\AllPostsView.cs" />
+    <Compile Include="Views\Activities\AllPostsActivity.cs" />
     <Compile Include="Views\Activities\BaseActivity.cs" />
     <Compile Include="Views\Activities\LoginActivity.cs" />
-    <Compile Include="Views\Fragments\LoginView.cs" />
+    <Compile Include="Views\Fragments\LoginFragment.cs" />
     <Compile Include="Views\Fragments\AboutFragment.cs" />
     <Compile Include="Views\Fragments\AllPostsFragment.cs" />
     <Compile Include="Views\Fragments\BaseFragment.cs" />
-    <Compile Include="Views\Fragments\CreatePostView.cs" />
-    <Compile Include="Views\Fragments\DetailedPostView.cs" />
-    <Compile Include="Views\Fragments\EditPostView.cs" />
-    <Compile Include="Views\Fragments\MenuView.cs" />
-    <Compile Include="Views\Fragments\RegisterView.cs" />
-    <Compile Include="Views\Fragments\UserPostsView.cs" />
-    <Compile Include="Views\Fragments\UserProfileView.cs" />
+    <Compile Include="Views\Fragments\CreatePostFragment.cs" />
+    <Compile Include="Views\Fragments\DetailedPostFragment.cs" />
+    <Compile Include="Views\Fragments\EditPostFragment.cs" />
+    <Compile Include="Views\Fragments\MenuFragment.cs" />
+    <Compile Include="Views\Fragments\RegisterFragment.cs" />
+    <Compile Include="Views\Fragments\UserPostsFragment.cs" />
+    <Compile Include="Views\Fragments\UserProfileFragment.cs" />
     <Compile Include="Views\MainView.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -180,22 +180,10 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\avatar_default.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\avatar_default2.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable\avatar_default3.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\background_login.axml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\button_circle.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\cd8d0351159414bf50151789e9a0652b.jpg" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\menu_button.png" />
@@ -312,10 +300,7 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\icons8_plus_math_24.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\add_ic.png" />
+    <AndroidResource Include="Resources\drawable\add_button.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\menu\menu_drawer.axml">

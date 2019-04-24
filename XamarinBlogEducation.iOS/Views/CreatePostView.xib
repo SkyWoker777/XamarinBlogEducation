@@ -53,7 +53,7 @@
                     <rect key="frame" x="305" y="236.5" width="31" height="29"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <rect key="contentStretch" x="0.0" y="0.0" width="1" height="1"/>
-                    <state key="normal" image="add_ic.png"/>
+                    <state key="normal" image="add_button.png"/>
                     <constraints>
                         <constraint id="5698" firstAttribute="height" constant="29"/>
                         <constraint id="5730" firstAttribute="width" constant="31"/>
@@ -120,6 +120,6 @@
         </view>
     </objects>
     <resources>
-        <image name="add_ic.png" width="980" height="980"/>
+        <image name="add_button.png" width="980" height="980"/>
     </resources>
 </document>

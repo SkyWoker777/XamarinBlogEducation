@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace XamarinBlogEducation.Core.ViewModels.Fragments
 {
-    public class AboutFragmentModel: BaseViewModel
+    public class AboutViewModel: BaseViewModel
     {
-        public AboutFragmentModel(IMvxNavigationService navigationService) : base(navigationService)
+        public AboutViewModel(IMvxNavigationService navigationService) : base(navigationService)
         {
             GoBackCommand = new MvxAsyncCommand(async () => await DisposeView(this));
         }

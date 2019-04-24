@@ -29,7 +29,7 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
             UpdateCommand = new MvxAsyncCommand(UpdateAsync);
             OpenDialogCommand = new MvxAsyncCommand<LoginAccountViewModel>(OpenDialogAsync);
             ChangePasswordCommand = new MvxAsyncCommand(ChangePasswordAsync);
-            GoToPostsCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<AllPostsFragmentViewModel>());
+            GoToPostsCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<AllPostsViewModel>());
             GoBackCommand = new MvxAsyncCommand(async () => await DisposeView(this));
 
 

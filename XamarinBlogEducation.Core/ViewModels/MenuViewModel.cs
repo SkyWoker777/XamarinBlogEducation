@@ -18,7 +18,7 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
         public MenuViewModel (IMvxNavigationService navigationService) : base(navigationService)
         {
             MenuItemSelectedCommand = new MvxAsyncCommand<MenuModel>(MenuItemSelected);
-            ShowHomeCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<AllPostsFragmentViewModel>());
+            ShowHomeCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<AllPostsViewModel>());
             AddPostCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<CreatePostViewModel>());
             ShowProfileCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<UserProfileViewModel>());
             ShowUserPostsCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<UserPostsViewModel>());
