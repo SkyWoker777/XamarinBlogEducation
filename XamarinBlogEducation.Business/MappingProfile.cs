@@ -1,10 +1,8 @@
 ﻿using AutoMapper;
 using System.Collections.Generic;
 using XamarinBlogEducation.DataAccess.Entities;
-using XamarinBlogEducation.ViewModels.Blog;
-using XamarinBlogEducation.ViewModels.Blog.Items;
-using XamarinBlogEducation.ViewModels.Models.Account;
-using XamarinBlogEducation.ViewModels.Models.Blog;
+using XamarinBlogEducation.ViewModels.Requests;
+using XamarinBlogEducation.ViewModels.Responses;
 
 namespace XamarinBlogEducation.Business
 {
@@ -14,17 +12,18 @@ namespace XamarinBlogEducation.Business
         {
 
           
-            CreateMap<Post,GetAllPostsBlogViewItem>();
-            CreateMap<Post, GetDetailsPostBlogView>();
-            CreateMap<CreatePostBlogViewModel, Post>();
-            CreateMap<ApplicationUser, EditAccountViewModel>().ReverseMap();
-            CreateMap<RegisterAccountViewModel, ApplicationUser>();
-            CreateMap<Category, GetAllCategoriesblogViewItem>().ForMember(
+            CreateMap<Post, GetAllPostResponseModel>();
+            CreateMap<Post, GetDetailsPostResponseModel>();
+            CreateMap<CreatePostBlogRequestModel, Post>();
+            CreateMap<ApplicationUser, EditAccountRequestModel>().ReverseMap();
+            CreateMap<ApplicationUser, GetInfoAccountResponseModel>().ReverseMap();
+            CreateMap<RegisterAccountRequestModel, ApplicationUser>();
+            CreateMap<Category, GetAllCategoryResponseModel>().ForMember(
                 ct=>ct.Category, 
                 opt=>opt.MapFrom(src=>src.Name));
                 
-            CreateMap<AddCommentBlogViewModel, Comment>();
-            CreateMap<GetAllCommentsBlogViewItem, Comment>().ReverseMap();
+            CreateMap<AddCommentRequestBlogView, Comment>();
+            CreateMap<GetAllCommentResponseModel, Comment>().ReverseMap();
         }
     }
 }

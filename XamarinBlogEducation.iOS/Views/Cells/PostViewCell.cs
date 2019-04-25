@@ -1,10 +1,9 @@
-﻿using System;
-
-using Foundation;
+﻿using Foundation;
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.Platforms.Ios.Binding.Views;
+using System;
 using UIKit;
-using XamarinBlogEducation.ViewModels.Blog.Items;
+using XamarinBlogEducation.ViewModels.Responses;
 
 namespace XamarinBlogEducation.iOS.Views.Cells
 {
@@ -20,10 +19,9 @@ namespace XamarinBlogEducation.iOS.Views.Cells
 
         protected PostViewCell(IntPtr handle) : base(handle)
         {
-            // Note: this .ctor should not contain any initialization logic.
             this.DelayBind(() =>
             {
-                var set = this.CreateBindingSet<PostViewCell, GetAllPostsBlogViewItem>();
+                MvxFluentBindingDescriptionSet<PostViewCell, GetAllPostResponseModel> set = this.CreateBindingSet<PostViewCell, GetAllPostResponseModel>();
                 set.Bind(lbTitle).To(m => m.Title);
                 set.Bind(lbCreationDate).To(m => m.CreationDate);
                 set.Bind(tvDescription).To(m => m.Description);

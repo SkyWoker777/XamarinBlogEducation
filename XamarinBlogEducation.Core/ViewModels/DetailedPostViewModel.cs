@@ -4,30 +4,29 @@ using MvvmCross.ViewModels;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using XamarinBlogEducation.Core.Services.Interfaces;
-using XamarinBlogEducation.ViewModels.Blog;
-using XamarinBlogEducation.ViewModels.Blog.Items;
-using XamarinBlogEducation.ViewModels.Models.Blog;
+using XamarinBlogEducation.ViewModels.Requests;
+using XamarinBlogEducation.ViewModels.Responses;
 
 namespace XamarinBlogEducation.Core.ViewModels.Fragments
 {
-    public class DetailedPostViewModel : BaseViewModel<GetAllPostsBlogViewItem>
+    public class DetailedPostViewModel : BaseViewModel<GetAllPostResponseModel>
     {
         private string _content;
         private string _commentContent;
         private string _commentAuthor;
         private string _creationDate;
         private readonly IBlogService _blogService;
-        private AddCommentBlogViewModel comment;
-        private GetAllPostsBlogViewItem _detailedPost;
-        private MvxObservableCollection<GetAllCommentsBlogViewItem> _allComments;
+        private AddCommentRequestBlogView comment;
+        private GetAllPostResponseModel _detailedPost;
+        private MvxObservableCollection<GetAllCommentResponseModel> _allComments;
         public DetailedPostViewModel(IBlogService blogService, IMvxNavigationService navigationService) : base(navigationService)
         {
             _blogService = blogService;
             GoBackCommand = new MvxAsyncCommand(GoBackAsync);
             AddCommentCommand = new MvxAsyncCommand(AddComment);
-            AllComments = new MvxObservableCollection<GetAllCommentsBlogViewItem>();
+            AllComments = new MvxObservableCollection<GetAllCommentResponseModel>();
         }
-        public override void Prepare(GetAllPostsBlogViewItem parameter)
+        public override void Prepare(GetAllPostResponseModel parameter)
         {
             DetailedPost = parameter;
         }
@@ -50,7 +49,7 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
         }
         private async Task AddComment()
         {
-            comment = new AddCommentBlogViewModel()
+            comment = new AddCommentRequestBlogView()
             {
                 Content = _content,
                 PostId = _detailedPost.Id
@@ -60,7 +59,7 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
         }
         public IMvxCommand GoBackCommand { get; private set; }
         public IMvxCommand AddCommentCommand { get; private set; }
-        public GetAllPostsBlogViewItem DetailedPost
+        public GetAllPostResponseModel DetailedPost
         {
             get => _detailedPost;
             set
@@ -78,7 +77,7 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
                 RaisePropertyChanged();
             }
         }
-        public MvxObservableCollection<GetAllCommentsBlogViewItem> AllComments
+        public MvxObservableCollection<GetAllCommentResponseModel> AllComments
         {
             get => _allComments;
             set

@@ -7,9 +7,8 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using XamarinBlogEducation.Core.Services.Interfaces;
-using XamarinBlogEducation.ViewModels.Blog;
-using XamarinBlogEducation.ViewModels.Blog.Items;
-using XamarinBlogEducation.ViewModels.Models.Blog;
+using XamarinBlogEducation.ViewModels.Requests;
+using XamarinBlogEducation.ViewModels.Responses;
 
 namespace XamarinBlogEducation.Core.Services
 {
@@ -21,15 +20,15 @@ namespace XamarinBlogEducation.Core.Services
             _httpService = httpService;
 
         }
-        public async Task<GetDetailsPostBlogView> ShowDetailedPost()
+        public async Task<GetDetailsPostResponseModel> ShowDetailedPost()
         {
             var url = $"/Post/post";
             var result = await _httpService.ExecuteQuery(url, HttpOperationMode.GET);
-            var parsedResult = await _httpService.ProcessJson<GetDetailsPostBlogView>(result);
+            var parsedResult = await _httpService.ProcessJson<GetDetailsPostResponseModel>(result);
             return parsedResult;
 
         }
-        public async Task AddNewPost(CreatePostBlogViewModel model)
+        public async Task AddNewPost(CreatePostBlogRequestModel model)
         {
             using (var client = new HttpClient())
             {
@@ -41,7 +40,7 @@ namespace XamarinBlogEducation.Core.Services
                     var response = await client.SendAsync(message);   
             }
         }
-        public async Task AddComment(AddCommentBlogViewModel model)
+        public async Task AddComment(AddCommentRequestBlogView model)
         {
             var url = $"{"http://195.26.92.83:6776/api/Comment/comment/"}{model.PostId}";
             using (var client = new HttpClient())
@@ -65,16 +64,16 @@ namespace XamarinBlogEducation.Core.Services
             throw new NotImplementedException();
         }
 
-        public async Task<List<GetAllPostsBlogViewItem>> GetAllPosts()
+        public async Task<List<GetAllPostResponseModel>> GetAllPosts()
         {
             var url = $"/Post/posts";
             var result = await _httpService.ExecuteQuery(url, HttpOperationMode.GET);
-            var parsedResult = await _httpService.ProcessJson<List<GetAllPostsBlogViewItem>>(result);
+            var parsedResult = await _httpService.ProcessJson<List<GetAllPostResponseModel>>(result);
             return parsedResult;
         }
-        public async Task<List<GetAllPostsBlogViewItem>> GetUserPosts(string userEmail)
+        public async Task<List<GetAllPostResponseModel>> GetUserPosts(string userEmail)
         {
-            var parsedResult = new List<GetAllPostsBlogViewItem>();
+            var parsedResult = new List<GetAllPostResponseModel>();
             using (var client = new HttpClient())
             {
                 var url = $"{"http://195.26.92.83:6776/api/Post/user-posts-list?useremail="}{userEmail}";
@@ -83,20 +82,20 @@ namespace XamarinBlogEducation.Core.Services
                 var response = await client.SendAsync(message);
                 if (response.IsSuccessStatusCode)
                 {
-                    parsedResult = await _httpService.ProcessJson<List<GetAllPostsBlogViewItem>>(response);
+                    parsedResult = await _httpService.ProcessJson<List<GetAllPostResponseModel>>(response);
                     return parsedResult;
                 }
                 return parsedResult;
             }
         }
-        public async Task<List<GetAllCommentsBlogViewItem>> GetAllComments(long postId)
+        public async Task<List<GetAllCommentResponseModel>> GetAllComments(long postId)
         {
             var url = $"{"/Comment/comment/"}{postId}";
             var result = await _httpService.ExecuteQuery(url, HttpOperationMode.GET);
-            var parsedResult = await _httpService.ProcessJson<List<GetAllCommentsBlogViewItem>>(result);
+            var parsedResult = await _httpService.ProcessJson<List<GetAllCommentResponseModel>>(result);
             return parsedResult;
         }
-        public async Task UpdatePost(CreatePostBlogViewModel editedPost)
+        public async Task UpdatePost(EditPostBlogRequestModel editedPost)
         {
             using (var client = new HttpClient())
             {
@@ -108,14 +107,14 @@ namespace XamarinBlogEducation.Core.Services
                 var response = await client.SendAsync(message);
             }
         }
-        public async Task<List<GetAllCategoriesblogViewItem>> GetAllCategories()
+        public async Task<List<GetAllCategoryResponseModel>> GetAllCategories()
         {
             var url = $"/Category/categories";
             var result = await _httpService.ExecuteQuery(url, HttpOperationMode.GET);
-            var parsedResult = await _httpService.ProcessJson<List<GetAllCategoriesblogViewItem>>(result);
+            var parsedResult = await _httpService.ProcessJson<List<GetAllCategoryResponseModel>>(result);
             return parsedResult;
         }
-        public async Task<bool> AddNewCategory(GetAllCategoriesblogViewItem category)
+        public async Task<bool> AddNewCategory(AddNewCategoryRequestModel category)
         {
             var url = $"/Category/add-new-category";
             var json = JsonConvert.SerializeObject(category);

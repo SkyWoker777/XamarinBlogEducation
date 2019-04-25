@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-using XamarinBlogEducation.ViewModels.Blog;
-using XamarinBlogEducation.ViewModels.Blog.Items;
-using XamarinBlogEducation.ViewModels.Models.Blog;
+using XamarinBlogEducation.ViewModels.Requests;
+using XamarinBlogEducation.ViewModels.Responses;
 using XamarinBlogEducation.DataAccess.Entities;
 
 namespace XamarinBlogEducation.Business.Services.Interfaces
@@ -12,16 +11,16 @@ namespace XamarinBlogEducation.Business.Services.Interfaces
     public interface IPostsService
     {
         Task<IEnumerable<Post>> GetAll();
-        Task CreatePost(CreatePostBlogViewModel post);
+        Task CreatePost(CreatePostBlogRequestModel post);
         Task DeletePost(long selectedPostId);
-        Task EditPostAsync(CreatePostBlogViewModel post);
+        Task EditPostAsync(EditPostBlogRequestModel post);
         Task<Post> GetDetailsPost(int selectedPostId);
-        Task<List<GetAllCommentsBlogViewItem>> ShowComments(int selectedPostId);
+        Task<List<GetAllCommentResponseModel>> ShowComments(int selectedPostId);
         Task<Post> GetPost(int postId);
         Task<IEnumerable<Post>> GetPostsByCategory(int categoryId);
         Task<IEnumerable<Post>> GetPostsByDate(DateTime CreationDate);
         Task<List<Category>> GetAllCategories();
-        Task AddCategory(GetAllCategoriesblogViewItem newCategory);
+        Task AddCategory(AddNewCategoryRequestModel newCategory);
         Task<IEnumerable<Post>> GetUserPosts(string userEmail);
         Task<string> GetCategoryName(long categoryId);
     }

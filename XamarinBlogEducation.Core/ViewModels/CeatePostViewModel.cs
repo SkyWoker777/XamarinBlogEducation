@@ -1,13 +1,11 @@
 ﻿using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using XamarinBlogEducation.Core.Services.Interfaces;
-using XamarinBlogEducation.ViewModels.Blog.Items;
-using XamarinBlogEducation.ViewModels.Models.Blog;
+using XamarinBlogEducation.ViewModels.Requests;
+using XamarinBlogEducation.ViewModels.Responses;
 
 namespace XamarinBlogEducation.Core.ViewModels.Fragments
 {
@@ -16,23 +14,23 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
         private string _title;
         private string _description;
         private long _selectedCategoryId;
-        private GetAllCategoriesblogViewItem _selectedCategory;
+        private GetAllCategoryResponseModel _selectedCategory;
         private string _postContent;
         private string _nickName;
         private readonly IBlogService _blogService;
-        private CreatePostBlogViewModel post;
+        private CreatePostBlogRequestModel post;
         public CreatePostViewModel(IBlogService blogService, IMvxNavigationService navigationService) : base(navigationService)
         {
             _blogService = blogService;
 
-            CategoryItems = new MvxObservableCollection<GetAllCategoriesblogViewItem>();
+            CategoryItems = new MvxObservableCollection<GetAllCategoryResponseModel>();
 
             AddNewPostCommand = new MvxAsyncCommand(AddNewPost);
             GoBackCommand = new MvxAsyncCommand(GoBack);
             OpenDialogCommand = new MvxAsyncCommand(OpenDialogAsync);
-            ItemSelectedCommand = new MvxAsyncCommand<GetAllCategoriesblogViewItem>(ItemSelectedAsync);
+            ItemSelectedCommand = new MvxAsyncCommand<GetAllCategoryResponseModel>(ItemSelectedAsync);
         }
-        public override  Task Initialize()
+        public override Task Initialize()
         {
             LoadCategoriesTask = MvxNotifyTask.Create(LoadCategories);
             return Task.FromResult(0);
@@ -43,8 +41,8 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
         public IMvxCommand AddNewPostCommand { get; private set; }
         public IMvxCommand ItemSelectedCommand { get; private set; }
         public IMvxCommand GoBackCommand { get; private set; }
-        private MvxObservableCollection<GetAllCategoriesblogViewItem> _allCategories;
-        public MvxObservableCollection<GetAllCategoriesblogViewItem> CategoryItems
+        private MvxObservableCollection<GetAllCategoryResponseModel> _allCategories;
+        public MvxObservableCollection<GetAllCategoryResponseModel> CategoryItems
         {
             get => _allCategories;
             set
@@ -55,9 +53,9 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
         }
         private async Task LoadCategories()
         {
-          
-            var result = await _blogService.GetAllCategories();
-            List<GetAllCategoriesblogViewItem> categoriesToAdd = new List<GetAllCategoriesblogViewItem>();
+
+            List<GetAllCategoryResponseModel> result = await _blogService.GetAllCategories();
+            List<GetAllCategoryResponseModel> categoriesToAdd = new List<GetAllCategoryResponseModel>();
             categoriesToAdd.AddRange(result);
             for (int i = 0; i < categoriesToAdd.Count; i++)
             {
@@ -74,7 +72,7 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
                 RaisePropertyChanged();
             }
         }
-        public GetAllCategoriesblogViewItem SelectedCategory
+        public GetAllCategoryResponseModel SelectedCategory
         {
             get => _selectedCategory;
             set
@@ -120,16 +118,16 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
                 RaisePropertyChanged();
             }
         }
-        
+
         public async Task AddNewPost()
         {
-            post = new CreatePostBlogViewModel()
+            post = new CreatePostBlogRequestModel()
             {
                 Title = _title,
                 Content = _postContent,
                 CategoryId = _selectedCategoryId,
                 Author = _nickName,
-                Description=_description
+                Description = _description
             };
             await _blogService.AddNewPost(post);
             await DisposeView(this);
@@ -140,9 +138,9 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
             await DisposeView(this);
 
         }
-        private GetAllCategoriesblogViewItem _selectedItem = new GetAllCategoriesblogViewItem();
+        private GetAllCategoryResponseModel _selectedItem = new GetAllCategoryResponseModel();
 
-        public GetAllCategoriesblogViewItem SelectedItem
+        public GetAllCategoryResponseModel SelectedItem
         {
             get => _selectedItem;
             set
@@ -155,7 +153,7 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
         {
             await NavigationService.Navigate<CategoryDialogViewModel>();
         }
-        private async Task ItemSelectedAsync(GetAllCategoriesblogViewItem category)
+        private async Task ItemSelectedAsync(GetAllCategoryResponseModel category)
         {
             _selectedCategoryId = category.Id;
         }

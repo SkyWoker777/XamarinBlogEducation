@@ -4,11 +4,9 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using XamarinBlogEducation.Api.Extensions;
 using XamarinBlogEducation.Business.Services.Interfaces;
-using XamarinBlogEducation.ViewModels.Blog;
-using XamarinBlogEducation.ViewModels.Blog.Items;
-using XamarinBlogEducation.ViewModels.Models.Blog;
+using XamarinBlogEducation.ViewModels.Requests;
+using XamarinBlogEducation.ViewModels.Responses;
 
 namespace XamarinBlogEducation.Api.Controllers
 {
@@ -18,25 +16,25 @@ namespace XamarinBlogEducation.Api.Controllers
     {
         private readonly IPostsService _postService;
         private readonly IMapper _mapper;
-        public CategoryController(IPostsService postsService, ICommentsService commentService, IAccountService accountService, IMapper mapper)
+        public CategoryController(IPostsService postsService, IMapper mapper)
         {
             _postService = postsService;
             _mapper = mapper;
         }
-      
+
         [AllowAnonymous]
         [HttpGet]
         [Route("categories")]
-        public async Task<IActionResult> GetCategories()
+        public async Task<ActionResult<List<GetAllCategoryResponseModel>>> GetCategories()
         {
-            List<DataAccess.Entities.Category> list = await _postService.GetAllCategories();
-            List<GetAllCategoriesblogViewItem> mappedList = _mapper.Map<List<GetAllCategoriesblogViewItem>>(list);
+            var list = await _postService.GetAllCategories();
+            List<GetAllCategoryResponseModel> mappedList = _mapper.Map<List<GetAllCategoryResponseModel>>(list);
             return Ok(mappedList);
         }
-     
+
         [AllowAnonymous]
         [HttpPost("add-new-category")]
-        public async Task<IActionResult> AddCategory([FromBody]GetAllCategoriesblogViewItem newCategory)
+        public async Task<IActionResult> AddCategory([FromBody]AddNewCategoryRequestModel newCategory)
         {
             await _postService.AddCategory(newCategory);
             return Ok();

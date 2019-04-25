@@ -1,25 +1,21 @@
 ﻿using MvvmCross.Commands;
 using MvvmCross.Navigation;
-using MvvmCross.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using XamarinBlogEducation.Core.Services.Interfaces;
-using XamarinBlogEducation.ViewModels.Blog.Items;
+using XamarinBlogEducation.ViewModels.Requests;
 
 namespace XamarinBlogEducation.Core.ViewModels.Fragments
 {
     public class CategoryDialogViewModel : BaseViewModel
     {
         private string _newCategory;
-        private GetAllCategoriesblogViewItem category;
+        private AddNewCategoryRequestModel category;
         private readonly IBlogService _blogService;
         public CategoryDialogViewModel(IBlogService blogService, IMvxNavigationService navigationService) : base(navigationService)
         {
             _blogService = blogService;
             AddCategoryCommand = new MvxAsyncCommand(AddCategoryAsync);
-            GoBackCommand = new MvxAsyncCommand(async() => await DisposeView(this));
+            GoBackCommand = new MvxAsyncCommand(async () => await DisposeView(this));
 
 
         }
@@ -37,13 +33,13 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
         }
         private async Task AddCategoryAsync()
         {
-            category = new GetAllCategoriesblogViewItem()
+            category = new AddNewCategoryRequestModel()
             {
 
                 Category = _newCategory
 
             };
-            var result = await _blogService.AddNewCategory(category);
+            bool result = await _blogService.AddNewCategory(category);
             await DisposeView(this);
 
         }

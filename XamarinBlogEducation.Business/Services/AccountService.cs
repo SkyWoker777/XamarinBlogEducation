@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -8,12 +9,11 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
-using XamarinBlogEducation.ViewModels.Models.Account;
+using XamarinBlogEducation.Business.Exceptions;
 using XamarinBlogEducation.Business.Services.Interfaces;
 using XamarinBlogEducation.DataAccess.Entities;
-using Microsoft.AspNetCore.Http;
-using AutoMapper;
-using XamarinBlogEducation.Business.Exceptions;
+using XamarinBlogEducation.ViewModels.Requests;
+using XamarinBlogEducation.ViewModels.Responses;
 
 namespace XamarinBlogEducation.Business.Services
 {
@@ -23,7 +23,7 @@ namespace XamarinBlogEducation.Business.Services
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IConfiguration _configuration;
         private readonly IMapper _mapper;
-        public AccountService(UserManager<ApplicationUser> userManager,IConfiguration configuration, IMapper mapper)
+        public AccountService(UserManager<ApplicationUser> userManager, IConfiguration configuration, IMapper mapper)
         {
             _userManager = userManager;
             _configuration = configuration;
@@ -31,65 +31,58 @@ namespace XamarinBlogEducation.Business.Services
         }
 
 
-        public async Task<string> SignIn(LoginAccountViewModel model)
+        public async Task<string> SignIn(LoginAccountRequestModel model)
         {
-            
-            var user = await _userManager.FindByEmailAsync(model.Email);
+
+            ApplicationUser user = await _userManager.FindByEmailAsync(model.Email);
             if (user == null)
             {
                 throw new AccountException("User is not found.");
             }
 
-            var isEmailConfirm = await _userManager.IsEmailConfirmedAsync(user);
+            bool isEmailConfirm = await _userManager.IsEmailConfirmedAsync(user);
             if (!isEmailConfirm)
             {
                 throw new AccountException("Email is not confirmed");
             }
 
-            var token = await GetToken(user);
+            string token = await GetToken(user);
             return token;
         }
-        public async Task<EditAccountViewModel> FindUser(string email)
+        public async Task<GetInfoAccountResponseModel> FindUser(string email)
         {
-   
-            var user = await _userManager.FindByEmailAsync(email);
-            var editUser = _mapper.Map<EditAccountViewModel>(user);
+
+            ApplicationUser user = await _userManager.FindByEmailAsync(email);
+            GetInfoAccountResponseModel editUser = _mapper.Map<GetInfoAccountResponseModel>(user);
             if (user == null)
             {
                 throw new AccountException("User is not found.");
             }
             return editUser;
         }
-        public async Task<bool> CreateUser(RegisterAccountViewModel model)
+        public async Task<bool> CreateUser(RegisterAccountRequestModel model)
         {
 
-            var user = await _userManager.FindByEmailAsync(model.Email);
+            ApplicationUser user = await _userManager.FindByEmailAsync(model.Email);
             if (user != null)
             {
                 throw new AccountException($"Email {model.Email} is already taken.");
             }
 
-            var newUser = _mapper.Map<ApplicationUser>(model);   
+            ApplicationUser newUser = _mapper.Map<ApplicationUser>(model);
             newUser.UserName = model.Email.Substring(0, model.Email.IndexOf("@"));
-            newUser.EmailConfirmed = true;       
-            var identityResult = await _userManager.CreateAsync(newUser, model.Password);
+            newUser.EmailConfirmed = true;
+            IdentityResult identityResult = await _userManager.CreateAsync(newUser, model.Password);
             if (!identityResult.Succeeded)
             {
                 throw new AccountException("Registration faild");
             }
-           return identityResult.Succeeded;
+            return identityResult.Succeeded;
         }
-
-        public async Task RemoveUser(string userId)
+        public async Task UpdateUserProfile(EditAccountRequestModel model, string id)
         {
-            var user = await _userManager.FindByIdAsync(userId);
-            await _userManager.DeleteAsync(user);
-        }
-
-        public async Task UpdateUserProfile(EditAccountViewModel model, string id)
-        {
-            var updatedUser = _mapper.Map<ApplicationUser>(model);
-            if (_userManager.FindByEmailAsync(model.Email)== null)
+            ApplicationUser updatedUser = _mapper.Map<ApplicationUser>(model);
+            if (_userManager.FindByEmailAsync(model.Email) == null)
             {
                 updatedUser.Email = model.Email;
             }
@@ -97,10 +90,10 @@ namespace XamarinBlogEducation.Business.Services
             await _userManager.UpdateAsync(updatedUser);
 
         }
-        public async Task ChangeUserPassword(ChangePasswordViewModel model)
+        public async Task ChangeUserPassword(ChangePasswordAccountRequestModel model)
         {
-            var user = await _userManager.FindByEmailAsync(model.Email);
-            var token = model.Token;
+            ApplicationUser user = await _userManager.FindByEmailAsync(model.Email);
+            string token = model.Token;
             if (!await _userManager.CheckPasswordAsync(user, model.OldPassword))
             {
                 throw new AccountException("Wrong password");
@@ -113,15 +106,15 @@ namespace XamarinBlogEducation.Business.Services
                 }
                 else
                 {
-                    await _userManager.ResetPasswordAsync(user, token, model.Password);  
+                    await _userManager.ResetPasswordAsync(user, token, model.Password);
                 }
             }
         }
         private async Task<string> GetToken(ApplicationUser user)
         {
-            var userRoles = await _userManager.GetRolesAsync(user);
-            var userFullName = $"{user.FirstName ?? string.Empty} {user.LastName ?? string.Empty}";
-            var claims = new List<Claim>
+            IList<string> userRoles = await _userManager.GetRolesAsync(user);
+            string userFullName = $"{user.FirstName ?? string.Empty} {user.LastName ?? string.Empty}";
+            List<Claim> claims = new List<Claim>
             {
                 new Claim(JwtRegisteredClaimNames.Email, user.Email),
                 new Claim(JwtRegisteredClaimNames.UniqueName, user.Email),
@@ -132,11 +125,11 @@ namespace XamarinBlogEducation.Business.Services
                 new Claim(ClaimTypes.Surname, user.LastName ?? string.Empty)
             };
             claims.AddRange(userRoles.Select(role => new Claim(ClaimTypes.Role, role)).ToList());
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration.GetValue<string>("Jwt:Key")));
-            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-            var expires = DateTime.Now.AddDays(Convert.ToDouble(_configuration.GetValue<string>("Jwt:LIFETIME")));
+            SymmetricSecurityKey key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration.GetValue<string>("Jwt:Key")));
+            SigningCredentials creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+            DateTime expires = DateTime.Now.AddDays(Convert.ToDouble(_configuration.GetValue<string>("Jwt:LIFETIME")));
 
-            var token = new JwtSecurityToken(
+            JwtSecurityToken token = new JwtSecurityToken(
 
                 issuer: _configuration.GetValue<string>("Jwt:ISSUER"),
                 audience: _configuration.GetValue<string>("Jwt:AUDIENCE"),

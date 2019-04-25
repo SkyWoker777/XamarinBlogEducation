@@ -150,4 +150,10 @@
   <data name="ProfileChangesMessage" xml:space="preserve">
     <value>All changes were saved</value>
   </data>
+  <data name="WrongLogin" xml:space="preserve">
+    <value>Wrong mail or password</value>
+  </data>
+  <data name="SuccessLogin" xml:space="preserve">
+    <value>Successfully logged in</value>
+  </data>
 </root>

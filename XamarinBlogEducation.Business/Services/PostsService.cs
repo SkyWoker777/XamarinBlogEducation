@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using XamarinBlogEducation.ViewModels.Blog;
-using XamarinBlogEducation.ViewModels.Blog.Items;
-using XamarinBlogEducation.ViewModels.Models.Blog;
+using XamarinBlogEducation.ViewModels.Requests;
+using XamarinBlogEducation.ViewModels.Responses;
 using XamarinBlogEducation.Business.Services.Interfaces;
 using XamarinBlogEducation.DataAccess.Entities;
 using XamarinBlogEducation.DataAccess.Repositories.Interfaces;
@@ -30,7 +29,7 @@ namespace XamarinBlogEducation.Business.Services
             _mapper = mapper;
         }
 
-        public async Task CreatePost(CreatePostBlogViewModel postBlog)
+        public async Task CreatePost(CreatePostBlogRequestModel postBlog)
         {
             var post = _mapper.Map<Post>(postBlog);
             var author = await _userManager.FindByIdAsync(postBlog.AuthorId);
@@ -44,7 +43,7 @@ namespace XamarinBlogEducation.Business.Services
         {
             _postsRepository.DeleteAsync(await _postsRepository.GetPost(selectedPostId));
         }
-        public async Task AddCategory(GetAllCategoriesblogViewItem newCategory)
+        public async Task AddCategory(AddNewCategoryRequestModel newCategory)
         {
             Category category = new Category();
             category.Name = newCategory.Category;
@@ -56,7 +55,7 @@ namespace XamarinBlogEducation.Business.Services
             return await _postsRepository.GetPost(postId);
         }
 
-        public async Task EditPostAsync(CreatePostBlogViewModel post)
+        public async Task EditPostAsync(EditPostBlogRequestModel post)
         {
             var oldPost = await _postsRepository.GetPost(post.Id);
             oldPost.Content = post.Content;
@@ -66,7 +65,7 @@ namespace XamarinBlogEducation.Business.Services
         }
 
         public async Task<IEnumerable<Post>> GetAll()
-        {
+        {   //TODO: 12312321
             var result = (await _postsRepository.GetList());
             return result;
         }
@@ -102,7 +101,7 @@ namespace XamarinBlogEducation.Business.Services
             var result = await _postsRepository.GetCategoryName(categoryId);
             return result;
         }
-        public Task<List<GetAllCommentsBlogViewItem>> ShowComments(int selectedPostId)
+        public Task<List<GetAllCommentResponseModel>> ShowComments(int selectedPostId)
         {
             throw new NotImplementedException();
         }

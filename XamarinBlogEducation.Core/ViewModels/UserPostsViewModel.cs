@@ -5,25 +5,25 @@ using Plugin.SecureStorage;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using XamarinBlogEducation.Core.Services.Interfaces;
-using XamarinBlogEducation.ViewModels.Blog.Items;
+using XamarinBlogEducation.ViewModels.Responses;
 
 namespace XamarinBlogEducation.Core.ViewModels.Fragments
 {
-    public class UserPostsViewModel: BaseViewModel
+    public class UserPostsViewModel : BaseViewModel
     {
-        private GetAllPostsBlogViewItem _selectedPost;
+        private GetAllPostResponseModel _selectedPost;
         private readonly IBlogService _blogService;
         public UserPostsViewModel(
             IBlogService blogService,
-            IMvxNavigationService navigationService):base(navigationService)
+            IMvxNavigationService navigationService) : base(navigationService)
         {
 
             _blogService = blogService;
 
-            UserPosts = new MvxObservableCollection<GetAllPostsBlogViewItem>();
+            UserPosts = new MvxObservableCollection<GetAllPostResponseModel>();
             EditPostCommand = new MvxAsyncCommand(EditPost);
             GoBackCommand = new MvxAsyncCommand(async () => await DisposeView(this));
-            PostSelectedCommand = new MvxAsyncCommand<GetAllPostsBlogViewItem>(PostSelected);
+            PostSelectedCommand = new MvxAsyncCommand<GetAllPostResponseModel>(PostSelected);
             FetchPostCommand = new MvxCommand(
                 () =>
                 {
@@ -37,16 +37,16 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
             LoadPostsTask = MvxNotifyTask.Create(LoadPosts);
             return Task.FromResult(0);
         }
-        public IMvxCommand GoBackCommand { get; private set; } 
+        public IMvxCommand GoBackCommand { get; private set; }
         public IMvxCommand EditPostCommand { get; private set; }
-        public IMvxCommand<GetAllPostsBlogViewItem> PostSelectedCommand { get; private set; }
+        public IMvxCommand<GetAllPostResponseModel> PostSelectedCommand { get; private set; }
         public IMvxCommand FetchPostCommand { get; private set; }
         public IMvxCommand RefreshPostsCommand { get; private set; }
         public MvxNotifyTask LoadPostsTask { get; private set; }
         public MvxNotifyTask FetchPostsTask { get; private set; }
 
-        private MvxObservableCollection<GetAllPostsBlogViewItem> _userPosts;
-        public MvxObservableCollection<GetAllPostsBlogViewItem> UserPosts
+        private MvxObservableCollection<GetAllPostResponseModel> _userPosts;
+        public MvxObservableCollection<GetAllPostResponseModel> UserPosts
         {
             get => _userPosts;
             set
@@ -55,13 +55,13 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
                 RaisePropertyChanged(() => UserPosts);
             }
         }
-        
-   
+
+
 
         private async Task LoadPosts()
         {
-            var result = await _blogService.GetUserPosts(CrossSecureStorage.Current.GetValue("UserEmail"));
-            List<GetAllPostsBlogViewItem> postsToAdd = new List<GetAllPostsBlogViewItem>();
+            List<GetAllPostResponseModel> result = await _blogService.GetUserPosts(CrossSecureStorage.Current.GetValue("UserEmail"));
+            List<GetAllPostResponseModel> postsToAdd = new List<GetAllPostResponseModel>();
             postsToAdd.AddRange(result);
             for (int i = 0; i < postsToAdd.Count; i++)
             {
@@ -74,22 +74,22 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
             await NavigationService.Navigate<CreatePostViewModel>();
         }
 
-        private async Task PostSelected(GetAllPostsBlogViewItem selectedPost)
+        private async Task PostSelected(GetAllPostResponseModel selectedPost)
         {
-            await NavigationService.Navigate<EditPostViewModel, GetAllPostsBlogViewItem>(selectedPost);
+            await NavigationService.Navigate<EditPostViewModel, GetAllPostResponseModel>(selectedPost);
         }
         private void RefreshPosts()
         {
             LoadPostsTask = MvxNotifyTask.Create(LoadPosts);
             RaisePropertyChanged(() => LoadPostsTask);
         }
-        public GetAllPostsBlogViewItem SelectedPost
+        public GetAllPostResponseModel SelectedPost
         {
             get => _selectedPost;
             set
             {
                 _selectedPost = value;
-                NavigationService.Navigate<EditPostViewModel, GetAllPostsBlogViewItem>(_selectedPost);
+                NavigationService.Navigate<EditPostViewModel, GetAllPostResponseModel>(_selectedPost);
                 RaisePropertyChanged();
             }
         }

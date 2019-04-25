@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace XamarinBlogEducation.ViewModels.Blog.Items
+namespace XamarinBlogEducation.ViewModels.Responses
 {
-    public class GetAllCategoriesblogViewItem
+    public class GetAllCategoryResponseModel
     {
         public long Id { get; set; }
         public string Category { get; set; }

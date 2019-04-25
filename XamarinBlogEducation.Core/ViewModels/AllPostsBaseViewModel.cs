@@ -1,20 +1,16 @@
 ﻿using MvvmCross.Commands;
 using MvvmCross.Navigation;
-using MvvmCross.ViewModels;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using XamarinBlogEducation.Core.Services.Interfaces;
 using XamarinBlogEducation.Core.ViewModels.Fragments;
-using XamarinBlogEducation.ViewModels.Blog.Items;
 
 namespace XamarinBlogEducation.Core.ViewModels
 {
     public class AllPostsBaseViewModel : BaseViewModel
     {
-        private readonly IBlogService _blogService; 
+        private readonly IBlogService _blogService;
         public AllPostsBaseViewModel(
-            IBlogService blogService, 
-            IMvxNavigationService navigationService): base(navigationService)
+            IBlogService blogService,
+            IMvxNavigationService navigationService) : base(navigationService)
         {
 
             _blogService = blogService;
@@ -34,6 +30,6 @@ namespace XamarinBlogEducation.Core.ViewModels
         public IMvxCommand LoginCommand { get; private set; }
         public IMvxCommand GoBackCommand { get; private set; }
         public IMvxCommand AboutCommand { get; private set; }
-   
+
     }
 }

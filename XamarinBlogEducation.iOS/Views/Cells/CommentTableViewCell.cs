@@ -1,10 +1,9 @@
-﻿using System;
-
-using Foundation;
+﻿using Foundation;
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.Platforms.Ios.Binding.Views;
+using System;
 using UIKit;
-using XamarinBlogEducation.ViewModels.Blog.Items;
+using XamarinBlogEducation.ViewModels.Responses;
 
 namespace XamarinBlogEducation.iOS.Views.Cells
 {
@@ -22,7 +21,7 @@ namespace XamarinBlogEducation.iOS.Views.Cells
         {
             this.DelayBind(() =>
             {
-                var set = this.CreateBindingSet<CommentTableViewCell, GetAllCommentsBlogViewItem>();
+                MvxFluentBindingDescriptionSet<CommentTableViewCell, GetAllCommentResponseModel> set = this.CreateBindingSet<CommentTableViewCell, GetAllCommentResponseModel>();
                 set.Bind(lblAuthor).To(m => m.UserName);
                 set.Bind(lblDate).To(m => m.CreationDate);
                 set.Bind(lblComment).To(m => m.Content);

@@ -1,10 +1,11 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 using System.Threading.Tasks;
 using XamarinBlogEducation.Api.Extensions;
 using XamarinBlogEducation.Business.Services.Interfaces;
-using XamarinBlogEducation.ViewModels.Models.Account;
+using XamarinBlogEducation.ViewModels.Requests;
 
 namespace XamarinBlogEducation.Api.Controllers
 {
@@ -18,7 +19,7 @@ namespace XamarinBlogEducation.Api.Controllers
             _accountService = accountService;
         }
         [HttpPost("profile")]
-        public async Task<IActionResult> Edit([FromBody]EditAccountViewModel model)
+        public async Task<IActionResult> Edit([FromBody]EditAccountRequestModel model)
         {
             var id = User.Identity.GetUserId();
             IActionResult res = BadRequest();
@@ -30,7 +31,7 @@ namespace XamarinBlogEducation.Api.Controllers
             return res;
         }
         [HttpPost("change-password")]
-        public async Task<IActionResult> UpdatePassword([FromBody]ChangePasswordViewModel model)
+        public async Task<IActionResult> UpdatePassword([FromBody]ChangePasswordAccountRequestModel model)
         {
             var id = User.Identity.GetUserId();
             IActionResult res = BadRequest();
@@ -44,8 +45,17 @@ namespace XamarinBlogEducation.Api.Controllers
         [AllowAnonymous]
         [HttpPost]
         [Route("login")]
-        public async Task<IActionResult> Login([FromBody]LoginAccountViewModel loginModel)
+        public async Task<IActionResult> Login([FromBody]LoginAccountRequestModel loginModel)
         {
+            if (!ModelState.IsValid)
+            {
+                string errorMessage = ModelState.Values
+                    .SelectMany(v => v.Errors)
+                    .Select(e => e.ErrorMessage).FirstOrDefault();
+
+                return BadRequest(errorMessage);
+            }
+
             var token = await _accountService.SignIn(loginModel);
             if (token == null)
             {
@@ -53,6 +63,7 @@ namespace XamarinBlogEducation.Api.Controllers
             }
             return Ok(token);
         }
+
         [AllowAnonymous]
         [HttpGet]
         [Route("info")]
@@ -64,7 +75,7 @@ namespace XamarinBlogEducation.Api.Controllers
         [AllowAnonymous]
         [HttpPost]
         [Route("register")]
-        public async Task<IActionResult> Register([FromBody]RegisterAccountViewModel registrationModel)
+        public async Task<IActionResult> Register([FromBody]RegisterAccountRequestModel registrationModel)
         {
             var registrationResult = await _accountService.CreateUser(registrationModel);
             return Ok();

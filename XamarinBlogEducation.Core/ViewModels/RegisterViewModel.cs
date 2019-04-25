@@ -2,7 +2,7 @@
 using MvvmCross.Navigation;
 using System.Threading.Tasks;
 using XamarinBlogEducation.Core.Services.Interfaces;
-using XamarinBlogEducation.ViewModels.Models.Account;
+using XamarinBlogEducation.ViewModels.Requests;
 
 namespace XamarinBlogEducation.Core.ViewModels.Fragments
 {
@@ -15,12 +15,12 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
         private string _lastName;
         private byte[] _userImage;
 
-        private RegisterAccountViewModel user;
-        private EditAccountViewModel loginUser;
+        private RegisterAccountRequestModel user;
+        private EditAccountRequestModel loginUser;
         private readonly IUserService _userService;
 
         public RegisterViewModel(
-            IUserService userService, 
+            IUserService userService,
             IMvxNavigationService navigationService) : base(navigationService)
         {
             _userService = userService;
@@ -45,13 +45,13 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
             get => _password;
             set
             {
-                 _password = value;
+                _password = value;
                 RaisePropertyChanged();
             }
         }
         public string ConfirmPassword
         {
-            get =>_confirmPassword;
+            get => _confirmPassword;
             set
             {
                 _confirmPassword = value;
@@ -75,10 +75,10 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
                 _lastName = value;
                 RaisePropertyChanged();
             }
-        } 
+        }
         public byte[] UserImage
         {
-            get => _userImage ;
+            get => _userImage;
             set
             {
                 _userImage = value;
@@ -88,7 +88,7 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
 
         private async Task RegistrateAsync()
         {
-            user = new RegisterAccountViewModel()
+            user = new RegisterAccountRequestModel()
             {
 
                 Email = _email,
@@ -96,18 +96,18 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
                 ConfirmPassword = _confirmPassword,
                 FirstName = _firstName,
                 LastName = _lastName,
-                UserImage=_userImage
+                UserImage = _userImage
 
             };
-            loginUser = new EditAccountViewModel()
+            loginUser = new EditAccountRequestModel()
             {
-                Email=user.Email
+                Email = user.Email
             };
             await _userService.AddUserAsync(user);
             await _userService.AutologinUserAsync(user);
             await DisposeView(this);
             await NavigationService.Navigate<AllPostsViewModel>();
-            
+
         }
         private async Task LoginAsync()
         {

@@ -1,16 +1,12 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using AutoMapper;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using XamarinBlogEducation.Api.Extensions;
-using XamarinBlogEducation.Business.Services;
 using XamarinBlogEducation.Business.Services.Interfaces;
-using XamarinBlogEducation.ViewModels.Blog;
-using XamarinBlogEducation.ViewModels.Blog.Items;
-using XamarinBlogEducation.ViewModels.Models.Blog;
+using XamarinBlogEducation.ViewModels.Requests;
+using XamarinBlogEducation.ViewModels.Responses;
 
 namespace XamarinBlogEducation.Api.Controllers
 {
@@ -25,7 +21,7 @@ namespace XamarinBlogEducation.Api.Controllers
         }
 
         [HttpPost("comment/{postId}")]
-        public async Task<IActionResult> AddComment([FromBody]AddCommentBlogViewModel newComment)
+        public async Task<IActionResult> AddComment([FromBody]AddCommentRequestBlogView newComment)
         {
             newComment.UserId = User.Identity.GetUserId();
             await _commentService.AddComment(newComment, newComment.PostId);
@@ -33,7 +29,7 @@ namespace XamarinBlogEducation.Api.Controllers
         }
         [AllowAnonymous]
         [HttpGet("comment/{postId}")]
-        public async Task<List<GetAllCommentsBlogViewItem>> GetComments(long postId)
+        public async Task<ActionResult<List<GetAllCommentResponseModel>>> GetComments(long postId)
         {
             return await _commentService.GetAllComments(postId);
         }

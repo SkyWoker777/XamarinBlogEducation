@@ -142,6 +142,15 @@ namespace XamarinBlogEducation.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Successfully logged in.
+        /// </summary>
+        public static string SuccessLogin {
+            get {
+                return ResourceManager.GetString("SuccessLogin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to My posts.
         /// </summary>
         public static string UserPostsTitle {
@@ -156,6 +165,15 @@ namespace XamarinBlogEducation.Core.Resources {
         public static string UserProfileTitle {
             get {
                 return ResourceManager.GetString("UserProfileTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wrong mail or password.
+        /// </summary>
+        public static string WrongLogin {
+            get {
+                return ResourceManager.GetString("WrongLogin", resourceCulture);
             }
         }
     }

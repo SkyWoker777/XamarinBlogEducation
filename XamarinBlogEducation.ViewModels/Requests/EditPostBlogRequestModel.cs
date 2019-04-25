@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace XamarinBlogEducation.ViewModels.Models.Blog
+namespace XamarinBlogEducation.ViewModels.Requests
 {
-    public class CreatePostBlogViewModel
+    public class EditPostBlogRequestModel
     {
         public long Id { get; set; }
         [Required]
@@ -16,11 +16,5 @@ namespace XamarinBlogEducation.ViewModels.Models.Blog
         [Required]
         [StringLength(10000, ErrorMessage = "{0} must be at least {2} characters long.", MinimumLength = 300)]
         public string Content { get; set; }
-        [Required]
-        public long CategoryId { get; set; }
-        [StringLength(50, ErrorMessage = "{0} must be at least {2} characters long.", MinimumLength = 5)]
-        public string Author { get; set; }
-        public string AuthorId { get; set; }
-
     }
 }

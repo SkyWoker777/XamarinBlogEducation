@@ -27,6 +27,7 @@ namespace XamarinBlogEducation.Android.Views.Fragments
         private EditText editLastName;
         private Button btnApplyChanges;
         private Button btnChangePassword;
+
         protected override int FragmentId => Resource.Layout.UserProfileViewModel;
         public override void OnAttachFragment(global::Android.Support.V4.App.Fragment childFragment)
         {

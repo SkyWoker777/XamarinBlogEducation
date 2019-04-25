@@ -1,13 +1,12 @@
-﻿using System;
-using MvvmCross.Platforms.Ios.Views;
-using XamarinBlogEducation.Core.ViewModels.Fragments;
-
-using UIKit;
-using MvvmCross.Binding.BindingContext;
+﻿using MvvmCross.Binding.BindingContext;
 using MvvmCross.Platforms.Ios.Binding.Views;
+using MvvmCross.Platforms.Ios.Views;
 using Plugin.SecureStorage;
+using System;
+using UIKit;
+using XamarinBlogEducation.Core.ViewModels.Fragments;
 using XamarinBlogEducation.iOS.Views.Cells;
-using XamarinBlogEducation.ViewModels.Blog.Items;
+using XamarinBlogEducation.ViewModels.Responses;
 
 namespace XamarinBlogEducation.iOS.Views
 {
@@ -24,7 +23,7 @@ namespace XamarinBlogEducation.iOS.Views
         {
             base.DidReceiveMemoryWarning();
         }
-        
+
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
@@ -39,14 +38,14 @@ namespace XamarinBlogEducation.iOS.Views
             EdgesForExtendedLayout = UIRectEdge.None;
 
             categoryPicker.ShowSelectionIndicator = true;
-            var categoryPikerViewModel = new MvxPickerViewModel(categoryPicker);
+            MvxPickerViewModel categoryPikerViewModel = new MvxPickerViewModel(categoryPicker);
             categoryPicker.Model = categoryPikerViewModel;
             categoryPikerViewModel.SelectedItemChanged += CategoryPikerViewModel_SelectedItemChanged;
 
             filterPicker.ShowSelectionIndicator = true;
-            var filterPickerViewModel = new MvxPickerViewModel(filterPicker);
+            MvxPickerViewModel filterPickerViewModel = new MvxPickerViewModel(filterPicker);
             filterPicker.Model = filterPickerViewModel;
-            var set = this.CreateBindingSet<AllPostsView, AllPostsViewModel>();
+            MvxFluentBindingDescriptionSet<AllPostsView, AllPostsViewModel> set = this.CreateBindingSet<AllPostsView, AllPostsViewModel>();
 
             set.Bind(_source).For(v => v.ItemsSource).To(vm => vm.AllPosts);
             set.Bind(_source).For(v => v.SelectedItem).To(vm => vm.SelectedPost);
@@ -55,13 +54,13 @@ namespace XamarinBlogEducation.iOS.Views
             set.Bind(filterPickerViewModel).For(p => p.SelectedItem).To(vm => vm.SelectedFilter);
 
             set.Apply();
-           
+
             AllPostsTableView.Source = _source;
             AllPostsTableView.ReloadData();
 
             AllPostsTableView.SeparatorColor = UIColor.FromRGBA(109, 179, 206, 255);
             AllPostsTableView.BackgroundColor = UIColor.FromRGBA(209, 188, 171, 255);
-            var threeDotsButton = new UIBarButtonItem
+            UIBarButtonItem threeDotsButton = new UIBarButtonItem
             {
 
                 Image = UIImage.FromFile("icons8_more_48.png")
@@ -74,7 +73,7 @@ namespace XamarinBlogEducation.iOS.Views
             threeDotsButton.Clicked += (a, e) =>
             {
 
-                var alert = UIAlertController.Create("Hi", "choose an action", UIAlertControllerStyle.ActionSheet);
+                UIAlertController alert = UIAlertController.Create("Hi", "choose an action", UIAlertControllerStyle.ActionSheet);
                 alert.AddAction(UIAlertAction.Create("About Us", UIAlertActionStyle.Default, (UIAlertAction obj) =>
                 {
                     ViewModel.AboutUsComand.Execute();
@@ -99,7 +98,7 @@ namespace XamarinBlogEducation.iOS.Views
             };
             if (isUserExists)
             {
-                var menuButton = new UIBarButtonItem
+                UIBarButtonItem menuButton = new UIBarButtonItem
                 {
 
                     Image = UIImage.FromFile("menu.png")
@@ -121,9 +120,9 @@ namespace XamarinBlogEducation.iOS.Views
 
         private void CategoryPikerViewModel_SelectedItemChanged(object sender, EventArgs e)
         {
-            if(categoryPicker.Model is MvxPickerViewModel mvxPickerViewModel)
+            if (categoryPicker.Model is MvxPickerViewModel mvxPickerViewModel)
             {
-                if(mvxPickerViewModel.SelectedItem is GetAllCategoriesblogViewItem item)
+                if (mvxPickerViewModel.SelectedItem is GetAllCategoryResponseModel item)
                 {
                     ViewModel.SelectedCategory = item;
                 }
@@ -138,5 +137,5 @@ namespace XamarinBlogEducation.iOS.Views
             NavigationController.NavigationBar.BackgroundColor = UIColor.FromRGBA(209, 188, 171, 255);
         }
     }
-    
+
 }

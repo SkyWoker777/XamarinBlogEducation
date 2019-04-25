@@ -3,9 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace XamarinBlogEducation.ViewModels.Blog.Items
+namespace XamarinBlogEducation.ViewModels.Responses
 {
-    public class GetAllPostsBlogViewItem
+    public class GetAllPostResponseModel
     {     
         public long Id { get; set; }
         public string Title { get; set; }
@@ -14,7 +14,7 @@ namespace XamarinBlogEducation.ViewModels.Blog.Items
         public long CategoryId { get; set; }
         public string AuthorName { get; set; }
         public string AuthorId { get; set; }
-        public List<GetAllCommentsBlogViewItem> Comments { get; set; }
+        public List<GetAllCommentResponseModel> Comments { get; set; }
         public DateTime CreationDate { get; set; }
         public string Category { get; set; }
     }

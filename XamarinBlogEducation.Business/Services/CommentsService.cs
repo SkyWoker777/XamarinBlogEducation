@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-using XamarinBlogEducation.ViewModels.Models.Blog;
 using XamarinBlogEducation.Business.Services.Interfaces;
 using XamarinBlogEducation.DataAccess.Entities;
 using XamarinBlogEducation.DataAccess.Repositories.Interfaces;
 using AutoMapper;
-using XamarinBlogEducation.ViewModels.Blog.Items;
 using Microsoft.AspNetCore.Identity;
+using XamarinBlogEducation.ViewModels.Requests;
+using XamarinBlogEducation.ViewModels.Responses;
 
 namespace XamarinBlogEducation.Business.Services
 {
@@ -24,17 +24,17 @@ namespace XamarinBlogEducation.Business.Services
             _userManager = userManager;
         }
 
-        public async Task AddComment(AddCommentBlogViewModel newComment, long postId)
+        public async Task AddComment(AddCommentRequestBlogView newComment, long postId)
         {
             var comment = _mapper.Map<Comment>(newComment);
             comment.PostId = postId;
             await _commentsRepository.Add(comment);
         }
 
-        public async Task<List<GetAllCommentsBlogViewItem>> GetAllComments(long postId)
+        public async Task<List<GetAllCommentResponseModel>> GetAllComments(long postId)
         {
             var allComments = await _commentsRepository.GetList(postId);
-            var parsedComments = _mapper.Map<List<GetAllCommentsBlogViewItem>>(allComments);
+            var parsedComments = _mapper.Map<List<GetAllCommentResponseModel>>(allComments);
             foreach(var comment in parsedComments)
             {
                 var author = await _userManager.FindByIdAsync(comment.UserId);

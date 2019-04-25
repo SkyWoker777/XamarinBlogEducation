@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace XamarinBlogEducation.ViewModels.Models.Account
+namespace XamarinBlogEducation.ViewModels.Requests
 {
-   public class ChangePasswordViewModel
+   public class ChangePasswordAccountRequestModel
     {
         
         [DataType(DataType.Password)]

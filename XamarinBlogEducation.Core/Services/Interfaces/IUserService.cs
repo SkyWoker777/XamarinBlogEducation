@@ -1,19 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
-using System.Threading.Tasks;
-using XamarinBlogEducation.ViewModels.Models.Account;
+﻿using System.Threading.Tasks;
+using XamarinBlogEducation.ViewModels.Requests;
 
 namespace XamarinBlogEducation.Core.Services.Interfaces
 {
     public interface IUserService
     {
-        Task<EditAccountViewModel> GetUserAsync(LoginAccountViewModel model);
-        Task AddUserAsync(RegisterAccountViewModel model);
-        Task AutologinUserAsync(RegisterAccountViewModel model);
-        Task UpdateUserAsync(EditAccountViewModel model);
-        Task<EditAccountViewModel> GetUserInfo(string email);
-        Task ChangeUserPassword(ChangePasswordViewModel model);
+        Task<EditAccountRequestModel> GetUserAsync(LoginAccountRequestModel model);
+        Task AddUserAsync(RegisterAccountRequestModel model);
+        Task AutologinUserAsync(RegisterAccountRequestModel model);
+        Task UpdateUserAsync(EditAccountRequestModel model);
+        Task<EditAccountRequestModel> GetUserInfo(string email);
+        Task ChangeUserPassword(ChangePasswordAccountRequestModel model);
+        //Task<CheckLoginAccountViewModel> CheckUser(LoginAccountViewModel model);
     }
 }
