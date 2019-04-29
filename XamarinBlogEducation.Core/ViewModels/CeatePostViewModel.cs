@@ -18,7 +18,7 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
         private string _postContent;
         private string _nickName;
         private readonly IBlogService _blogService;
-        private CreatePostBlogRequestModel post;
+        private CreatePostRequestModel post;
         public CreatePostViewModel(IBlogService blogService, IMvxNavigationService navigationService) : base(navigationService)
         {
             _blogService = blogService;
@@ -121,7 +121,7 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
 
         public async Task AddNewPost()
         {
-            post = new CreatePostBlogRequestModel()
+            post = new CreatePostRequestModel()
             {
                 Title = _title,
                 Content = _postContent,

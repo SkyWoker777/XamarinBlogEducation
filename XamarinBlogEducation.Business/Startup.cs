@@ -46,8 +46,6 @@ namespace XamarinBlogEducation.Business
             services.AddTransient<UserManager<ApplicationUser>>();
             services.AddTransient<SignInManager<ApplicationUser>>();
             services.AddTransient<RoleManager<IdentityRole>>();
-         //  DbSeeder dbSeeder= new DbSeeder(services.)
-          //dbseeder
         }
         public static void EnsureUpdate(IServiceProvider serviceProvider, IConfiguration configuration)
         {

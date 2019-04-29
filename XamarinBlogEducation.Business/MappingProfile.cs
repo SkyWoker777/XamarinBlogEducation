@@ -14,10 +14,11 @@ namespace XamarinBlogEducation.Business
           
             CreateMap<Post, GetAllPostResponseModel>();
             CreateMap<Post, GetDetailsPostResponseModel>();
-            CreateMap<CreatePostBlogRequestModel, Post>();
+            CreateMap<CreatePostRequestModel, Post>();
             CreateMap<ApplicationUser, EditAccountRequestModel>().ReverseMap();
             CreateMap<ApplicationUser, GetInfoAccountResponseModel>().ReverseMap();
             CreateMap<RegisterAccountRequestModel, ApplicationUser>();
+            CreateMap<Post, GetAllUserPostResponseModel>();            
             CreateMap<Category, GetAllCategoryResponseModel>().ForMember(
                 ct=>ct.Category, 
                 opt=>opt.MapFrom(src=>src.Name));

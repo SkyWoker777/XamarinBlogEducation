@@ -11,7 +11,7 @@ namespace XamarinBlogEducation.Business.Services.Interfaces
     public interface IPostsService
     {
         Task<IEnumerable<Post>> GetAll();
-        Task CreatePost(CreatePostBlogRequestModel post);
+        Task CreatePost(CreatePostRequestModel post);
         Task DeletePost(long selectedPostId);
         Task EditPostAsync(EditPostBlogRequestModel post);
         Task<Post> GetDetailsPost(int selectedPostId);

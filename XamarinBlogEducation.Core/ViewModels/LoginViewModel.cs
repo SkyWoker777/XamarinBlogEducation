@@ -18,11 +18,15 @@ namespace XamarinBlogEducation.Core.ViewModels
         private LoginAccountRequestModel user;
         private EditAccountRequestModel _loggedUser;
         private readonly IUserService _userService;
+       // protected readonly IDialogsService _dialogsService;
         private bool isModelValid;
         public LoginViewModel(IUserService userService,
-             IMvxNavigationService navigationService) : base(navigationService)
+             IMvxNavigationService navigationService
+           // , IDialogsService dialogsService
+            ) : base(navigationService)
         {
             _userService = userService;
+           // _dialogsService = dialogsService;
             LoginCommand = new MvxAsyncCommand(LoginAsync);
             SingUpCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<RegisterViewModel>());
             SkipCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<AllPostsViewModel>());
@@ -31,7 +35,7 @@ namespace XamarinBlogEducation.Core.ViewModels
         }
         public IMvxAsyncCommand LoginCommand { get; private set; }
         public IMvxAsyncCommand ValidateCommand { get; private set; }
-        public IMvxCommand GoNextCommand { get; private set; }
+        public IMvxAsyncCommand GoNextCommand { get; private set; }
         public IMvxCommand SingUpCommand { get; private set; }
         public IMvxCommand SkipCommand { get; private set; }
 
@@ -77,12 +81,12 @@ namespace XamarinBlogEducation.Core.ViewModels
                 };
                 _loggedUser = await _userService.GetUserAsync(user);
                 string mail = CrossSecureStorage.Current.GetValue("UserEmail");
-                UserDialogs.Instance.Toast(Strings.SuccessLogin);
+                // UserDialogs.Instance.Toast(Strings.SuccessLogin);
                 await GoNextAsync();
             }
             if (!isModelValid)
             {
-                UserDialogs.Instance.Toast(Strings.WrongLogin);
+              //  UserDialogs.Instance.Toast(Strings.WrongLogin);
             }
 
         }
@@ -94,7 +98,7 @@ namespace XamarinBlogEducation.Core.ViewModels
 
         public async Task Validate()
         {
-            if (!Regex.Match(_email, @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$").Success && !string.IsNullOrWhiteSpace(_password))
+            if (Regex.Match(_email, @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$").Success && !string.IsNullOrWhiteSpace(_password))
             {
                 isModelValid = true;
             }

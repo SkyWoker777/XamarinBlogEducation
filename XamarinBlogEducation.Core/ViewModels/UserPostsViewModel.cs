@@ -11,7 +11,7 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
 {
     public class UserPostsViewModel : BaseViewModel
     {
-        private GetAllPostResponseModel _selectedPost;
+        private GetAllUserPostResponseModel _selectedPost;
         private readonly IBlogService _blogService;
         public UserPostsViewModel(
             IBlogService blogService,
@@ -20,10 +20,10 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
 
             _blogService = blogService;
 
-            UserPosts = new MvxObservableCollection<GetAllPostResponseModel>();
+            UserPosts = new MvxObservableCollection<GetAllUserPostResponseModel>();
             EditPostCommand = new MvxAsyncCommand(EditPost);
             GoBackCommand = new MvxAsyncCommand(async () => await DisposeView(this));
-            PostSelectedCommand = new MvxAsyncCommand<GetAllPostResponseModel>(PostSelected);
+            PostSelectedCommand = new MvxAsyncCommand<GetAllUserPostResponseModel>(PostSelected);
             FetchPostCommand = new MvxCommand(
                 () =>
                 {
@@ -39,14 +39,14 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
         }
         public IMvxCommand GoBackCommand { get; private set; }
         public IMvxCommand EditPostCommand { get; private set; }
-        public IMvxCommand<GetAllPostResponseModel> PostSelectedCommand { get; private set; }
+        public IMvxCommand<GetAllUserPostResponseModel> PostSelectedCommand { get; private set; }
         public IMvxCommand FetchPostCommand { get; private set; }
         public IMvxCommand RefreshPostsCommand { get; private set; }
         public MvxNotifyTask LoadPostsTask { get; private set; }
         public MvxNotifyTask FetchPostsTask { get; private set; }
 
-        private MvxObservableCollection<GetAllPostResponseModel> _userPosts;
-        public MvxObservableCollection<GetAllPostResponseModel> UserPosts
+        private MvxObservableCollection<GetAllUserPostResponseModel> _userPosts;
+        public MvxObservableCollection<GetAllUserPostResponseModel> UserPosts
         {
             get => _userPosts;
             set
@@ -60,8 +60,8 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
 
         private async Task LoadPosts()
         {
-            List<GetAllPostResponseModel> result = await _blogService.GetUserPosts(CrossSecureStorage.Current.GetValue("UserEmail"));
-            List<GetAllPostResponseModel> postsToAdd = new List<GetAllPostResponseModel>();
+            List<GetAllUserPostResponseModel> result = await _blogService.GetUserPosts(CrossSecureStorage.Current.GetValue("UserEmail"));
+            List<GetAllUserPostResponseModel> postsToAdd = new List<GetAllUserPostResponseModel>();
             postsToAdd.AddRange(result);
             for (int i = 0; i < postsToAdd.Count; i++)
             {
@@ -74,22 +74,22 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
             await NavigationService.Navigate<CreatePostViewModel>();
         }
 
-        private async Task PostSelected(GetAllPostResponseModel selectedPost)
+        private async Task PostSelected(GetAllUserPostResponseModel selectedPost)
         {
-            await NavigationService.Navigate<EditPostViewModel, GetAllPostResponseModel>(selectedPost);
+            await NavigationService.Navigate<EditPostViewModel, GetAllUserPostResponseModel>(selectedPost);
         }
         private void RefreshPosts()
         {
             LoadPostsTask = MvxNotifyTask.Create(LoadPosts);
             RaisePropertyChanged(() => LoadPostsTask);
         }
-        public GetAllPostResponseModel SelectedPost
+        public GetAllUserPostResponseModel SelectedPost
         {
             get => _selectedPost;
             set
             {
                 _selectedPost = value;
-                NavigationService.Navigate<EditPostViewModel, GetAllPostResponseModel>(_selectedPost);
+                NavigationService.Navigate<EditPostViewModel, GetAllUserPostResponseModel>(_selectedPost);
                 RaisePropertyChanged();
             }
         }

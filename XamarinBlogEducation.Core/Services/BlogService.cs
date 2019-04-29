@@ -28,7 +28,7 @@ namespace XamarinBlogEducation.Core.Services
             return parsedResult;
 
         }
-        public async Task AddNewPost(CreatePostBlogRequestModel model)
+        public async Task AddNewPost(CreatePostRequestModel model)
         {
             using (var client = new HttpClient())
             {
@@ -36,7 +36,8 @@ namespace XamarinBlogEducation.Core.Services
                     var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
                     var message = new HttpRequestMessage(HttpMethod.Post, "http://195.26.92.83:6776/api/Post/post");
                     message.Content = httpContent;
-                    client.DefaultRequestHeaders.Add("Authorization", $"{"Bearer"}{CrossSecureStorage.Current.GetValue("securityToken")}");
+                var token = CrossSecureStorage.Current.GetValue("securityToken");
+                    client.DefaultRequestHeaders.Add("Authorization", $"{"Bearer "}{token}");
                     var response = await client.SendAsync(message);   
             }
         }
@@ -49,7 +50,7 @@ namespace XamarinBlogEducation.Core.Services
                 var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
                 var message = new HttpRequestMessage(HttpMethod.Post, url);
                 message.Content = httpContent;
-                client.DefaultRequestHeaders.Add("Authorization", $"{"Bearer"}{CrossSecureStorage.Current.GetValue("securityToken")}");
+                client.DefaultRequestHeaders.Add("Authorization", $"{"Bearer "}{CrossSecureStorage.Current.GetValue("securityToken")}");
                 var response = await client.SendAsync(message);
             }
         }
@@ -71,18 +72,18 @@ namespace XamarinBlogEducation.Core.Services
             var parsedResult = await _httpService.ProcessJson<List<GetAllPostResponseModel>>(result);
             return parsedResult;
         }
-        public async Task<List<GetAllPostResponseModel>> GetUserPosts(string userEmail)
+        public async Task<List<GetAllUserPostResponseModel>> GetUserPosts(string userEmail)
         {
-            var parsedResult = new List<GetAllPostResponseModel>();
+            var parsedResult = new List<GetAllUserPostResponseModel>();
             using (var client = new HttpClient())
             {
                 var url = $"{"http://195.26.92.83:6776/api/Post/user-posts-list?useremail="}{userEmail}";
                 var message = new HttpRequestMessage(HttpMethod.Get, url);
-                client.DefaultRequestHeaders.Add("Authorization", $"{"Bearer"}{CrossSecureStorage.Current.GetValue("securityToken")}");
+                client.DefaultRequestHeaders.Add("Authorization", $"{"Bearer "}{CrossSecureStorage.Current.GetValue("securityToken")}");
                 var response = await client.SendAsync(message);
                 if (response.IsSuccessStatusCode)
                 {
-                    parsedResult = await _httpService.ProcessJson<List<GetAllPostResponseModel>>(response);
+                    parsedResult = await _httpService.ProcessJson<List<GetAllUserPostResponseModel>>(response);
                     return parsedResult;
                 }
                 return parsedResult;
@@ -103,7 +104,7 @@ namespace XamarinBlogEducation.Core.Services
                 var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
                 var message = new HttpRequestMessage(HttpMethod.Post, "http://195.26.92.83:6776/api/Post/edit-post");
                 message.Content = httpContent;
-                client.DefaultRequestHeaders.Add("Authorization", $"{"Bearer"}{CrossSecureStorage.Current.GetValue("securityToken")}");
+                client.DefaultRequestHeaders.Add("Authorization", $"{"Bearer "}{CrossSecureStorage.Current.GetValue("securityToken")}");
                 var response = await client.SendAsync(message);
             }
         }

@@ -81,13 +81,18 @@ namespace XamarinBlogEducation.Business.Services
         }
         public async Task UpdateUserProfile(EditAccountRequestModel model, string id)
         {
-            ApplicationUser updatedUser = _mapper.Map<ApplicationUser>(model);
-            if (_userManager.FindByEmailAsync(model.Email) == null)
+            var updatedUser = await _userManager.FindByIdAsync(id);
+            var userByEmail = await _userManager.FindByEmailAsync(model.Email);
+            if (userByEmail == null)
             {
                 updatedUser.Email = model.Email;
             }
-            updatedUser.Id = id;
+            updatedUser.UserName = model.Email.Substring(0, model.Email.IndexOf("@"));
+            updatedUser.FirstName = model.FirstName;
+            updatedUser.LastName = model.LastName;
+            updatedUser.UserImage = model.UserImage;
             await _userManager.UpdateAsync(updatedUser);
+
 
         }
         public async Task ChangeUserPassword(ChangePasswordAccountRequestModel model)

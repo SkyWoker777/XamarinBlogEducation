@@ -31,7 +31,7 @@ namespace XamarinBlogEducation.Android.Views.Fragments
             {
                 inpEmail = view.FindViewById<EditText>(Resource.Id.inputEmail);
             }
-
+            
             inpPassword = view.FindViewById<EditText>(Resource.Id.inputPassword);
             btnLogin = view.FindViewById<Button>(Resource.Id.buttonLogin);
             btnRegister = view.FindViewById<Button>(Resource.Id.buttonRegister);
@@ -40,7 +40,6 @@ namespace XamarinBlogEducation.Android.Views.Fragments
             MvxFluentBindingDescriptionSet<LoginFragment, LoginViewModel> set = this.CreateBindingSet<LoginFragment, LoginViewModel>();
             set.Bind(inpEmail).To(vm => vm.Email);
             set.Bind(inpPassword).To(vm => vm.Password);
-
             set.Apply();
 
             btnLogin.Click += loginButton_OnClickAsync;
@@ -55,25 +54,26 @@ namespace XamarinBlogEducation.Android.Views.Fragments
 
             return view;
         }
-
+        
         private async void loginButton_OnClickAsync(object sender, EventArgs e)
         {
-            await ViewModel.ValidateCommand.ExecuteAsync();
-
-            loginResult = ViewModel.loginMessage;
-            if (loginResult == Strings.SuccessLogin)
-            {
-                string toast = Strings.SuccessLogin;
-                Toast.MakeText(Context, toast, ToastLength.Long).Show();
-                ViewModel.LoginCommand.Execute();
-            }
-            if (loginResult == Strings.WrongLogin)
-            {
-                inpEmail.Text = "";
-                inpPassword.Text = "";
-                string toast = Strings.WrongLogin;
-                Toast.MakeText(Context, toast, ToastLength.Long).Show();
-            }
+            
+            await ViewModel.LoginCommand.ExecuteAsync();
+           // await ViewModel.GoNextCommand.ExecuteAsync();
+            //loginResult = ViewModel.loginMessage;
+            //if (loginResult == Strings.SuccessLogin)
+            //{
+            //    string toast = Strings.SuccessLogin;
+            //    Toast.MakeText(Context, toast, ToastLength.Long).Show();
+            //    ViewModel.LoginCommand.Execute();
+            //}
+            //if (loginResult == Strings.WrongLogin)
+            //{
+            //    inpEmail.Text = "";
+            //    inpPassword.Text = "";
+            //    string toast = Strings.WrongLogin;
+            //    Toast.MakeText(Context, toast, ToastLength.Long).Show();
+            //}
 
         }
     }

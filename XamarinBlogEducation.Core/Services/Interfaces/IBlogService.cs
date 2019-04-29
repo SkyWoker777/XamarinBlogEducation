@@ -14,10 +14,10 @@ namespace XamarinBlogEducation.Core.Services.Interfaces
         Task<List<GetAllPostResponseModel>> GetAllPosts();
         Task<List<GetAllCategoryResponseModel>> GetAllCategories();
         Task<List<GetAllCommentResponseModel>> GetAllComments(long postId);
-        Task AddNewPost(CreatePostBlogRequestModel model);
+        Task AddNewPost(CreatePostRequestModel model);
         Task AddComment(AddCommentRequestBlogView model);
         Task<bool> AddNewCategory(AddNewCategoryRequestModel category);
-        Task<List<GetAllPostResponseModel>> GetUserPosts(string userEmail);
+        Task<List<GetAllUserPostResponseModel>> GetUserPosts(string userEmail);
         Task NavigatePosts();
         Task UpdatePost(EditPostBlogRequestModel model);
         Task RemovePost();

@@ -34,6 +34,21 @@ namespace XamarinBlogEducation.Android.Views.Fragments
             var view= base.OnCreateView(inflater, container, savedInstanceState);
             ((AppCompatActivity)Activity).SupportActionBar.SetDisplayShowTitleEnabled(true);
             ((AppCompatActivity)Activity).SupportActionBar.SetTitle(Resource.String.CreatePostTitle);
+            if (Activity is MainView mainView)
+            {
+                mainView.BackButtonPressed += (s, e) =>
+                {
+                    var fragmentsCount = Activity.FragmentManager.BackStackEntryCount;
+                    if (fragmentsCount > 1)
+                    {
+                        ViewModel.GoBackCommand?.Execute();
+                    }
+                    else
+                    {
+                        mainView.ViewModel.GoBackCommand?.Execute();
+                    }
+                };
+            }
             btnAddNewPost = view.FindViewById<Button>(Resource.Id.addNewPostButton);
             btnAddCategory = view.FindViewById<Button>(Resource.Id.addCategoryButton);
             mvxSpinner = view.FindViewById<MvxAppCompatSpinner>(Resource.Id.allCategoriesSpinner);

@@ -47,7 +47,7 @@ namespace XamarinBlogEducation.Api.Controllers
             }
             return Ok(mappedList);
         }
-        [Authorize(JwtBearerDefaults.AuthenticationScheme)]
+   
         [HttpDelete]
         [Route("post")]
         public async Task<IActionResult> DeleteAsync(int postId)
@@ -55,18 +55,18 @@ namespace XamarinBlogEducation.Api.Controllers
             await _postService.DeletePost(postId);
             return Ok();
         }
-        [AllowAnonymous]
+        
         [HttpPost]
         [Route("post")]
-        public async Task<IActionResult> Add([FromBody]CreatePostBlogRequestModel newpost)
+        public async Task<IActionResult> Add([FromBody]CreatePostRequestModel newpost)
         {
             string id = User.Identity.GetUserId();
             newpost.AuthorId = id;
             await _postService.CreatePost(newpost);
             return Ok();
         }
-        [Authorize(JwtBearerDefaults.AuthenticationScheme)]
-        [HttpPost()]
+       
+        [HttpPost]
         [Route("edit-post")]
         public async Task<IActionResult> EditPost([FromBody]EditPostBlogRequestModel post)
         {
@@ -76,14 +76,15 @@ namespace XamarinBlogEducation.Api.Controllers
 
         [HttpGet]
         [Route("user-posts-list")]
-        public async Task<IActionResult> GetUserPosts(string userEmail)
+        public async Task<ActionResult<List<GetAllUserPostResponseModel>>> GetUserPosts(string userEmail)
         {
             IEnumerable<DataAccess.Entities.Post> list = await _postService.GetUserPosts(userEmail);
-            List<GetAllPostResponseModel> mappedList = _mapper.Map<List<GetAllPostResponseModel>>(list);
+            List<GetAllUserPostResponseModel> mappedList = _mapper.Map<List<GetAllUserPostResponseModel>>(list);
             return Ok(mappedList);
         }
-        [AllowAnonymous]
-        [HttpPost("delete/{postId}")]
+       
+        [HttpPost]
+        [Route("delete/{postId}")]
         public async Task<IActionResult> DeletePost(long postId)
         {
             await _postService.DeletePost(postId);

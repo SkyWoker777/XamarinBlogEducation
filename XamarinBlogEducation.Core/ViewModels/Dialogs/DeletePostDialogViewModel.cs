@@ -7,9 +7,9 @@ using XamarinBlogEducation.ViewModels.Responses;
 
 namespace XamarinBlogEducation.Core.ViewModels.Dialogs
 {
-    public class DeletePostDialogViewModel : BaseViewModel<GetAllPostResponseModel>
+    public class DeletePostDialogViewModel : BaseViewModel<GetAllUserPostResponseModel>
     {
-        public GetAllPostResponseModel currentPost;
+        public GetAllUserPostResponseModel currentPost;
         private readonly IBlogService _blogService;
         public DeletePostDialogViewModel(IMvxNavigationService navigationService, IBlogService blogService) : base(navigationService)
         {
@@ -20,7 +20,7 @@ namespace XamarinBlogEducation.Core.ViewModels.Dialogs
         public IMvxCommand CancelCommand { get; private set; }
         public IMvxCommand DeleteCommand { get; private set; }
 
-        public override void Prepare(GetAllPostResponseModel parameter)
+        public override void Prepare(GetAllUserPostResponseModel parameter)
         {
             currentPost = parameter;
         }

@@ -11,10 +11,10 @@ namespace XamarinBlogEducation.Api.Controllers
 {
    [Authorize(JwtBearerDefaults.AuthenticationScheme)]
     [Route("api/[controller]")]
-    public class UserController : Controller
+    public class AccountController : Controller
     {
         private readonly IAccountService _accountService;
-        public UserController(IAccountService accountService)
+        public AccountController(IAccountService accountService)
         {
             _accountService = accountService;
         }
@@ -23,8 +23,8 @@ namespace XamarinBlogEducation.Api.Controllers
         {
             var id = User.Identity.GetUserId();
             IActionResult res = BadRequest();
-            await _accountService.UpdateUserProfile(model, id);
-            if (_accountService.UpdateUserProfile(model, id).IsCompleted)
+            await _accountService.UpdateUserProfile(model,id);
+            if (_accountService.UpdateUserProfile(model,id).IsCompleted)
             {
                 return Ok();
             }

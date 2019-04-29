@@ -19,7 +19,7 @@ namespace XamarinBlogEducation.Core.Services.Interfaces
         }
         public async Task AddUserAsync(RegisterAccountRequestModel model)
         {
-            string url = "/User/register";
+            string url = "/Account/register";
             string json = JsonConvert.SerializeObject(model);
             StringContent httpContent = new StringContent(json, Encoding.UTF8, "application/json");
             HttpResponseMessage result = await _httpService.ExecuteQuery(url, HttpOperationMode.POST, httpContent);
@@ -30,7 +30,7 @@ namespace XamarinBlogEducation.Core.Services.Interfaces
         {
             string testToken;
             EditAccountRequestModel loggedUser = new EditAccountRequestModel();
-            string url = "/User/login";
+            string url = "/Account/login";
             string json = JsonConvert.SerializeObject(model);
             StringContent httpContent = new StringContent(json, Encoding.UTF8, "application/json");
             HttpResponseMessage response = await _httpService.ExecuteQuery(url, HttpOperationMode.POST, httpContent);
@@ -51,9 +51,8 @@ namespace XamarinBlogEducation.Core.Services.Interfaces
         }
         public async Task<EditAccountRequestModel> GetUserInfo(string email)
         {
-            string url = "/User/info";
-            StringContent httpContent = new StringContent(email, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = await _httpService.ExecuteQuery(url, HttpOperationMode.POST, httpContent);
+            string url = $"{ "/Account/info?userEmail=" }{ email }";
+            HttpResponseMessage response = await _httpService.ExecuteQuery(url, HttpOperationMode.GET);
             EditAccountRequestModel parsedResult = await _httpService.ProcessJson<EditAccountRequestModel>(response);
             return parsedResult;
 
@@ -66,7 +65,7 @@ namespace XamarinBlogEducation.Core.Services.Interfaces
                 {
                     string json = JsonConvert.SerializeObject(model);
                     StringContent httpContent = new StringContent(json, Encoding.UTF8, "application/json");
-                    HttpRequestMessage message = new HttpRequestMessage(HttpMethod.Post, "http://195.26.92.83:6776/api/User/profile")
+                    HttpRequestMessage message = new HttpRequestMessage(HttpMethod.Post, "http://195.26.92.83:6776/api/Account/profile")
                     {
                         Content = httpContent
                     };
@@ -86,7 +85,7 @@ namespace XamarinBlogEducation.Core.Services.Interfaces
         public async Task ChangeUserPassword(ChangePasswordAccountRequestModel model)
         {
             model.Token = CrossSecureStorage.Current.GetValue("securityToken");
-            string url = "/User/change-password";
+            string url = "/Account/change-password";
             string json = JsonConvert.SerializeObject(model);
             StringContent httpContent = new StringContent(json, Encoding.UTF8, "application/json");
             HttpResponseMessage result = await _httpService.ExecuteQuery(url, HttpOperationMode.POST, httpContent);
@@ -103,7 +102,7 @@ namespace XamarinBlogEducation.Core.Services.Interfaces
         }
         //public async Task<CheckLoginAccountViewModel> CheckUser (LoginAccountViewModel model)
         //{
-        //    var url = "/User/check";
+        //    var url = "/Account/check";
         //    var json = JsonConvert.SerializeObject(model);
         //    var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
         //    var result = await _httpService.ExecuteQuery(url, HttpOperationMode.POST, httpContent);

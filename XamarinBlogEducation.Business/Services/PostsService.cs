@@ -29,7 +29,7 @@ namespace XamarinBlogEducation.Business.Services
             _mapper = mapper;
         }
 
-        public async Task CreatePost(CreatePostBlogRequestModel postBlog)
+        public async Task CreatePost(CreatePostRequestModel postBlog)
         {
             var post = _mapper.Map<Post>(postBlog);
             var author = await _userManager.FindByIdAsync(postBlog.AuthorId);
