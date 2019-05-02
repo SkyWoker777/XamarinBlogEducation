@@ -1,6 +1,8 @@
-﻿using MvvmCross.Commands;
+﻿using Acr.UserDialogs;
+using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using System.Threading.Tasks;
+using XamarinBlogEducation.Core.Resources;
 using XamarinBlogEducation.Core.Services.Interfaces;
 using XamarinBlogEducation.ViewModels.Requests;
 
@@ -14,15 +16,18 @@ namespace XamarinBlogEducation.Core.ViewModels.Dialogs
         private string _email;
         private ChangePasswordAccountRequestModel passwordModel;
         private readonly IUserService _userService;
-        public ChangePasswordDialogViewModel(IUserService userService, IMvxNavigationService navigationService) : base(navigationService)
+        private readonly IUserDialogs _userDialogs;
+        private bool isModelValid;
+        public ChangePasswordDialogViewModel(IUserService userService, IUserDialogs userDialogs, IMvxNavigationService navigationService) : base(navigationService)
         {
             _userService = userService;
+            _userDialogs = userDialogs;
             ChangePasswordCommand = new MvxAsyncCommand(ChangePassword);
             GoBackCommand = new MvxAsyncCommand(async () => await DisposeView(this));
 
         }
-        public IMvxCommand ChangePasswordCommand { get; private set; }
-        public IMvxCommand GoBackCommand { get; private set; }
+        public IMvxAsyncCommand ChangePasswordCommand { get; private set; }
+        public IMvxAsyncCommand GoBackCommand { get; private set; }
         public string NewPassword
         {
             get => _newPassword;
@@ -49,20 +54,50 @@ namespace XamarinBlogEducation.Core.ViewModels.Dialogs
         }
         private async Task ChangePassword()
         {
-            passwordModel = new ChangePasswordAccountRequestModel()
+            Validate();
+            if (isModelValid)
             {
-                Password = _newPassword,
-                OldPassword = _oldPassword,
-                ConfirmPassword = _comfirmPassword,
-                Token = "",
-                Email = _email
-            };
-            await _userService.ChangeUserPassword(passwordModel);
+                passwordModel = new ChangePasswordAccountRequestModel()
+                {
+                    Password = _newPassword,
+                    OldPassword = _oldPassword,
+                    ConfirmPassword = _comfirmPassword,
+                    Token = "",
+                    Email = _email
+                };
+                var isResultSuccesful= await _userService.ChangeUserPassword(passwordModel);
+                if (isResultSuccesful)
+                {
+                    _userDialogs.Toast(Strings.SuccessChangePassword);
+                }
+                if (!isResultSuccesful)
+                {
+                    _userDialogs.Toast(Strings.ErrorChangePassword);
+                }
+                await DisposeView(this);
+            }
 
         }
         public override void Prepare(LoginAccountRequestModel parameter)
         {
             Email = parameter.Email;
+        }
+        public void Validate()
+        {
+            isModelValid = true;
+            if (!string.IsNullOrEmpty(_newPassword) && !string.IsNullOrEmpty(_comfirmPassword) && !string.IsNullOrEmpty(_oldPassword))
+            {
+                if (_newPassword != _comfirmPassword)
+                {
+                    _userDialogs.Toast(Strings.DifferentPasswords);
+                    isModelValid = false;
+                }
+            }
+            if (string.IsNullOrEmpty(_newPassword) || string.IsNullOrEmpty(_comfirmPassword) || string.IsNullOrEmpty(_oldPassword))
+            {
+                _userDialogs.Toast(Strings.EmptyField);
+                isModelValid = false;
+            }
         }
     }
 }

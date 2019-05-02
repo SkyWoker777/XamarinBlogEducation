@@ -7,103 +7,85 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UserProfileView">
             <connections>
-                <outlet property="view" destination="1" id="view-outlet-11111"/>
-                <outlet property="textEditUserName" destination="365" id="name-outlet-365"/>
-                <outlet property="textEditUserLastName" destination="2011" id="name-outlet-2011"/>
-                <outlet property="textEditUserEmail" destination="2389" id="name-outlet-2389"/>
-                <outlet property="changePasswordBtn" destination="3003" id="name-outlet-3003"/>
-                <outlet property="btnSaveChanges" destination="3005" id="name-outlet-3005"/>
+                <outlet property="view" destination="1" id="view-outlet-593"/>
+                <outlet property="textEditUserEmail" destination="593" id="name-outlet-593"/>
+                <outlet property="textEditUserLastName" destination="595" id="name-outlet-595"/>
+                <outlet property="textEditUserName" destination="594" id="name-outlet-594"/>
+                <outlet property="changePasswordBtn" destination="597" id="name-outlet-597"/>
+                <outlet property="btnSaveChanges" destination="598" id="name-outlet-598"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="1">
             <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <color key="backgroundColor" customColorSpace="sRGB" colorSpace="calibratedRGB" red="0.81960784313725488" green="0.73725490196078436" blue="0.6705882352941176" alpha="1"/>
+            <color key="backgroundColor" colorSpace="calibratedRGB" red="0.81960784313725488" green="0.73725490196078436" blue="0.6705882352941176" alpha="1"/>
             <subviews>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="365" translatesAutoresizingMaskIntoConstraints="NO" placeholder="Your Name">
-                    <rect key="frame" x="24" y="283" width="359" height="30"/>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="593" translatesAutoresizingMaskIntoConstraints="NO" placeholder="Your Email">
+                    <rect key="frame" x="8" y="293" width="398" height="30"/>
                     <nil key="textColor"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                     <color key="backgroundColor" colorSpace="calibratedRGB" red="0.6705882352941176" green="0.55686274509803924" blue="0.46274509803921571" alpha="1"/>
                 </textField>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Here you can edit your profile" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="575" translatesAutoresizingMaskIntoConstraints="NO">
-                    <rect key="frame" x="65" y="208" width="284" height="21"/>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="594" translatesAutoresizingMaskIntoConstraints="NO" placeholder="Your Name">
+                    <rect key="frame" x="8" y="353" width="398" height="30"/>
+                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                    <color key="backgroundColor" colorSpace="calibratedRGB" red="0.6705882352941176" green="0.55686274509803924" blue="0.46274509803921571" alpha="1"/>
+                </textField>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="595" translatesAutoresizingMaskIntoConstraints="NO" placeholder="Your Lastname">
+                    <rect key="frame" x="8" y="413" width="398" height="30"/>
+                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                    <color key="backgroundColor" colorSpace="calibratedRGB" red="0.6705882352941176" green="0.55686274509803924" blue="0.46274509803921571" alpha="1"/>
+                </textField>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Here you can manage your profile" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="596" translatesAutoresizingMaskIntoConstraints="NO" numberOfLines="2">
+                    <rect key="frame" x="8" y="172" width="398" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="2011" translatesAutoresizingMaskIntoConstraints="NO" placeholder="Your Last Name">
-                    <rect key="frame" x="24" y="333" width="359" height="30"/>
-                    <nil key="textColor"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits"/>
-                    <color key="backgroundColor" colorSpace="calibratedRGB" red="0.6705882352941176" green="0.55686274509803924" blue="0.46274509803921571" alpha="1"/>
-                </textField>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="2389" translatesAutoresizingMaskIntoConstraints="NO" placeholder="Your Email">
-                    <rect key="frame" x="24" y="383" width="359" height="30"/>
-                    <nil key="textColor"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits"/>
-                    <color key="backgroundColor" colorSpace="calibratedRGB" red="0.6705882352941176" green="0.55686274509803924" blue="0.46274509803921571" alpha="1"/>
-                </textField>
-                <view contentMode="scaleToFill" id="3002" translatesAutoresizingMaskIntoConstraints="NO">
-                    <rect key="frame" x="24" y="432" width="359" height="50"/>
-                    <subviews>
-                        <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="3003" translatesAutoresizingMaskIntoConstraints="NO">
-                            <rect key="frame" x="8" y="5" width="161.5" height="40"/>
-                            <color key="tintColor" colorSpace="calibratedRGB" red="0.42745098039215684" green="0.70196078431372544" blue="0.807843137254902" alpha="1"/>
-                            <color key="backgroundColor" colorSpace="calibratedRGB" red="0.42745098039215684" green="0.70196078431372544" blue="0.807843137254902" alpha="1"/>
-                            <state key="normal" title="CHANGE PASSWORD">
-                                <color key="titleColor" colorSpace="calibratedWhite" white="0" alpha="1"/>
-                            </state>
-                            <constraints>
-                                <constraint id="3004" firstAttribute="height" constant="40"/>
-                            </constraints>
-                        </button>
-                        <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="3005" translatesAutoresizingMaskIntoConstraints="NO">
-                            <rect key="frame" x="189.5" y="5" width="161.5" height="40"/>
-                            <color key="tintColor" colorSpace="calibratedRGB" red="0.42745098039215684" green="0.70196078431372544" blue="0.807843137254902" alpha="1"/>
-                            <color key="backgroundColor" colorSpace="calibratedRGB" red="0.42745098039215684" green="0.70196078431372544" blue="0.807843137254902" alpha="1"/>
-                            <state key="normal" title="SAVE CHANGES">
-                                <color key="titleColor" colorSpace="calibratedWhite" white="0" alpha="1"/>
-                            </state>
-                            <constraints>
-                                <constraint id="3006" firstAttribute="height" constant="40"/>
-                            </constraints>
-                        </button>
-                    </subviews>
-                    <color key="tintColor" colorSpace="calibratedRGB" red="0.81960784313725488" green="0.73725490196078436" blue="0.6705882352941176" alpha="1"/>
-                    <color key="backgroundColor" colorSpace="calibratedRGB" red="0.81960784313725488" green="0.73725490196078436" blue="0.6705882352941176" alpha="1"/>
-                    <constraints>
-                        <constraint id="3008" firstItem="3003" firstAttribute="leading" secondItem="3002" secondAttribute="leading" constant="8"/>
-                        <constraint id="3010" firstItem="3005" firstAttribute="top" secondItem="3002" secondAttribute="top" constant="5"/>
-                        <constraint id="3011" firstItem="3005" firstAttribute="width" secondItem="3003" secondAttribute="width"/>
-                        <constraint id="3012" firstAttribute="trailing" secondItem="3005" secondAttribute="trailing" constant="8"/>
-                        <constraint id="3013" firstAttribute="height" constant="50"/>
-                        <constraint id="8021" firstItem="3003" firstAttribute="top" secondItem="3002" secondAttribute="top" constant="5"/>
-                        <constraint id="8331" firstItem="3005" firstAttribute="leading" secondItem="3003" secondAttribute="trailing" constant="20"/>
-                    </constraints>
-                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="597" translatesAutoresizingMaskIntoConstraints="NO">
+                    <rect key="frame" x="8" y="465" width="179" height="30"/>
+                    <color key="backgroundColor" colorSpace="calibratedRGB" red="0.42745098039215684" green="0.70196078431372544" blue="0.807843137254902" alpha="1"/>
+                    <state key="normal" title="CHANGE PASSWORD">
+                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="598" translatesAutoresizingMaskIntoConstraints="NO">
+                    <rect key="frame" x="227" y="465" width="179" height="30"/>
+                    <color key="backgroundColor" colorSpace="calibratedRGB" red="0.42745098039215684" green="0.70196078431372544" blue="0.807843137254902" alpha="1"/>
+                    <state key="normal" title="SAVE CHANGES">
+                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                    </state>
+                </button>
             </subviews>
             <constraints>
-                <constraint id="6774" firstAttribute="centerY" secondItem="2011" secondAttribute="centerY" constant="20"/>
-                <constraint id="6852" firstAttribute="centerX" secondItem="2011" secondAttribute="centerX" constant="3.5"/>
-                <constraint id="7007" firstItem="2011" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="24"/>
-                <constraint id="7085" firstAttribute="trailing" secondItem="2011" secondAttribute="trailing" constant="31"/>
-                <constraint id="7163" firstItem="365" firstAttribute="width" secondItem="2011" secondAttribute="width"/>
-                <constraint id="7241" firstItem="2389" firstAttribute="width" secondItem="2011" secondAttribute="width"/>
-                <constraint id="7319" firstItem="2011" firstAttribute="top" secondItem="365" secondAttribute="bottom" constant="20"/>
-                <constraint id="7397" firstItem="2389" firstAttribute="top" secondItem="2011" secondAttribute="bottom" constant="20"/>
-                <constraint id="7475" firstItem="365" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="24"/>
-                <constraint id="7553" firstItem="2389" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="24"/>
-                <constraint id="7631" firstItem="365" firstAttribute="top" secondItem="575" secondAttribute="bottom" constant="54"/>
-                <constraint id="7709" firstItem="575" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="65"/>
-                <constraint id="7787" firstAttribute="trailing" secondItem="575" secondAttribute="trailing" constant="65"/>
-                <constraint id="7865" firstItem="3002" firstAttribute="top" secondItem="2389" secondAttribute="bottom" constant="19"/>
-                <constraint id="8873" firstItem="3002" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="24"/>
-                <constraint id="8973" firstItem="3002" firstAttribute="width" secondItem="2011" secondAttribute="width"/>
+                <constraint id="1941" firstItem="594" firstAttribute="centerX" secondItem="1" secondAttribute="centerX"/>
+                <constraint id="2022" firstItem="594" firstAttribute="centerY" secondItem="1" secondAttribute="centerY"/>
+                <constraint id="2227" firstItem="594" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="8"/>
+                <constraint id="2268" firstAttribute="trailing" secondItem="594" secondAttribute="trailing" constant="8"/>
+                <constraint id="2405" firstItem="593" firstAttribute="width" secondItem="594" secondAttribute="width"/>
+                <constraint id="2446" firstItem="593" firstAttribute="height" secondItem="594" secondAttribute="height"/>
+                <constraint id="2527" firstItem="594" firstAttribute="top" secondItem="593" secondAttribute="bottom" constant="30"/>
+                <constraint id="2662" firstItem="595" firstAttribute="width" secondItem="594" secondAttribute="width"/>
+                <constraint id="2703" firstItem="595" firstAttribute="height" secondItem="594" secondAttribute="height"/>
+                <constraint id="2744" firstItem="595" firstAttribute="top" secondItem="594" secondAttribute="bottom" constant="30"/>
+                <constraint id="3068" firstItem="597" firstAttribute="top" secondItem="595" secondAttribute="bottom" constant="22"/>
+                <constraint id="3230" firstItem="598" firstAttribute="width" secondItem="597" secondAttribute="width"/>
+                <constraint id="3379" firstItem="598" firstAttribute="top" secondItem="595" secondAttribute="bottom" constant="22"/>
+                <constraint id="3460" firstAttribute="trailing" secondItem="598" secondAttribute="trailing" constant="8"/>
+                <constraint id="3960" firstItem="598" firstAttribute="leading" secondItem="597" secondAttribute="trailing" constant="40"/>
+                <constraint id="4113" firstItem="597" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="8"/>
+                <constraint id="4583" firstItem="596" firstAttribute="width" secondItem="593" secondAttribute="width"/>
+                <constraint id="4698" firstItem="596" firstAttribute="top" secondItem="1" secondAttribute="top" constant="172"/>
+                <constraint id="4739" firstItem="593" firstAttribute="top" secondItem="596" secondAttribute="bottom" constant="100"/>
+                <constraint id="4780" firstItem="596" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="8"/>
+                <constraint id="4901" firstItem="593" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="8"/>
+                <constraint id="4942" firstItem="595" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="8"/>
             </constraints>
         </view>
     </objects>

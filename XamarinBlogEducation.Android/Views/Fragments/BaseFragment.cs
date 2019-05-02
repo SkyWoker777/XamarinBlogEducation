@@ -1,5 +1,4 @@
-﻿
-using Android.OS;
+﻿using Android.OS;
 using Android.Support.V7.Widget;
 using Android.Views;
 using MvvmCross.Droid.Support.V4;
@@ -25,7 +24,6 @@ namespace XamarinBlogEducation.Android.Views.Fragments
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             var ignore = base.OnCreateView(inflater, container, savedInstanceState);
-
             var view = this.BindingInflate(FragmentId, null);
             return view;
         }

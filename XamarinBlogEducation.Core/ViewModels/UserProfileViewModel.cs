@@ -1,7 +1,9 @@
-﻿using MvvmCross.Commands;
+﻿using Acr.UserDialogs;
+using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using Plugin.SecureStorage;
 using System.Threading.Tasks;
+using XamarinBlogEducation.Core.Resources;
 using XamarinBlogEducation.Core.Services.Interfaces;
 using XamarinBlogEducation.Core.ViewModels.Dialogs;
 using XamarinBlogEducation.ViewModels.Requests;
@@ -16,23 +18,23 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
         private byte[] _userImage;
         private readonly string _userEmail;
         private readonly IUserService _userService;
+        private readonly IUserDialogs _userDialogs;
         private EditAccountRequestModel _user;
+        private readonly LoginAccountRequestModel loginModel;
         private LoginAccountRequestModel _model;
-        public UserProfileViewModel(IUserService userService, IMvxNavigationService navigationService) : base(navigationService)
+        public UserProfileViewModel(IUserService userService, IUserDialogs userDialogs, IMvxNavigationService navigationService) : base(navigationService)
         {
             _userService = userService;
+            _userDialogs = userDialogs;
             _userEmail = CrossSecureStorage.Current.GetValue("UserEmail");
             GetUserInfoCommand = new MvxAsyncCommand(GetUserInfoAsync);
             GetUserInfoCommand.Execute();
-            LoginAccountRequestModel loginModel = new LoginAccountRequestModel() { Email = _userEmail };
+            loginModel = new LoginAccountRequestModel() { Email = _userEmail };
             Model = loginModel;
             UpdateCommand = new MvxAsyncCommand(UpdateAsync);
             OpenDialogCommand = new MvxAsyncCommand<LoginAccountRequestModel>(OpenDialogAsync);
             ChangePasswordCommand = new MvxAsyncCommand(ChangePasswordAsync);
             GoToPostsCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<AllPostsViewModel>());
-            GoBackCommand = new MvxAsyncCommand(async () => await DisposeView(this));
-
-
         }
 
         public IMvxCommand GoToPostsCommand { get; private set; }
@@ -41,6 +43,7 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
         public IMvxCommand GetUserInfoCommand { get; private set; }
         public IMvxCommand<LoginAccountRequestModel> OpenDialogCommand { get; private set; }
         public IMvxCommand GoBackCommand { get; private set; }
+
         public string Email
         {
             get => _email;
@@ -82,7 +85,6 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
         {
             await NavigationService.Navigate<ChangePasswordDialogViewModel, LoginAccountRequestModel>(user);
         }
-
         private async Task ChangePasswordAsync()
         {
             OpenDialogCommand.Execute(_model);
@@ -102,8 +104,10 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
                 UserImage = _userImage
 
             };
-            await _userService.UpdateUserAsync(_user);
-            await DisposeView(this);
+           var isResultSuccessful= await _userService.UpdateUserAsync(_user);
+            if (isResultSuccessful){_userDialogs.Toast(Strings.ProfileChangesMessage);}
+            if (!isResultSuccessful){_userDialogs.Toast(Strings.ErrorChangeProfile);}
+            GoToPostsCommand.Execute();
         }
         public LoginAccountRequestModel Model
         {

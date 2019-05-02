@@ -139,16 +139,16 @@
     <Compile Include="Views\UserPostsView.designer.cs">
       <DependentUpon>UserPostsView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserProfileView.cs" />
     <BundleResource Include="Views\welcome_png_1496568.png" />
     <BundleResource Include="Resources\welcome_png_1496568.png" />
-    <Compile Include="Views\UserProfileView.designer.cs">
-      <DependentUpon>UserProfileView.cs</DependentUpon>
-    </Compile>
     <BundleResource Include="Resources\menu_button.png" />
     <BundleResource Include="Resources\menu.png" />
     <BundleResource Include="Resources\icons8_more_48.png" />
     <BundleResource Include="Resources\add_button.png" />
+    <Compile Include="Views\UserProfileView.cs" />
+    <Compile Include="Views\UserProfileView.designer.cs">
+      <DependentUpon>UserProfileView.cs</DependentUpon>
+    </Compile>
     <None Include="app.config" />
     <None Include="Info.plist">
       <SubType>Designer</SubType>
@@ -180,9 +180,6 @@
     <InterfaceDefinition Include="Views\Cells\MenuTableViewCell.xib">
       <SubType>Designer</SubType>
     </InterfaceDefinition>
-    <InterfaceDefinition Include="Views\UserProfileView.xib">
-      <SubType>Designer</SubType>
-    </InterfaceDefinition>
     <InterfaceDefinition Include="Views\CreatePostView.xib">
       <SubType>Designer</SubType>
     </InterfaceDefinition>
@@ -206,6 +203,9 @@
     </InterfaceDefinition>
     <InterfaceDefinition Include="Views\Cells\CommentTableViewCell.xib" />
     <InterfaceDefinition Include="Views\EditPostView.xib">
+      <SubType>Designer</SubType>
+    </InterfaceDefinition>
+    <InterfaceDefinition Include="Views\UserProfileView.xib">
       <SubType>Designer</SubType>
     </InterfaceDefinition>
   </ItemGroup>

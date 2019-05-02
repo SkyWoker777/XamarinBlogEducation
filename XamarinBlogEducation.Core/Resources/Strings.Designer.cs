@@ -97,6 +97,15 @@ namespace XamarinBlogEducation.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No changes were saved.
+        /// </summary>
+        public static string BreakeEditPost {
+            get {
+                return ResourceManager.GetString("BreakeEditPost", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add new post.
         /// </summary>
         public static string CreatePostTitle {
@@ -115,11 +124,92 @@ namespace XamarinBlogEducation.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Passwords doesn`t the same!.
+        /// </summary>
+        public static string DifferentPasswords {
+            get {
+                return ResourceManager.GetString("DifferentPasswords", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Edit your post.
         /// </summary>
         public static string EditPostTitle {
             get {
                 return ResourceManager.GetString("EditPostTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please, write something.
+        /// </summary>
+        public static string EmptyComment {
+            get {
+                return ResourceManager.GetString("EmptyComment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fill all the gaps.
+        /// </summary>
+        public static string EmptyField {
+            get {
+                return ResourceManager.GetString("EmptyField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wrong data. No changes was applied.
+        /// </summary>
+        public static string ErrorChangePassword {
+            get {
+                return ResourceManager.GetString("ErrorChangePassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Can&apos;t save changes.
+        /// </summary>
+        public static string ErrorChangeProfile {
+            get {
+                return ResourceManager.GetString("ErrorChangeProfile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Can&apos;t comment.
+        /// </summary>
+        public static string ErrorComment {
+            get {
+                return ResourceManager.GetString("ErrorComment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Can&apos;t delete this post.
+        /// </summary>
+        public static string ErrorDeletePost {
+            get {
+                return ResourceManager.GetString("ErrorDeletePost", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Can&apos;t edit this post. Check your input data.
+        /// </summary>
+        public static string ErrorEditPost {
+            get {
+                return ResourceManager.GetString("ErrorEditPost", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Something went wrong. Can&apos;t add new one.
+        /// </summary>
+        public static string ErrorPost {
+            get {
+                return ResourceManager.GetString("ErrorPost", resourceCulture);
             }
         }
         
@@ -142,11 +232,65 @@ namespace XamarinBlogEducation.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to New category was successfuly added.
+        /// </summary>
+        public static string SuccessAddCategory {
+            get {
+                return ResourceManager.GetString("SuccessAddCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your password was changed.
+        /// </summary>
+        public static string SuccessChangePassword {
+            get {
+                return ResourceManager.GetString("SuccessChangePassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your comment was successfuly added.
+        /// </summary>
+        public static string SuccessComment {
+            get {
+                return ResourceManager.GetString("SuccessComment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your post was deleted.
+        /// </summary>
+        public static string SuccessDeletePost {
+            get {
+                return ResourceManager.GetString("SuccessDeletePost", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All changes were saved.
+        /// </summary>
+        public static string SuccessEditPost {
+            get {
+                return ResourceManager.GetString("SuccessEditPost", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Successfully logged in.
         /// </summary>
         public static string SuccessLogin {
             get {
                 return ResourceManager.GetString("SuccessLogin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your post was successfuly added.
+        /// </summary>
+        public static string SuccessPost {
+            get {
+                return ResourceManager.GetString("SuccessPost", resourceCulture);
             }
         }
         
@@ -165,6 +309,15 @@ namespace XamarinBlogEducation.Core.Resources {
         public static string UserProfileTitle {
             get {
                 return ResourceManager.GetString("UserProfileTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wrong format of email.
+        /// </summary>
+        public static string WrongEmailFormat {
+            get {
+                return ResourceManager.GetString("WrongEmailFormat", resourceCulture);
             }
         }
         

@@ -17,13 +17,11 @@ namespace XamarinBlogEducation.Android.Elements
     {
 
         private Button btnDelete;
-        private Button btnCancel;
-
-        public DeletePostDialog(IntPtr javaReference, JniHandleOwnership transfer) : base(javaReference, transfer)
+        private Button btnCancel;       
+        public DeletePostDialog()
         {
 
         }
-
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             base.OnCreateView(inflater, container, savedInstanceState);
@@ -34,19 +32,10 @@ namespace XamarinBlogEducation.Android.Elements
 
             var set = this.CreateBindingSet<DeletePostDialog, DeletePostDialogViewModel>();
             set.Bind(btnCancel).To(vm => vm.CancelCommand);
+            set.Bind(btnDelete).To(vm => vm.DeleteCommand);
             set.Apply();
-
-            btnDelete.Click += btnDelete_OnClick;
+            
             return view;
-        }
-
-        private void btnDelete_OnClick(object sender, EventArgs e)
-        {
-            ViewModel.DeleteCommand.Execute();
-            string toast = string.Format("Your post was deleted");
-            Toast.MakeText(Context, toast, ToastLength.Long).Show();
-            ViewModel.CancelCommand.Execute();
-
         }
     }
 }

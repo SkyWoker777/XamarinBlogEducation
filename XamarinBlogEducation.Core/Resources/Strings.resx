@@ -156,4 +156,55 @@
   <data name="SuccessLogin" xml:space="preserve">
     <value>Successfully logged in</value>
   </data>
+  <data name="EmptyComment" xml:space="preserve">
+    <value>Please, write something</value>
+  </data>
+  <data name="SuccessComment" xml:space="preserve">
+    <value>Your comment was successfuly added</value>
+  </data>
+  <data name="ErrorPost" xml:space="preserve">
+    <value>Something went wrong. Can't add new one</value>
+  </data>
+  <data name="SuccessPost" xml:space="preserve">
+    <value>Your post was successfuly added</value>
+  </data>
+  <data name="BreakeEditPost" xml:space="preserve">
+    <value>No changes were saved</value>
+  </data>
+  <data name="SuccessEditPost" xml:space="preserve">
+    <value>All changes were saved</value>
+  </data>
+  <data name="DifferentPasswords" xml:space="preserve">
+    <value>Passwords doesn`t the same!</value>
+  </data>
+  <data name="EmptyField" xml:space="preserve">
+    <value>Fill all the gaps</value>
+  </data>
+  <data name="WrongEmailFormat" xml:space="preserve">
+    <value>Wrong format of email</value>
+  </data>
+  <data name="ErrorChangePassword" xml:space="preserve">
+    <value>Wrong data. No changes was applied</value>
+  </data>
+  <data name="SuccessChangePassword" xml:space="preserve">
+    <value>Your password was changed</value>
+  </data>
+  <data name="SuccessAddCategory" xml:space="preserve">
+    <value>New category was successfuly added</value>
+  </data>
+  <data name="ErrorDeletePost" xml:space="preserve">
+    <value>Can't delete this post</value>
+  </data>
+  <data name="SuccessDeletePost" xml:space="preserve">
+    <value>Your post was deleted</value>
+  </data>
+  <data name="ErrorComment" xml:space="preserve">
+    <value>Can't comment</value>
+  </data>
+  <data name="ErrorEditPost" xml:space="preserve">
+    <value>Can't edit this post. Check your input data</value>
+  </data>
+  <data name="ErrorChangeProfile" xml:space="preserve">
+    <value>Can't save changes</value>
+  </data>
 </root>

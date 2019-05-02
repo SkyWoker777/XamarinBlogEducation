@@ -28,11 +28,10 @@ namespace XamarinBlogEducation.Android.Elements
         private Button cancelPasswordChangeButton;
         private Button applyPaswordChangeButton;
 
-        public PasswordDialog(IntPtr javaReference, JniHandleOwnership transfer) : base(javaReference, transfer)
+        public PasswordDialog()
         {
 
         }
-
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             base.OnCreateView(inflater, container, savedInstanceState);
@@ -50,45 +49,10 @@ namespace XamarinBlogEducation.Android.Elements
             set.Bind(inputNewPassword).To(vm => vm.NewPassword);
             set.Bind(inputComfirmPassword).To(vm => vm.ComfirmPassword);
             set.Bind(cancelPasswordChangeButton).To(vm => vm.GoBackCommand);
-
+            set.Bind(applyPaswordChangeButton).To(vm => vm.ChangePasswordCommand);
             set.Apply();
 
-            applyPaswordChangeButton.Click+= applyPaswordChangeButton_OnClick;
-
             return view;
-        }
-
-        private void applyPaswordChangeButton_OnClick(object sender, EventArgs e)
-        {
-            if (inputNewPassword.Text == inputComfirmPassword.Text && inputNewPassword.Text != "" && inputOldPassword.Text != "" && inputComfirmPassword.Text != "")
-            {
-                ViewModel.ChangePasswordCommand.Execute();
-                string toast = string.Format("Your password was changed");
-                Toast _tost = Toast.MakeText(Context, toast, ToastLength.Long);
-                _tost.SetGravity(GravityFlags.Center, 0, 100);
-                _tost.Show();
-                Dialog.Cancel();
-                ViewModel.GoBackCommand.Execute();
-            }
-            if (inputNewPassword.Text == inputComfirmPassword.Text)
-            {
-                string toast = string.Format("Your password was changed");
-                Toast _tost = Toast.MakeText(Context, toast, ToastLength.Long);
-                _tost.SetGravity(GravityFlags.Center, 0, 250);
-                _tost.Show();
-                inputNewPassword.Text = "";
-                inputOldPassword.Text = "";
-            }
-            if (inputNewPassword.Text==""|| inputOldPassword.Text==""||inputComfirmPassword.Text=="")
-            {
-                string toast = string.Format("Fill all the gaps!");
-                Toast _tost = Toast.MakeText(Context, toast, ToastLength.Long);
-                _tost.SetGravity(GravityFlags.Center, 0, 350);
-                _tost.Show();
-                inputNewPassword.Text = "";
-                inputOldPassword.Text = "";
-                inputComfirmPassword.Text = "";
-            }
         }
     }
 }

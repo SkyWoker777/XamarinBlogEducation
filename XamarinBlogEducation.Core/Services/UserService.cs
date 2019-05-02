@@ -1,7 +1,6 @@
 ﻿
 using Newtonsoft.Json;
 using Plugin.SecureStorage;
-using System;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +10,7 @@ namespace XamarinBlogEducation.Core.Services.Interfaces
 {
     public class UserService : IUserService
     {
+
         private readonly IHttpService _httpService;
         public UserService(IHttpService httpService)
         {
@@ -57,38 +57,35 @@ namespace XamarinBlogEducation.Core.Services.Interfaces
             return parsedResult;
 
         }
-        public async Task UpdateUserAsync(EditAccountRequestModel model)
+        public async Task<bool> UpdateUserAsync(EditAccountRequestModel model)
         {
             using (HttpClient client = new HttpClient())
             {
-                try
+                string json = JsonConvert.SerializeObject(model);
+                StringContent httpContent = new StringContent(json, Encoding.UTF8, "application/json");
+                HttpRequestMessage message = new HttpRequestMessage(HttpMethod.Post, "http://195.26.92.83:6776/api/Account/profile")
                 {
-                    string json = JsonConvert.SerializeObject(model);
-                    StringContent httpContent = new StringContent(json, Encoding.UTF8, "application/json");
-                    HttpRequestMessage message = new HttpRequestMessage(HttpMethod.Post, "http://195.26.92.83:6776/api/Account/profile")
-                    {
-                        Content = httpContent
-                    };
-                    client.DefaultRequestHeaders.Add("Authorization", $"Bearer { CrossSecureStorage.Current.GetValue("securityToken")}");
-                    HttpResponseMessage response = await client.SendAsync(message);
-                    if (response.IsSuccessStatusCode)
-                    {
-                        return;
-                    }
-                }
-                catch (Exception)
-                {
-                }
+                    Content = httpContent
+                };
+                client.DefaultRequestHeaders.Add("Authorization", $"Bearer { CrossSecureStorage.Current.GetValue("securityToken")}");
+               
+                HttpResponseMessage response = await client.SendAsync(message);
+                if (response.IsSuccessStatusCode) { 
+                CrossSecureStorage.Current.SetValue("UserName", model.FirstName);
+                CrossSecureStorage.Current.SetValue("UserLastName", model.LastName);
+                CrossSecureStorage.Current.SetValue("UserEmail", model.Email);}
+                return response.IsSuccessStatusCode;
 
             }
         }
-        public async Task ChangeUserPassword(ChangePasswordAccountRequestModel model)
+        public async Task<bool> ChangeUserPassword(ChangePasswordAccountRequestModel model)
         {
             model.Token = CrossSecureStorage.Current.GetValue("securityToken");
             string url = "/Account/change-password";
             string json = JsonConvert.SerializeObject(model);
             StringContent httpContent = new StringContent(json, Encoding.UTF8, "application/json");
             HttpResponseMessage result = await _httpService.ExecuteQuery(url, HttpOperationMode.POST, httpContent);
+            return result.IsSuccessStatusCode;
         }
 
         public async Task AutologinUserAsync(RegisterAccountRequestModel model)
@@ -100,15 +97,7 @@ namespace XamarinBlogEducation.Core.Services.Interfaces
             };
             await GetUserAsync(loginModel);
         }
-        //public async Task<CheckLoginAccountViewModel> CheckUser (LoginAccountViewModel model)
-        //{
-        //    var url = "/Account/check";
-        //    var json = JsonConvert.SerializeObject(model);
-        //    var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
-        //    var result = await _httpService.ExecuteQuery(url, HttpOperationMode.POST, httpContent);
-        //    var parsedResult = await _httpService.ProcessJson<CheckLoginAccountViewModel>(result);
-        //    return parsedResult;
-        //}
+
 
     }
 }

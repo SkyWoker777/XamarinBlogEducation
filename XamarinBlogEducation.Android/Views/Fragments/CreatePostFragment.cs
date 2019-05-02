@@ -14,12 +14,14 @@ using System.Reflection;
 using System.Collections.Generic;
 using System.Linq;
 using XamarinBlogEducation.Android.Extensions;
+using XamarinBlogEducation.Android.Services;
 
 namespace XamarinBlogEducation.Android.Views.Fragments
 {
     [MvxFragmentPresentation(typeof(MainViewModel), Resource.Id.content_frame, true)]
     public class CreatePostFragment : BaseFragment<CreatePostViewModel>
     {
+        
         private EditText inpTitle;
         private EditText inpPostContent;
         private EditText inpPostDescription;
@@ -34,6 +36,8 @@ namespace XamarinBlogEducation.Android.Views.Fragments
             var view= base.OnCreateView(inflater, container, savedInstanceState);
             ((AppCompatActivity)Activity).SupportActionBar.SetDisplayShowTitleEnabled(true);
             ((AppCompatActivity)Activity).SupportActionBar.SetTitle(Resource.String.CreatePostTitle);
+            
+
             if (Activity is MainView mainView)
             {
                 mainView.BackButtonPressed += (s, e) =>
@@ -51,15 +55,20 @@ namespace XamarinBlogEducation.Android.Views.Fragments
             }
             btnAddNewPost = view.FindViewById<Button>(Resource.Id.addNewPostButton);
             btnAddCategory = view.FindViewById<Button>(Resource.Id.addCategoryButton);
+
             mvxSpinner = view.FindViewById<MvxAppCompatSpinner>(Resource.Id.allCategoriesSpinner);
             mvxSpinner.LimitSpinner(500);
+
             inpTitle = view.FindViewById<EditText>(Resource.Id.inputTitle);
+
             inpPostContent = view.FindViewById<EditText>(Resource.Id.inputPostContent);
             inpPostContent.VerticalScrollBarEnabled = true;
             inpPostContent.MovementMethod = new ScrollingMovementMethod();
+
             inpNickName= view.FindViewById<EditText>(Resource.Id.inputNickName);
             inpPostDescription = view.FindViewById<EditText>(Resource.Id.inputPostDescription);
             txtAnonimPostWarning= view.FindViewById<TextView>(Resource.Id.anonimPostWarning);
+
             inpPostDescription.VerticalScrollBarEnabled = true;
             inpPostDescription.MovementMethod = new ScrollingMovementMethod();
 
@@ -75,22 +84,11 @@ namespace XamarinBlogEducation.Android.Views.Fragments
             set.Bind(inpNickName).To(vm => vm.NickName);
             set.Bind(inpPostDescription).To(vm => vm.Description);
             set.Bind(btnAddCategory).To(vm => vm.OpenDialogCommand);
+            set.Bind(btnAddNewPost).To(vm => vm.AddNewPostCommand);
 
             set.Apply();
-
-            btnAddNewPost.Click += btnNewPost_OnClick;
-            return view;
-        }
-      
-      
-
-        private void btnNewPost_OnClick(object sender, EventArgs e)
-        {
-            ViewModel.AddNewPostCommand.Execute();
             
-            var toast = "Your post was successfuly added";
-            Toast.MakeText(Context, toast, ToastLength.Long).Show();
-        }
-       
+            return view;
+        }   
     }
 }

@@ -1,6 +1,8 @@
-﻿using MvvmCross.Commands;
+﻿using Acr.UserDialogs;
+using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using System.Threading.Tasks;
+using XamarinBlogEducation.Core.Resources;
 using XamarinBlogEducation.Core.Services.Interfaces;
 using XamarinBlogEducation.Core.ViewModels.Dialogs;
 using XamarinBlogEducation.ViewModels.Requests;
@@ -16,14 +18,16 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
         private EditPostBlogRequestModel _editedPost;
         private GetAllUserPostResponseModel _postToEdit;
         private readonly IBlogService _blogService;
-        public EditPostViewModel(IBlogService blogService, IMvxNavigationService navigationService) : base(navigationService)
+        private readonly IUserDialogs _userDialogs;
+        public EditPostViewModel(IBlogService blogService, IUserDialogs userDialogs, IMvxNavigationService navigationService) : base(navigationService)
         {
             _blogService = blogService;
+            _userDialogs = userDialogs;
+
             SaveEditCommand = new MvxAsyncCommand(SaveAsync);
             CancelEditCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<UserPostsViewModel>());
             GoToPostsCommand = new MvxAsyncCommand(GoToPostsAsync);
             DeleteCommand = new MvxAsyncCommand(Delete);
-            DeletePostCommand = new MvxAsyncCommand(DeletePost);
             OpenDialogCommand = new MvxAsyncCommand<GetAllUserPostResponseModel>(OpenDialogAsync);
             GoBackCommand = new MvxAsyncCommand(async () => await DisposeView(this));
         }
@@ -33,7 +37,6 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
         public IMvxCommand GoBackCommand { get; private set; }
         public IMvxCommand<GetAllUserPostResponseModel> OpenDialogCommand { get; private set; }
         public IMvxCommand DeleteCommand { get; private set; }
-        public IMvxCommand DeletePostCommand { get; private set; }
         public override Task Initialize()
         {
             return Task.FromResult(0);
@@ -85,8 +88,8 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
                 Description = PostToEdit.Description,
                 Content = PostToEdit.Content
             };
-            await _blogService.UpdatePost(_editedPost);
-            await DisposeView(this);
+           var isResultSuccessful = await _blogService.UpdatePost(_editedPost);
+            await GoToPostsAsync();
         }
 
         private async Task GoToPostsAsync()
@@ -102,11 +105,7 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
         {
             OpenDialogCommand.Execute(_postToEdit);
         }
-        private async Task DeletePost()
-        {
-            await _blogService.DeletePost(_postToEdit.Id);
-            await DisposeView(this);
-        }
+ 
         private async Task OpenDialogAsync(GetAllUserPostResponseModel post)
         {
             await NavigationService.Navigate<DeletePostDialogViewModel, GetAllUserPostResponseModel>(post);

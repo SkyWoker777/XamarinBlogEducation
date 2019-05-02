@@ -21,11 +21,11 @@ namespace XamarinBlogEducation.Android.Elements
         private EditText txtCategory;
         private Button btnCancelAddCategory;
         private Button btnApplyNewCategory;
-        public DialogCategory(IntPtr javaReference, JniHandleOwnership transfer) : base(javaReference, transfer)
+
+        public DialogCategory()
         {
 
         }
-
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             base.OnCreateView(inflater, container, savedInstanceState);
@@ -36,33 +36,15 @@ namespace XamarinBlogEducation.Android.Elements
             btnApplyNewCategory = view.FindViewById<Button>(Resource.Id.applyCategoryButton);
 
             var set = this.CreateBindingSet<DialogCategory, CategoryDialogViewModel>();
+
             set.Bind(txtCategory).To(vm => vm.NewCategory);
             set.Bind(btnCancelAddCategory).To(vm => vm.GoBackCommand);
+            set.Bind(btnApplyNewCategory).To(vm => vm.AddCategoryCommand);
+
             set.Apply();
             
-            btnApplyNewCategory.Click += btnApplyNewCategory_OnClick;
             return view;
         }
-
-        private void btnApplyNewCategory_OnClick(object sender, EventArgs e)
-        {
-           ViewModel.AddCategoryCommand.Execute();
-           HideSoftKeyboard();
-           var toast = string.Format("New category {0} was added", txtCategory.Text);         
-           Toast.MakeText(Context, toast, ToastLength.Long).Show();
-           Dialog.Cancel();
-           ViewModel.GoBackCommand.Execute();
-        }
-
-        private  void HideSoftKeyboard()
-        {
-            InputMethodManager inputMethodManager =
-                (InputMethodManager)Context.GetSystemService(
-                   global::Android.Content.Context.InputMethodService);
-
-                inputMethodManager.HideSoftInputFromWindow(
-                    Activity.CurrentFocus.WindowToken, 0);
-            
-        }
+     
     }
 }

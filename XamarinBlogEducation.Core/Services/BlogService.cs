@@ -28,7 +28,7 @@ namespace XamarinBlogEducation.Core.Services
             return parsedResult;
 
         }
-        public async Task AddNewPost(CreatePostRequestModel model)
+        public async Task<bool> AddNewPost(CreatePostRequestModel model)
         {
             using (var client = new HttpClient())
             {
@@ -38,10 +38,11 @@ namespace XamarinBlogEducation.Core.Services
                     message.Content = httpContent;
                 var token = CrossSecureStorage.Current.GetValue("securityToken");
                     client.DefaultRequestHeaders.Add("Authorization", $"{"Bearer "}{token}");
-                    var response = await client.SendAsync(message);   
+                    var response = await client.SendAsync(message);
+                return response.IsSuccessStatusCode;
             }
         }
-        public async Task AddComment(AddCommentRequestBlogView model)
+        public async Task<bool> AddComment(AddCommentRequestBlogView model)
         {
             var url = $"{"http://195.26.92.83:6776/api/Comment/comment/"}{model.PostId}";
             using (var client = new HttpClient())
@@ -52,17 +53,8 @@ namespace XamarinBlogEducation.Core.Services
                 message.Content = httpContent;
                 client.DefaultRequestHeaders.Add("Authorization", $"{"Bearer "}{CrossSecureStorage.Current.GetValue("securityToken")}");
                 var response = await client.SendAsync(message);
+                return response.IsSuccessStatusCode;
             }
-        }
-
-        public Task NavigatePosts()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task RemovePost()
-        {
-            throw new NotImplementedException();
         }
 
         public async Task<List<GetAllPostResponseModel>> GetAllPosts()
@@ -96,7 +88,7 @@ namespace XamarinBlogEducation.Core.Services
             var parsedResult = await _httpService.ProcessJson<List<GetAllCommentResponseModel>>(result);
             return parsedResult;
         }
-        public async Task UpdatePost(EditPostBlogRequestModel editedPost)
+        public async Task<bool> UpdatePost(EditPostBlogRequestModel editedPost)
         {
             using (var client = new HttpClient())
             {
@@ -106,6 +98,7 @@ namespace XamarinBlogEducation.Core.Services
                 message.Content = httpContent;
                 client.DefaultRequestHeaders.Add("Authorization", $"{"Bearer "}{CrossSecureStorage.Current.GetValue("securityToken")}");
                 var response = await client.SendAsync(message);
+                return response.IsSuccessStatusCode;
             }
         }
         public async Task<List<GetAllCategoryResponseModel>> GetAllCategories()
@@ -123,10 +116,11 @@ namespace XamarinBlogEducation.Core.Services
             var result = await _httpService.ExecuteQuery(url, HttpOperationMode.POST, httpContent);
             return result.IsSuccessStatusCode;
         }
-        public async Task DeletePost(long postId)
+        public async Task<bool> DeletePost(long postId)
         {
             var url = $"{"/Post/delete/"}{postId}";
-            var result = await _httpService.ExecuteQuery(url, HttpOperationMode.POST);
+            var response = await _httpService.ExecuteQuery(url, HttpOperationMode.POST);
+            return response.IsSuccessStatusCode;
         }
     }
 }

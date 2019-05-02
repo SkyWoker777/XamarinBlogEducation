@@ -24,11 +24,11 @@ namespace XamarinBlogEducation.Api.Controllers
             var id = User.Identity.GetUserId();
             IActionResult res = BadRequest();
             await _accountService.UpdateUserProfile(model,id);
-            if (_accountService.UpdateUserProfile(model,id).IsCompleted)
+            if (_accountService.UpdateUserProfile(model, id).IsCanceled|| _accountService.UpdateUserProfile(model, id).IsFaulted)
             {
-                return Ok();
+                return res;
             }
-            return res;
+            return Ok();
         }
         [HttpPost("change-password")]
         public async Task<IActionResult> UpdatePassword([FromBody]ChangePasswordAccountRequestModel model)
@@ -36,11 +36,11 @@ namespace XamarinBlogEducation.Api.Controllers
             var id = User.Identity.GetUserId();
             IActionResult res = BadRequest();
             await _accountService.ChangeUserPassword(model);
-            if (_accountService.ChangeUserPassword(model).IsCompleted)
+            if (_accountService.ChangeUserPassword(model).IsFaulted|| _accountService.ChangeUserPassword(model).IsCanceled)
             {
-                return Ok();
+                return res;
             }
-            return res;
+            return Ok();
         }
         [AllowAnonymous]
         [HttpPost]

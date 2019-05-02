@@ -57,8 +57,7 @@ namespace XamarinBlogEducation.Android.Views.Fragments
             {
                 case Resource.Id.menu_home:
                     ((AppCompatActivity)Activity).SupportActionBar.SetTitle(Resource.String.AllPostsTitle);
-                    ViewModel.ShowHomeCommand.Execute();
-                   
+                    ViewModel.ShowHomeCommand.Execute();      
                     break;
                 case Resource.Id.menu_exit:
                     ViewModel.ExitCommand.Execute();

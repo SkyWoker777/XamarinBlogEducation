@@ -18,7 +18,7 @@ namespace XamarinBlogEducation.Android.Views
     [Activity(Theme = "@style/AppTheme", LaunchMode = LaunchMode.SingleTop)]
     public class MainView : MvxAppCompatActivity<MainViewModel>
     {
-        
+   
         public DrawerLayout DrawerLayout { get; set; }
         private bool isUserExists;
         protected override void OnCreate(Bundle bundle)

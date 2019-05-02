@@ -7,6 +7,7 @@ using MvvmCross.Binding.BindingContext;
 using MvvmCross.Platforms.Ios.Binding.Views;
 using MvvmCross.Platforms.Ios.Views;
 using UIKit;
+using XamarinBlogEducation.Core.Resources;
 using XamarinBlogEducation.Core.ViewModels.Fragments;
 using XamarinBlogEducation.iOS.Views.Cells;
 
@@ -51,7 +52,7 @@ namespace XamarinBlogEducation.iOS.Views
         public override void ViewWillAppear(bool animated)
         {
             base.ViewWillAppear(animated);
-            NavigationController.Title = "My Posts";
+            NavigationController.Title = Strings.UserPostsTitle;
         }
         #endregion
     }

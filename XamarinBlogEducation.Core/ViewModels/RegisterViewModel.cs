@@ -1,6 +1,9 @@
-﻿using MvvmCross.Commands;
+﻿using Acr.UserDialogs;
+using MvvmCross.Commands;
 using MvvmCross.Navigation;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using XamarinBlogEducation.Core.Resources;
 using XamarinBlogEducation.Core.Services.Interfaces;
 using XamarinBlogEducation.ViewModels.Requests;
 
@@ -14,18 +17,21 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
         private string _firstName;
         private string _lastName;
         private byte[] _userImage;
+        private bool isModelValid;
 
         private RegisterAccountRequestModel user;
         private EditAccountRequestModel loginUser;
         private readonly IUserService _userService;
-
+        private readonly IUserDialogs _userDialogs;
         public RegisterViewModel(
             IUserService userService,
+            IUserDialogs userDialogs,
             IMvxNavigationService navigationService) : base(navigationService)
         {
             _userService = userService;
+            _userDialogs = userDialogs;
             RegistrateCommand = new MvxAsyncCommand(RegistrateAsync);
-            LoginCommand = new MvxAsyncCommand(LoginAsync);
+            LoginCommand = new MvxAsyncCommand(async()=>await DisposeView(this));
         }
 
         public IMvxCommand RegistrateCommand { get; private set; }
@@ -88,31 +94,47 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
 
         private async Task RegistrateAsync()
         {
+            Validate();
+            if (isModelValid)
+            {
             user = new RegisterAccountRequestModel()
             {
-
                 Email = _email,
                 Password = _password,
                 ConfirmPassword = _confirmPassword,
                 FirstName = _firstName,
                 LastName = _lastName,
                 UserImage = _userImage
-
             };
             loginUser = new EditAccountRequestModel()
             {
                 Email = user.Email
             };
-            await _userService.AddUserAsync(user);
-            await _userService.AutologinUserAsync(user);
-            await DisposeView(this);
-            await NavigationService.Navigate<AllPostsViewModel>();
-
+           
+                await _userService.AddUserAsync(user);
+                await _userService.AutologinUserAsync(user);
+                await NavigationService.Navigate<AllPostsViewModel>();
+            }
         }
-        private async Task LoginAsync()
+        public void Validate()
         {
-            await DisposeView(this);
-
+            isModelValid = true;
+            if(!string.IsNullOrEmpty(_email))
+            { if (!Regex.Match(_email, @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$").Success && !string.IsNullOrWhiteSpace(_password))
+                {
+                    _userDialogs.Toast(Strings.WrongEmailFormat);
+                    isModelValid = false;
+                } }
+            if (string.IsNullOrEmpty(_email) || string.IsNullOrEmpty(_password) || string.IsNullOrEmpty(_confirmPassword) || string.IsNullOrEmpty(_firstName) || string.IsNullOrEmpty(_lastName))
+            {
+                _userDialogs.Toast(Strings.EmptyField);
+                isModelValid = false;
+            }
+            if (_password != _confirmPassword)
+            {
+                _userDialogs.Toast(Strings.DifferentPasswords);
+                isModelValid = false;
+            }
         }
     }
 }

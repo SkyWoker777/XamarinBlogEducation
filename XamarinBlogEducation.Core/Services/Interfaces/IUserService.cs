@@ -8,9 +8,8 @@ namespace XamarinBlogEducation.Core.Services.Interfaces
         Task<EditAccountRequestModel> GetUserAsync(LoginAccountRequestModel model);
         Task AddUserAsync(RegisterAccountRequestModel model);
         Task AutologinUserAsync(RegisterAccountRequestModel model);
-        Task UpdateUserAsync(EditAccountRequestModel model);
+        Task<bool> UpdateUserAsync(EditAccountRequestModel model);
         Task<EditAccountRequestModel> GetUserInfo(string email);
-        Task ChangeUserPassword(ChangePasswordAccountRequestModel model);
-        //Task<CheckLoginAccountViewModel> CheckUser(LoginAccountViewModel model);
+        Task<bool> ChangeUserPassword(ChangePasswordAccountRequestModel model);
     }
 }

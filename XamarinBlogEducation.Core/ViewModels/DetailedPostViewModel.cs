@@ -1,8 +1,10 @@
-﻿using MvvmCross.Commands;
+﻿using Acr.UserDialogs;
+using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using XamarinBlogEducation.Core.Resources;
 using XamarinBlogEducation.Core.Services.Interfaces;
 using XamarinBlogEducation.ViewModels.Requests;
 using XamarinBlogEducation.ViewModels.Responses;
@@ -16,16 +18,22 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
         private string _commentAuthor;
         private string _creationDate;
         private readonly IBlogService _blogService;
+        private readonly IUserDialogs _userDialogs;
         private AddCommentRequestBlogView comment;
         private GetAllPostResponseModel _detailedPost;
         private MvxObservableCollection<GetAllCommentResponseModel> _allComments;
-        public DetailedPostViewModel(IBlogService blogService, IMvxNavigationService navigationService) : base(navigationService)
+
+        public DetailedPostViewModel(IBlogService blogService, IUserDialogs userDialogs, IMvxNavigationService navigationService) : base(navigationService)
         {
             _blogService = blogService;
-            GoBackCommand = new MvxAsyncCommand(GoBackAsync);
+            _userDialogs = userDialogs;
+            GoBackCommand = new MvxAsyncCommand(async () => await DisposeView(this));
             AddCommentCommand = new MvxAsyncCommand(AddComment);
             AllComments = new MvxObservableCollection<GetAllCommentResponseModel>();
         }
+        public IMvxCommand GoBackCommand { get; private set; }
+        public IMvxCommand AddCommentCommand { get; private set; }
+
         public override void Prepare(GetAllPostResponseModel parameter)
         {
             DetailedPost = parameter;
@@ -35,17 +43,15 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
             LoadCommentsTask = MvxNotifyTask.Create(LoadComments);
             return Task.FromResult(0);
         }
+
         public MvxNotifyTask LoadCommentsTask { get; private set; }
+
         private async Task LoadComments()
         {
             AllComments.Clear();
-            var result = await _blogService.GetAllComments(DetailedPost.Id);
+            List<GetAllCommentResponseModel> result = await _blogService.GetAllComments(DetailedPost.Id);
             AllComments.AddRange(result);
 
-        }
-        private async Task GoBackAsync()
-        {
-            await DisposeView(this);
         }
         private async Task AddComment()
         {
@@ -54,11 +60,20 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
                 Content = _content,
                 PostId = _detailedPost.Id
             };
-            await _blogService.AddComment(comment);
+            if (comment.Content == null)
+            {
+                _userDialogs.Toast(Strings.EmptyComment);
+            }
+            if (comment.Content != null)
+            {
+                var isResultSuccessful= await _blogService.AddComment(comment);
+                if (isResultSuccessful) {_userDialogs.Toast(Strings.SuccessComment);}
+                if (!isResultSuccessful) { _userDialogs.Toast(Strings.ErrorComment); }
+            }
             await LoadComments();
         }
-        public IMvxCommand GoBackCommand { get; private set; }
-        public IMvxCommand AddCommentCommand { get; private set; }
+
+
         public GetAllPostResponseModel DetailedPost
         {
             get => _detailedPost;

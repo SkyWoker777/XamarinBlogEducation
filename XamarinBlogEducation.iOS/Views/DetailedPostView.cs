@@ -4,6 +4,7 @@ using MvvmCross.Platforms.Ios.Binding.Views;
 using MvvmCross.Platforms.Ios.Views;
 using Plugin.SecureStorage;
 using UIKit;
+using XamarinBlogEducation.Core.Resources;
 using XamarinBlogEducation.Core.ViewModels.Fragments;
 using XamarinBlogEducation.iOS.Views.Cells;
 
@@ -16,12 +17,10 @@ namespace XamarinBlogEducation.iOS.Views
         {
 
         }
-
         public override void DidReceiveMemoryWarning()
         {
             base.DidReceiveMemoryWarning();
         }
-
 
         #region View lifecycle
 
@@ -64,7 +63,11 @@ namespace XamarinBlogEducation.iOS.Views
                 btnComment.Hidden = true;
             }
         }
-
+        public override void ViewWillAppear(bool animated)
+        {
+            base.ViewWillAppear(animated);
+            NavigationController.Title = Strings.DetailedPostTitle;
+        }
         #endregion
     }
 }

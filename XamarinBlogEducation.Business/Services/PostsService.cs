@@ -65,7 +65,7 @@ namespace XamarinBlogEducation.Business.Services
         }
 
         public async Task<IEnumerable<Post>> GetAll()
-        {   //TODO: 12312321
+        {  
             var result = (await _postsRepository.GetList());
             return result;
         }

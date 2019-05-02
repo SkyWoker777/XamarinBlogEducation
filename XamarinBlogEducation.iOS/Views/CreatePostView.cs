@@ -7,6 +7,7 @@ using MvvmCross.Binding.BindingContext;
 using MvvmCross.Platforms.Ios.Binding.Views;
 using MvvmCross.Platforms.Ios.Views;
 using UIKit;
+using XamarinBlogEducation.Core.Resources;
 using XamarinBlogEducation.Core.ViewModels.Fragments;
 
 namespace XamarinBlogEducation.iOS.Views
@@ -22,10 +23,7 @@ namespace XamarinBlogEducation.iOS.Views
         }
 		public override void DidReceiveMemoryWarning ()
 		{
-			// Releases the view if it doesn't have a superview.
 			base.DidReceiveMemoryWarning ();
-			
-			// Release any cached data, images, etc that aren't in use.
 		}
 
 		#region View lifecycle
@@ -36,7 +34,9 @@ namespace XamarinBlogEducation.iOS.Views
             pickerPostCategory.ShowSelectionIndicator = true;
             var pickerPostCategoryViewModel = new MvxPickerViewModel(pickerPostCategory);
             pickerPostCategory.Model = pickerPostCategoryViewModel;
+
             var set = this.CreateBindingSet<CreatePostView, CreatePostViewModel>();
+
             set.Bind(txtDescriotion).To(vm => vm.Description);
             set.Bind(txtNickName).To(vm => vm.NickName);
             set.Bind(txtTitle).To(vm => vm.Title);
@@ -45,33 +45,14 @@ namespace XamarinBlogEducation.iOS.Views
             set.Bind(btnNewCategory).To(vm => vm.OpenDialogCommand);
             set.Bind(pickerPostCategoryViewModel).For(p => p.ItemsSource).To(vm => vm.CategoryItems);
             set.Bind(pickerPostCategoryViewModel).For(p => p.SelectedItem).To(vm => vm.SelectedCategory);
+
             set.Apply();
-            //this.DelayBind(() =>
-            //{
-            //    this.AddBindings(pickerPostCategory, "ItemsSource CategoryItems;SelectedItem SelectedItem;HandleItemSelected ItemSelectedCommand");
-            //});
 		}
-
-		public override void ViewWillAppear (bool animated)
-		{
-			base.ViewWillAppear (animated);
-		}
-
-		public override void ViewDidAppear (bool animated)
-		{
-			base.ViewDidAppear (animated);
-		}
-
-		public override void ViewWillDisappear (bool animated)
-		{
-			base.ViewWillDisappear (animated);
-		}
-
-		public override void ViewDidDisappear (bool animated)
-		{
-			base.ViewDidDisappear (animated);
-		}
-
-		#endregion
-	}
+        public override void ViewWillAppear(bool animated)
+        {
+            base.ViewWillAppear(animated);
+            NavigationController.Title = Strings.CreatePostTitle;
+        }
+        #endregion
+    }
 }

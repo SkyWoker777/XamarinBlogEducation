@@ -1,8 +1,10 @@
-﻿using MvvmCross.Commands;
+﻿using Acr.UserDialogs;
+using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using XamarinBlogEducation.Core.Resources;
 using XamarinBlogEducation.Core.Services.Interfaces;
 using XamarinBlogEducation.ViewModels.Requests;
 using XamarinBlogEducation.ViewModels.Responses;
@@ -13,16 +15,18 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
     {
         private string _title;
         private string _description;
-        private long _selectedCategoryId;
-        private GetAllCategoryResponseModel _selectedCategory;
         private string _postContent;
         private string _nickName;
+        private long _selectedCategoryId;
         private readonly IBlogService _blogService;
+        private readonly IUserDialogs _userDialogs;
+        private bool isModelValid;
+        private GetAllCategoryResponseModel _selectedCategory;
         private CreatePostRequestModel post;
-        public CreatePostViewModel(IBlogService blogService, IMvxNavigationService navigationService) : base(navigationService)
+        public CreatePostViewModel(IBlogService blogService, IUserDialogs userDialogs, IMvxNavigationService navigationService) : base(navigationService)
         {
             _blogService = blogService;
-
+            _userDialogs = userDialogs;
             CategoryItems = new MvxObservableCollection<GetAllCategoryResponseModel>();
 
             AddNewPostCommand = new MvxAsyncCommand(AddNewPost);
@@ -53,14 +57,8 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
         }
         private async Task LoadCategories()
         {
-
             List<GetAllCategoryResponseModel> result = await _blogService.GetAllCategories();
-            List<GetAllCategoryResponseModel> categoriesToAdd = new List<GetAllCategoryResponseModel>();
-            categoriesToAdd.AddRange(result);
-            for (int i = 0; i < categoriesToAdd.Count; i++)
-            {
-                CategoryItems.Add(categoriesToAdd[i]);
-            }
+            CategoryItems.AddRange(result);
         }
 
         public long SelectedCategoryId
@@ -121,17 +119,29 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
 
         public async Task AddNewPost()
         {
-            post = new CreatePostRequestModel()
+            Validate();
+            if (isModelValid)
             {
-                Title = _title,
-                Content = _postContent,
-                CategoryId = _selectedCategoryId,
-                Author = _nickName,
-                Description = _description
-            };
-            await _blogService.AddNewPost(post);
-            await DisposeView(this);
-            await NavigationService.Navigate<UserPostsViewModel>();
+                post = new CreatePostRequestModel()
+                {
+                    Title = _title,
+                    Content = _postContent,
+                    CategoryId = _selectedCategoryId,
+                    Author = _nickName,
+                    Description = _description
+                };
+                var isResultSuccessful = await _blogService.AddNewPost(post);
+                if (isResultSuccessful)
+                {
+                    _userDialogs.Toast(Strings.SuccessPost);
+                }
+                if (!isResultSuccessful)
+                {
+                    _userDialogs.Toast(Strings.ErrorPost);
+                }
+                await DisposeView(this);
+                await NavigationService.Navigate<UserPostsViewModel>();
+            }
         }
         public async Task GoBack()
         {
@@ -156,6 +166,15 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
         private async Task ItemSelectedAsync(GetAllCategoryResponseModel category)
         {
             _selectedCategoryId = category.Id;
+        }
+        public void Validate()
+        {
+            isModelValid = true; 
+            if (string.IsNullOrEmpty(_title) || string.IsNullOrEmpty(_description) || string.IsNullOrEmpty(_postContent) ||_selectedItem==null)
+            {
+                _userDialogs.Toast(Strings.EmptyField);
+                isModelValid = false;
+            }
         }
     }
 

@@ -1,6 +1,8 @@
-﻿using MvvmCross.Commands;
+﻿using Acr.UserDialogs;
+using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using System.Threading.Tasks;
+using XamarinBlogEducation.Core.Resources;
 using XamarinBlogEducation.Core.Services.Interfaces;
 using XamarinBlogEducation.ViewModels.Requests;
 
@@ -11,9 +13,11 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
         private string _newCategory;
         private AddNewCategoryRequestModel category;
         private readonly IBlogService _blogService;
-        public CategoryDialogViewModel(IBlogService blogService, IMvxNavigationService navigationService) : base(navigationService)
+        private readonly IUserDialogs _userDialogs;
+        public CategoryDialogViewModel(IBlogService blogService, IUserDialogs userDialogs, IMvxNavigationService navigationService) : base(navigationService)
         {
             _blogService = blogService;
+            _userDialogs = userDialogs;
             AddCategoryCommand = new MvxAsyncCommand(AddCategoryAsync);
             GoBackCommand = new MvxAsyncCommand(async () => await DisposeView(this));
 
@@ -39,8 +43,18 @@ namespace XamarinBlogEducation.Core.ViewModels.Fragments
                 Category = _newCategory
 
             };
-            bool result = await _blogService.AddNewCategory(category);
-            await DisposeView(this);
+            bool isResultSuccessful = await _blogService.AddNewCategory(category);
+            if (isResultSuccessful)
+            {
+                _userDialogs.Toast(Strings.SuccessAddCategory);
+                await DisposeView(this);
+            }
+            if (!isResultSuccessful)
+            {
+                _userDialogs.Toast(Strings.ErrorPost);
+                await DisposeView(this);
+            }
+
 
         }
     }

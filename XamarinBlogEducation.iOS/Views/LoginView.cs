@@ -30,33 +30,24 @@ namespace XamarinBlogEducation.iOS.Views
             base.ViewDidLoad();
 
             imgWelcome.Image = new UIImage("welcome_png_1496568.png");
+
             var set = this.CreateBindingSet<LoginView, LoginViewModel>();
+
             set.Bind(inputEmail).To(vm => vm.Email);
             set.Bind(inputPassword).To(vm => vm.Password);
             set.Bind(signInButton).To(vm => vm.LoginCommand);
             set.Bind(signUpButton).To(vm => vm.SingUpCommand);
             set.Bind(skipButton).To(vm => vm.SkipCommand);
+
             set.Apply();
+
             var viewTap = new UITapGestureRecognizer(() =>
             {
                 View.EndEditing(true);
             });
-            View.AddGestureRecognizer(viewTap);
-            signInButton.TouchDown += signInButton_onTouchDown;
-            signUpButton.TouchDown += (sender, args) => { ViewModel.SingUpCommand.Execute(); };
-            skipButton.TouchDown += (sender, args) => { ViewModel.SkipCommand.Execute(); };
-            inputPassword.EditingDidEndOnExit += (sender, args) => { inputPassword.ResignFirstResponder(); };
-           
-            
-        }
 
-        private void signInButton_onTouchDown(object sender, EventArgs e)
-        {
-            ViewModel.LoginCommand.Execute();
-            var mail = CrossSecureStorage.Current.GetValue("UserEmail");
-            ViewModel.GoNextCommand.Execute();
-        }
-
+            View.AddGestureRecognizer(viewTap);    
+        }       
         public override void ViewWillAppear(bool animated)
         {
             base.ViewWillAppear(animated);

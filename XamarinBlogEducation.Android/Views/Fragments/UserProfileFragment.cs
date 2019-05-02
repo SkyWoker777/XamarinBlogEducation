@@ -51,20 +51,11 @@ namespace XamarinBlogEducation.Android.Views.Fragments
             set.Bind(editLastName).To(vm => vm.LastName);
             set.Bind(editUserName).To(vm => vm.FirstName);           
             set.Bind(btnChangePassword).To(vm => vm.ChangePasswordCommand);
+            set.Bind(btnApplyChanges).To(vm => vm.UpdateCommand);
 
             set.Apply();
-
-            btnApplyChanges.Click += applyButton_OnClick;
+            
             return view;
         }
-       
-        private void applyButton_OnClick(object sender, EventArgs e)
-        {
-            ViewModel.UpdateCommand.Execute();
-            var toast =Strings.ProfileChangesMessage;
-            Toast.MakeText(Context, toast, ToastLength.Long).Show();
-            ViewModel.GoToPostsCommand.Execute();
-        }
-
     }
 }

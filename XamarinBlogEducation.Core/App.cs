@@ -3,7 +3,7 @@ using MvvmCross;
 using MvvmCross.ViewModels;
 using MvvmCross.IoC;
 using XamarinBlogEducation.Core.ViewModels;
-
+using Acr.UserDialogs;
 
 namespace XamarinBlogEducation.Core
 {
@@ -16,7 +16,7 @@ namespace XamarinBlogEducation.Core
                 .EndingWith("Service")
                 .AsInterfaces()
                 .RegisterAsLazySingleton();
-
+            Mvx.IoCProvider.RegisterSingleton(() => UserDialogs.Instance);
             RegisterCustomAppStart<AppStart>();
 
         }

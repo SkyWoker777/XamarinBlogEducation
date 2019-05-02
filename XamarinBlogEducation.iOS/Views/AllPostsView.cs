@@ -4,6 +4,7 @@ using MvvmCross.Platforms.Ios.Views;
 using Plugin.SecureStorage;
 using System;
 using UIKit;
+using XamarinBlogEducation.Core.Resources;
 using XamarinBlogEducation.Core.ViewModels.Fragments;
 using XamarinBlogEducation.iOS.Views.Cells;
 using XamarinBlogEducation.ViewModels.Responses;
@@ -30,9 +31,6 @@ namespace XamarinBlogEducation.iOS.Views
 
             _source = new MvxSimpleTableViewSource(AllPostsTableView, nameof(PostViewCell), PostViewCell.Key);
             AllPostsTableView.RowHeight = 130;
-
-
-
             bool isUserExists = CrossSecureStorage.Current.HasKey("securityToken");
 
             EdgesForExtendedLayout = UIRectEdge.None;
@@ -133,6 +131,7 @@ namespace XamarinBlogEducation.iOS.Views
         {
             base.ViewWillAppear(animated);
             ViewModel.OnResume();
+            NavigationController.Title = Strings.AllPostsTitle;
             NavigationController.NavigationBar.Hidden = false;
             NavigationController.NavigationBar.BackgroundColor = UIColor.FromRGBA(209, 188, 171, 255);
         }

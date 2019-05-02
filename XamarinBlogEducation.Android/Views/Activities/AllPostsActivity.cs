@@ -1,4 +1,5 @@
 ﻿using System;
+using Acr.UserDialogs;
 using Android.App;
 using Android.Content;
 using Android.Content.PM;
@@ -31,6 +32,7 @@ namespace XamarinBlogEducation.Android.Views.Activities
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
+            UserDialogs.Init(this);
             SetContentView(Resource.Layout.AllPostsView);
             var toolbar = FindViewById<Toolbar>(Resource.Id.filters_toolbar);
             DrawerLayout = FindViewById<DrawerLayout>(Resource.Id.allpost_drawer);

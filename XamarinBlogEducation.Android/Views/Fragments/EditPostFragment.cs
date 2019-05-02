@@ -3,7 +3,9 @@ using Android.OS;
 using Android.Support.V7.App;
 using Android.Views;
 using Android.Widget;
+using MvvmCross.Binding.BindingContext;
 using MvvmCross.Platforms.Android.Presenters.Attributes;
+using XamarinBlogEducation.Android.Services;
 using XamarinBlogEducation.Core.ViewModels;
 using XamarinBlogEducation.Core.ViewModels.Fragments;
 
@@ -25,6 +27,7 @@ namespace XamarinBlogEducation.Android.Views.Fragments
             var view = base.OnCreateView(inflater, container, savedInstanceState);
             ((AppCompatActivity)Activity).SupportActionBar.SetDisplayShowTitleEnabled(true);
             ((AppCompatActivity)Activity).SupportActionBar.SetTitle(Resource.String.EditPostTitle);
+            
             if (Activity is MainView mainView)
             {
                 mainView.BackButtonPressed += (s, e) =>
@@ -50,28 +53,15 @@ namespace XamarinBlogEducation.Android.Views.Fragments
             linearLayout.VerticalScrollBarEnabled = true;
             inpUpdatedTitle.SetTextIsSelectable(true);
 
-            btnCancelEditPost.Click += btnCancelEditPost_onClick;
-            btnSaveEditPost.Click += btnSaveEditPost_onClick;
-            btnDeletePost.Click+=new EventHandler(delegate (Object o, EventArgs a)
-            {
-                ViewModel.DeleteCommand.Execute();
-            });
+            var set= this.CreateBindingSet<EditPostFragment, EditPostViewModel>();
+
+            set.Bind(btnSaveEditPost).To(vm => vm.SaveEditCommand);
+            set.Bind(btnCancelEditPost).To(vm => vm.CancelEditCommand);
+            set.Bind(btnDeletePost).To(vm => vm.DeleteCommand);
+
+            set.Apply();
+            
             return view;
-        }
-        private void btnSaveEditPost_onClick(object sender, EventArgs e)
-        {
-            ViewModel.SaveEditCommand.Execute();
-            var toast = string.Format("All changes were saved");
-            Toast.MakeText(Context, toast, ToastLength.Long).Show();
-            ViewModel.GoToPostsCommand.Execute();
-        }      
-        private void btnCancelEditPost_onClick(object sender, EventArgs e)
-        {
-            var toast = string.Format("No changes were saved");
-            Toast.MakeText(Context, toast, ToastLength.Long).Show();
-            ViewModel.GoToPostsCommand.Execute();
-        }
-        
-        
+        }    
     }
 }

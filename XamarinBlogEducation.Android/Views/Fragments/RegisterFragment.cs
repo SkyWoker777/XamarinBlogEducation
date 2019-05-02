@@ -23,7 +23,9 @@ namespace XamarinBlogEducation.Android.Views.Fragments
         public EditText inpLastName;
         public Button btnSignUp;
         public Button btnSignUpLogin;
+
         protected override int FragmentId => Resource.Layout.RegisterView;
+
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             var view = base.OnCreateView(inflater, container, savedInstanceState);
@@ -44,50 +46,12 @@ namespace XamarinBlogEducation.Android.Views.Fragments
             set.Bind(inpConfirmPassword).To(vm => vm.ConfirmPassword);
             set.Bind(inpUserName).To(vm => vm.FirstName);
             set.Bind(btnSignUpLogin).To(vm => vm.LoginCommand);
+            set.Bind(btnSignUp).To(vm => vm.RegistrateCommand);
 
             set.Apply();
-
-            btnSignUp.Click += btnSignUp_OnClick;
-
+            
             return view;
-        }     
-        private void btnSignUp_OnClick(object sender, EventArgs e)
-        {
-            if (ValidateForm(inpEmail.Text,inpPassword.Text,inpConfirmPassword.Text,inpUserName.Text,inpLastName.Text))
-            { ViewModel.RegistrateCommand.Execute(); }
-        }
-        public bool ValidateForm(string Email,string Password, string ConfirmPassword, string Name, string LastName)
-        {
-            var valid = true;
-            if(Password!= ConfirmPassword)
-            {
-                var toastText = string.Format("Passwords doesn`t the same!");
-                var toast = Toast.MakeText(Context, toastText, ToastLength.Long);
-                toast.SetGravity(GravityFlags.Center, 0, 600);
-                toast.Show();
-                inpPassword.Text = "";
-                inpConfirmPassword.Text = "";
-                valid = false;
-            }
-            if(string.IsNullOrEmpty(Email)|| string.IsNullOrEmpty(Password)|| string.IsNullOrEmpty(ConfirmPassword)|| string.IsNullOrEmpty(Name)|| string.IsNullOrEmpty(LastName))
-            {
-                var toastText = string.Format("Fill all the gaps");
-                var toast = Toast.MakeText(Context, toastText, ToastLength.Long);
-                toast.SetGravity(GravityFlags.Center, 0, 400);
-                toast.Show();
-                valid = false;
-            }
-            var regex = new Regex(@"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?");
-            var emailValid= regex.IsMatch(Email);
-            if (!emailValid)
-            {
-                var toastText = string.Format("Wrong format of email");
-                var toast = Toast.MakeText(Context, toastText, ToastLength.Long);
-                toast.SetGravity(GravityFlags.Center, 0, 200);
-                toast.Show();
-                valid = false;
-            }
-            return valid;
-        }
+        } 
+        
     }
 }

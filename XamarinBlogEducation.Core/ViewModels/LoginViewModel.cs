@@ -18,28 +18,26 @@ namespace XamarinBlogEducation.Core.ViewModels
         private LoginAccountRequestModel user;
         private EditAccountRequestModel _loggedUser;
         private readonly IUserService _userService;
-       // protected readonly IDialogsService _dialogsService;
+        private readonly IUserDialogs _userDialogs;
         private bool isModelValid;
+
         public LoginViewModel(IUserService userService,
-             IMvxNavigationService navigationService
-           // , IDialogsService dialogsService
+             IMvxNavigationService navigationService,
+             IUserDialogs userDialogs
             ) : base(navigationService)
         {
             _userService = userService;
-           // _dialogsService = dialogsService;
+            _userDialogs = userDialogs;
             LoginCommand = new MvxAsyncCommand(LoginAsync);
             SingUpCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<RegisterViewModel>());
             SkipCommand = new MvxAsyncCommand(async () => await NavigationService.Navigate<AllPostsViewModel>());
             GoNextCommand = new MvxAsyncCommand(GoNextAsync);
-            ValidateCommand = new MvxAsyncCommand(Validate);
         }
         public IMvxAsyncCommand LoginCommand { get; private set; }
         public IMvxAsyncCommand ValidateCommand { get; private set; }
         public IMvxAsyncCommand GoNextCommand { get; private set; }
         public IMvxCommand SingUpCommand { get; private set; }
         public IMvxCommand SkipCommand { get; private set; }
-
-        public string loginMessage;
 
         public string Email
         {
@@ -50,7 +48,6 @@ namespace XamarinBlogEducation.Core.ViewModels
                 RaisePropertyChanged();
             }
         }
-
         public string Password
         {
             get => _password;
@@ -69,9 +66,10 @@ namespace XamarinBlogEducation.Core.ViewModels
                 RaisePropertyChanged();
             }
         }
+
         private async Task LoginAsync()
         {
-            await Validate();
+            Validate();
             if (isModelValid)
             {
                 user = new LoginAccountRequestModel()
@@ -81,22 +79,23 @@ namespace XamarinBlogEducation.Core.ViewModels
                 };
                 _loggedUser = await _userService.GetUserAsync(user);
                 string mail = CrossSecureStorage.Current.GetValue("UserEmail");
-                // UserDialogs.Instance.Toast(Strings.SuccessLogin);
+                _userDialogs.Toast(Strings.SuccessLogin);
                 await GoNextAsync();
             }
             if (!isModelValid)
             {
-              //  UserDialogs.Instance.Toast(Strings.WrongLogin);
+                _userDialogs.Toast(Strings.WrongLogin);
             }
 
         }
+
         private async Task GoNextAsync()
         {
             await NavigationService.Navigate<AllPostsViewModel>();
             await DisposeView(this);
         }
 
-        public async Task Validate()
+        public void Validate()
         {
             if (Regex.Match(_email, @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$").Success && !string.IsNullOrWhiteSpace(_password))
             {

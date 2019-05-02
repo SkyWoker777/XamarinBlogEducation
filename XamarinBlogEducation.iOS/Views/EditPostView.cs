@@ -6,6 +6,7 @@ using Foundation;
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.Platforms.Ios.Views;
 using UIKit;
+using XamarinBlogEducation.Core.Resources;
 using XamarinBlogEducation.Core.ViewModels.Fragments;
 
 namespace XamarinBlogEducation.iOS.Views
@@ -35,6 +36,7 @@ namespace XamarinBlogEducation.iOS.Views
             set.Bind(lblCreationDate).For(t => t.Text).To(vm => vm.PostToEdit.CreationDate);
             set.Bind(btnSaveEdit).To(vm => vm.SaveEditCommand);
             set.Bind(btnCancelEdit).To(vm => vm.GoBackCommand);
+
             set.Apply();
             btnDeletePost.TouchDown+= btnDeletePost_onTouch;
         }
@@ -44,7 +46,7 @@ namespace XamarinBlogEducation.iOS.Views
             var alert = UIAlertController.Create("Post deleting", "Are you really want to delete this post? ", UIAlertControllerStyle.Alert);
             alert.AddAction(UIAlertAction.Create("DELETE", UIAlertActionStyle.Default, (UIAlertAction obj) =>
             {
-                ViewModel.DeletePostCommand.Execute();
+                ViewModel.DeleteCommand.Execute();
             }));
             alert.AddAction(UIAlertAction.Create("CANCEL", UIAlertActionStyle.Cancel, (UIAlertAction obj) =>
             {
@@ -52,7 +54,11 @@ namespace XamarinBlogEducation.iOS.Views
             }));
             PresentViewController(alert, true, null);
         }
-
+        public override void ViewWillAppear(bool animated)
+        {
+            base.ViewWillAppear(animated);
+            NavigationController.Title = Strings.EditPostTitle;
+        }
         #endregion
     }
 }

@@ -22,16 +22,17 @@ namespace XamarinBlogEducation.iOS.Views
             base.ViewDidLoad();
 
             EdgesForExtendedLayout = UIRectEdge.None;
-            //MenuTableView.BackgroundColor = UIColor.Clear;
             _source = new MenuTableViewSource(MenuTableView);
             MenuTableView.Source = _source;
             MenuTableView.SeparatorColor = UIColor.FromRGBA(209, 188, 171, 255);
             MenuTableView.BackgroundColor = UIColor.FromRGBA(209, 188, 171,255);
+            lblUserName.Text= ViewModel.UserName;
+
             var set = this.CreateBindingSet<MenuView, MenuViewModel>();
 
             set.Bind(_source).For(v => v.ItemsSource).To(vm => vm.MenuItems);
-            lblUserName.Text= ViewModel.UserName;
             set.Bind(_source).For(v => v.SelectionChangedCommand).To(vm => vm.MenuItemSelectedCommand);
+
             set.Apply();
             
         }
